@@ -1,10 +1,9 @@
 import ReactDOM from "react-dom";
-import Button from "./components/button/Button"
-import searchIcon from "./icons/search_white.svg" ; 
+import SearchForm from "./components/searchForm/SearchForm";
 
 const App = () => {
     return(
-        <Button icon = {searchIcon}>Search</Button>
+        <SearchForm />
     )
 }
 

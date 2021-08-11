@@ -1,0 +1,35 @@
+@import "../../style/universal.scss";
+
+.searchTabs {
+    // background: rgba(255, 255, 255, 0.22);
+    background-color: gray;
+    backdrop-filter: blur(50px);
+    border-radius: 10px 10px 0px 0px;
+    display: flex;
+    justify-content: left;
+    align-content: center;
+    width: 744px;
+    height: 60px;
+    font-family: "Open Sans", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+
+    .searchTab {
+        background-color: transparent;
+        color: $white;
+        border: none;
+        width: 25%;
+    }
+    #active {
+        background-color: $background;
+        color: $dark;
+    }
+}
+
+.form {
+    height: 208px;
+    background-color: $background;
+    width: 80%;
+    border-radius: 0px 10px 10px 10px;
+}

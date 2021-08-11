@@ -2,12 +2,14 @@ import "./buttonStyle.scss" ;
 type buttonProps = {
     children : React.ReactNode ; 
     icon? : string ; 
+    className?: string ; 
+    id? : string ; 
 }
 const Button = (props : buttonProps)=>{
     return (
-        <button className = "button">
+        <button id = {props.id} className = {props.className}>
             {props.icon && <img alt = "Search icon" src = {props.icon} />}
-            <span className = "buttonText">{props.children}</span>
+            {props.children}
         </button>
     )
 }
