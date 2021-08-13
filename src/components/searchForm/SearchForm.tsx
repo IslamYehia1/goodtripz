@@ -6,13 +6,22 @@ import Suggestions from "./Suggestions";
 import flightLandIcon from "../../icons/flight_land_black_24dp.svg";
 import flightTakeoffIcon from "../../icons/flight_takeoff_black_24dp.svg";
 import dateIcon from "../../icons/calendar_black.svg";
+import React from "react";
+import { useState } from "react";
 const SearchForm = () => {
     let timer: NodeJS.Timeout;
+    const [suggestions, setSuggestions] = useState<Array<string[]>>([]);
     function handleKeyUp(e: React.KeyboardEvent<HTMLInputElement>) {
         clearTimeout(timer);
         timer = setTimeout(async () => {
-            await fetchSuggestions((e.target as HTMLTextAreaElement).value);
+            setSuggestions(
+                await fetchSuggestions((e.target as HTMLTextAreaElement).value)
+            );
         }, 500);
+    }
+
+    function focusHandler(e: React.FocusEvent<HTMLInputElement>) {
+        console.log(e.target);
     }
 
     return (
@@ -25,8 +34,10 @@ const SearchForm = () => {
                 <Button className="searchTab">Cars</Button>
                 <Button className="searchTab">Packages</Button>
             </div>
+            <Suggestions className="suggestions" suggestions={suggestions} />
             <div className="form">
                 <InputField
+                    focusHandler={focusHandler}
                     handleKeyUp={handleKeyUp}
                     label="Traveling from"
                     className="searchField"
@@ -35,6 +46,7 @@ const SearchForm = () => {
                     placeholder="Departure city"
                 />
                 <InputField
+                    focusHandler={focusHandler}
                     handleKeyUp={handleKeyUp}
                     label="Traveling to"
                     className="searchField"
@@ -44,6 +56,7 @@ const SearchForm = () => {
                 />
                 <div id="dateSearchField" className="searchFieldWrapper">
                     <InputField
+                        focusHandler={focusHandler}
                         handleKeyUp={handleKeyUp}
                         label="Departure date"
                         className="searchField"
@@ -52,6 +65,7 @@ const SearchForm = () => {
                         placeholder="Pick date"
                     />
                     <InputField
+                        focusHandler={focusHandler}
                         handleKeyUp={handleKeyUp}
                         label="Return date"
                         className="searchField"

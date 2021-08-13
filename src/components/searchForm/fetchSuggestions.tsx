@@ -9,10 +9,11 @@ async function airportAutocomplete(queryString: string) {
     let page: Array<string[]> = [];
     suggestions.forEach((result: any) => {
         page.push([
-            result.iata,
-            result.name,
-            result.servedCity,
-            result.country.name,
+            `${result.name ? result.name : ""} ${
+                result.iata ? " (Code: " + result.iata + ")" : ""
+            }`,
+            `${result.servedCity ? result.servedCity + "," : ""} 
+            ${result.country.name ? result.country.name : ""}`,
         ]);
     });
     return page;
