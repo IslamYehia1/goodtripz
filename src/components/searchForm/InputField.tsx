@@ -7,6 +7,7 @@ type inputFieldProps = {
     label: string;
     handleKeyUp: React.KeyboardEventHandler<HTMLInputElement>;
     focusHandler: React.FocusEventHandler<HTMLInputElement>;
+    blurHandler: React.FocusEventHandler<HTMLInputElement>;
 };
 
 const InputField = (props: inputFieldProps) => {
@@ -17,6 +18,7 @@ const InputField = (props: inputFieldProps) => {
                 <label htmlFor={props.name}>{props.label}</label>
                 <input
                     onFocus={props.focusHandler}
+                    onBlur={props.blurHandler}
                     onKeyUp={props.handleKeyUp}
                     placeholder={props.placeholder}
                     type="text"
