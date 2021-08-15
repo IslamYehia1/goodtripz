@@ -1,26 +1,32 @@
 @import "../../style/universal.scss";
+
 .searchTabs {
-    // background: rgba(255, 255, 255, 0.22);
-    background-color: gray;
+    background: rgba(255, 255, 255, 0.22);
     backdrop-filter: blur(50px);
     border-radius: 10px 10px 0px 0px;
     display: flex;
     justify-content: left;
     align-content: center;
-    width: 40%;
-    height: 60px;
+    width: 50%;
+    height: 55px;
 
     .searchTab {
         @include semiBoldFont;
-        font-size: 18px;
+        font-size: 16px;
         background-color: transparent;
         color: $white;
         border: none;
         width: 25%;
+        &:first-child {
+            border-radius: 10px 0 0 0;
+        }
     }
     #active {
+        padding: 3px;
         background-color: $background;
+        background-clip: content-box;
         color: $dark;
+        border-radius: 10px;
     }
 }
 
@@ -29,7 +35,7 @@
     background-color: $background;
     border-radius: 0px 10px 10px 10px;
     box-sizing: border-box;
-    width: 70%;
+    width: 100%;
     padding: 3% 3% 3% 3%;
     .inputAndSuggestion {
         box-sizing: border-box;

@@ -1,0 +1,25 @@
+#homepage {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    min-height: 768px;
+    box-sizing: border-box;
+    padding: 4% 6% 0% 6%;
+}
+.homepage {
+    background: url("../../img/background.jpg") rgba(0, 0, 0, 0.12) no-repeat;
+    background-blend-mode: multiply;
+    background-size: cover;
+    width: 100%;
+    height: 85%;
+    border-radius: 30px;
+}
+#searchForm {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 7%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}

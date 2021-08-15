@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import InputField from "./InputField";
 import "./searchForm.scss";
-import Button from "../button/Button";
+import Button from "../Button/Button";
 import fetchSuggestions from "./fetchSuggestions";
 import Suggestions from "./Suggestions";
 import flightLandIcon from "../../icons/flight_land_black_24dp.svg";
@@ -43,15 +43,31 @@ const SearchForm = () => {
         }
     }
 
+    function activateTab(e: React.MouseEvent<HTMLButtonElement>) {
+        document.querySelector("#active")!.id = "";
+        //@ts-ignore
+        e.target.id = "active";
+    }
+
     return (
         <div id="searchForm">
             <div className="searchTabs">
-                <Button id="active" className="searchTab">
+                <Button
+                    handleClick={activateTab}
+                    id="active"
+                    className="searchTab"
+                >
                     Flights
                 </Button>
-                <Button className="searchTab">Hotels</Button>
-                <Button className="searchTab">Cars</Button>
-                <Button className="searchTab">Packages</Button>
+                <Button handleClick={activateTab} className="searchTab">
+                    Hotels
+                </Button>
+                <Button handleClick={activateTab} className="searchTab">
+                    Cars
+                </Button>
+                <Button handleClick={activateTab} className="searchTab">
+                    Packages
+                </Button>
             </div>
             <div className="form">
                 <div className="inputAndSuggestion">

@@ -1,13 +1,8 @@
 import ReactDOM from "react-dom";
-import SearchForm from "./components/searchForm/SearchForm";
-import Home from "./components/homePage/Home";
+import Home from "./components/HomePage/Home";
 
 const App = () => {
-    return (
-        <Home>
-            <SearchForm />
-        </Home>
-    );
+    return <Home className="homepage" />;
 };
 
 ReactDOM.render(<App />, document.getElementById("root"));
