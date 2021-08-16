@@ -5,14 +5,12 @@
     backdrop-filter: blur(50px);
     border-radius: 10px 10px 0px 0px;
     display: flex;
-    justify-content: left;
-    align-content: center;
     width: 50%;
     height: 55px;
-
+    white-space: nowrap;
     .searchTab {
         @include semiBoldFont;
-        font-size: 16px;
+        font-size: 15px;
         background-color: transparent;
         color: $white;
         border: none;
@@ -33,10 +31,11 @@
 .form {
     display: flex;
     background-color: $background;
+    box-shadow: 0px 5px 71px 22px rgba(0, 0, 0, 0.04);
     border-radius: 0px 10px 10px 10px;
     box-sizing: border-box;
-    width: 100%;
-    padding: 3% 3% 3% 3%;
+    padding: 3%;
+    white-space: nowrap;
     .inputAndSuggestion {
         box-sizing: border-box;
         height: 94px;
@@ -46,12 +45,10 @@
     }
     .searchFieldWrapper {
         display: flex;
-        padding: 20px;
         align-items: center;
+        padding: 20px;
         height: 94px;
-        width: 100%;
         background-color: $white;
-        border-color: $white;
         border-radius: 11px;
         box-sizing: border-box;
         img {
@@ -63,19 +60,19 @@
     .searchField {
         display: flex;
         flex-direction: column;
+        white-space: nowrap;
         label {
             @include semiBoldFont;
             font-size: 14px;
-            width: fit-content;
             color: #8b8b8b;
         }
         input {
             @include semiBoldFont;
+            padding: 0;
             color: $dark;
             font-size: 16px;
             border: none;
             background-color: $white;
-            padding: 0;
             width: 90%;
             transition: all 1s ease;
             &:focus {
@@ -97,10 +94,8 @@
         min-width: 34%;
         width: 34%;
         .searchFieldWrapper {
-            width: 48%;
-            &:first-child {
-                width: 52%;
-            }
+            width: 50%;
+            padding: 20px 0 20px 20px;
         }
     }
 }

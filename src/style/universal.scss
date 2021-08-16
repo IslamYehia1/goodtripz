@@ -7,9 +7,16 @@ html,
 body {
     padding: 0;
     margin: 0;
+    background-color: $background;
+    color: $dark;
 }
+
 button {
     cursor: pointer;
+}
+a {
+    text-decoration: none;
+    color: $dark;
 }
 @mixin semiBoldFont {
     font-family: "Open Sans", sans-serif;

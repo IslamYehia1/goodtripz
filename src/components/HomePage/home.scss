@@ -1,10 +1,10 @@
 #homepage {
     position: relative;
-    width: 100vw;
-    height: 100vh;
+    width: 99vw;
+    height: calc(100vh - 100px);
     min-height: 768px;
     box-sizing: border-box;
-    padding: 4% 6% 0% 6%;
+    padding: 0 6% 0% 6%;
 }
 .homepage {
     background: url("../../img/background.jpg") rgba(0, 0, 0, 0.12) no-repeat;

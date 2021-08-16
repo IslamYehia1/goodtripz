@@ -75,7 +75,7 @@ const SearchForm = () => {
                         focusHandler={focusHandler}
                         blurHandler={blurHandler}
                         handleKeyUp={handleKeyUp}
-                        label="Traveling from"
+                        label="Flying from"
                         className="searchField"
                         icon={flightTakeoffIcon}
                         name="departure"
@@ -93,7 +93,7 @@ const SearchForm = () => {
                         focusHandler={focusHandler}
                         blurHandler={blurHandler}
                         handleKeyUp={handleKeyUp}
-                        label="Traveling to"
+                        label="Flying to"
                         className="searchField"
                         icon={flightLandIcon}
                         name="destination"
@@ -112,7 +112,7 @@ const SearchForm = () => {
                         focusHandler={focusHandler}
                         blurHandler={blurHandler}
                         handleKeyUp={handleKeyUp}
-                        label="Departure date"
+                        label="Date"
                         className="searchField"
                         icon={dateIcon}
                         name="departureDate"

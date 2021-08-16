@@ -1,4 +1,5 @@
 import SearchForm from "../SearchForm/SearchForm";
+
 import "./home.scss";
 type homeProps = {
     children?: React.ReactNode;

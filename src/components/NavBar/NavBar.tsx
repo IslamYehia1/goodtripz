@@ -1,15 +1,27 @@
 import "./navBar.scss";
+import logo from "../../icons/logo.svg";
 type navProps = {
-    className: string;
+    className?: string;
 };
 const NavBar = (props: navProps) => {
     return (
-        <nav className={props.className}>
-            <ul>
-                <li>Home</li>
-                <li>my trips</li>
-                <li>anything </li>
-            </ul>
+        <nav className="navBar">
+            <div className="logo">
+                <img src={logo} alt="logo" />
+            </div>
+            <div className="navLinks">
+                <ul>
+                    <li>
+                        <a href="#">Help</a>
+                    </li>
+                    <li>
+                        <a href="#">My trips</a>
+                    </li>
+                    <li id="signIn">
+                        <a href="#">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     );
 };
