@@ -1,3 +1,5 @@
+@import "../../style/universal.scss";
+
 #homepage {
     position: relative;
     width: 99vw;
@@ -18,8 +20,40 @@
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 7%;
+    bottom: 2%;
     margin-left: auto;
     margin-right: auto;
     width: 70%;
+}
+
+.recommendation {
+    @include semiBoldFont;
+    color: $white;
+    font-size: 34px;
+    position: relative;
+    top: 30%;
+    padding-left: 10%;
+    h2 {
+        margin: 0;
+        padding: 0;
+    }
+    p {
+        font-size: 16px;
+        width: 40%;
+    }
+    .exploreButton {
+        background: none;
+        color: $white;
+        display: flex;
+        border: none;
+        font-size: 24px;
+        padding: 0;
+        span {
+            margin-right: 20px;
+            line-height: 28px;
+        }
+        img {
+            width: 30px;
+        }
+    }
 }

@@ -23,3 +23,8 @@ a {
     font-style: normal;
     font-weight: 600;
 }
+@mixin normalFont {
+    font-family: "Open Sans", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}

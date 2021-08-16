@@ -1,47 +1,13 @@
 import React, { useState } from "react";
-import InputField from "./InputField";
 import "./searchForm.scss";
 import Button from "../Button/Button";
-import fetchSuggestions from "./fetchSuggestions";
-import Suggestions from "./Suggestions";
-import flightLandIcon from "../../icons/flight_land_black_24dp.svg";
-import flightTakeoffIcon from "../../icons/flight_takeoff_black_24dp.svg";
-import dateIcon from "../../icons/calendar_black.svg";
-
+import FlightSearchFields from "./FlightSearchFields";
+import HotelSearchFields from "./HotelSearchFields";
+import searchIcon from "../../icons/search_white.svg";
+import DateInput from "./DateInput";
 const SearchForm = () => {
-    const [suggestions, setSuggestions] = useState<Array<string[]>>([]);
-    const [showSuggestions, setShowSuggestions] = useState("");
-    let timer: NodeJS.Timeout;
-
-    function handleKeyUp(e: React.KeyboardEvent<HTMLInputElement>) {
-        clearTimeout(timer);
-        timer = setTimeout(async () => {
-            setSuggestions(
-                await fetchSuggestions((e.target as HTMLTextAreaElement).value)
-            );
-        }, 500);
-    }
-
-    // When an searchInput is in focus expand it and make the sibling smaller
-
-    function focusHandler(e: React.FocusEvent<HTMLInputElement>) {
-        let name = e.target.name;
-        let element = e.target.closest<HTMLElement>(".inputAndSuggestion");
-        if (element) {
-            element!.style.width = "50%";
-            setShowSuggestions(name);
-            setSuggestions([]);
-        }
-    }
-
-    function blurHandler(e: React.FocusEvent<HTMLInputElement>) {
-        let element = e.target.closest<HTMLElement>(".inputAndSuggestion");
-        if (element) {
-            element!.style.width = "33%";
-            setShowSuggestions("");
-            setSuggestions([]);
-        }
-    }
+    const [formState, setFormState] = useState("hotel");
+    function searchHandler() {}
 
     function activateTab(e: React.MouseEvent<HTMLButtonElement>) {
         document.querySelector("#active")!.id = "";
@@ -53,82 +19,56 @@ const SearchForm = () => {
         <div id="searchForm">
             <div className="searchTabs">
                 <Button
-                    handleClick={activateTab}
+                    handleClick={(e) => {
+                        activateTab(e);
+                        setFormState("flight");
+                    }}
                     id="active"
                     className="searchTab"
                 >
                     Flights
                 </Button>
-                <Button handleClick={activateTab} className="searchTab">
+                <Button
+                    handleClick={(e) => {
+                        activateTab(e);
+                        setFormState("hotel");
+                    }}
+                    className="searchTab"
+                >
                     Hotels
                 </Button>
-                <Button handleClick={activateTab} className="searchTab">
+                <Button
+                    handleClick={(e) => {
+                        activateTab(e);
+                        setFormState("car");
+                    }}
+                    className="searchTab"
+                >
                     Cars
                 </Button>
-                <Button handleClick={activateTab} className="searchTab">
+                <Button
+                    handleClick={(e) => {
+                        activateTab(e);
+                        setFormState("package");
+                    }}
+                    className="searchTab"
+                >
                     Packages
                 </Button>
             </div>
             <div className="form">
-                <div className="inputAndSuggestion">
-                    <InputField
-                        focusHandler={focusHandler}
-                        blurHandler={blurHandler}
-                        handleKeyUp={handleKeyUp}
-                        label="Flying from"
-                        className="searchField"
-                        icon={flightTakeoffIcon}
-                        name="departure"
-                        placeholder="Departure airport"
-                    />
-                    {showSuggestions === "departure" ? (
-                        <Suggestions
-                            className="suggestions"
-                            suggestions={suggestions}
-                        />
-                    ) : null}
+                <div className="formFields">
+                    {formState === "flight" && <FlightSearchFields />}
+                    {formState === "hotel" && <HotelSearchFields />}
+                    <DateInput />
                 </div>
-                <div className="inputAndSuggestion">
-                    <InputField
-                        focusHandler={focusHandler}
-                        blurHandler={blurHandler}
-                        handleKeyUp={handleKeyUp}
-                        label="Flying to"
-                        className="searchField"
-                        icon={flightLandIcon}
-                        name="destination"
-                        placeholder="Destiniation airport"
-                    />
-                    {showSuggestions === "destination" ? (
-                        <Suggestions
-                            className="suggestions"
-                            suggestions={suggestions}
-                        />
-                    ) : null}
-                </div>
-
-                <div id="dateSearchField" className="searchFieldWrapper">
-                    <InputField
-                        focusHandler={focusHandler}
-                        blurHandler={blurHandler}
-                        handleKeyUp={handleKeyUp}
-                        label="Date"
-                        className="searchField"
-                        icon={dateIcon}
-                        name="departureDate"
-                        placeholder="Pick date"
-                    />
-                    <InputField
-                        focusHandler={focusHandler}
-                        blurHandler={blurHandler}
-                        handleKeyUp={handleKeyUp}
-                        label="Return date"
-                        className="searchField"
-                        icon={dateIcon}
-                        name="returnDate"
-                        placeholder="Pick date"
-                    />
-                </div>
+                <Button
+                    handleClick={searchHandler}
+                    icon={searchIcon}
+                    className="button searchButton"
+                >
+                    Search
+                </Button>
             </div>
         </div>
     );
