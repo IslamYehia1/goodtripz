@@ -1,0 +1,58 @@
+@import "../../style/universal.scss";
+.DayPicker-Caption {
+    padding-left: 45px !important ;
+}
+.Range .DayPicker-NavButton--prev {
+    display: block !important ;
+    left: 22px !important;
+    top: 18px !important;
+    right: auto !important;
+    width: 17px !important;
+    height: 18px !important;
+}
+.Range .DayPicker-NavButton--next {
+    width: 17px !important;
+    height: 18px !important;
+}
+
+.Range {
+    @include semiBoldFont;
+}
+.Range .DayPicker-Day--start:not(.DayPicker-Day--outside) {
+    background-color: #4f96f7 !important ;
+    color: #f0f8ff !important;
+    border-radius: 10%;
+}
+.Range .DayPicker-Day--end:not(.DayPicker-Day--outside) {
+    background-color: #4f96f7 !important ;
+    color: #f0f8ff !important;
+    border-radius: 10%;
+}
+
+.Range
+    .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+    background-color: #f0f8ff !important;
+    color: #4a90e2 !important;
+}
+
+.Range .DayPicker-Day {
+    border-radius: 0;
+}
+.DayPicker-Months {
+    display: flex;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+}
+
+.DayPickerInput-OverlayWrapper {
+    position: absolute !important ;
+    left: 0;
+}
+.enclosure {
+    width: 70%;
+    position: relative;
+    left: 200px;
+    input {
+        width: 200px;
+    }
+}

@@ -5,6 +5,7 @@ import FlightSearchFields from "./FlightSearchFields";
 import HotelSearchFields from "./HotelSearchFields";
 import searchIcon from "../../icons/search_white.svg";
 import DateInput from "./DateInput";
+
 const SearchForm = () => {
     const [formState, setFormState] = useState("hotel");
     function searchHandler() {}

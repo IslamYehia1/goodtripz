@@ -36,10 +36,10 @@
     box-sizing: border-box;
     padding: 4% 3% 4% 3%;
     white-space: nowrap;
-    .inputAndSuggestion {
+    .flightSearch {
         box-sizing: border-box;
         height: 94px;
-        width: 33%;
+        min-width: 33%;
         padding-right: 20px;
         transition: width 0.3s;
     }
@@ -89,6 +89,7 @@
         }
     }
     #dateSearchField {
+        position: relative;
         box-sizing: border-box;
         height: 94px;
         min-width: 34%;
@@ -105,4 +106,9 @@
     margin-right: 3%;
     margin-top: -2%;
     padding: 1% 7%;
+}
+
+.hotelSearch {
+    width: 100%;
+    padding-right: 20px;
 }

@@ -20,30 +20,19 @@ const FlightSearchFields = () => {
 
     // When an searchInput is in focus expand it and make the sibling smaller
 
-    function focusHandler(e: React.FocusEvent<HTMLInputElement>) {
-        let name = e.target.name;
-        let element = e.target.closest<HTMLElement>(".inputAndSuggestion");
-        if (element) {
-            element!.style.width = "50%";
-            setShowSuggestions(name);
-            setSuggestions([]);
-        }
-    }
-
-    function blurHandler(e: React.FocusEvent<HTMLInputElement>) {
-        let element = e.target.closest<HTMLElement>(".inputAndSuggestion");
-        if (element) {
-            element!.style.width = "33%";
-            setShowSuggestions("");
-            setSuggestions([]);
-        }
-    }
     return (
         <>
-            <div className="inputAndSuggestion">
+            <div className="flightSearch">
                 <InputField
-                    focusHandler={focusHandler}
-                    blurHandler={blurHandler}
+                    focusHandler={(e) => {
+                        setShowSuggestions("departure");
+                        e.target.style.width = "50%";
+                    }}
+                    blurHandler={(e) => {
+                        setShowSuggestions("");
+                        setSuggestions([]);
+                        e.target.style.width = "33%";
+                    }}
                     handleKeyUp={handleKeyUp}
                     label="Flying from"
                     className="searchField"
@@ -58,10 +47,17 @@ const FlightSearchFields = () => {
                     />
                 ) : null}
             </div>
-            <div className="inputAndSuggestion">
+            <div className="flightSearch">
                 <InputField
-                    focusHandler={focusHandler}
-                    blurHandler={blurHandler}
+                    focusHandler={(e) => {
+                        setShowSuggestions("destination");
+                        e.target.style.width = "50%";
+                    }}
+                    blurHandler={(e) => {
+                        setShowSuggestions("");
+                        setSuggestions([]);
+                        e.target.style.width = "33%";
+                    }}
                     handleKeyUp={handleKeyUp}
                     label="Flying to"
                     className="searchField"

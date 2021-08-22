@@ -5,10 +5,6 @@ type propsType = {
     className: string;
 };
 const Suggestions = (props: propsType) => {
-    props.suggestions.forEach((suggestion) => {
-        const [iata, name, city, country] = [...suggestion];
-        console.log(iata, name, city, country);
-    });
     const suggestions = props.suggestions.map((suggestion) => (
         <li>
             <img src={airportIcon} alt="" />
