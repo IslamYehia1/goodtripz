@@ -8,6 +8,10 @@ import InputField from "./InputField";
 const FlightSearchFields = () => {
     const [suggestions, setSuggestions] = useState<Array<string[]>>([]);
     const [showSuggestions, setShowSuggestions] = useState("");
+    const [flightFieldWidth, setFlightFieldWidth] = useState({
+        from: "33%",
+        to: "33%",
+    });
     let timer: NodeJS.Timeout;
     function handleKeyUp(e: React.KeyboardEvent<HTMLInputElement>) {
         clearTimeout(timer);
@@ -22,16 +26,19 @@ const FlightSearchFields = () => {
 
     return (
         <>
-            <div className="flightSearch">
+            <div
+                style={{ width: flightFieldWidth.from }}
+                className="flightSearch"
+            >
                 <InputField
                     focusHandler={(e) => {
                         setShowSuggestions("departure");
-                        e.target.style.width = "50%";
+                        setFlightFieldWidth({ from: "40%", to: "26%" });
                     }}
                     blurHandler={(e) => {
                         setShowSuggestions("");
                         setSuggestions([]);
-                        e.target.style.width = "33%";
+                        setFlightFieldWidth({ from: "33%", to: "33%" });
                     }}
                     handleKeyUp={handleKeyUp}
                     label="Flying from"
@@ -47,16 +54,19 @@ const FlightSearchFields = () => {
                     />
                 ) : null}
             </div>
-            <div className="flightSearch">
+            <div
+                className="flightSearch"
+                style={{ width: flightFieldWidth.to }}
+            >
                 <InputField
                     focusHandler={(e) => {
                         setShowSuggestions("destination");
-                        e.target.style.width = "50%";
+                        setFlightFieldWidth({ from: "26%", to: "40%" });
                     }}
                     blurHandler={(e) => {
                         setShowSuggestions("");
                         setSuggestions([]);
-                        e.target.style.width = "33%";
+                        setFlightFieldWidth({ from: "33%", to: "33%" });
                     }}
                     handleKeyUp={handleKeyUp}
                     label="Flying to"

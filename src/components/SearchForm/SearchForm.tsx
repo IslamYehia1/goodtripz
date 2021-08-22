@@ -4,7 +4,7 @@ import Button from "../Button/Button";
 import FlightSearchFields from "./FlightSearchFields";
 import HotelSearchFields from "./HotelSearchFields";
 import searchIcon from "../../icons/search_white.svg";
-import DateInput from "./DateInput";
+import DateInput from "./RangeDatePicker";
 
 const SearchForm = () => {
     const [formState, setFormState] = useState("hotel");
