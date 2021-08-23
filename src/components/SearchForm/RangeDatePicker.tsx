@@ -2,6 +2,7 @@ import ToDateField from "./ToDateField";
 import FromDateField from "./FromDateField";
 import { useState } from "react";
 import "./datePicker.scss";
+
 const RangeDatePicker = () => {
     const today = new Date();
     const [state, setState] = useState<{ [key: string]: Date | undefined }>({
@@ -11,21 +12,20 @@ const RangeDatePicker = () => {
     });
     function onFromDayChange() {}
     function onToDayChange() {}
+    function stateSetter(param: { [key: string]: Date | undefined }) {
+        setState(param);
+    }
     return (
         <div id="dateSearchField" className="searchFieldWrapper">
             <FromDateField
-                from={state.from}
-                to={state.to}
-                lastHoveredDay={state.lastHoveredDay}
-                setState={setState}
+                state={state}
+                setState={stateSetter}
                 today={today}
                 onDayChange={onFromDayChange}
             />
             <ToDateField
-                from={state.from}
-                to={state.to}
-                lastHoveredDay={state.lastHoveredDay}
-                setState={setState}
+                state={state}
+                setState={stateSetter}
                 today={today}
                 onDayChange={onToDayChange}
             />
