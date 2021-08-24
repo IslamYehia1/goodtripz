@@ -1,5 +1,6 @@
 import SearchForm from "../SearchForm/SearchForm";
 import arrow from "../../icons/right-arrow.svg";
+import Article from "../../components/Article/Article";
 import image1 from "../../img/image1.jpg";
 import image2 from "../../img/image2.jpg";
 import "./home.scss";
@@ -12,7 +13,7 @@ type homeProps = {
 const Home = (props: homeProps) => {
     return (
         <main id="homepage">
-            <div className="homepage">
+            <div className="homeSectionOne">
                 <div className="recommendation">
                     <div className="explore">
                         <h2>INDONESIA</h2>
@@ -29,7 +30,7 @@ const Home = (props: homeProps) => {
                 </div>
                 <SearchForm />
             </div>
-            <div className="secondPage">
+            <div className="homeSectionTwo">
                 <div>
                     <h2> Amazing places </h2>
                 </div>
@@ -55,6 +56,9 @@ const Home = (props: homeProps) => {
                         title="Bali, Indonesia"
                     />
                 </div>
+            </div>
+            <div className="homeSectionThree">
+                <Article />
             </div>
         </main>
     );

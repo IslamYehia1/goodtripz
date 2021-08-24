@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import InputField from "./InputField";
+import InputField from "../InputField/InputField";
 import locationIcon from "../../icons/location.svg";
 import fetchSuggestions from "./fetchSuggestions";
 import Suggestions from "./Suggestions";

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
 $primary: #4f96f7;
 $dark: #0a1f39;
 $white: #f7f9fc;
@@ -18,13 +18,19 @@ a {
     text-decoration: none;
     color: $dark;
 }
+@mixin normalFont {
+    font-family: "Open Sans", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
 @mixin semiBoldFont {
     font-family: "Open Sans", sans-serif;
     font-style: normal;
     font-weight: 600;
 }
-@mixin normalFont {
+
+@mixin boldFont {
     font-family: "Open Sans", sans-serif;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 800;
 }

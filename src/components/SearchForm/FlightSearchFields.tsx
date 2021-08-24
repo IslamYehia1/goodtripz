@@ -3,7 +3,7 @@ import fetchSuggestions from "./fetchSuggestions";
 import Suggestions from "./Suggestions";
 import flightLandIcon from "../../icons/flight_land_black_24dp.svg";
 import flightTakeoffIcon from "../../icons/flight_takeoff_black_24dp.svg";
-import InputField from "./InputField";
+import InputField from "../InputField/InputField";
 
 const FlightSearchFields = () => {
     const [suggestions, setSuggestions] = useState<Array<string[]>>([]);

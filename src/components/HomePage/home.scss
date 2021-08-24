@@ -9,7 +9,7 @@
     flex-direction: column;
     align-items: center;
 }
-.homepage {
+.homeSectionOne {
     position: relative;
     width: 100%;
     height: calc(100vh - 64px);
@@ -68,7 +68,7 @@
     }
 }
 
-.secondPage {
+.homeSectionTwo {
     @include semiBoldFont;
     color: $dark;
     display: flex;
@@ -89,4 +89,12 @@
     h2 {
         margin-bottom: 0;
     }
+}
+
+.homeSectionThree {
+    width: 100%;
+    height: 100vh;
+    min-height: 768px;
+    display: flex;
+    align-items: center;
 }
