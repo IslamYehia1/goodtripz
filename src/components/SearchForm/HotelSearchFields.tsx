@@ -3,7 +3,10 @@ import InputField from "../InputField/InputField";
 import locationIcon from "../../icons/location.svg";
 import fetchSuggestions from "./fetchSuggestions";
 import Suggestions from "./Suggestions";
-// AIzaSyAeoS5PEjjRAt82A7C_8ADjcn9Nriwqt6I
+import Button from "../Button/Button";
+import DateInput from "./RangeDatePicker";
+import searchIcon from "../../icons/search_white.svg";
+
 const HotelSearchFields = () => {
     const [suggestions, setSuggestions] = useState<Array<string[]>>([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
@@ -11,6 +14,7 @@ const HotelSearchFields = () => {
     function focusHandler() {}
     function blurHandler() {}
     let timer: NodeJS.Timeout;
+    function searchHandler() {}
 
     function handleKeyUp(e: React.KeyboardEvent<HTMLInputElement>) {
         clearTimeout(timer);
@@ -21,23 +25,35 @@ const HotelSearchFields = () => {
         }, 500);
     }
     return (
-        <div className="hotelSearch">
-            <InputField
-                focusHandler={focusHandler}
-                blurHandler={blurHandler}
-                handleKeyUp={handleKeyUp}
-                placeholder="Hotel location"
-                label="Going to"
-                className="searchField"
-                icon={locationIcon}
-                name="hotelLocation"
-            />
-            {showSuggestions && (
-                <Suggestions
-                    className="suggestions"
-                    suggestions={suggestions}
+        <div className="hotelSearchFields">
+            <div className="aSearchField hotelSearchField">
+                <InputField
+                    focusHandler={focusHandler}
+                    blurHandler={blurHandler}
+                    handleKeyUp={handleKeyUp}
+                    placeholder="Hotel location"
+                    label="Going to"
+                    className="searchTextInput"
+                    icon={locationIcon}
+                    name="hotelLocation"
                 />
-            )}
+                {showSuggestions && (
+                    <Suggestions
+                        className="suggestions"
+                        suggestions={suggestions}
+                    />
+                )}
+            </div>
+            <div className="secondRow">
+                <DateInput className="aSearchField hotelSearchField dateSearchField" />
+                <Button
+                    handleClick={searchHandler}
+                    icon={searchIcon}
+                    className="button searchButton"
+                >
+                    Search
+                </Button>
+            </div>
         </div>
     );
 };

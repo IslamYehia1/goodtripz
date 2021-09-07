@@ -2,7 +2,7 @@
 .article {
     @include semiBoldFont;
     display: flex;
-    margin-left: 10%;
+    margin-left: 15%;
     h2 {
         @include boldFont;
         font-size: 42px;
@@ -14,10 +14,10 @@
     }
 }
 .articleImg {
-    width: 70%;
+    width: 50vw;
     background-color: white;
     border-radius: 0 30px 0 30px;
-    height: 679px;
+    height: 40vw;
     img {
         object-fit: cover;
         width: 100%;
@@ -25,5 +25,33 @@
         border-radius: 0 30px 0 30px;
         margin-top: -10px;
         margin-left: 10px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .article {
+        flex-direction: column;
+        width: 90%;
+        margin-left: -10px;
+        h2 {
+            font-size: 18px;
+            color: $dark;
+        }
+        .articleImg {
+            width: 100%;
+            border-radius: 0 20px 0 20px;
+            height: 60vw;
+            img {
+                border-radius: 0 20px 0 20px;
+                margin-top: -5px;
+                margin-left: 5px;
+            }
+        }
+        .articleBody {
+            @include normalFont;
+            font-size: 15px;
+            width: 100%;
+            margin: 0;
+        }
     }
 }

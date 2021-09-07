@@ -2,62 +2,121 @@
 
 #homepage {
     position: relative;
-    width: 99vw;
+    width: 100vw;
+    max-width: 100%;
     box-sizing: border-box;
-    padding: 0 6% 0% 6%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .homeSectionOne {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
     width: 100%;
     height: calc(100vh - 64px);
     min-height: 768px;
 }
+
+.homeSectionTwo {
+    @include semiBoldFont;
+    color: $dark;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+    min-height: 768px;
+    height: 100vh;
+    .card {
+        width: 23%;
+        min-width: 188px;
+        z-index: 10000;
+    }
+    .suggestionCards {
+        width: 100%;
+        z-index: 9000;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 44px;
+        overflow: auto;
+    }
+    h2 {
+        margin-bottom: 0;
+        @include semiBoldFont;
+        font-size: 28px;
+    }
+}
+
+.homeSectionThree {
+    width: 100%;
+    height: 100vh;
+    min-height: 768px;
+    display: flex;
+    align-items: center;
+}
+
 #searchForm {
-    position: absolute;
-    left: 0;
-    right: 0;
+    position: relative;
+    margin-top: -8%;
     margin-left: auto;
     margin-right: auto;
-    bottom: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
+    width: 70%;
+    min-width: 800px;
+    box-sizing: border-box;
 }
 
 .recommendation {
     @include semiBoldFont;
-    background: url("../../img/background.jpg") rgba(0, 0, 0, 0.12) no-repeat;
+    background: url("../../img/background.jpg") rgba(10, 31, 56, 0.2) no-repeat;
     background-blend-mode: multiply;
     background-size: cover;
+    background-position: center center;
     border-radius: 30px;
     color: $white;
     font-size: 34px;
     position: relative;
-    padding-left: 10%;
-    height: 80%;
+    margin-left: 5vw;
+    margin-right: 5vw;
     .explore {
+        margin: 15% auto 20% auto;
         position: relative;
-        top: 30%;
-        width: 80%;
+        width: 78%;
+        min-width: 800px;
     }
-    h2 {
+    h3 {
+        @include semiBoldFont;
+        font-size: 2.5vw;
         margin: 0;
         padding: 0;
+        display: flex;
+        align-items: center;
+        img {
+            width: 20px;
+            height: 15px;
+            display: none;
+            margin-left: 10px;
+        }
     }
-    p {
+    .exploreText {
+        @include normalFont;
+        margin-bottom: 40px;
+        margin-top: 10px;
         font-size: 16px;
-        width: 40%;
+        width: 70%;
+        min-width: 500px;
+        p {
+            margin: 0;
+        }
     }
     .exploreButton {
         background: none;
         color: $white;
         display: flex;
         border: none;
-        font-size: 24px;
-        padding: 0;
+        font-size: 1.6vw;
+        padding: 5% 0 0 0;
         span {
             margin-right: 20px;
             line-height: 28px;
@@ -68,33 +127,96 @@
     }
 }
 
-.homeSectionTwo {
-    @include semiBoldFont;
-    color: $dark;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 80%;
-    min-height: 768px;
-    height: 100vh;
-    .card {
-        width: 23%;
+@media only screen and (max-width: 1280px) {
+    #searchForm {
+        width: 80%;
     }
-    .suggestionCards {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        margin-top: 44px;
+    .homeSectionTwo {
+        width: 80%;
+        h2 {
+            font-size: 18px;
+        }
     }
-    h2 {
-        margin-bottom: 0;
+
+    .recommendation {
+        .explore {
+            width: 82%;
+        }
+        p:nth-child(2) {
+            display: none;
+        }
+        margin-left: 2vw;
+        margin-right: 2vw;
+    }
+}
+@media only screen and (max-width: 1024px) {
+    .homeSectionOne {
+        .recommendation {
+            margin-left: 0;
+            margin-right: 0;
+            border-radius: 0px;
+            h3 img {
+                display: inline;
+            }
+            p:nth-child(2) {
+                display: none;
+            }
+            .explore {
+                width: 90%;
+                min-width: unset;
+                .exploreButton {
+                    font-size: 16px;
+                    display: none;
+                }
+            }
+        }
+    }
+    #searchForm {
+        width: 90%;
+        min-width: unset;
+        margin-top: -13%;
+    }
+    .homeSectionTwo {
+        width: 95%;
+        padding-left: 5%;
+        // z-index: 9;
+        .suggestionCards {
+            //
+            .card {
+                margin-right: 20px;
+            }
+        }
     }
 }
 
-.homeSectionThree {
-    width: 100%;
-    height: 100vh;
-    min-height: 768px;
-    display: flex;
-    align-items: center;
+@media only screen and (max-width: 650px) {
+    #homepage {
+        .homeSectionOne {
+            min-height: 500px;
+            box-sizing: border-box;
+            height: calc(var(--vh, 1vh) * 100);
+            #searchForm {
+                width: 100%;
+                margin: 0;
+                position: absolute;
+                bottom: 0;
+                background-color: $background;
+                box-shadow: unset;
+                box-sizing: border-box;
+                border-radius: 30px 30px 0 0;
+            }
+        }
+    }
+
+    .homeSectionTwo {
+        .suggestionCards {
+            margin-top: 30px;
+        }
+        h2 {
+            font-size: 18px;
+        }
+    }
+    .homeSectionThree {
+        justify-content: center;
+    }
 }

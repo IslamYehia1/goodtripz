@@ -3,8 +3,7 @@
 .card {
     @include semiBoldFont;
     background: $white;
-    height: 394px;
-    padding: 5px;
+    padding: 5px 5px 10px 5px;
     box-sizing: border-box;
     border-radius: 20px;
     img {
@@ -15,7 +14,8 @@
     }
     p {
         color: $dark;
-        margin-top: 12px;
+        margin-top: 7px;
+        margin-bottom: 7px;
         padding-left: 17px;
     }
 }

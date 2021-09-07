@@ -5,6 +5,8 @@
     width: 100%;
     background-color: $white;
     border-radius: 10px;
+    position: absolute;
+    left: 0;
     li {
         &:hover {
             background-color: $background;

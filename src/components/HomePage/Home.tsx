@@ -16,12 +16,20 @@ const Home = (props: homeProps) => {
             <div className="homeSectionOne">
                 <div className="recommendation">
                     <div className="explore">
-                        <h2>INDONESIA</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Ut in massa lacinia, aliquam massa non,
-                            euismod augue. Lorem ipsum dolor sit amet,{" "}
-                        </p>
+                        <h3>
+                            INDONESIA <img src={arrow} alt="Clickable arrow" />
+                        </h3>
+                        <span className="exploreText">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit.
+                            </p>
+                            <p>
+                                Ut in massa lacinia, aliquam massa non, euismod
+                                augue. Lorem ipsum dolor sit amet,{" "}
+                            </p>
+                        </span>
+
                         <button className="exploreButton">
                             <span>Explore</span>
                             <img src={arrow} alt="Clickable arrow" />

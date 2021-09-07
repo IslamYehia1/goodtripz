@@ -14,7 +14,7 @@ const Button = (props: buttonProps) => {
             className={props.className}
         >
             {props.icon && <img alt="Search icon" src={props.icon} />}
-            {props.children}
+            <span>{props.children}</span>
         </button>
     );
 };

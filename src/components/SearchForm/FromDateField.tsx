@@ -4,6 +4,7 @@ import { DateUtils } from "react-day-picker";
 import "react-day-picker/lib/style.css";
 import DateIcon from "../../icons/calendar_black.svg";
 import { fromPropsType } from "./propTypes";
+import InputField from "../InputField/InputField";
 
 const { isDayAfter, isDayBefore, isSameDay } = DateUtils;
 const FromDateField = (props: fromPropsType) => {
@@ -52,31 +53,33 @@ const FromDateField = (props: fromPropsType) => {
     }
     return (
         <>
-            <div className="searchFieldWrapper">
-                <img src={DateIcon} alt="Date Icon" />
-                <div className="searchField">
-                    <label htmlFor={"fromDateInput"}>{"Departure"}</label>
-                    <DayPickerInput
-                        inputProps={{
-                            name: "fromDateInput",
-                        }}
-                        ref={inputRef}
-                        value={from}
-                        dayPickerProps={{
-                            className: "Range",
-                            numberOfMonths: 2,
-                            fromMonth: props.today,
-                            selectedDays: selectedDays,
-                            disabledDays: { before: new Date() },
-                            modifiers: modifiers,
-                            onDayClick: onDayClick,
-                            onDayMouseEnter: onDayMouseEnter,
-                        }}
-                        // Pass a call back to onFromDayChange prop to handle state in the parent component
-                        onDayChange={props.onDayChange}
-                    />
-                </div>
-            </div>
+            <InputField
+                className="searchTextInput"
+                icon={DateIcon}
+                label="Date"
+                name="fromDateInput"
+                placeholder="Choose date"
+            >
+                <DayPickerInput
+                    inputProps={{
+                        name: "fromDateInput",
+                    }}
+                    ref={inputRef}
+                    value={from}
+                    dayPickerProps={{
+                        className: "Range",
+                        numberOfMonths: 2,
+                        fromMonth: props.today,
+                        selectedDays: selectedDays,
+                        disabledDays: { before: new Date() },
+                        modifiers: modifiers,
+                        onDayClick: onDayClick,
+                        onDayMouseEnter: onDayMouseEnter,
+                    }}
+                    // Pass a call back to onFromDayChange prop to handle state in the parent component
+                    onDayChange={props.onDayChange}
+                />
+            </InputField>
         </>
     );
 };

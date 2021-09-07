@@ -2,8 +2,11 @@ import ToDateField from "./ToDateField";
 import FromDateField from "./FromDateField";
 import { useState } from "react";
 import "./datePicker.scss";
-
-const RangeDatePicker = () => {
+type propsType = {
+    className: string;
+    onClick?: React.MouseEventHandler<HTMLDivElement>;
+};
+const RangeDatePicker = (props: propsType) => {
     const today = new Date();
     const [state, setState] = useState<{ [key: string]: Date | undefined }>({
         from: undefined,
@@ -15,8 +18,9 @@ const RangeDatePicker = () => {
     function stateSetter(param: { [key: string]: Date | undefined }) {
         setState(param);
     }
+
     return (
-        <div id="dateSearchField" className="searchFieldWrapper">
+        <div className={props.className} onClick={props.onClick}>
             <FromDateField
                 state={state}
                 setState={stateSetter}

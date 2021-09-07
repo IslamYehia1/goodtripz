@@ -3,12 +3,9 @@ import "./searchForm.scss";
 import Button from "../Button/Button";
 import FlightSearchFields from "./FlightSearchFields";
 import HotelSearchFields from "./HotelSearchFields";
-import searchIcon from "../../icons/search_white.svg";
-import DateInput from "./RangeDatePicker";
 
 const SearchForm = () => {
     const [formState, setFormState] = useState("hotel");
-    function searchHandler() {}
 
     function activateTab(e: React.MouseEvent<HTMLButtonElement>) {
         document.querySelector("#active")!.id = "";
@@ -58,18 +55,10 @@ const SearchForm = () => {
                 </Button>
             </div>
             <div className="form">
-                <div className="formFields">
+                <div className="searchFields">
                     {formState === "flight" && <FlightSearchFields />}
                     {formState === "hotel" && <HotelSearchFields />}
-                    <DateInput />
                 </div>
-                <Button
-                    handleClick={searchHandler}
-                    icon={searchIcon}
-                    className="button searchButton"
-                >
-                    Search
-                </Button>
             </div>
         </div>
     );

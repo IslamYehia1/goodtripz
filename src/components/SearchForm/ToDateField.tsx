@@ -3,6 +3,7 @@ import DateIcon from "../../icons/calendar_black.svg";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import { useRef, useEffect } from "react";
 import { toPropsType } from "./propTypes";
+import InputField from "../InputField/InputField";
 
 const { isDayBefore } = DateUtils;
 
@@ -48,31 +49,34 @@ const ToDateField = (props: toPropsType) => {
         }
     }
     return (
-        <div className="searchFieldWrapper">
-            <img src={DateIcon} alt="Date Icon" />
-            <div className="searchField">
-                <label htmlFor={"toDateInput"}>{"Departure"}</label>
-                <DayPickerInput
-                    inputProps={{
-                        name: "toDateInput",
-                    }}
-                    ref={inputRef}
-                    value={to}
-                    dayPickerProps={{
-                        className: "Range",
-                        numberOfMonths: 2,
-                        fromMonth: props.today,
-                        selectedDays: selectedDays,
-                        disabledDays: disabledDays,
-                        modifiers: modifiers,
-                        onDayClick: onDayClick,
-                        onDayMouseEnter: onDayMouseEnter,
-                    }}
-                    // Pass a call back to onToDayChange prop to handle state in the parent component
-                    onDayChange={props.onDayChange}
-                />
-            </div>
-        </div>
+        <InputField
+            className="searchTextInput"
+            icon={DateIcon}
+            label="Return date"
+            name="toDateInput"
+            placeholder="Choose date"
+        >
+            {" "}
+            <DayPickerInput
+                inputProps={{
+                    name: "toDateInput",
+                }}
+                ref={inputRef}
+                value={to}
+                dayPickerProps={{
+                    className: "Range",
+                    numberOfMonths: 2,
+                    fromMonth: props.today,
+                    selectedDays: selectedDays,
+                    disabledDays: disabledDays,
+                    modifiers: modifiers,
+                    onDayClick: onDayClick,
+                    onDayMouseEnter: onDayMouseEnter,
+                }}
+                // Pass a call back to onToDayChange prop to handle state in the parent component
+                onDayChange={props.onDayChange}
+            />
+        </InputField>
     );
 };
 

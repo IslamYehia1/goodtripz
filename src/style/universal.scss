@@ -1,8 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
 $primary: #4f96f7;
-$dark: #0a1f39;
+$dark: #0a1f38;
 $white: #f7f9fc;
 $background: #eff0f7;
+#root {
+    display: flex;
+    z-index: 1;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
 html,
 body {
     padding: 0;
