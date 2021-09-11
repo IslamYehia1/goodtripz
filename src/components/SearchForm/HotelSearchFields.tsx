@@ -10,7 +10,8 @@ import searchIcon from "../../icons/search_white.svg";
 const HotelSearchFields = () => {
     const [suggestions, setSuggestions] = useState<Array<string[]>>([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
-
+    const [selectedSuggestion, setSelectedSuggestion] =
+        useState<Array<string> | null>(null);
     function focusHandler() {}
     function blurHandler() {}
     let timer: NodeJS.Timeout;
@@ -39,21 +40,20 @@ const HotelSearchFields = () => {
                 />
                 {showSuggestions && (
                     <Suggestions
+                        // onSuggestionClick={setSelectedSuggestion}
                         className="suggestions"
                         suggestions={suggestions}
                     />
                 )}
             </div>
-            <div className="secondRow">
-                <DateInput className="aSearchField hotelSearchField dateSearchField" />
-                <Button
-                    handleClick={searchHandler}
-                    icon={searchIcon}
-                    className="button searchButton"
-                >
-                    Search
-                </Button>
-            </div>
+            <DateInput className="aSearchField hotelSearchField dateSearchField" />
+            <Button
+                handleClick={searchHandler}
+                icon={searchIcon}
+                className="button searchButton"
+            >
+                Search
+            </Button>
         </div>
     );
 };

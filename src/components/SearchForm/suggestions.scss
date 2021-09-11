@@ -2,11 +2,14 @@
 .suggestions {
     list-style: none;
     padding: 0;
+    box-sizing: border-box;
     width: 100%;
+    min-height: 100px;
     background-color: $white;
     border-radius: 10px;
     position: absolute;
     left: 0;
+    top: 80%;
     li {
         &:hover {
             background-color: $background;

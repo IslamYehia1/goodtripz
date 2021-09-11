@@ -15,8 +15,10 @@
     flex-direction: column;
     box-sizing: border-box;
     width: 100%;
-    height: calc(100vh - 64px);
-    min-height: 768px;
+    // height: calc(100vh - 74px);
+    height: calc(100vw * (9 / 16) - 74px);
+    max-height: calc(100vh - 74px);
+    // min-height: 768px;
 }
 
 .homeSectionTwo {
@@ -34,8 +36,11 @@
         z-index: 10000;
     }
     .suggestionCards {
+        &::-webkit-scrollbar {
+            display: none;
+        }
         width: 100%;
-        z-index: 9000;
+        scrollbar-width: none; /* Firefox */
         box-sizing: border-box;
         display: flex;
         justify-content: space-between;
@@ -58,10 +63,13 @@
 }
 
 #searchForm {
-    position: relative;
-    margin-top: -8%;
+    position: absolute;
+    // margin-top: -8%;
+    bottom: 40px;
     margin-left: auto;
     margin-right: auto;
+    left: 0;
+    right: 0;
     width: 70%;
     min-width: 800px;
     box-sizing: border-box;
@@ -76,18 +84,22 @@
     border-radius: 30px;
     color: $white;
     font-size: 34px;
+    height: 85%;
     position: relative;
     margin-left: 5vw;
     margin-right: 5vw;
+    box-sizing: border-box;
     .explore {
-        margin: 15% auto 20% auto;
+        // margin: 25vh auto 35vh auto;
+        margin: 15% auto 19% auto;
         position: relative;
         width: 78%;
         min-width: 800px;
+        height: 100%;
     }
     h3 {
         @include semiBoldFont;
-        font-size: 2.5vw;
+        font-size: 2vw;
         margin: 0;
         padding: 0;
         display: flex;
@@ -116,7 +128,7 @@
         display: flex;
         border: none;
         font-size: 1.6vw;
-        padding: 5% 0 0 0;
+        padding: 3% 0 0 0;
         span {
             margin-right: 20px;
             line-height: 28px;
@@ -128,6 +140,9 @@
 }
 
 @media only screen and (max-width: 1280px) {
+    .homeSectionOne {
+        height: calc(100vw * (9 / 14) - 74px);
+    }
     #searchForm {
         width: 80%;
     }
@@ -151,6 +166,8 @@
 }
 @media only screen and (max-width: 1024px) {
     .homeSectionOne {
+        height: calc(100vw * (9 / 10) - 74px);
+
         .recommendation {
             margin-left: 0;
             margin-right: 0;
@@ -174,7 +191,8 @@
     #searchForm {
         width: 90%;
         min-width: unset;
-        margin-top: -13%;
+        bottom: 0;
+        // margin-top: -13%;
     }
     .homeSectionTwo {
         width: 95%;
@@ -192,9 +210,21 @@
 @media only screen and (max-width: 650px) {
     #homepage {
         .homeSectionOne {
-            min-height: 500px;
+            min-height: 700px;
             box-sizing: border-box;
             height: calc(var(--vh, 1vh) * 100);
+            .recommendation {
+                height: 100%;
+                .explore {
+                    box-sizing: border-box;
+                    margin: 0 auto;
+                    padding-top: 40%;
+                    padding-bottom: 60%;
+                    h3 {
+                        font-size: 5vw;
+                    }
+                }
+            }
             #searchForm {
                 width: 100%;
                 margin: 0;

@@ -1,19 +1,17 @@
 @import "../../style/universal.scss";
-.searchButton {
-    img {
-        padding-right: 5px;
-        margin-left: -5px;
+.button {
+    span {
+        height: min-content;
     }
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     font-family: "Open Sans", sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
     line-height: 1.4;
-    background: $primary;
-    border: $primary;
+    border: none;
+    box-shadow: unset;
     border-radius: 6px;
-    color: $white;
 }

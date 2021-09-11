@@ -33,6 +33,7 @@
     display: flex;
     align-items: center;
     background-color: $white;
+    width: 90%;
     img {
         margin-right: 25px;
         width: 25px;
@@ -42,6 +43,7 @@
         display: flex;
         flex-direction: column;
         white-space: nowrap;
+        width: 100%;
         label {
             @include semiBoldFont;
             font-size: 14px;
@@ -51,6 +53,7 @@
             @include semiBoldFont;
             padding: 0;
             color: $dark;
+            opacity: 0.8;
             font-size: 15px;
             border: none;
             background-color: $white;
@@ -79,76 +82,78 @@
     border-radius: 0px 10px 10px 10px;
     padding: 4% 3% 4% 3%;
 }
+// Universal css values
 .aSearchField {
     display: flex;
+    position: relative;
     box-sizing: border-box;
     padding: 1.4vw 0 1.4vw 1.4vw;
     border-radius: 11px;
     background-color: $white;
     position: relative;
-    margin-right: 20px;
-}
-.flightSearchFields {
-    display: grid;
-    grid-template:
-        "departureField destinationField dateSearchField"
-        ". . searchButton";
-    grid-auto-columns: 1fr 1fr minmax(306px, 1fr);
-    position: relative;
-    white-space: nowrap;
-    .flightSearchField {
-        &:first-child {
-            grid-area: departureField;
-        }
-        &:nth-child(2) {
-            grid-area: destinationField;
-        }
-        &:nth-child(3) {
-            grid-area: dateSearchField;
-        }
-        transition: width 0.3s;
-    }
+    // margin-right: 20px;
 }
 .dateSearchField {
-    grid-area: dateSearchField;
+    width: 34%;
+    min-width: 304px;
     img {
         width: 20px;
         height: 20px;
     }
 }
+.flightSearchFields {
+    display: flex;
+    justify-content: space-between;
+    white-space: nowrap;
+    .flightSearchField {
+        transition: 0.3s;
+        // margin-bottom: 20px;
+        width: 32%;
+        margin-right: 1.5%;
+    }
+    .dateSearchField {
+        margin-right: 0;
+    }
+}
 
 .searchButton {
-    grid-area: searchButton;
+    background-color: $primary;
+    color: $white;
     margin-right: 3%;
+    margin-bottom: 20px;
     position: absolute;
-    top: 20px;
+    bottom: -20%;
     right: 0;
-    padding: 4% 25%;
+    padding: 0.7vw 5vw;
     box-sizing: border-box;
+    img {
+        width: 20px;
+        height: 20px;
+        padding-top: 2px;
+    }
 }
 
 .hotelSearchFields {
-    display: grid;
-    grid-template:
-        "hotelPlaceSearch hotelPlaceSearch dateSearchField"
-        ". . searchButton";
-    grid-auto-columns: 1fr 1fr minmax(306px, 1fr);
-    position: relative;
+    display: flex;
+    justify-content: space-between;
     width: 100%;
-    padding-right: 20px;
-}
-.hotelSearchField {
-    &:first-child {
-        grid-area: hotelPlaceSearch;
+    .hotelSearchField {
+        margin-right: 2%;
+        // margin-bottom: 20px;
+        width: 64%;
+    }
+    .dateSearchField {
+        margin-right: 0;
+        width: 34%;
     }
 }
 
 @media only screen and (max-width: 1280px) {
-    .searchFields {
-        border-radius: 0 0 10px 10px;
-    }
     .flightSearchFields {
         border-radius: 0px 0px 10px 10px;
+    }
+    .searchFields {
+        border-radius: 0 0 10px 10px;
     }
 }
 
@@ -176,15 +181,22 @@
             display: none;
         }
         padding: 2vw 0 2vw 6%;
-        margin-bottom: 0 10px 10px 0;
         border-radius: 7px;
     }
     .flightSearchFields {
-        grid-template:
-            "departureField destinationField"
-            "dateSearchField searchButton";
-        grid-auto-columns: 1fr;
+        flex-wrap: wrap;
+        .flightSearchField {
+            width: 49%;
+            margin-right: 0;
+            &:first-child {
+                margin-right: 1%;
+            }
+        }
         .dateSearchField {
+            width: 49%;
+            margin-right: 1%;
+            min-width: 0;
+
             img {
                 width: 15px;
                 height: 15px;
@@ -193,48 +205,32 @@
         .searchButton {
             position: static;
             box-sizing: border-box;
-            margin: 0 10px 10px 0;
-            padding: 2vw 0;
+            width: 49%;
+            margin-right: 0;
         }
     }
     .hotelSearchFields {
         display: flex;
-        flex-direction: column;
+        flex-wrap: wrap;
         .hotelSearchField {
-            margin-bottom: 0;
+            width: 100%;
+            margin-right: 0;
+            margin-bottom: 2%;
         }
         .dateSearchField {
-            margin-right: 20px;
+            min-width: 0;
+            margin-bottom: 20px;
+            width: 49%;
         }
-
-        .secondRow {
-            display: flex;
-            padding-top: 20px;
-            .dateSearchField {
-                width: 50%;
-            }
-            .searchButton {
-                width: 50%;
-                position: static;
-                padding: 2vw 0;
-            }
+        .searchButton {
+            position: static;
+            margin-right: 0;
+            width: 49%;
         }
     }
 }
 
 @media only screen and (max-width: 650px) {
-    .recommendation {
-        height: 100%;
-        .explore {
-            box-sizing: border-box;
-            margin: 0 auto !important;
-            padding-top: 40% !important;
-            padding-bottom: 60% !important;
-            h3 {
-                font-size: 5vw;
-            }
-        }
-    }
     .searchTabs {
         box-sizing: border-box;
         background-color: $background;
@@ -286,21 +282,56 @@
     }
 
     .flightSearchFields {
-        grid-template:
-            "departureField"
-            "destinationField"
-            "dateSearchField"
-            "searchButton" !important;
+        flex-direction: column;
         .flightSearchField {
-            &:nth-child(2) {
-                border-radius: 0;
-            }
+            width: 100%;
+            margin-bottom: 0;
         }
     }
     .hotelSearchFields {
-        .secondRow {
-            flex-direction: column;
-            padding-top: 0;
+        .hotelSearchField {
+            margin-bottom: 0;
         }
+    }
+}
+
+.modal {
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: $background;
+    overflow: auto;
+    .aSearchField {
+        &::after {
+            content: none;
+        }
+        img {
+            display: none;
+            cursor: pointer;
+        }
+        padding-left: 15vw;
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+    .modalCloseBtn {
+        position: absolute;
+        left: 20px;
+        top: 20px;
+        z-index: 50;
+    }
+    .modalCloseBtn.dateModalCloseBtn {
+        position: relative;
+        margin: 20px 0 0 20px;
+    }
+    .closeDateModal {
+        width: 100%;
+    }
+    .recommendation {
+        width: 100% !important;
     }
 }
