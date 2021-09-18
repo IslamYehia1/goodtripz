@@ -1,48 +1,13 @@
-import { clientID, clientSecret } from "../../../apiCreds";
+/* Amadeus flight search API documentation  
+https://developers.amadeus.com/self-service/category/air/api-doc/flight-offers-search/api-reference
+*/
+
 export async function fetchFlights() {
-    const response = await (
-        await fetch("https://test.api.amadeus.com/v1/security/oauth2/token", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: "grant_type=client_credentials&client_id=${clientID}&client_secret=${clientSecret}",
-        })
-    ).json();
-    const accessToken = `${response.token_type} ${response.access_token}`;
-    console.log(accessToken);
     const flightSearch = await fetch(
-        "https://test.api.amadeus.com/v1/shopping/availability/flight-availabilities",
-        {
-            method: "POST",
-            headers: {
-                Authorization: accessToken,
-                accept: "application/vnd.amadeus+json",
-                "Content-Type": "application/vnd.amadeus+json",
-            },
-            body: JSON.stringify({
-                originDestinations: [
-                    {
-                        id: "1",
-                        originLocationCode: "BOS",
-                        destinationLocationCode: "MAD",
-                        departureDateTime: {
-                            date: "2021-11-14",
-                            time: "21:15:00",
-                        },
-                    },
-                ],
-                travelers: [
-                    {
-                        id: "1",
-                        travelerType: "ADULT",
-                    },
-                ],
-                sources: ["GDS"],
-            }),
-        }
+        "https://goodtripz.oa.r.appspot.com/searchResults/flights?departure=CAI&destination=NYC&departureDate=2021-10-01&adultsNumber=1&childrenNumber=0"
     );
     const results = await flightSearch.json();
-
-    console.log(results);
+    return results;
 }
+
+export async function fetchHotels() {}

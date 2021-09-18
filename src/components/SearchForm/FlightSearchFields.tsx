@@ -1,5 +1,6 @@
 import React, { useState, useReducer, useEffect } from "react";
 import flightTakeoffIcon from "../../icons/flight_takeoff_black_24dp.svg";
+import expandArrow from "../../icons/expand_more_black_24dp.svg";
 import DateInput from "../RangeDatePicker/RangeDatePicker";
 import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
@@ -34,72 +35,99 @@ const FlightSearchFields = () => {
         }
     }
 
-    function searchHandler() {}
+    function searchHandler() {
+        (async () => {
+            const results = await fetchFlights();
+            console.log(results);
+        })();
+    }
 
     return (
         <div className="flightSearchFields">
-            {/* -------- Departure airport search field -------- */}
-            <Modal
-                isOpen={isFullScreen.departure}
-                closeModal={() =>
-                    setFullScreen({ active: "departure", isOpen: false })
-                }
-                className="modal"
-            >
-                <AirportSearch
-                    label="Flying from"
-                    icon={flightTakeoffIcon}
-                    placeholder="Departure airport"
-                    setFullScreen={() =>
-                        setFullScreen({
-                            active: "departure",
-                            isOpen: true,
-                        })
+            <div className="options">
+                <span className="travellers">
+                    <Button
+                        icon={expandArrow}
+                        className="button"
+                        handleClick={() => {}}
+                    >
+                        1 Traveller
+                    </Button>
+                </span>
+                <span className="flightType">
+                    <Button
+                        icon={expandArrow}
+                        className="button"
+                        handleClick={() => {}}
+                    >
+                        Round trip
+                    </Button>
+                </span>
+            </div>
+            <div className="fields">
+                {/* -------- Departure airport search field -------- */}
+                <Modal
+                    isOpen={isFullScreen.departure}
+                    closeModal={() =>
+                        setFullScreen({ active: "departure", isOpen: false })
                     }
-                />
-            </Modal>
-            {/* -------- Destination airport search field -------- */}
+                    className="modal"
+                >
+                    <AirportSearch
+                        label="Flying from"
+                        icon={flightTakeoffIcon}
+                        placeholder="Departure airport"
+                        setFullScreen={() =>
+                            setFullScreen({
+                                active: "departure",
+                                isOpen: true,
+                            })
+                        }
+                    />
+                </Modal>
+                {/* -------- Destination airport search field -------- */}
 
-            <Modal
-                isOpen={isFullScreen.destination}
-                closeModal={() =>
-                    setFullScreen({ active: "destination", isOpen: false })
-                }
-                className="modal"
-            >
-                <AirportSearch
-                    label="Flying to"
-                    icon={flightLandIcon}
-                    placeholder="Destination airport"
-                    setFullScreen={() =>
-                        setFullScreen({
-                            active: "destination",
-                            isOpen: true,
-                        })
+                <Modal
+                    isOpen={isFullScreen.destination}
+                    closeModal={() =>
+                        setFullScreen({ active: "destination", isOpen: false })
                     }
-                />
-            </Modal>
-            {/* -------- Date picker search field -------- */}
+                    className="modal"
+                >
+                    <AirportSearch
+                        label="Flying to"
+                        icon={flightLandIcon}
+                        placeholder="Destination airport"
+                        setFullScreen={() =>
+                            setFullScreen({
+                                active: "destination",
+                                isOpen: true,
+                            })
+                        }
+                    />
+                </Modal>
+                {/* -------- Date picker search field -------- */}
 
-            <Modal
-                isOpen={isFullScreen.date}
-                closeModal={() => {
-                    setFullScreen({ active: "date", isOpen: false });
-                }}
-                className="modal"
-            >
-                <DateInput
-                    // onClick={(e) => fieldFocusHandler("date")}
-                    className="aSearchField flightSearchField dateSearchField"
-                />
-            </Modal>
-            <Button
-                handleClick={searchHandler}
-                icon={searchIcon}
-                className="button searchButton"
-            >
-                Search
-            </Button>
+                <Modal
+                    isOpen={isFullScreen.date}
+                    closeModal={() => {
+                        setFullScreen({ active: "date", isOpen: false });
+                    }}
+                    className="modal"
+                >
+                    <DateInput
+                        // onClick={(e) => fieldFocusHandler("date")}
+                        className="aSearchField flightSearchField dateSearchField"
+                    />
+                </Modal>
+                <Button
+                    handleClick={searchHandler}
+                    icon={searchIcon}
+                    className="button searchButton"
+                >
+                    Search
+                </Button>
+            </div>
         </div>
     );
 };

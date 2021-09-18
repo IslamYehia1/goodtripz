@@ -1,7 +1,9 @@
 import ReactDOM from "react-dom";
-import Home from "./components/HomePage/Home";
+import Home from "./pages/HomePage/Home";
+import FlightSearch from "./pages/FlightSearch/FlightSearch";
 import NavBar from "./components/NavBar/NavBar";
 import { useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const App = () => {
     useEffect(() => {
@@ -15,7 +17,16 @@ const App = () => {
     return (
         <>
             <NavBar />
-            <Home className="homepage" />
+            <Router>
+                <Switch>
+                    <Route exact path="/">
+                        <Home className="homepage" />
+                    </Route>
+                    <Route exact path="/flightSearch">
+                        <FlightSearch className="FlightSearch" />
+                    </Route>
+                </Switch>
+            </Router>
         </>
     );
 };

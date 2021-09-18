@@ -1,3 +1,10 @@
+type suggestionType = {
+    place_id: string;
+    structured_formatting: {
+        main_text: string;
+        secondary_text: string;
+    };
+};
 function isInvalid(searchTerm: string) {
     return (
         typeof searchTerm !== "string" ||
@@ -15,7 +22,7 @@ export async function hotelAutoComplete(searchTerm: string) {
             `https://goodtripz.oa.r.appspot.com/autocomplete/hotels?query=${searchTerm}`
         );
         const suggestions = await rawSuggestions.json();
-        suggestions.forEach((suggestion: any) => {
+        suggestions.forEach((suggestion: suggestionType) => {
             temp.push([
                 suggestion.place_id,
                 suggestion.structured_formatting.main_text,

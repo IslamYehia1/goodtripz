@@ -7,6 +7,7 @@ import DateInput from "../RangeDatePicker/RangeDatePicker";
 import searchIcon from "../../icons/search_white.svg";
 import Modal from "../Modal/Modal";
 import { hotelAutoComplete as fetchSuggestions } from "./fetchSuggestions";
+import expandArrow from "../../icons/expand_more_black_24dp.svg";
 
 type fullScreenType = {
     hotelSearch?: Boolean;
@@ -64,63 +65,86 @@ const HotelSearchFields = () => {
 
     return (
         <div className="hotelSearchFields">
-            <Modal
-                isOpen={isFullScreen.hotelSearch}
-                closeModal={() => {
-                    setFullScreen({ active: "hotelSearch", isOpen: false });
-                }}
-                className="modal"
-            >
-                <div
-                    onBlur={(e) => {
-                        if (!isSuggestionClicked(e)) setShowSuggestions(false);
+            <div className="options">
+                <span className="travellers">
+                    <Button
+                        icon={expandArrow}
+                        className="button"
+                        handleClick={() => {}}
+                    >
+                        1 Traveller
+                    </Button>
+                </span>
+                <span className="flightType">
+                    <Button
+                        icon={expandArrow}
+                        className="button"
+                        handleClick={() => {}}
+                    >
+                        Round trip
+                    </Button>
+                </span>
+            </div>
+            <div className="fields">
+                <Modal
+                    isOpen={isFullScreen.hotelSearch}
+                    closeModal={() => {
+                        setFullScreen({ active: "hotelSearch", isOpen: false });
                     }}
-                    onFocus={() => setShowSuggestions(true)}
-                    className="aSearchField hotelSearchField"
+                    className="modal"
                 >
-                    <InputField
-                        focusHandler={(e) => focusHandler("hotelSearch")}
-                        placeholder="Hotel location"
-                        label="Going to"
-                        className="searchTextInput"
-                        icon={locationIcon}
-                        name="hotelLocation"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
-                    {showSuggestions && (
-                        <Suggestions
-                            onSuggestionClick={(searchTerm) => {
+                    <div
+                        onBlur={(e) => {
+                            if (!isSuggestionClicked(e))
                                 setShowSuggestions(false);
-                                setSearchTerm(searchTerm);
-                            }}
-                            autocompleteSetter={setSearchTerm}
-                            className="suggestions"
-                            suggestions={suggestions}
+                        }}
+                        onFocus={() => setShowSuggestions(true)}
+                        className="aSearchField hotelSearchField"
+                    >
+                        <InputField
+                            focusHandler={(e) => focusHandler("hotelSearch")}
+                            placeholder="Hotel location"
+                            label="Going to"
+                            className="searchTextInput"
+                            icon={locationIcon}
+                            name="hotelLocation"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
                         />
-                    )}
-                </div>
-            </Modal>
+                        {showSuggestions && (
+                            <Suggestions
+                                onSuggestionClick={(searchTerm) => {
+                                    setShowSuggestions(false);
+                                    setSearchTerm(searchTerm);
+                                }}
+                                autocompleteSetter={setSearchTerm}
+                                className="suggestions"
+                                suggestions={suggestions}
+                            />
+                        )}
+                    </div>
+                </Modal>
 
-            <Modal
-                isOpen={isFullScreen.date}
-                closeModal={() => {
-                    setFullScreen({ active: "departure", isOpen: false });
-                }}
-                className="modal"
-            >
-                <DateInput
-                    onClick={(e) => focusHandler("hotelSearch")}
-                    className="aSearchField hotelSearchField dateSearchField"
-                />
-            </Modal>
-            <Button
-                handleClick={searchHandler}
-                icon={searchIcon}
-                className="button searchButton"
-            >
-                Search
-            </Button>
+                <Modal
+                    isOpen={isFullScreen.date}
+                    closeModal={() => {
+                        setFullScreen({ active: "departure", isOpen: false });
+                    }}
+                    className="modal"
+                >
+                    <DateInput
+                        onClick={(e) => focusHandler("hotelSearch")}
+                        className="aSearchField hotelSearchField dateSearchField"
+                    />
+                </Modal>
+                <Button
+                    handleClick={searchHandler}
+                    icon={searchIcon}
+                    className="button searchButton"
+                >
+                    Search
+                </Button>
+            </div>
         </div>
     );
 };

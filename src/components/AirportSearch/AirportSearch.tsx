@@ -2,8 +2,13 @@ import { useState, useEffect } from "react";
 import { airportAutocomplete as fetchSuggestions } from "../SearchForm/fetchSuggestions";
 import Suggestions from "../SearchForm/Suggestions";
 import InputField from "../InputField/InputField";
-
-const AirportSearch = (props: any) => {
+type AirportSearchProps = {
+    label: string;
+    icon: string;
+    placeholder: string;
+    setFullScreen: () => void;
+};
+const AirportSearch = (props: AirportSearchProps) => {
     const [suggestions, setSuggestions] = useState<Array<string[]>>([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
@@ -39,16 +44,6 @@ const AirportSearch = (props: any) => {
             className="aSearchField flightSearchField"
             onFocus={focusHandler}
         >
-            <InputField
-                label={props.label}
-                className="searchTextInput"
-                icon={props.icon}
-                name="destination"
-                placeholder={props.placeholder}
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                // selectedSuggestion={desAutocomplete}
-            />
             {showSuggestions && (
                 <Suggestions
                     className="suggestions"
@@ -60,6 +55,16 @@ const AirportSearch = (props: any) => {
                     }}
                 />
             )}
+            <InputField
+                label={props.label}
+                className="searchTextInput"
+                icon={props.icon}
+                name="destination"
+                placeholder={props.placeholder}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                // selectedSuggestion={desAutocomplete}
+            />
         </div>
     );
 };

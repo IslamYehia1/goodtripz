@@ -1,10 +1,10 @@
-import SearchForm from "../SearchForm/SearchForm";
+import SearchForm from "../../components/SearchForm/SearchForm";
 import arrow from "../../icons/right-arrow.svg";
 import Article from "../../components/Article/Article";
 import image1 from "../../img/image1.jpg";
 import image2 from "../../img/image2.jpg";
 import "./home.scss";
-import Card from "../Card/Card";
+import Card from "../../components/Card/Card";
 type homeProps = {
     children?: React.ReactNode;
     background?: string;

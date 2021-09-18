@@ -10,7 +10,17 @@ $background: #eff0f7;
     align-items: center;
     position: relative;
 }
-
+* {
+    background: none;
+    border: none;
+    padding: 0;
+    box-sizing: border-box;
+}
+input {
+    &:focus {
+        outline: none;
+    }
+}
 html,
 body {
     padding: 0;
