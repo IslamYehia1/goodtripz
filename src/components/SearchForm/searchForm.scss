@@ -124,7 +124,6 @@
 .flightSearchFields {
     .flightSearchField {
         transition: 0.3s;
-        // flex-grow: 1;
         &:focus-within {
             flex-grow: 5;
         }

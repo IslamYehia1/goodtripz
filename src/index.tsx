@@ -23,7 +23,7 @@ const App = () => {
                         <Home className="homepage" />
                     </Route>
                     <Route exact path="/flightSearch">
-                        <FlightSearch className="FlightSearch" />
+                        <FlightSearch className="flightSearch" />
                     </Route>
                 </Switch>
             </Router>

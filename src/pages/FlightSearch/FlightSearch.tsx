@@ -1,5 +1,6 @@
+import FlightOffer from "../../components/FlightOffer/FlightOffer";
 const FlightSearch = (props: any) => {
-    return <div> </div>;
+    return <FlightOffer />;
 };
 
 export default FlightSearch;

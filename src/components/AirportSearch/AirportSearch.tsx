@@ -25,19 +25,17 @@ const AirportSearch = (props: AirportSearchProps) => {
         }
     }
     function focusHandler(e: React.FocusEvent<HTMLDivElement>) {
-        setShowSuggestions(true);
         if (window.screen.width <= 650) {
             props.setFullScreen();
         }
+        setShowSuggestions(true);
     }
     useEffect(() => {
         (async () => {
             setSuggestions(await fetchSuggestions(searchTerm));
         })();
     }, [searchTerm]);
-    // "Flying to"
-    // flightLandIcon
-    //"Destination"
+
     return (
         <div
             onBlur={hideSuggestions}

@@ -1,0 +1,87 @@
+@import "../../style/universal.scss";
+.flightOffer {
+    @include semiBoldFont;
+    position: relative;
+    background-color: $white;
+    padding: 5%;
+    border-radius: 20px;
+    white-space: nowrap;
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+}
+.firstRow {
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    .details {
+        @include normalFont;
+    }
+    .time {
+        @include normalFont;
+        flex-basis: 40%;
+    }
+    .arrivalTime {
+        text-align: end;
+        flex-basis: 40%;
+    }
+}
+.middleRow {
+    img {
+        width: 100%;
+    }
+}
+.lastRow {
+    display: flex;
+    justify-content: space-evenly;
+    .airline {
+        display: flex;
+        align-items: flex-end;
+        flex-grow: 1;
+        .logo {
+            width: 20%;
+            margin-right: 20px;
+            margin-bottom: 5px;
+        }
+    }
+    .fare {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        flex-grow: 1;
+        .class {
+            background-color: $background;
+            height: 70%;
+            display: flex;
+            align-items: center;
+        }
+        .price {
+            margin-left: 10%;
+            text-align: end;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
+@media only screen and (max-width: 650px) {
+    .flightOffer {
+        width: 100%;
+    }
+    .firstRow {
+        .details {
+            order: 1;
+            flex-basis: 100%;
+        }
+    }
+    .lastRow {
+        .fare {
+            .class {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                height: 40px;
+            }
+        }
+    }
+} ;
