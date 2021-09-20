@@ -4,9 +4,12 @@ import Suggestions from "../SearchForm/Suggestions";
 import InputField from "../InputField/InputField";
 type AirportSearchProps = {
     label: string;
-    icon: string;
+    icon?: string;
     placeholder: string;
-    setFullScreen: () => void;
+    // setFullScreen: () => void;
+    inputClass: string;
+    suggestionsClass: string;
+    wrapperClass?: string;
 };
 const AirportSearch = (props: AirportSearchProps) => {
     const [suggestions, setSuggestions] = useState<Array<string[]>>([]);
@@ -25,9 +28,6 @@ const AirportSearch = (props: AirportSearchProps) => {
         }
     }
     function focusHandler(e: React.FocusEvent<HTMLDivElement>) {
-        if (window.screen.width <= 650) {
-            props.setFullScreen();
-        }
         setShowSuggestions(true);
     }
     useEffect(() => {
@@ -39,12 +39,12 @@ const AirportSearch = (props: AirportSearchProps) => {
     return (
         <div
             onBlur={hideSuggestions}
-            className="aSearchField flightSearchField"
+            className={props.wrapperClass}
             onFocus={focusHandler}
         >
             {showSuggestions && (
                 <Suggestions
-                    className="suggestions"
+                    className={props.suggestionsClass}
                     suggestions={suggestions}
                     onSuggestionClick={(suggestion) => {
                         setSearchTerm(suggestion);
@@ -55,7 +55,7 @@ const AirportSearch = (props: AirportSearchProps) => {
             )}
             <InputField
                 label={props.label}
-                className="searchTextInput"
+                className={props.inputClass}
                 icon={props.icon}
                 name="destination"
                 placeholder={props.placeholder}

@@ -8,32 +8,8 @@ import flightLandIcon from "../../icons/flight_land_black_24dp.svg";
 import searchIcon from "../../icons/search_white.svg";
 import AirportSearch from "../AirportSearch/AirportSearch";
 import { fetchFlights } from "./fetchFlights";
-type actionType = {
-    active: string;
-    isOpen: Boolean;
-};
-type stateType = {
-    [key: string]: Boolean;
-};
 const FlightSearchFields = () => {
     /*Search fields and autocomplete suggestions should be full screen on mobile */
-    const [isFullScreen, setFullScreen] = useReducer(reducer, {
-        departure: false,
-        destination: false,
-        date: false,
-    });
-    function reducer(state: stateType, action: actionType): stateType {
-        switch (action.active) {
-            case "departure":
-                return { departure: action.isOpen };
-            case "destination":
-                return { destination: action.isOpen };
-            case "date":
-                return { date: action.isOpen };
-            default:
-                return state;
-        }
-    }
 
     function searchHandler() {
         (async () => {
@@ -45,80 +21,67 @@ const FlightSearchFields = () => {
     return (
         <div className="flightSearchFields">
             <div className="options">
-                <span className="travellers">
-                    <Button
-                        icon={expandArrow}
-                        className="button"
-                        handleClick={() => {}}
-                    >
-                        1 Traveller
-                    </Button>
-                </span>
-                <span className="flightType">
-                    <Button
-                        icon={expandArrow}
-                        className="button"
-                        handleClick={() => {}}
-                    >
-                        Round trip
-                    </Button>
-                </span>
+                <Modal className="modal">
+                    <span className="travellers">
+                        <Button
+                            icon={expandArrow}
+                            className="button"
+                            handleClick={() => {}}
+                        >
+                            1 Traveller
+                        </Button>
+                    </span>
+                </Modal>
+                <Modal className="modal">
+                    <span className="flightType">
+                        <Button
+                            icon={expandArrow}
+                            className="button"
+                            handleClick={() => {}}
+                        >
+                            Round trip
+                        </Button>
+                    </span>
+                </Modal>
             </div>
             <div className="fields">
                 {/* -------- Departure airport search field -------- */}
                 <Modal
-                    isOpen={isFullScreen.departure}
-                    closeModal={() =>
-                        setFullScreen({ active: "departure", isOpen: false })
-                    }
+                    altClassName="aSearchField flightSearchField"
                     className="modal"
                 >
                     <AirportSearch
                         label="Flying from"
+                        inputClass="searchTextInput"
+                        suggestionsClass="suggestions"
+                        // wrapperClass="aSearchField flightSearchField"
                         icon={flightTakeoffIcon}
                         placeholder="Departure airport"
-                        setFullScreen={() =>
-                            setFullScreen({
-                                active: "departure",
-                                isOpen: true,
-                            })
-                        }
                     />
                 </Modal>
                 {/* -------- Destination airport search field -------- */}
 
                 <Modal
-                    isOpen={isFullScreen.destination}
-                    closeModal={() =>
-                        setFullScreen({ active: "destination", isOpen: false })
-                    }
+                    altClassName="aSearchField flightSearchField"
                     className="modal"
                 >
                     <AirportSearch
                         label="Flying to"
                         icon={flightLandIcon}
+                        inputClass="searchTextInput"
+                        suggestionsClass="suggestions"
+                        // wrapperClass="aSearchField flightSearchField"
                         placeholder="Destination airport"
-                        setFullScreen={() =>
-                            setFullScreen({
-                                active: "destination",
-                                isOpen: true,
-                            })
-                        }
                     />
                 </Modal>
                 {/* -------- Date picker search field -------- */}
 
                 <Modal
-                    isOpen={isFullScreen.date}
-                    closeModal={() => {
-                        setFullScreen({ active: "date", isOpen: false });
-                    }}
+                    altClassName="aSearchField flightSearchField
+                    dateSearchField"
                     className="modal"
                 >
-                    <DateInput
-                        // onClick={(e) => fieldFocusHandler("date")}
-                        className="aSearchField flightSearchField dateSearchField"
-                    />
+                    <DateInput />
                 </Modal>
                 <Button
                     handleClick={searchHandler}

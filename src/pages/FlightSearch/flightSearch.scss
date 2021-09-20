@@ -1,0 +1,45 @@
+@import "../../style/universal.scss";
+
+.flightSearchPage {
+    display: flex;
+    width: 70%;
+    background-color: #f7f9fc;
+    box-shadow: 0px 4px 17px 5px rgba(0, 0, 0, 0.03);
+    border-radius: 20px;
+    .sideBar {
+        @include semiBoldFont;
+        width: 30%;
+        padding: 2%;
+        .sideBarItem {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            padding: 10%;
+            background-color: #ffff;
+            border-radius: 20px;
+            box-shadow: 0px 4px 17px 5px rgba(0, 0, 0, 0.03);
+            margin-bottom: 20px;
+        }
+        .searchTerms {
+            & > div {
+                display: flex;
+                label {
+                    @include normalFont;
+                }
+                input {
+                    width: 90%;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+    .flightOffers {
+        padding: 4%;
+        width: 70%;
+        .flightOffer {
+            background: #ffffff;
+            box-shadow: 4px 4px 30px 7px rgba(0, 0, 0, 0.03);
+            margin-bottom: 20px;
+        }
+    }
+}

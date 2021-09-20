@@ -1,9 +1,9 @@
 import React, { ReactNode } from "react";
 type inputFieldProps = {
-    icon: string;
+    icon?: string;
     className: string;
     name: string;
-    placeholder: string;
+    placeholder?: string;
     label: string;
     value?: string;
     onChange?: React.ChangeEventHandler<HTMLInputElement>;
@@ -16,17 +16,9 @@ type inputFieldProps = {
 };
 
 const InputField = (props: inputFieldProps) => {
-    // const [value, setValue] = useState("");
-    // useEffect(() => {
-    //     if (props.selectedSuggestion) setValue(props.selectedSuggestion);
-    // }, [props.selectedSuggestion]);
     return (
         <div className={`${props.className}Wrapper`}>
-            <img
-                onClick={props.iconClickHandler}
-                src={props.icon}
-                alt="Close button"
-            />
+            <img src={props.icon} alt="Input field representationz" />
             <div className={props.className}>
                 <label htmlFor={props.name}>{props.label}</label>
                 {props.children ? (

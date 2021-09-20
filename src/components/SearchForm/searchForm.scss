@@ -80,8 +80,10 @@
 }
 // aSearchField is a universal class for search fields
 .aSearchField {
+    & > div {
+        display: flex;
+    }
     flex-grow: 1;
-    display: flex;
     position: relative;
     margin-right: 1.5%;
     padding: 28px 0 28px 28px;
@@ -102,9 +104,7 @@
     display: flex;
     padding: 25px 2% 25px 0;
     color: $dark;
-    .travellers {
-        margin-right: 22px;
-    }
+    gap: 22px;
     .button {
         @include semiBoldFont;
         flex-direction: row-reverse;

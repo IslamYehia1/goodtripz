@@ -3,7 +3,7 @@ import FromDateField from "./FromDateField";
 import { useState } from "react";
 import "./datePicker.scss";
 type propsType = {
-    className: string;
+    className?: string;
     onClick?: React.MouseEventHandler<HTMLDivElement>;
 };
 const RangeDatePicker = (props: propsType) => {
