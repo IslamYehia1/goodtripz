@@ -4,10 +4,10 @@ import locationIcon from "../../icons/location.svg";
 import Suggestions from "./Suggestions";
 import Button from "../Button/Button";
 import DateInput from "../RangeDatePicker/RangeDatePicker";
-import searchIcon from "../../icons/search_white.svg";
+import { ReactComponent as SearchIcon } from "../../icons/search_white.svg";
 import Modal from "../Modal/Modal";
 import { hotelAutoComplete as fetchSuggestions } from "./fetchSuggestions";
-import expandArrow from "../../icons/expand_more_black_24dp.svg";
+import { ReactComponent as ExpandArrow } from "../../icons/expand_more_black_24dp.svg";
 
 const HotelSearchFields = () => {
     const [suggestions, setSuggestions] = useState<Array<string[]>>([]);
@@ -33,7 +33,7 @@ const HotelSearchFields = () => {
             <div className="options">
                 <span className="travellers">
                     <Button
-                        icon={expandArrow}
+                        icon={ExpandArrow}
                         className="button"
                         handleClick={() => {}}
                     >
@@ -42,7 +42,7 @@ const HotelSearchFields = () => {
                 </span>
                 <span className="flightType">
                     <Button
-                        icon={expandArrow}
+                        icon={ExpandArrow}
                         className="button"
                         handleClick={() => {}}
                     >
@@ -93,7 +93,7 @@ const HotelSearchFields = () => {
                 </Modal>
                 <Button
                     handleClick={searchHandler}
-                    icon={searchIcon}
+                    icon={SearchIcon}
                     className="button searchButton"
                 >
                     Search

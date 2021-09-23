@@ -1,13 +1,15 @@
 import React, { useState, useReducer, useEffect } from "react";
 import flightTakeoffIcon from "../../icons/flight_takeoff_black_24dp.svg";
-import expandArrow from "../../icons/expand_more_black_24dp.svg";
+import { ReactComponent as ExpandArrow } from "../../icons/expand_more_black_24dp.svg";
 import DateInput from "../RangeDatePicker/RangeDatePicker";
 import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
 import flightLandIcon from "../../icons/flight_land_black_24dp.svg";
-import searchIcon from "../../icons/search_white.svg";
+import { ReactComponent as SearchIcon } from "../../icons/search_white.svg";
 import AirportSearch from "../AirportSearch/AirportSearch";
 import { fetchFlights } from "./fetchFlights";
+import DateIcon from "../../icons/calendar_black.svg";
+
 const FlightSearchFields = () => {
     /*Search fields and autocomplete suggestions should be full screen on mobile */
 
@@ -24,7 +26,7 @@ const FlightSearchFields = () => {
                 <Modal className="modal">
                     <span className="travellers">
                         <Button
-                            icon={expandArrow}
+                            icon={ExpandArrow}
                             className="button"
                             handleClick={() => {}}
                         >
@@ -35,7 +37,7 @@ const FlightSearchFields = () => {
                 <Modal className="modal">
                     <span className="flightType">
                         <Button
-                            icon={expandArrow}
+                            icon={ExpandArrow}
                             className="button"
                             handleClick={() => {}}
                         >
@@ -81,11 +83,11 @@ const FlightSearchFields = () => {
                     dateSearchField"
                     className="modal"
                 >
-                    <DateInput />
+                    <DateInput icon={DateIcon} className="searchTextInput" />
                 </Modal>
                 <Button
                     handleClick={searchHandler}
-                    icon={searchIcon}
+                    icon={SearchIcon}
                     className="button searchButton"
                 >
                     Search

@@ -1,6 +1,6 @@
 import "./navBar.scss";
-import logo from "../../icons/logo.svg";
-import menuIcon from "../../icons/menu.svg";
+import { ReactComponent as Logo } from "../../icons/logo.svg";
+import { ReactComponent as MenuIcon } from "../../icons/menu.svg";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 type navProps = {
     className?: string;
@@ -10,7 +10,7 @@ const NavBar = (props: navProps) => {
         <Router>
             <nav className="navBar">
                 <div className="logo">
-                    <img src={logo} alt="logo" className="logo" />
+                    <Logo className="logo" />
                 </div>
                 <div className="navLinks">
                     <ul>
@@ -24,11 +24,7 @@ const NavBar = (props: navProps) => {
                             <a href="#">Sign Up</a>
                         </li>
                         <li>
-                            <img
-                                src={menuIcon}
-                                alt="menu icon"
-                                className="menuIcon"
-                            />
+                            <MenuIcon className="menuIcon" />
                         </li>
                     </ul>
                 </div>

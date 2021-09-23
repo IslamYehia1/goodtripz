@@ -2,7 +2,6 @@ import { useRef, useEffect } from "react";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import { DateUtils } from "react-day-picker";
 import "react-day-picker/lib/style.css";
-import DateIcon from "../../icons/calendar_black.svg";
 import { fromPropsType } from "./propTypes";
 import InputField from "../InputField/InputField";
 
@@ -52,11 +51,11 @@ const FromDateField = (props: fromPropsType) => {
         }
     }
     return (
-        <>
+        <div className={props.wrapperClass}>
             <InputField
-                className="searchTextInput"
-                icon={DateIcon}
-                label="Date"
+                className={props.className}
+                icon={props.icon}
+                label={props.label}
                 name="fromDateInput"
                 placeholder="Choose date"
             >
@@ -80,7 +79,7 @@ const FromDateField = (props: fromPropsType) => {
                     onDayChange={props.onDayChange}
                 />
             </InputField>
-        </>
+        </div>
     );
 };
 

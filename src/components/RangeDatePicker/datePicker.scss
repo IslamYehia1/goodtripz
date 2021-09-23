@@ -1,4 +1,10 @@
 @import "../../style/universal.scss";
+
+.DayPickerInput-Overlay {
+    padding: 10px;
+    border-radius: 20px;
+    overflow: hidden;
+}
 .DayPicker-Caption {
     padding-left: 45px !important ;
 }

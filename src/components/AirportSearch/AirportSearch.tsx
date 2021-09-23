@@ -6,16 +6,15 @@ type AirportSearchProps = {
     label: string;
     icon?: string;
     placeholder: string;
-    // setFullScreen: () => void;
     inputClass: string;
     suggestionsClass: string;
     wrapperClass?: string;
+    value?: string;
 };
 const AirportSearch = (props: AirportSearchProps) => {
     const [suggestions, setSuggestions] = useState<Array<string[]>>([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
-    const [searchTerm, setSearchTerm] = useState("");
-
+    const [searchTerm, setSearchTerm] = useState(props.value || "");
     function isSuggestionClicked(e: React.FocusEvent<HTMLDivElement>) {
         return (
             e.relatedTarget !== null &&

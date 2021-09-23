@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Button from "../Button/Button";
-import leftArrowIcon from "../../icons/leftArrow.svg";
+import { ReactComponent as leftArrowIcon } from "../../icons/leftArrow.svg";
 
 // import "./modal.scss";
 const modalRoot = document.getElementById("modalRoot");

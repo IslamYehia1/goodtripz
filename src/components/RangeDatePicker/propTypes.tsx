@@ -5,7 +5,12 @@ export type toPropsType = {
     state: {
         [key: string]: Date | undefined;
     };
+
     today: Date;
+    className?: string;
+    icon?: string;
+    label?: string;
+    wrapperClass?: string;
     setState: (params: { [key: string]: Date | undefined }) => void;
     onDayChange: (
         day: Date,
@@ -19,7 +24,10 @@ export type fromPropsType = {
     };
     today: Date;
     setState: (params: { [key: string]: Date | undefined }) => void;
-
+    className?: string;
+    icon?: string;
+    label?: string;
+    wrapperClass?: string;
     onDayChange: (
         day: Date,
         DayModifiers: DayModifiers,

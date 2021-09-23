@@ -3,12 +3,10 @@
     // span {
     //     height: min-content;
     // }
+    @include semiBoldFont;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Open Sans", sans-serif;
-    font-style: normal;
-    font-weight: 600;
     font-size: 16px;
     line-height: 1.4;
     border: none;
