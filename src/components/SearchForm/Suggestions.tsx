@@ -3,7 +3,6 @@ import airportIcon from "../../icons/airport.svg";
 type propsType = {
     suggestions: Array<string[]>;
     className: string;
-    autocompleteSetter?: React.Dispatch<React.SetStateAction<string>>;
     onSuggestionClick?: (x: string) => void;
 };
 const Suggestions = (props: propsType) => {

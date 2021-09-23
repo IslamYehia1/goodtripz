@@ -30,7 +30,7 @@ const FlightOffer = (props: propsType) => {
                             cy="8"
                             r="7"
                             stroke="#0A1F39"
-                            stroke-width="2"
+                            strokeWidth="2"
                             fill="#F7F9FC"
                         />
                     </svg>
@@ -55,7 +55,7 @@ const FlightOffer = (props: propsType) => {
                             x2="100%"
                             // y2="6.49998"
                             stroke="#C4C4C4"
-                            stroke-dasharray="3 8"
+                            strokeDasharray="3 8"
                         />
                     </svg>
                 </div>

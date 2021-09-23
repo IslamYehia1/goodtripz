@@ -59,6 +59,7 @@
     .time {
         @include normalFont;
         flex-basis: 40%;
+        margin-bottom: 5px;
     }
     .arrivalTime {
         text-align: end;
@@ -123,9 +124,6 @@
         }
         .twoCircles {
             margin: 15px 0;
-        }
-        .time {
-            margin-bottom: 5px;
         }
     }
     .lastRow {

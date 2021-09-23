@@ -3,7 +3,7 @@ import flightTakeoffIcon from "../../icons/flight_takeoff_black_24dp.svg";
 import { ReactComponent as ExpandArrow } from "../../icons/expand_more_black_24dp.svg";
 import DateInput from "../RangeDatePicker/RangeDatePicker";
 import Button from "../Button/Button";
-import Modal from "../Modal/Modal";
+import { SearchModal } from "../Modal/Modal";
 import flightLandIcon from "../../icons/flight_land_black_24dp.svg";
 import { ReactComponent as SearchIcon } from "../../icons/search_white.svg";
 import AirportSearch from "../AirportSearch/AirportSearch";
@@ -23,7 +23,7 @@ const FlightSearchFields = () => {
     return (
         <div className="flightSearchFields">
             <div className="options">
-                <Modal className="modal">
+                <SearchModal className="modal">
                     <span className="travellers">
                         <Button
                             icon={ExpandArrow}
@@ -33,8 +33,8 @@ const FlightSearchFields = () => {
                             1 Traveller
                         </Button>
                     </span>
-                </Modal>
-                <Modal className="modal">
+                </SearchModal>
+                <SearchModal className="modal">
                     <span className="flightType">
                         <Button
                             icon={ExpandArrow}
@@ -44,11 +44,11 @@ const FlightSearchFields = () => {
                             Round trip
                         </Button>
                     </span>
-                </Modal>
+                </SearchModal>
             </div>
             <div className="fields">
                 {/* -------- Departure airport search field -------- */}
-                <Modal
+                <SearchModal
                     altClassName="aSearchField flightSearchField"
                     className="modal"
                 >
@@ -60,10 +60,10 @@ const FlightSearchFields = () => {
                         icon={flightTakeoffIcon}
                         placeholder="Departure airport"
                     />
-                </Modal>
+                </SearchModal>
                 {/* -------- Destination airport search field -------- */}
 
-                <Modal
+                <SearchModal
                     altClassName="aSearchField flightSearchField"
                     className="modal"
                 >
@@ -75,16 +75,16 @@ const FlightSearchFields = () => {
                         // wrapperClass="aSearchField flightSearchField"
                         placeholder="Destination airport"
                     />
-                </Modal>
+                </SearchModal>
                 {/* -------- Date picker search field -------- */}
 
-                <Modal
+                <SearchModal
                     altClassName="aSearchField flightSearchField
                     dateSearchField"
                     className="modal"
                 >
                     <DateInput icon={DateIcon} className="searchTextInput" />
-                </Modal>
+                </SearchModal>
                 <Button
                     handleClick={searchHandler}
                     icon={SearchIcon}

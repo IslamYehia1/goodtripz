@@ -2,18 +2,14 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Button from "../Button/Button";
 import { ReactComponent as leftArrowIcon } from "../../icons/leftArrow.svg";
-
-// import "./modal.scss";
+import "./modal.scss";
 const modalRoot = document.getElementById("modalRoot");
 
 type modalProps = {
     isOpen?: Boolean;
     className: string;
-    isFullScreen?: {
-        [key: string]: Boolean;
-    };
-    onFocus?: any;
-    onClick?: any;
+    onFocus?: () => void;
+    onClick?: () => void;
     altClassName?: string;
 };
 type searchModalProps = {
@@ -25,9 +21,14 @@ type searchModalProps = {
 };
 type modalState = {
     el: HTMLDivElement;
-    onFocus: any;
+    onFocus: () => void;
 };
-
+type FiltersModalType = {
+    closeModal: () => void;
+    children: React.ReactNode;
+    isOpen: Boolean;
+    className: string;
+};
 const SearchModal = (props: searchModalProps) => {
     const [isOpen, setIsOpen] = useState(false);
     return (
@@ -53,10 +54,24 @@ const SearchModal = (props: searchModalProps) => {
         </Modal>
     );
 };
+const FiltersModal = (props: FiltersModalType) => {
+    return (
+        <Modal isOpen={props.isOpen} className={props.className}>
+            {props.isOpen && (
+                <Button
+                    handleClick={() => props.closeModal()}
+                    className="button modalCloseBtn"
+                    icon={leftArrowIcon}
+                />
+            )}
+            {props.children}
+        </Modal>
+    );
+};
 
 class Modal extends React.Component<modalProps, modalState> {
     el: HTMLDivElement;
-    altClassName: any;
+    altClassName?: string;
     constructor(props: modalProps) {
         super(props);
         this.altClassName = this.props.altClassName;
@@ -84,12 +99,16 @@ class Modal extends React.Component<modalProps, modalState> {
         return (
             <div
                 className={this.props.altClassName}
-                onFocus={() => this.props.onFocus()}
-                onClick={() => this.props.onClick()}
+                onFocus={() => {
+                    if (this.props.onFocus) this.props.onFocus();
+                }}
+                onClick={() => {
+                    if (this.props.onClick) this.props.onClick();
+                }}
             >
                 {this.props.children}
             </div>
         );
     }
 }
-export default SearchModal;
+export { SearchModal, Modal, FiltersModal };

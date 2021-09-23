@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { airportAutocomplete as fetchSuggestions } from "../SearchForm/fetchSuggestions";
+import { airportAutocomplete as fetchSuggestions } from "../../utils/fetchSuggestions";
 import Suggestions from "../SearchForm/Suggestions";
 import InputField from "../InputField/InputField";
 type AirportSearchProps = {

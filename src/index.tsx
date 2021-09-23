@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom";
 import Home from "./pages/HomePage/Home";
-import FlightSearch from "./pages/FlightSearch/FlightSearch";
+import SearchResults from "./pages/SearchResults/SearchResults";
 import NavBar from "./components/NavBar/NavBar";
 import { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -22,8 +22,8 @@ const App = () => {
                     <Route exact path="/">
                         <Home className="homepage" />
                     </Route>
-                    <Route exact path="/flightSearch">
-                        <FlightSearch className="flightSearch" />
+                    <Route exact path="/SearchResults">
+                        <SearchResults className="flightSearch" />
                     </Route>
                 </Switch>
             </Router>

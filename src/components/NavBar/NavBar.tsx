@@ -21,7 +21,7 @@ const NavBar = (props: navProps) => {
                             <Link to="/mytrips">My trips</Link>
                         </li>
                         <li className="signIn">
-                            <a href="#">Sign Up</a>
+                            <a href="#">Sign In</a>
                         </li>
                         <li>
                             <MenuIcon className="menuIcon" />
