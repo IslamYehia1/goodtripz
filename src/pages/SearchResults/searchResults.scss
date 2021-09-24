@@ -3,6 +3,7 @@
 .searchResultsPage {
     display: flex;
     width: 70%;
+    min-width: 1280px;
     background-color: #f7f9fc;
     box-shadow: 0px 4px 17px 5px rgba(0, 0, 0, 0.03);
     border-radius: 20px;
@@ -20,11 +21,6 @@
             svg {
                 margin-right: 7px;
             }
-        }
-        .flightOffer {
-            background: #ffffff;
-            box-shadow: 4px 4px 30px 7px rgba(0, 0, 0, 0.03);
-            margin-bottom: 20px;
         }
     }
 }
@@ -67,10 +63,14 @@
         .searchInput {
             display: flex;
             flex-direction: column;
+            gap: 3px;
         }
         .lilSearchField {
             width: 47%;
             margin-bottom: 40px;
+        }
+        .lilHotelField {
+            width: 100%;
         }
         .lilDateFields {
             width: 100%;
@@ -107,9 +107,68 @@
     float: right;
     gap: 5px;
 }
+
+.hotelOffer {
+    @include normalFont;
+    white-space: nowrap;
+    background: #ffffff;
+    box-shadow: 4px 4px 30px 7px rgba(0, 0, 0, 0.03);
+    padding: 1%;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 2%;
+    position: relative;
+    height: 225px;
+    .hotelPicture {
+        background-color: violet;
+    }
+    img {
+        width: 39%;
+        height: 100%;
+        object-fit: cover;
+        // aspect-ratio: 18/13;
+        border-radius: 14px;
+    }
+    .hotelDetails {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        flex-grow: 1;
+        padding: 20px;
+        .lilAminities {
+            display: flex;
+            gap: 20%;
+            .lilAmenity {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                svg {
+                    width: 17px;
+                    height: 17px;
+                }
+            }
+        }
+        .hotelPrice {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            .refundable {
+                color: #357266;
+            }
+            .dollarAmount {
+                @include semiBoldFont;
+                font-size: 22px;
+                text-align: end;
+            }
+        }
+    }
+}
 @media only screen and (max-width: 1280px) {
     .searchResultsPage {
         width: 95%;
+        min-width: unset;
     }
 }
 

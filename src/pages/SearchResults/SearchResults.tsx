@@ -1,6 +1,4 @@
-import FlightOffer from "../../components/FlightOffer/FlightOffer";
 import "./searchResults.scss";
-import { SearchModal } from "../../components/Modal/Modal";
 import Button from "../../components/Button/Button";
 import { ReactComponent as FlightIcon } from "../../icons/flight_takeoff_black_24dp.svg";
 import { ReactComponent as HotelIcon } from "../../icons/hotel_black_24dp.svg";
@@ -10,6 +8,8 @@ import { ReactComponent as FilterIcon } from "../../icons/filter_list_black_24dp
 import { useState, useEffect } from "react";
 import FlightsSideBar from "./FlightsSideBar";
 import HotelsSideBar from "./HotelsSideBar";
+import FlightOffers from "./FlightOffers";
+import HotelsOffers from "./HotelsOffers";
 const SearchResults = (props: any) => {
     const [searchState, setSearchState] = useState("flights");
     const [isMobile, setIsMobile] = useState(false);
@@ -41,9 +41,9 @@ const SearchResults = (props: any) => {
                     </Button>
                     <Button
                         handleClick={(e) => {
-                            setSearchState("hotel");
+                            setSearchState("hotels");
                         }}
-                        id={searchState === "hotel" ? "activeLittleTab" : ""}
+                        id={searchState === "hotels" ? "activeLittleTab" : ""}
                         className="littleTab button"
                         icon={HotelIcon}
                     >
@@ -69,7 +69,7 @@ const SearchResults = (props: any) => {
                         isMobile={isMobile}
                     />
                 )}
-                {searchState === "hotel" && <HotelsSideBar />}
+                {searchState === "hotels" && <HotelsSideBar />}
             </div>
             <div className="searchResults">
                 <div className="filterAndSort">
@@ -98,10 +98,8 @@ const SearchResults = (props: any) => {
                         </Button>
                     )}
                 </div>
-
-                <FlightOffer />
-                <FlightOffer />
-                <FlightOffer />
+                {searchState === "flights" && <FlightOffers />}
+                {searchState === "hotels" && <HotelsOffers />}
             </div>
         </div>
     );

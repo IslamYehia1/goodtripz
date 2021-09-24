@@ -11,9 +11,12 @@ function isInvalid(searchTerm: string) {
         (typeof searchTerm === "string" && searchTerm.length === 0)
     );
 }
-
+type autocompleteT = Array<{
+    autocomplete: { id: string; main: string; secondary: string };
+    identifier: string;
+}>;
 export async function hotelAutoComplete(searchTerm: string) {
-    let temp: Array<string[]> = [];
+    let temp: autocompleteT = [];
 
     if (isInvalid(searchTerm)) return temp;
 
@@ -23,11 +26,14 @@ export async function hotelAutoComplete(searchTerm: string) {
         );
         const suggestions = await rawSuggestions.json();
         suggestions.forEach((suggestion: suggestionType) => {
-            temp.push([
-                suggestion.place_id,
-                suggestion.structured_formatting.main_text,
-                suggestion.structured_formatting.secondary_text,
-            ]);
+            temp.push({
+                autocomplete: {
+                    id: suggestion.place_id,
+                    main: suggestion.structured_formatting.main_text,
+                    secondary: suggestion.structured_formatting.secondary_text,
+                },
+                identifier: "ops",
+            });
         });
         return temp;
     } catch (err) {
@@ -38,9 +44,9 @@ export async function hotelAutoComplete(searchTerm: string) {
 type airportsResultType = {
     item: { [key: string]: string };
 };
-export async function airportAutocomplete(searchTerm: string) {
-    let temp: Array<string[]> = [];
 
+export async function airportAutocomplete(searchTerm: string) {
+    let temp: autocompleteT = [];
     if (isInvalid(searchTerm)) return temp;
 
     try {
@@ -50,11 +56,14 @@ export async function airportAutocomplete(searchTerm: string) {
             )
         ).json();
         results.forEach((result: airportsResultType) => {
-            temp.push([
-                `${result.item.Id}`,
-                `${result.item.Name} (Code: ${result.item.IATA})`,
-                `${result.item.City} , ${result.item.Country}`,
-            ]);
+            temp.push({
+                autocomplete: {
+                    id: `${result.item.Id}`,
+                    main: `${result.item.Name} (Code: ${result.item.IATA})`,
+                    secondary: `${result.item.City} , ${result.item.Country}`,
+                },
+                identifier: result.item.IATA,
+            });
         });
         return temp;
     } catch (error) {

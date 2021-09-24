@@ -12,10 +12,18 @@ import DateIcon from "../../icons/calendar_black.svg";
 
 const FlightSearchFields = () => {
     /*Search fields and autocomplete suggestions should be full screen on mobile */
-
+    const [from, setFrom] = useState("");
+    const [to, setTo] = useState("");
+    const [date, setDate] = useState("");
+    const [returnDate, setReturnDate] = useState("");
     function searchHandler() {
         (async () => {
-            const results = await fetchFlights();
+            const results = await fetchFlights({
+                from: from,
+                to: to,
+                date: date,
+                returnDate: returnDate,
+            });
             console.log(results);
         })();
     }
@@ -59,6 +67,7 @@ const FlightSearchFields = () => {
                         // wrapperClass="aSearchField flightSearchField"
                         icon={flightTakeoffIcon}
                         placeholder="Departure airport"
+                        onSuggestionSelect={(suggestion) => setFrom(suggestion)}
                     />
                 </SearchModal>
                 {/* -------- Destination airport search field -------- */}
@@ -74,6 +83,9 @@ const FlightSearchFields = () => {
                         suggestionsClass="suggestions"
                         // wrapperClass="aSearchField flightSearchField"
                         placeholder="Destination airport"
+                        onSuggestionSelect={(suggestion) => {
+                            setTo(suggestion);
+                        }}
                     />
                 </SearchModal>
                 {/* -------- Date picker search field -------- */}
@@ -83,7 +95,18 @@ const FlightSearchFields = () => {
                     dateSearchField"
                     className="modal"
                 >
-                    <DateInput icon={DateIcon} className="searchTextInput" />
+                    <DateInput
+                        fromLabel="Date"
+                        toLabel="Return date"
+                        icon={DateIcon}
+                        className="searchTextInput"
+                        onFromDateSelected={(day: Date) => {
+                            setDate(day.toISOString().substring(0, 10));
+                        }}
+                        onToDateSelected={(day: Date) => {
+                            setReturnDate(day.toISOString().substring(0, 10));
+                        }}
+                    />
                 </SearchModal>
                 <Button
                     handleClick={searchHandler}

@@ -3,7 +3,6 @@
 .flightOffer {
     @include semiBoldFont;
     position: relative;
-    background-color: $white;
     padding: 5%;
     border-radius: 20px;
     white-space: nowrap;
@@ -11,6 +10,9 @@
     min-width: 320px;
     display: flex;
     flex-direction: column;
+    background: #ffffff;
+    box-shadow: 4px 4px 30px 7px rgba(0, 0, 0, 0.03);
+    margin-bottom: 20px;
 }
 .firstRow {
     width: 100%;

@@ -5,12 +5,12 @@ import InputField from "../../components/InputField/InputField";
 import Button from "../../components/Button/Button";
 import { ReactComponent as SearchIcon } from "../../icons/search_white.svg";
 
-type FlightsSideBar = {
+type FlightsSideBarT = {
     onModalClose: () => void;
     filtersModal: Boolean;
     isMobile: Boolean;
 };
-const FlightsSideBar = (props: FlightsSideBar) => {
+const FlightsSideBar = (props: FlightsSideBarT) => {
     return (
         <>
             <div className="sideSection searchTerms">
@@ -38,6 +38,8 @@ const FlightsSideBar = (props: FlightsSideBar) => {
                         wrapperClass="lilDateFields"
                         fieldClass="lilSearchField"
                         className="searchInput"
+                        fromLabel="Date"
+                        toLabel="Return date"
                     />
                 </SearchModal>
                 <div className="lilSearchField">

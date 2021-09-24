@@ -53,11 +53,13 @@
 .DayPickerInput-OverlayWrapper {
     position: absolute !important ;
     left: 0;
+    z-index: 3;
 }
 .enclosure {
     width: 70%;
     position: relative;
     left: 200px;
+    z-index: 1;
     input {
         width: 200px;
     }

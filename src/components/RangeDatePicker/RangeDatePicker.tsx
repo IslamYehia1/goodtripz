@@ -1,14 +1,17 @@
 import ToDateField from "./ToDateField";
 import FromDateField from "./FromDateField";
-import DateIcon from "../../icons/calendar_black.svg";
 import { useState } from "react";
 import "./datePicker.scss";
 type propsType = {
     className?: string;
     fieldClass?: string;
     wrapperClass?: string;
+    fromLabel?: string;
+    toLabel?: string;
     icon?: string;
     onClick?: React.MouseEventHandler<HTMLDivElement>;
+    onFromDateSelected?: (day: Date) => void;
+    onToDateSelected?: (day: Date) => void;
 };
 const RangeDatePicker = (props: propsType) => {
     const today = new Date();
@@ -17,8 +20,7 @@ const RangeDatePicker = (props: propsType) => {
         to: undefined,
         lastHoveredDay: undefined,
     });
-    function onFromDayChange() {}
-    function onToDayChange() {}
+
     function stateSetter(param: { [key: string]: Date | undefined }) {
         setState(param);
     }
@@ -28,22 +30,26 @@ const RangeDatePicker = (props: propsType) => {
             <FromDateField
                 className={props.className}
                 wrapperClass={props.fieldClass}
-                label="Date"
+                label={props.fromLabel}
                 icon={props.icon}
                 state={state}
                 setState={stateSetter}
                 today={today}
-                onDayChange={onFromDayChange}
+                onDayChange={(day: Date) => {
+                    if (props.onFromDateSelected) props.onFromDateSelected(day);
+                }}
             />
             <ToDateField
                 className={props.className}
                 wrapperClass={props.fieldClass}
-                label="Return date"
+                label={props.toLabel}
                 icon={props.icon}
                 state={state}
                 setState={stateSetter}
                 today={today}
-                onDayChange={onToDayChange}
+                onDayChange={(day: Date) => {
+                    if (props.onToDateSelected) props.onToDateSelected(day);
+                }}
             />
         </div>
     );

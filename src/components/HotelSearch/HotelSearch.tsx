@@ -1,21 +1,28 @@
 import React, { useState, useEffect } from "react";
 import InputField from "../InputField/InputField";
-import locationIcon from "../../icons/location.svg";
-import Suggestions from "../../components/SearchForm/Suggestions";
+import Suggestions from "../Autocomplete/Suggestions";
 import { hotelAutoComplete as fetchSuggestions } from "../../utils/fetchSuggestions";
 type props = {
     inputClass: string;
+    icon?: string;
+    value?: string;
+    label: string;
+    onSuggestionSelected?: (x: string) => void;
 };
+type autocompleteT = Array<{
+    autocomplete: { id: string; main: string; secondary: string };
+    identifier: string;
+}>;
 const HotelSearch = (props: props) => {
+    const [showSuggestions, setShowSuggestions] = useState(false);
+    const [suggestions, setSuggestions] = useState<autocompleteT>([]);
+    const [searchTerm, setSearchTerm] = useState(props.value || "");
     function isSuggestionClicked(e: React.FocusEvent<HTMLDivElement>) {
         return (
             e.relatedTarget !== null &&
             (e.relatedTarget as HTMLElement).classList.contains("suggestions")
         );
     }
-    const [showSuggestions, setShowSuggestions] = useState(false);
-    const [suggestions, setSuggestions] = useState<Array<string[]>>([]);
-    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
         (async () => {
@@ -31,18 +38,20 @@ const HotelSearch = (props: props) => {
         >
             <InputField
                 placeholder="Hotel location"
-                label="Going to"
+                label={props.label}
                 className={props.inputClass}
-                icon={locationIcon}
+                icon={props.icon}
                 name="hotelLocation"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
             {showSuggestions && (
                 <Suggestions
-                    onSuggestionClick={(searchTerm) => {
+                    onSuggestionClick={({ suggestion }) => {
                         setShowSuggestions(false);
-                        setSearchTerm(searchTerm);
+                        setSearchTerm(suggestion);
+                        if (props.onSuggestionSelected)
+                            props.onSuggestionSelected(suggestion);
                     }}
                     className="suggestions"
                     suggestions={suggestions}
