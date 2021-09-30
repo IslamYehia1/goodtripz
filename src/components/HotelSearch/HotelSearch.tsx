@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import InputField from "../InputField/InputField";
-import Suggestions from "../Autocomplete/Suggestions";
-import { hotelAutoComplete as fetchSuggestions } from "../../utils/fetchSuggestions";
+import Suggestions from "../Autocomplete/Autocomplete";
+import { hotelAutoComplete as fetchSuggestions } from "../../utils/fetchAutocomplete";
 type props = {
     inputClass: string;
-    icon?: string;
+    icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
     value?: string;
     label: string;
     onSuggestionSelected?: (x: string) => void;

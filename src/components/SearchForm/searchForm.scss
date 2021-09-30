@@ -46,17 +46,19 @@
 .searchTextInputWrapper {
     display: flex;
     align-items: center;
-    img {
+    color: $dark;
+
+    svg {
         margin-right: 25px;
-        width: 25px;
         height: 25px;
+        min-width: 25px;
+        opacity: 0.8;
     }
     .searchTextInput {
         @include semiBoldFont;
         display: flex;
         flex-direction: column;
         white-space: nowrap;
-        color: $dark;
         label {
             font-size: 14px;
         }
@@ -67,7 +69,6 @@
             width: 90%;
             &::placeholder {
                 @include normalFont;
-                color: $dark;
                 font-size: 15px;
             }
         }
@@ -94,11 +95,10 @@
     box-shadow: 0px 4px 18px 11px rgba(0, 0, 0, 0.03);
 }
 .dateSearchField {
-    max-width: 30%;
-    img {
-        width: 20px;
-        height: 20px;
+    svg {
+        min-width: 20px;
     }
+    max-width: 30%;
 }
 .options {
     display: flex;
@@ -110,7 +110,7 @@
         flex-direction: row-reverse;
         color: $primary;
         font-size: 15px;
-        img {
+        svg {
             margin: 3px 0 0px 5px;
             width: 20px;
             height: 20px;
@@ -162,7 +162,7 @@
     }
 
     .aSearchField {
-        img {
+        svg {
             width: 20px;
             height: 20px;
         }
@@ -176,10 +176,6 @@
         flex-wrap: wrap;
         .dateSearchField {
             margin-bottom: 0;
-            img {
-                width: 15px;
-                height: 15px;
-            }
         }
         .searchButton {
             flex-grow: 1;
@@ -205,7 +201,7 @@
         box-shadow: unset;
         border-radius: 0;
         opacity: 1;
-        img {
+        svg {
             opacity: 0.7;
         }
         &::after {
@@ -245,9 +241,8 @@
         &::after {
             content: none;
         }
-        img {
+        svg {
             display: none;
-            cursor: pointer;
         }
         padding-left: 15vw;
         position: relative;

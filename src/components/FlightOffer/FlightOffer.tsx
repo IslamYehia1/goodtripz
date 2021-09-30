@@ -1,23 +1,48 @@
 import "./flightOffer.scss";
 import airlineLogo from "../../img/airlineLogo.svg";
-import { ReactComponent as wideTwoCircles } from "../../img/wideTwoCircles.svg";
-import { ReactComponent as TwoCircles } from "../../img/twoCircles.svg";
 import { useEffect } from "react";
-type propsType = {};
+type propsType = {
+    duration: string;
+    price: string;
+    stopsNumber: string;
+    departureTime: string;
+    arrivalTime: string;
+    departure: string;
+    destination: string;
+    stops: Array<string>;
+    cities: {
+        from: string;
+        to: string;
+    };
+};
+
+//11H 20M
 const FlightOffer = (props: propsType) => {
     return (
         <div className="flightOffer">
             <div className="firstRow">
                 <div className="departure">
-                    <div className="time departureTime">14:00</div>
-                    <div className="departureCity">New York (NYC)</div>
+                    {/* <div className="time departureTime">14:00</div> */}
+                    <div className="time departureTime">
+                        {props.departureTime}
+                    </div>
+                    <div className="departureCity">
+                        {`${props.cities.from} (${props.departure})`}
+                    </div>
                 </div>
                 <div className="details">
-                    <span>11H 20M, 1 Stop in JFK</span>
+                    <span>
+                        {`${props.duration} , ${props.stopsNumber}`} Stop in{" "}
+                        {props.stops.toString()}
+                    </span>
                 </div>
                 <div className="arrival">
-                    <div className="time arrivalTime">14:00</div>
-                    <div className="arrivalCity">New York (NYC)</div>
+                    {/* <div className="time arrivalTime">14:00</div> */}
+                    <div className="time arrivalTime">{props.arrivalTime}</div>
+                    {/* <div className="arrivalCity">New York (NYC)</div> */}
+                    <div className="arrivalCity">
+                        {`${props.cities.to} (${props.destination})`}
+                    </div>
                 </div>
                 <div className="twoCircles">
                     <svg
@@ -76,7 +101,7 @@ const FlightOffer = (props: propsType) => {
                         <span>Economy</span>
                     </span>
                     <span className="price">
-                        $200
+                        {props.price}
                         <span>Per person</span>
                     </span>
                 </div>

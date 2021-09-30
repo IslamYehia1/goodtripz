@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom";
 import Home from "./pages/HomePage/Home";
-import SearchResults from "./pages/SearchResults/SearchResults";
+import SearchResults from "./pages/SearchResults";
 import NavBar from "./components/NavBar/NavBar";
 import { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -22,7 +22,7 @@ const App = () => {
                     <Route exact path="/">
                         <Home className="homepage" />
                     </Route>
-                    <Route exact path="/SearchResults">
+                    <Route path="/SearchResults">
                         <SearchResults className="flightSearch" />
                     </Route>
                 </Switch>

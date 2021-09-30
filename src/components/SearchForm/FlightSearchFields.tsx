@@ -1,30 +1,26 @@
 import React, { useState, useReducer, useEffect } from "react";
-import flightTakeoffIcon from "../../icons/flight_takeoff_black_24dp.svg";
+import { ReactComponent as FlightTakeoffIcon } from "../../icons/flight_takeoff_black_24dp.svg";
 import { ReactComponent as ExpandArrow } from "../../icons/expand_more_black_24dp.svg";
-import DateInput from "../RangeDatePicker/RangeDatePicker";
+import { ReactComponent as SearchIcon } from "../../icons/search_white.svg";
+import DateInput from "../RangeDatePicker";
 import Button from "../Button/Button";
 import { SearchModal } from "../Modal/Modal";
-import flightLandIcon from "../../icons/flight_land_black_24dp.svg";
-import { ReactComponent as SearchIcon } from "../../icons/search_white.svg";
-import AirportSearch from "../AirportSearch/AirportSearch";
-import { fetchFlights } from "./fetchFlights";
-import DateIcon from "../../icons/calendar_black.svg";
-
+import AirportSearch from "../AirportSearchField/AirportSearch";
+import { ReactComponent as DateIcon } from "../../icons/calendar_black.svg";
+import { Redirect } from "react-router";
 const FlightSearchFields = () => {
     /*Search fields and autocomplete suggestions should be full screen on mobile */
     const [from, setFrom] = useState("");
     const [to, setTo] = useState("");
     const [date, setDate] = useState("");
     const [returnDate, setReturnDate] = useState("");
+    const [adults, setAdults] = useState(1);
+    const [children, setChildren] = useState(0);
+    const [redirect, setRedirect] = useState(false);
+
     function searchHandler() {
         (async () => {
-            const results = await fetchFlights({
-                from: from,
-                to: to,
-                date: date,
-                returnDate: returnDate,
-            });
-            console.log(results);
+            setRedirect(true);
         })();
     }
 
@@ -65,7 +61,7 @@ const FlightSearchFields = () => {
                         inputClass="searchTextInput"
                         suggestionsClass="suggestions"
                         // wrapperClass="aSearchField flightSearchField"
-                        icon={flightTakeoffIcon}
+                        icon={FlightTakeoffIcon}
                         placeholder="Departure airport"
                         onSuggestionSelect={(suggestion) => setFrom(suggestion)}
                     />
@@ -78,7 +74,7 @@ const FlightSearchFields = () => {
                 >
                     <AirportSearch
                         label="Flying to"
-                        icon={flightLandIcon}
+                        icon={FlightTakeoffIcon}
                         inputClass="searchTextInput"
                         suggestionsClass="suggestions"
                         // wrapperClass="aSearchField flightSearchField"
@@ -116,6 +112,14 @@ const FlightSearchFields = () => {
                     Search
                 </Button>
             </div>
+            {redirect && (
+                <Redirect
+                    to={{
+                        pathname: "/SearchResults",
+                        search: `?from=${from}&to=${to}&date=${date}&returnDate=${returnDate}&adults=${adults}&children=${children}`,
+                    }}
+                />
+            )}
         </div>
     );
 };

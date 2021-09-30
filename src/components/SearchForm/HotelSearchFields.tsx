@@ -1,13 +1,13 @@
 import Button from "../Button/Button";
-import DateInput from "../RangeDatePicker/RangeDatePicker";
+import DateInput from "../RangeDatePicker";
 import { ReactComponent as SearchIcon } from "../../icons/search_white.svg";
 import { SearchModal } from "../Modal/Modal";
 import { ReactComponent as ExpandArrow } from "../../icons/expand_more_black_24dp.svg";
 import HotelSearch from "../HotelSearch/HotelSearch";
-import DateIcon from "../../icons/calendar_black.svg";
-import locationIcon from "../../icons/location.svg";
+import { ReactComponent as DateIcon } from "../../icons/calendar_black.svg";
+import { ReactComponent as LocationIcon } from "../../icons/location.svg";
 import { useState } from "react";
-import { fetchFlights } from "./fetchFlights";
+import { fetchFlights } from "../../utils/fetchFlights";
 
 const HotelSearchFields = () => {
     function searchHandler() {}
@@ -43,7 +43,7 @@ const HotelSearchFields = () => {
                 >
                     <HotelSearch
                         label="Going to"
-                        icon={locationIcon}
+                        icon={LocationIcon}
                         inputClass="searchTextInput"
                         onSuggestionSelected={(suggestion) => {
                             setPlace(suggestion);

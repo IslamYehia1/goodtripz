@@ -29,20 +29,20 @@
     min-width: 330px;
     width: 30%;
     padding: 2% 0 2% 3%;
-    .littleTabs {
+    .lilTabs {
         display: flex;
         justify-content: center;
         gap: 50px;
         margin-bottom: 40px;
         margin-top: 20px;
-        .littleTab.button {
+        .lilTab.button {
             flex-direction: column;
             gap: 5px;
             color: $dark;
         }
     }
 
-    #activeLittleTab {
+    #activeLilTab {
         color: $primary;
     }
     .searchTerms {
@@ -81,6 +81,7 @@
         }
     }
 }
+
 .sideSection {
     position: relative;
     display: flex;
@@ -118,6 +119,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    min-width: 550px;
     gap: 2%;
     position: relative;
     height: 225px;
@@ -154,6 +156,11 @@
             width: 100%;
             display: flex;
             justify-content: space-between;
+            .price {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+            }
             .refundable {
                 color: #357266;
             }
@@ -169,6 +176,9 @@
     .searchResultsPage {
         width: 95%;
         min-width: unset;
+        .hotelPrice {
+            flex-direction: column;
+        }
     }
 }
 
@@ -177,10 +187,23 @@
         .sideBar {
             min-width: 280px;
             font-size: 14px;
-            .littleTabs {
+            .lilTabs {
                 gap: 35px;
                 font-size: 14px;
             }
+        }
+    }
+    .hotelOffer {
+        display: flex;
+        flex-direction: column;
+        height: unset;
+        min-width: unset;
+        .hotelDetails {
+            width: 100%;
+        }
+        img {
+            height: 300px;
+            width: 100%;
         }
     }
 }

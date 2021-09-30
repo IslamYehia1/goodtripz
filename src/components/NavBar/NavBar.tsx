@@ -10,7 +10,9 @@ const NavBar = (props: navProps) => {
         <Router>
             <nav className="navBar">
                 <div className="logo">
-                    <Logo className="logo" />
+                    <Link to="/">
+                        <Logo className="logo" />
+                    </Link>
                 </div>
                 <div className="navLinks">
                     <ul>

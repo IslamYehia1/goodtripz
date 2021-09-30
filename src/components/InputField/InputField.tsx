@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 type inputFieldProps = {
-    icon?: string;
+    icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
     className?: string;
     name?: string;
     placeholder?: string;
@@ -18,9 +18,7 @@ type inputFieldProps = {
 const InputField = (props: inputFieldProps) => {
     return (
         <div className={`${props.className}Wrapper`}>
-            {props.icon && (
-                <img src={props.icon} alt="Input field representationz" />
-            )}
+            {props.icon && <props.icon />}
             <div className={props.className}>
                 <label htmlFor={props.name}>{props.label}</label>
                 {props.children ? (

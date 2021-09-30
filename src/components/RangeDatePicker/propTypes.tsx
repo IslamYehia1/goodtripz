@@ -8,7 +8,7 @@ export type toPropsType = {
 
     today: Date;
     className?: string;
-    icon?: string;
+    icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
     label?: string;
     wrapperClass?: string;
     setState: (params: { [key: string]: Date | undefined }) => void;
@@ -25,7 +25,7 @@ export type fromPropsType = {
     today: Date;
     setState: (params: { [key: string]: Date | undefined }) => void;
     className?: string;
-    icon?: string;
+    icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
     label?: string;
     wrapperClass?: string;
     onDayChange: (

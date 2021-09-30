@@ -1,0 +1,494 @@
+[
+    {
+        "type": "flight-offer",
+        "id": "1",
+        "source": "GDS",
+        "instantTicketingRequired": false,
+        "nonHomogeneous": false,
+        "oneWay": false,
+        "lastTicketingDate": "2021-10-01",
+        "numberOfBookableSeats": 7,
+        "itineraries": [
+            {
+                "duration": "PT16H30M",
+                "segments": [
+                    {
+                        "departure": {
+                            "iataCode": "CAI",
+                            "terminal": "2",
+                            "at": "2021-10-01T03:45:00"
+                        },
+                        "arrival": {
+                            "iataCode": "FCO",
+                            "terminal": "3",
+                            "at": "2021-10-01T07:10:00"
+                        },
+                        "carrierCode": "AZ",
+                        "number": "895",
+                        "aircraft": {
+                            "code": "32S"
+                        },
+                        "operating": {
+                            "carrierCode": "AZ"
+                        },
+                        "duration": "PT3H25M",
+                        "id": "126",
+                        "numberOfStops": 0,
+                        "blacklistedInEU": false
+                    },
+                    {
+                        "departure": {
+                            "iataCode": "FCO",
+                            "terminal": "1",
+                            "at": "2021-10-01T10:40:00"
+                        },
+                        "arrival": {
+                            "iataCode": "JFK",
+                            "terminal": "1",
+                            "at": "2021-10-01T14:15:00"
+                        },
+                        "carrierCode": "DL",
+                        "number": "6694",
+                        "aircraft": {
+                            "code": "772"
+                        },
+                        "operating": {
+                            "carrierCode": "AZ"
+                        },
+                        "duration": "PT9H35M",
+                        "id": "127",
+                        "numberOfStops": 0,
+                        "blacklistedInEU": false
+                    }
+                ]
+            }
+        ],
+        "price": {
+            "currency": "EUR",
+            "total": "373.76",
+            "base": "177.00",
+            "fees": [
+                {
+                    "amount": "0.00",
+                    "type": "SUPPLIER"
+                },
+                {
+                    "amount": "0.00",
+                    "type": "TICKETING"
+                }
+            ],
+            "grandTotal": "373.76"
+        },
+        "pricingOptions": {
+            "fareType": [
+                "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": true
+        },
+        "validatingAirlineCodes": [
+            "DL"
+        ],
+        "travelerPricings": [
+            {
+                "travelerId": "1",
+                "fareOption": "STANDARD",
+                "travelerType": "ADULT",
+                "price": {
+                    "currency": "EUR",
+                    "total": "373.76",
+                    "base": "177.00"
+                },
+                "fareDetailsBySegment": [
+                    {
+                        "segmentId": "126",
+                        "cabin": "ECONOMY",
+                        "fareBasis": "UL50BBR0",
+                        "class": "X",
+                        "includedCheckedBags": {
+                            "quantity": 1
+                        }
+                    },
+                    {
+                        "segmentId": "127",
+                        "cabin": "ECONOMY",
+                        "fareBasis": "UL50BBR0",
+                        "brandedFare": "BASICECON",
+                        "class": "E",
+                        "includedCheckedBags": {
+                            "quantity": 1
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "flight-offer",
+        "id": "2",
+        "source": "GDS",
+        "instantTicketingRequired": false,
+        "nonHomogeneous": false,
+        "oneWay": false,
+        "lastTicketingDate": "2021-10-01",
+        "numberOfBookableSeats": 7,
+        "itineraries": [
+            {
+                "duration": "PT19H5M",
+                "segments": [
+                    {
+                        "departure": {
+                            "iataCode": "CAI",
+                            "terminal": "2",
+                            "at": "2021-10-01T03:45:00"
+                        },
+                        "arrival": {
+                            "iataCode": "FCO",
+                            "terminal": "3",
+                            "at": "2021-10-01T07:10:00"
+                        },
+                        "carrierCode": "AZ",
+                        "number": "895",
+                        "aircraft": {
+                            "code": "32S"
+                        },
+                        "operating": {
+                            "carrierCode": "AZ"
+                        },
+                        "duration": "PT3H25M",
+                        "id": "37",
+                        "numberOfStops": 0,
+                        "blacklistedInEU": false
+                    },
+                    {
+                        "departure": {
+                            "iataCode": "FCO",
+                            "terminal": "3",
+                            "at": "2021-10-01T13:00:00"
+                        },
+                        "arrival": {
+                            "iataCode": "JFK",
+                            "terminal": "4",
+                            "at": "2021-10-01T16:50:00"
+                        },
+                        "carrierCode": "DL",
+                        "number": "153",
+                        "aircraft": {
+                            "code": "333"
+                        },
+                        "operating": {
+                            "carrierCode": "DL"
+                        },
+                        "duration": "PT9H50M",
+                        "id": "38",
+                        "numberOfStops": 0,
+                        "blacklistedInEU": false
+                    }
+                ]
+            }
+        ],
+        "price": {
+            "currency": "EUR",
+            "total": "373.76",
+            "base": "177.00",
+            "fees": [
+                {
+                    "amount": "0.00",
+                    "type": "SUPPLIER"
+                },
+                {
+                    "amount": "0.00",
+                    "type": "TICKETING"
+                }
+            ],
+            "grandTotal": "373.76"
+        },
+        "pricingOptions": {
+            "fareType": [
+                "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": true
+        },
+        "validatingAirlineCodes": [
+            "DL"
+        ],
+        "travelerPricings": [
+            {
+                "travelerId": "1",
+                "fareOption": "STANDARD",
+                "travelerType": "ADULT",
+                "price": {
+                    "currency": "EUR",
+                    "total": "373.76",
+                    "base": "177.00"
+                },
+                "fareDetailsBySegment": [
+                    {
+                        "segmentId": "37",
+                        "cabin": "ECONOMY",
+                        "fareBasis": "UL50BBR0",
+                        "class": "X",
+                        "includedCheckedBags": {
+                            "quantity": 1
+                        }
+                    },
+                    {
+                        "segmentId": "38",
+                        "cabin": "ECONOMY",
+                        "fareBasis": "UL50BBR0",
+                        "brandedFare": "BASICECON",
+                        "class": "E",
+                        "includedCheckedBags": {
+                            "quantity": 1
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "flight-offer",
+        "id": "3",
+        "source": "GDS",
+        "instantTicketingRequired": false,
+        "nonHomogeneous": false,
+        "oneWay": false,
+        "lastTicketingDate": "2021-10-01",
+        "numberOfBookableSeats": 9,
+        "itineraries": [
+            {
+                "duration": "PT16H55M",
+                "segments": [
+                    {
+                        "departure": {
+                            "iataCode": "CAI",
+                            "terminal": "2",
+                            "at": "2021-10-01T01:55:00"
+                        },
+                        "arrival": {
+                            "iataCode": "CDG",
+                            "terminal": "2E",
+                            "at": "2021-10-01T06:40:00"
+                        },
+                        "carrierCode": "DL",
+                        "number": "8623",
+                        "aircraft": {
+                            "code": "359"
+                        },
+                        "operating": {
+                            "carrierCode": "AF"
+                        },
+                        "duration": "PT4H45M",
+                        "id": "239",
+                        "numberOfStops": 0,
+                        "blacklistedInEU": false
+                    },
+                    {
+                        "departure": {
+                            "iataCode": "CDG",
+                            "terminal": "2E",
+                            "at": "2021-10-01T10:20:00"
+                        },
+                        "arrival": {
+                            "iataCode": "JFK",
+                            "terminal": "4",
+                            "at": "2021-10-01T12:50:00"
+                        },
+                        "carrierCode": "DL",
+                        "number": "263",
+                        "aircraft": {
+                            "code": "333"
+                        },
+                        "operating": {
+                            "carrierCode": "DL"
+                        },
+                        "duration": "PT8H30M",
+                        "id": "240",
+                        "numberOfStops": 0,
+                        "blacklistedInEU": false
+                    }
+                ]
+            }
+        ],
+        "price": {
+            "currency": "EUR",
+            "total": "377.51",
+            "base": "177.00",
+            "fees": [
+                {
+                    "amount": "0.00",
+                    "type": "SUPPLIER"
+                },
+                {
+                    "amount": "0.00",
+                    "type": "TICKETING"
+                }
+            ],
+            "grandTotal": "377.51"
+        },
+        "pricingOptions": {
+            "fareType": [
+                "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": true
+        },
+        "validatingAirlineCodes": [
+            "DL"
+        ],
+        "travelerPricings": [
+            {
+                "travelerId": "1",
+                "fareOption": "STANDARD",
+                "travelerType": "ADULT",
+                "price": {
+                    "currency": "EUR",
+                    "total": "377.51",
+                    "base": "177.00"
+                },
+                "fareDetailsBySegment": [
+                    {
+                        "segmentId": "239",
+                        "cabin": "ECONOMY",
+                        "fareBasis": "UL50BBR0",
+                        "class": "E",
+                        "includedCheckedBags": {
+                            "quantity": 1
+                        }
+                    },
+                    {
+                        "segmentId": "240",
+                        "cabin": "ECONOMY",
+                        "fareBasis": "UL50BBR0",
+                        "brandedFare": "BASICECON",
+                        "class": "E",
+                        "includedCheckedBags": {
+                            "quantity": 1
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "flight-offer",
+        "id": "4",
+        "source": "GDS",
+        "instantTicketingRequired": false,
+        "nonHomogeneous": false,
+        "oneWay": false,
+        "lastTicketingDate": "2021-10-01",
+        "numberOfBookableSeats": 9,
+        "itineraries": [
+            {
+                "duration": "PT17H55M",
+                "segments": [
+                    {
+                        "departure": {
+                            "iataCode": "CAI",
+                            "terminal": "2",
+                            "at": "2021-10-01T01:55:00"
+                        },
+                        "arrival": {
+                            "iataCode": "CDG",
+                            "terminal": "2E",
+                            "at": "2021-10-01T06:40:00"
+                        },
+                        "carrierCode": "DL",
+                        "number": "8623",
+                        "aircraft": {
+                            "code": "359"
+                        },
+                        "operating": {
+                            "carrierCode": "AF"
+                        },
+                        "duration": "PT4H45M",
+                        "id": "245",
+                        "numberOfStops": 0,
+                        "blacklistedInEU": false
+                    },
+                    {
+                        "departure": {
+                            "iataCode": "CDG",
+                            "terminal": "2E",
+                            "at": "2021-10-01T11:20:00"
+                        },
+                        "arrival": {
+                            "iataCode": "JFK",
+                            "terminal": "1",
+                            "at": "2021-10-01T13:50:00"
+                        },
+                        "carrierCode": "DL",
+                        "number": "9182",
+                        "aircraft": {
+                            "code": "77W"
+                        },
+                        "operating": {
+                            "carrierCode": "AF"
+                        },
+                        "duration": "PT8H30M",
+                        "id": "246",
+                        "numberOfStops": 0,
+                        "blacklistedInEU": false
+                    }
+                ]
+            }
+        ],
+        "price": {
+            "currency": "EUR",
+            "total": "377.51",
+            "base": "177.00",
+            "fees": [
+                {
+                    "amount": "0.00",
+                    "type": "SUPPLIER"
+                },
+                {
+                    "amount": "0.00",
+                    "type": "TICKETING"
+                }
+            ],
+            "grandTotal": "377.51"
+        },
+        "pricingOptions": {
+            "fareType": [
+                "PUBLISHED"
+            ],
+            "includedCheckedBagsOnly": true
+        },
+        "validatingAirlineCodes": [
+            "DL"
+        ],
+        "travelerPricings": [
+            {
+                "travelerId": "1",
+                "fareOption": "STANDARD",
+                "travelerType": "ADULT",
+                "price": {
+                    "currency": "EUR",
+                    "total": "377.51",
+                    "base": "177.00"
+                },
+                "fareDetailsBySegment": [
+                    {
+                        "segmentId": "245",
+                        "cabin": "ECONOMY",
+                        "fareBasis": "UL50BBR0",
+                        "class": "E",
+                        "includedCheckedBags": {
+                            "quantity": 1
+                        }
+                    },
+                    {
+                        "segmentId": "246",
+                        "cabin": "ECONOMY",
+                        "fareBasis": "UL50BBR0",
+                        "brandedFare": "BASICECON",
+                        "class": "E",
+                        "includedCheckedBags": {
+                            "quantity": 1
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+]

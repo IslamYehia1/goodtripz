@@ -1,4 +1,4 @@
-import SearchForm from "../../components/SearchForm/SearchForm";
+import SearchForm from "../../components/SearchForm";
 import arrow from "../../icons/right-arrow.svg";
 import Article from "../../components/Article/Article";
 import image1 from "../../img/image1.jpg";

@@ -1,13 +1,13 @@
-import AirportSearch from "../../components/AirportSearch/AirportSearch";
-import DateInput from "../../components/RangeDatePicker/RangeDatePicker";
+import AirportSearch from "../../components/AirportSearchField/AirportSearch";
+import DateInput from "../../components/RangeDatePicker";
 import { FiltersModal, SearchModal } from "../../components/Modal/Modal";
 import InputField from "../../components/InputField/InputField";
 import Button from "../../components/Button/Button";
-import { ReactComponent as SearchIcon } from "../../icons/search_white.svg";
+import { SearchIcon } from "../../components/Icons/Icons";
 
 type FlightsSideBarT = {
-    onModalClose: () => void;
-    filtersModal: Boolean;
+    closeModal: () => void;
+    isFullScreen: Boolean;
     isMobile: Boolean;
 };
 const FlightsSideBar = (props: FlightsSideBarT) => {
@@ -61,12 +61,12 @@ const FlightsSideBar = (props: FlightsSideBarT) => {
             </div>
             <FiltersModal
                 closeModal={() => {
-                    props.onModalClose();
+                    props.closeModal();
                 }}
-                isOpen={props.filtersModal}
+                isOpen={props.isFullScreen}
                 className="modal"
             >
-                {(!props.isMobile || props.filtersModal) && (
+                {(!props.isMobile || props.isFullScreen) && (
                     <>
                         <div className="sideSection priceRange">
                             <span>Price range</span>
