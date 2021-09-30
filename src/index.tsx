@@ -3,7 +3,7 @@ import Home from "./pages/HomePage/Home";
 import SearchResults from "./pages/SearchResults";
 import NavBar from "./components/NavBar/NavBar";
 import { useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 const App = () => {
     useEffect(() => {
@@ -16,17 +16,17 @@ const App = () => {
     }, []);
     return (
         <>
-            <NavBar />
-            <Router>
+            <BrowserRouter>
+                <NavBar />
                 <Switch>
                     <Route exact path="/">
                         <Home className="homepage" />
                     </Route>
-                    <Route path="/SearchResults">
+                    <Route path="/SearchResults/:type">
                         <SearchResults className="flightSearch" />
                     </Route>
                 </Switch>
-            </Router>
+            </BrowserRouter>
         </>
     );
 };

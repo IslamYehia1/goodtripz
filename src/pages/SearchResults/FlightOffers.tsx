@@ -1,15 +1,20 @@
 import FlightOffer from "../../components/FlightOffer/FlightOffer";
 type flightOffersT = {
-    // offers?: Array<Object>;
+    offers: Array<Object>;
+    cities: {
+        from: string;
+        to: string;
+    };
 };
-const FlightOffers = (props: any) => {
+const FlightOffers = (props: flightOffersT) => {
     // let Reso;
     // if (offers) {
     //     console.log(offers);
     // }
+
     return (
         <>
-            {props.offers.default.map((offer: any) => {
+            {props.offers.map((offer: any) => {
                 const iten = offer.itineraries[0];
                 const segmentsLength = iten.segments.length;
                 const firstSegment = iten.segments[0];

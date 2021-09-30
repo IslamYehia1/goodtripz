@@ -7,13 +7,16 @@ import HotelSearch from "../HotelSearch/HotelSearch";
 import { ReactComponent as DateIcon } from "../../icons/calendar_black.svg";
 import { ReactComponent as LocationIcon } from "../../icons/location.svg";
 import { useState } from "react";
-import { fetchFlights } from "../../utils/fetchFlights";
+import { Link } from "react-router-dom";
 
 const HotelSearchFields = () => {
     function searchHandler() {}
-    const [place, setPlace] = useState("");
-    const [date, setDate] = useState("");
-    const [returnDate, setReturnDate] = useState("");
+
+    const [searchTerms, setSearchTerms] = useState({
+        place: "",
+        checkIn: "",
+        checkOut: "",
+    });
     return (
         <div className="hotelSearchFields">
             <div className="options">
@@ -46,7 +49,10 @@ const HotelSearchFields = () => {
                         icon={LocationIcon}
                         inputClass="searchTextInput"
                         onSuggestionSelected={(suggestion) => {
-                            setPlace(suggestion);
+                            setSearchTerms({
+                                ...searchTerms,
+                                place: suggestion,
+                            });
                         }}
                     />
                 </SearchModal>
@@ -61,20 +67,25 @@ const HotelSearchFields = () => {
                         icon={DateIcon}
                         className="searchTextInput"
                         onFromDateSelected={(day: Date) => {
-                            setDate(day.toISOString().substring(0, 10));
+                            setSearchTerms({
+                                ...searchTerms,
+                                checkIn: day.toISOString().substring(0, 10),
+                            });
                         }}
                         onToDateSelected={(day: Date) => {
-                            setReturnDate(day.toISOString().substring(0, 10));
+                            setSearchTerms({
+                                ...searchTerms,
+                                checkOut: day.toISOString().substring(0, 10),
+                            });
                         }}
                     />
                 </SearchModal>
-                <Button
-                    handleClick={searchHandler}
-                    icon={SearchIcon}
+                <Link
+                    to={`/SearchResults/hotels?place=${searchTerms.place}&checkIn=${searchTerms.checkIn}&checkOut=${searchTerms.checkOut}`}
                     className="button searchButton"
                 >
-                    Search
-                </Button>
+                    <SearchIcon />
+                </Link>
             </div>
         </div>
     );

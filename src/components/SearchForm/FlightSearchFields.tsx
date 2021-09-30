@@ -7,23 +7,17 @@ import Button from "../Button/Button";
 import { SearchModal } from "../Modal/Modal";
 import AirportSearch from "../AirportSearchField/AirportSearch";
 import { ReactComponent as DateIcon } from "../../icons/calendar_black.svg";
-import { Redirect } from "react-router";
+import { Link } from "react-router-dom";
 const FlightSearchFields = () => {
     /*Search fields and autocomplete suggestions should be full screen on mobile */
-    const [from, setFrom] = useState("");
-    const [to, setTo] = useState("");
-    const [date, setDate] = useState("");
-    const [returnDate, setReturnDate] = useState("");
-    const [adults, setAdults] = useState(1);
-    const [children, setChildren] = useState(0);
-    const [redirect, setRedirect] = useState(false);
-
-    function searchHandler() {
-        (async () => {
-            setRedirect(true);
-        })();
-    }
-
+    const [searchTerms, setSearchTerms] = useState({
+        from: "",
+        to: "",
+        date: "",
+        returnDate: "",
+        adults: 1,
+        children: 0,
+    });
     return (
         <div className="flightSearchFields">
             <div className="options">
@@ -34,7 +28,7 @@ const FlightSearchFields = () => {
                             className="button"
                             handleClick={() => {}}
                         >
-                            1 Traveller
+                            {`${searchTerms.adults}`} Adult
                         </Button>
                     </span>
                 </SearchModal>
@@ -63,7 +57,12 @@ const FlightSearchFields = () => {
                         // wrapperClass="aSearchField flightSearchField"
                         icon={FlightTakeoffIcon}
                         placeholder="Departure airport"
-                        onSuggestionSelect={(suggestion) => setFrom(suggestion)}
+                        onSuggestionSelect={(suggestion) =>
+                            setSearchTerms({
+                                ...searchTerms,
+                                from: suggestion,
+                            })
+                        }
                     />
                 </SearchModal>
                 {/* -------- Destination airport search field -------- */}
@@ -80,7 +79,10 @@ const FlightSearchFields = () => {
                         // wrapperClass="aSearchField flightSearchField"
                         placeholder="Destination airport"
                         onSuggestionSelect={(suggestion) => {
-                            setTo(suggestion);
+                            setSearchTerms({
+                                ...searchTerms,
+                                to: suggestion,
+                            });
                         }}
                     />
                 </SearchModal>
@@ -97,29 +99,26 @@ const FlightSearchFields = () => {
                         icon={DateIcon}
                         className="searchTextInput"
                         onFromDateSelected={(day: Date) => {
-                            setDate(day.toISOString().substring(0, 10));
+                            setSearchTerms({
+                                ...searchTerms,
+                                date: day.toISOString().substring(0, 10),
+                            });
                         }}
                         onToDateSelected={(day: Date) => {
-                            setReturnDate(day.toISOString().substring(0, 10));
+                            setSearchTerms({
+                                ...searchTerms,
+                                returnDate: day.toISOString().substring(0, 10),
+                            });
                         }}
                     />
                 </SearchModal>
-                <Button
-                    handleClick={searchHandler}
-                    icon={SearchIcon}
+                <Link
                     className="button searchButton"
+                    to={`/searchResults/flights?from=${searchTerms.from}&to=${searchTerms.to}&date=${searchTerms.date}&returnDate=${searchTerms.returnDate}&adults=${searchTerms.adults}&children=${searchTerms.children}`}
                 >
-                    Search
-                </Button>
+                    <SearchIcon />
+                </Link>
             </div>
-            {redirect && (
-                <Redirect
-                    to={{
-                        pathname: "/SearchResults",
-                        search: `?from=${from}&to=${to}&date=${date}&returnDate=${returnDate}&adults=${adults}&children=${children}`,
-                    }}
-                />
-            )}
         </div>
     );
 };

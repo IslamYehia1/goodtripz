@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router";
+import { useLocation, useParams } from "react-router-dom";
 import "./searchResults.scss";
 import Button from "../../components/Button/Button";
 import FlightsSideBar from "./FlightsSideBar";
@@ -9,10 +9,15 @@ import HotelsOffers from "./HotelsOffers";
 import { FlightIcon, HotelIcon, CarIcon } from "../../components/Icons/Icons";
 import { SortIcon, FilterIcon } from "../../components/Icons/Icons";
 import { fetchFlights } from "../../utils/fetchFlights";
-import * as fakeOffers from "./offers.json";
 import { fetchAirport } from "../../utils/fetchAirportName";
-const SearchResults = (props: any) => {
-    const [searchType, setSearchType] = useState("flights");
+var fakeOffers = require("./offers.json");
+type searchResultsT = {
+    className: string;
+};
+const SearchResults = (props: searchResultsT) => {
+    const { type } = useParams<{ type: string }>();
+
+    const [searchType, setSearchType] = useState(type);
     const [isMobile, setIsMobile] = useState(false);
     const [filterModal, setFilterModal] = useState(false);
     const [searchResults, setSearchResults] = useState<Array<Object>>();
@@ -55,7 +60,6 @@ const SearchResults = (props: any) => {
                 //         })
                 //     );
                 // }
-                console.log(query);
                 if (query.from && query.to) {
                     const fromCity = await fetchAirport(query.from);
                     const toCity = await fetchAirport(query.to);
@@ -74,7 +78,7 @@ const SearchResults = (props: any) => {
 
     return (
         <div className="searchResultsPage">
-            <div className={`sideBar`}>
+            <div className="sideBar">
                 <div className="lilTabs">
                     <Button
                         handleClick={(e) => {

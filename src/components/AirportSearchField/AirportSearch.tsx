@@ -55,10 +55,8 @@ const AirportSearch = (props: AirportSearchProps) => {
         const results = await fetchSuggestions(searchTerm);
         setSuggestions(results);
     };
-    const autocomplete = useCallback(
-        (searchTerm) => throttle(200, fetchAutocomplete),
-        []
-    );
+
+    const autocomplete = useCallback(throttle(200, fetchAutocomplete), []); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         autocomplete(searchTerm);
