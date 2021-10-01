@@ -1,14 +1,6 @@
-import "./autocomplete.scss";
+import "./suggestions.scss";
 import airportIcon from "../../icons/airport.svg";
-type autocompleteT = Array<{
-    autocomplete: { id: string; main: string; secondary: string };
-    identifier: string;
-}>;
-type propsType = {
-    suggestions: autocompleteT;
-    className: string;
-    onSuggestionClick?: (x: { suggestion: string; identifier: string }) => void;
-};
+import { propsType } from "./types";
 const Suggestions = (props: propsType) => {
     const suggestions = props.suggestions.map(
         ({ autocomplete, identifier }) => (

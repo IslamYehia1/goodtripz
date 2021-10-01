@@ -1,16 +1,18 @@
 import Button from "../Button/Button";
-import DateInput from "../RangeDatePicker";
-import { ReactComponent as SearchIcon } from "../../icons/search_white.svg";
-import { SearchModal } from "../Modal/Modal";
-import { ReactComponent as ExpandArrow } from "../../icons/expand_more_black_24dp.svg";
-import HotelSearch from "../HotelSearch/HotelSearch";
-import { ReactComponent as DateIcon } from "../../icons/calendar_black.svg";
-import { ReactComponent as LocationIcon } from "../../icons/location.svg";
+import DateInput from "../SearchFields/RangeDatePicker";
+import { SearchIcon } from "../Icons";
+import { SearchModal } from "../Modal";
+import HotelSearch from "../SearchFields/HotelPlaceSearch/HotelPlaceSearch";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-
+import { useHistory } from "react-router-dom";
+import { LocationIcon, DateIcon, ExpandIcon } from "../Icons";
 const HotelSearchFields = () => {
-    function searchHandler() {}
+    const history = useHistory();
+    function searchHandler() {
+        history.push(
+            `/SearchResults/hotels?place=${searchTerms.place}&checkIn=${searchTerms.checkIn}&checkOut=${searchTerms.checkOut}`
+        );
+    }
 
     const [searchTerms, setSearchTerms] = useState({
         place: "",
@@ -18,11 +20,11 @@ const HotelSearchFields = () => {
         checkOut: "",
     });
     return (
-        <div className="hotelSearchFields">
+        <form onSubmit={searchHandler} className="hotelSearchFields">
             <div className="options">
                 <span className="travellers">
                     <Button
-                        icon={ExpandArrow}
+                        icon={ExpandIcon}
                         className="button"
                         handleClick={() => {}}
                     >
@@ -31,7 +33,7 @@ const HotelSearchFields = () => {
                 </span>
                 <span className="flightType">
                     <Button
-                        icon={ExpandArrow}
+                        icon={ExpandIcon}
                         className="button"
                         handleClick={() => {}}
                     >
@@ -80,14 +82,15 @@ const HotelSearchFields = () => {
                         }}
                     />
                 </SearchModal>
-                <Link
-                    to={`/SearchResults/hotels?place=${searchTerms.place}&checkIn=${searchTerms.checkIn}&checkOut=${searchTerms.checkOut}`}
+                <Button
                     className="button searchButton"
+                    handleClick={searchHandler}
+                    icon={SearchIcon}
                 >
                     <SearchIcon />
-                </Link>
+                </Button>
             </div>
-        </div>
+        </form>
     );
 };
 export default HotelSearchFields;

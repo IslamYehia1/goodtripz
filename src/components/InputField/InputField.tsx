@@ -1,21 +1,6 @@
-import React, { ReactNode } from "react";
-type inputFieldProps = {
-    icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
-    className?: string;
-    name?: string;
-    placeholder?: string;
-    label?: string;
-    value?: string;
-    onChange?: React.ChangeEventHandler<HTMLInputElement>;
-    children?: ReactNode;
-    handleKeyUp?: React.KeyboardEventHandler<HTMLInputElement>;
-    focusHandler?: React.FocusEventHandler<HTMLInputElement>;
-    blurHandler?: React.FocusEventHandler<HTMLInputElement>;
-    iconClickHandler?: React.MouseEventHandler<HTMLImageElement>;
-    selectedSuggestion?: string | null;
-};
+import { propsType } from "./types";
 
-const InputField = (props: inputFieldProps) => {
+const InputField = (props: propsType) => {
     return (
         <div className={`${props.className}Wrapper`}>
             {props.icon && <props.icon />}

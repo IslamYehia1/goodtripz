@@ -1,73 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
-import Button from "../Button/Button";
-import { ReactComponent as leftArrowIcon } from "../../icons/leftArrow.svg";
 import "./modal.scss";
-const modalRoot = document.getElementById("modalRoot");
+import { modalProps, modalState } from "./types";
 
-type modalProps = {
-    isOpen?: Boolean;
-    className: string;
-    onFocus?: () => void;
-    onClick?: () => void;
-    altClassName?: string;
-};
-type searchModalProps = {
-    // isOpen?: Boolean;
-    className: string;
-    children: React.ReactNode;
-    altClassName?: string;
-    // closeModal: () => void;
-};
-type modalState = {
-    el: HTMLDivElement;
-    onFocus: () => void;
-};
-type FiltersModalType = {
-    closeModal: () => void;
-    children: React.ReactNode;
-    isOpen: Boolean;
-    className: string;
-};
-const SearchModal = (props: searchModalProps) => {
-    const [isOpen, setIsOpen] = useState(false);
-    return (
-        <Modal
-            onFocus={() => {
-                if (window.screen.width <= 650) setIsOpen(true);
-            }}
-            onClick={() => {
-                if (window.screen.width <= 650) setIsOpen(true);
-            }}
-            className={props.className}
-            isOpen={isOpen}
-            altClassName={props.altClassName}
-        >
-            {isOpen && (
-                <Button
-                    handleClick={() => setIsOpen(false)}
-                    className="button modalCloseBtn"
-                    icon={leftArrowIcon}
-                />
-            )}
-            {props.children}
-        </Modal>
-    );
-};
-const FiltersModal = (props: FiltersModalType) => {
-    return (
-        <Modal isOpen={props.isOpen} className={props.className}>
-            {props.isOpen && (
-                <Button
-                    handleClick={() => props.closeModal()}
-                    className="button modalCloseBtn"
-                    icon={leftArrowIcon}
-                />
-            )}
-            {props.children}
-        </Modal>
-    );
-};
+const modalRoot = document.getElementById("modalRoot");
 
 class Modal extends React.Component<modalProps, modalState> {
     el: HTMLDivElement;
@@ -111,4 +47,4 @@ class Modal extends React.Component<modalProps, modalState> {
         );
     }
 }
-export { SearchModal, Modal, FiltersModal };
+export default Modal;

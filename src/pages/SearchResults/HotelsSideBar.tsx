@@ -1,11 +1,7 @@
-import HotelSearch from "../../components/HotelSearch/HotelSearch";
-import { FiltersModal, SearchModal } from "../../components/Modal/Modal";
-import DateInput from "../../components/RangeDatePicker";
-type hotelsSideBarT = {
-    isFullScreen: Boolean;
-    isMobile: Boolean;
-    closeModal: () => void;
-};
+import HotelSearch from "../../components/SearchFields/HotelPlaceSearch/HotelPlaceSearch";
+import { FiltersModal, SearchModal } from "../../components/Modal";
+import DateInput from "../../components/SearchFields/RangeDatePicker";
+import { hotelsSideBarT } from "./types";
 const HotelsSideBar = (props: hotelsSideBarT) => {
     return (
         <>

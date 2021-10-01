@@ -2,10 +2,8 @@ import "./navBar.scss";
 import { ReactComponent as Logo } from "../../icons/logo.svg";
 import { ReactComponent as MenuIcon } from "../../icons/menu.svg";
 import { Link } from "react-router-dom";
-type navProps = {
-    className?: string;
-};
-const NavBar = (props: navProps) => {
+import { propsType } from "./types";
+const NavBar = (props: propsType) => {
     return (
         <nav className="navBar">
             <div className="logo">

@@ -1,15 +1,7 @@
 import roomPicture from "../../img/room1.jpg";
-import { ReactComponent as PoolIcon } from "../../icons/pool_black_24dp.svg";
-import { ReactComponent as PetIcon } from "../../icons/pets_black_24dp.svg";
-type HotelOfferT = {
-    reviews?: string;
-    hotelName?: string;
-    address?: string;
-    amenities?: [string];
-    price?: string;
-    refundable?: string;
-};
-const HotelOffer = (props: HotelOfferT) => {
+import { propsType } from "./types";
+import { PoolIcon, PetIcon } from "../Icons";
+const HotelOffer = (props: propsType) => {
     return (
         <div className="hotelOffer">
             <img src={roomPicture} alt="The room" />

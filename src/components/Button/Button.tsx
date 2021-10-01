@@ -1,18 +1,6 @@
-import { ReactComponentElement } from "react";
 import "./buttonStyle.scss";
-type buttonProps = {
-    children?: React.ReactNode;
-    icon?: React.FunctionComponent<
-        React.SVGProps<SVGSVGElement> & {
-            title?: string | undefined;
-        }
-    >;
-    className?: string;
-    alt?: string;
-    id?: string;
-    handleClick: React.MouseEventHandler<HTMLButtonElement>;
-};
-const Button = (props: buttonProps) => {
+import { propsType } from "./types";
+const Button = (props: propsType) => {
     const SVG = props.icon;
 
     return (

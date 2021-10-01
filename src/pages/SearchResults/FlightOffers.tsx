@@ -1,11 +1,5 @@
 import FlightOffer from "../../components/FlightOffer/FlightOffer";
-type flightOffersT = {
-    offers: Array<Object>;
-    cities: {
-        from: string;
-        to: string;
-    };
-};
+import { flightOffersT } from "./types";
 const FlightOffers = (props: flightOffersT) => {
     // let Reso;
     // if (offers) {

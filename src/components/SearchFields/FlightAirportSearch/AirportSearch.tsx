@@ -1,22 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
-import { airportAutocomplete as fetchSuggestions } from "../../utils/fetchAutocomplete";
-import Suggestions from "../Autocomplete/Autocomplete";
-import InputField from "../InputField/InputField";
-
-type AirportSearchProps = {
-    label: string;
-    icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
-    placeholder: string;
-    inputClass: string;
-    suggestionsClass: string;
-    wrapperClass?: string;
-    value?: string;
-    onSuggestionSelect?: (suggestion: string) => void;
-};
-type autocompleteT = Array<{
-    autocomplete: { id: string; main: string; secondary: string };
-    identifier: string;
-}>;
+import { airportAutocomplete as fetchSuggestions } from "../../../utils/fetchAutocomplete";
+import Suggestions from "../../Suggestions/Suggestions";
+import InputField from "../../InputField/InputField";
+import { propsType, autocompleteT } from "./types";
 
 const throttle = (delay: number, fn: (args: string) => void) => {
     let inThrottle = false;
@@ -33,7 +19,7 @@ const throttle = (delay: number, fn: (args: string) => void) => {
         }, delay);
     };
 };
-const AirportSearch = (props: AirportSearchProps) => {
+const AirportSearch = (props: propsType) => {
     const [suggestions, setSuggestions] = useState<autocompleteT>([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
     const [searchTerm, setSearchTerm] = useState(props.value || "");
@@ -43,30 +29,25 @@ const AirportSearch = (props: AirportSearchProps) => {
             (e.relatedTarget as HTMLElement).classList.contains("suggestions")
         );
     }
-    function hideSuggestions(e: React.FocusEvent<HTMLDivElement>) {
-        if (!isSuggestionClicked(e)) {
-            setShowSuggestions(false);
-        }
-    }
-    function focusHandler(e: React.FocusEvent<HTMLDivElement>) {
-        setShowSuggestions(true);
-    }
     const fetchAutocomplete = async (searchTerm: any) => {
         const results = await fetchSuggestions(searchTerm);
         setSuggestions(results);
     };
 
     const autocomplete = useCallback(throttle(200, fetchAutocomplete), []); // eslint-disable-line react-hooks/exhaustive-deps
-
     useEffect(() => {
         autocomplete(searchTerm);
     }, [searchTerm, autocomplete]);
 
     return (
         <div
-            onBlur={hideSuggestions}
+            onBlur={(e) => {
+                if (!isSuggestionClicked(e)) {
+                    setShowSuggestions(false);
+                }
+            }}
             className={props.wrapperClass}
-            onFocus={focusHandler}
+            onFocus={() => setShowSuggestions(true)}
         >
             {showSuggestions && (
                 <Suggestions
@@ -89,7 +70,6 @@ const AirportSearch = (props: AirportSearchProps) => {
                 placeholder={props.placeholder}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                // selectedSuggestion={desAutocomplete}
             />
         </div>
     );

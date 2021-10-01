@@ -1,22 +1,7 @@
 import "./flightOffer.scss";
 import airlineLogo from "../../img/airlineLogo.svg";
-import { useEffect } from "react";
-type propsType = {
-    duration: string;
-    price: string;
-    stopsNumber: string;
-    departureTime: string;
-    arrivalTime: string;
-    departure: string;
-    destination: string;
-    stops: Array<string>;
-    cities: {
-        from: string;
-        to: string;
-    };
-};
+import { propsType } from "./types";
 
-//11H 20M
 const FlightOffer = (props: propsType) => {
     return (
         <div className="flightOffer">

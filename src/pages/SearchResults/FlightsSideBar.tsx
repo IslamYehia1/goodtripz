@@ -1,15 +1,11 @@
-import AirportSearch from "../../components/AirportSearchField/AirportSearch";
-import DateInput from "../../components/RangeDatePicker";
-import { FiltersModal, SearchModal } from "../../components/Modal/Modal";
+import AirportSearch from "../../components/SearchFields/FlightAirportSearch/AirportSearch";
+import DateInput from "../../components/SearchFields/RangeDatePicker";
+import { FiltersModal, SearchModal } from "../../components/Modal";
 import InputField from "../../components/InputField/InputField";
 import Button from "../../components/Button/Button";
-import { SearchIcon } from "../../components/Icons/Icons";
+import { SearchIcon } from "../../components/Icons";
+import { FlightsSideBarT } from "./types";
 
-type FlightsSideBarT = {
-    closeModal: () => void;
-    isFullScreen: Boolean;
-    isMobile: Boolean;
-};
 const FlightsSideBar = (props: FlightsSideBarT) => {
     return (
         <>

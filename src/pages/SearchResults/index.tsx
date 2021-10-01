@@ -6,14 +6,13 @@ import FlightsSideBar from "./FlightsSideBar";
 import HotelsSideBar from "./HotelsSideBar";
 import FlightOffers from "./FlightOffers";
 import HotelsOffers from "./HotelsOffers";
-import { FlightIcon, HotelIcon, CarIcon } from "../../components/Icons/Icons";
-import { SortIcon, FilterIcon } from "../../components/Icons/Icons";
+import { FlightIcon, HotelIcon, CarIcon } from "../../components/Icons";
+import { SortIcon, FilterIcon } from "../../components/Icons";
 import { fetchFlights } from "../../utils/fetchFlights";
 import { fetchAirport } from "../../utils/fetchAirportName";
+import { searchResultsT } from "./types";
 var fakeOffers = require("./offers.json");
-type searchResultsT = {
-    className: string;
-};
+
 const SearchResults = (props: searchResultsT) => {
     const { type } = useParams<{ type: string }>();
 

@@ -1,15 +1,18 @@
-import React, { useState, useReducer, useEffect } from "react";
-import { ReactComponent as FlightTakeoffIcon } from "../../icons/flight_takeoff_black_24dp.svg";
-import { ReactComponent as ExpandArrow } from "../../icons/expand_more_black_24dp.svg";
-import { ReactComponent as SearchIcon } from "../../icons/search_white.svg";
-import DateInput from "../RangeDatePicker";
+import { useState } from "react";
+import {SearchIcon,ExpandIcon,FlyToIcon,FlyFromIcon,DateIcon} from "../Icons"; //prettier-ignore
+import DateInput from "../SearchFields/RangeDatePicker";
 import Button from "../Button/Button";
-import { SearchModal } from "../Modal/Modal";
-import AirportSearch from "../AirportSearchField/AirportSearch";
-import { ReactComponent as DateIcon } from "../../icons/calendar_black.svg";
-import { Link } from "react-router-dom";
+import { SearchModal } from "../Modal";
+import AirportSearch from "../SearchFields/FlightAirportSearch/AirportSearch";
+import { useHistory } from "react-router-dom";
+
 const FlightSearchFields = () => {
-    /*Search fields and autocomplete suggestions should be full screen on mobile */
+    let history = useHistory();
+    function handleSearch() {
+        history.push(
+            `/searchResults/flights?from=${searchTerms.from}&to=${searchTerms.to}&date=${searchTerms.date}&returnDate=${searchTerms.returnDate}&adults=${searchTerms.adults}&children=${searchTerms.children}`
+        );
+    }
     const [searchTerms, setSearchTerms] = useState({
         from: "",
         to: "",
@@ -19,12 +22,12 @@ const FlightSearchFields = () => {
         children: 0,
     });
     return (
-        <div className="flightSearchFields">
+        <form onSubmit={handleSearch} className="flightSearchFields">
             <div className="options">
                 <SearchModal className="modal">
                     <span className="travellers">
                         <Button
-                            icon={ExpandArrow}
+                            icon={ExpandIcon}
                             className="button"
                             handleClick={() => {}}
                         >
@@ -35,7 +38,7 @@ const FlightSearchFields = () => {
                 <SearchModal className="modal">
                     <span className="flightType">
                         <Button
-                            icon={ExpandArrow}
+                            icon={ExpandIcon}
                             className="button"
                             handleClick={() => {}}
                         >
@@ -55,7 +58,7 @@ const FlightSearchFields = () => {
                         inputClass="searchTextInput"
                         suggestionsClass="suggestions"
                         // wrapperClass="aSearchField flightSearchField"
-                        icon={FlightTakeoffIcon}
+                        icon={FlyFromIcon}
                         placeholder="Departure airport"
                         onSuggestionSelect={(suggestion) =>
                             setSearchTerms({
@@ -73,7 +76,7 @@ const FlightSearchFields = () => {
                 >
                     <AirportSearch
                         label="Flying to"
-                        icon={FlightTakeoffIcon}
+                        icon={FlyToIcon}
                         inputClass="searchTextInput"
                         suggestionsClass="suggestions"
                         // wrapperClass="aSearchField flightSearchField"
@@ -112,14 +115,15 @@ const FlightSearchFields = () => {
                         }}
                     />
                 </SearchModal>
-                <Link
+                <Button
                     className="button searchButton"
-                    to={`/searchResults/flights?from=${searchTerms.from}&to=${searchTerms.to}&date=${searchTerms.date}&returnDate=${searchTerms.returnDate}&adults=${searchTerms.adults}&children=${searchTerms.children}`}
+                    icon={SearchIcon}
+                    handleClick={handleSearch}
                 >
                     <SearchIcon />
-                </Link>
+                </Button>
             </div>
-        </div>
+        </form>
     );
 };
 

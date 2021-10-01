@@ -1,23 +1,20 @@
 import SearchForm from "../../components/SearchForm";
-import arrow from "../../icons/right-arrow.svg";
 import Article from "../../components/Article/Article";
 import image1 from "../../img/image1.jpg";
 import image2 from "../../img/image2.jpg";
 import "./home.scss";
 import Card from "../../components/Card/Card";
-type homeProps = {
-    children?: React.ReactNode;
-    background?: string;
-    className: string;
-};
-const Home = (props: homeProps) => {
+import { RightArrow } from "../../components/Icons";
+import { propsType } from "./types";
+
+const Home = (props: propsType) => {
     return (
         <main id="homepage">
             <div className="homeSectionOne">
                 <div className="recommendation">
                     <div className="explore">
                         <h3>
-                            INDONESIA <img src={arrow} alt="Clickable arrow" />
+                            INDONESIA <RightArrow />
                         </h3>
                         <span className="exploreText">
                             <p>
@@ -32,7 +29,7 @@ const Home = (props: homeProps) => {
 
                         <button className="exploreButton">
                             <span>Explore</span>
-                            <img src={arrow} alt="Clickable arrow" />
+                            <RightArrow />
                         </button>
                     </div>
                 </div>

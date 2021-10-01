@@ -1,42 +1,39 @@
-import { useRef, useEffect } from "react";
+import { DateUtils, Modifier } from "react-day-picker";
 import DayPickerInput from "react-day-picker/DayPickerInput";
-import { DateUtils } from "react-day-picker";
-import "react-day-picker/lib/style.css";
-import { fromPropsType } from "./propTypes";
-import InputField from "../InputField/InputField";
+import { useRef, useEffect } from "react";
+import { toPropsType } from "./propTypes";
+import InputField from "../../InputField/InputField";
 
-const { isDayAfter, isDayBefore, isSameDay } = DateUtils;
-const FromDateField = (props: fromPropsType) => {
+const { isDayBefore } = DateUtils;
+
+const ToDateField = (props: toPropsType) => {
     const { from, to, lastHoveredDay } = props.state;
-    const selectedDays = to
-        ? { from: to, to: lastHoveredDay }
-        : { from: null, to: null };
-    const modifiers = to
-        ? { start: to, end: lastHoveredDay }
-        : { start: from, end: lastHoveredDay };
-    const inputRef = useRef<DayPickerInput>(null);
     useEffect(() => {
-        if (to && !from) {
+        if (from && !to) {
             inputRef!.current!.getInput().focus();
         }
     }, [from, to]);
+
+    const inputRef = useRef<DayPickerInput>(null);
+    const disabledDays = [
+        { before: new Date() },
+        { before: from },
+    ] as Modifier[];
+
+    const selectedDays = from
+        ? [from, { from: from, to: lastHoveredDay }]
+        : [{ from: undefined, to: undefined }];
+    const modifiers = { start: from, end: lastHoveredDay };
     function onDayClick(day: Date) {
-        if (to && isDayAfter(day, to)) {
-            props.setState({
-                ...props.state,
-                to: undefined,
-            });
-        }
-        if (isSameDay(day, props.today) || isDayAfter(day, props.today)) {
-            props.setState({
-                ...props.state,
-                from: day,
-                lastHoveredDay: day,
-            });
-        }
+        if (from && isDayBefore(day, from)) return;
+        props.setState({
+            ...props.state,
+            to: day,
+            lastHoveredDay: day,
+        });
     }
     function onDayMouseEnter(day: Date) {
-        if (to && isDayAfter(day, to)) {
+        if (from && isDayBefore(day, from)) {
             props.setState({
                 ...props.state,
                 lastHoveredDay: undefined,
@@ -56,26 +53,27 @@ const FromDateField = (props: fromPropsType) => {
                 className={props.className}
                 icon={props.icon}
                 label={props.label}
-                name="fromDateInput"
+                name="toDateInput"
                 placeholder="Choose date"
             >
+                {" "}
                 <DayPickerInput
                     inputProps={{
-                        name: "fromDateInput",
+                        name: "toDateInput",
                     }}
                     ref={inputRef}
-                    value={from}
+                    value={to}
                     dayPickerProps={{
                         className: "Range",
                         numberOfMonths: 2,
                         fromMonth: props.today,
                         selectedDays: selectedDays,
-                        disabledDays: { before: new Date() },
+                        disabledDays: disabledDays,
                         modifiers: modifiers,
                         onDayClick: onDayClick,
                         onDayMouseEnter: onDayMouseEnter,
                     }}
-                    // Pass a call back to onFromDayChange prop to handle state in the parent component
+                    // Pass a call back to onToDayChange prop to handle state in the parent component
                     onDayChange={props.onDayChange}
                 />
             </InputField>
@@ -83,4 +81,4 @@ const FromDateField = (props: fromPropsType) => {
     );
 };
 
-export default FromDateField;
+export default ToDateField;

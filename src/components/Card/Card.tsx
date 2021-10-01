@@ -1,10 +1,6 @@
 import "./cardStyle.scss";
-type cardProps = {
-    title: string;
-    img: string;
-    alt: string;
-};
-const Card = (props: cardProps) => {
+import { propsType } from "./types";
+const Card = (props: propsType) => {
     return (
         <div className="card">
             <div className="cardImg">

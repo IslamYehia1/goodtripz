@@ -1,19 +1,9 @@
 import React, { useState, useEffect } from "react";
-import InputField from "../InputField/InputField";
-import Suggestions from "../Autocomplete/Autocomplete";
-import { hotelAutoComplete as fetchSuggestions } from "../../utils/fetchAutocomplete";
-type props = {
-    inputClass: string;
-    icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
-    value?: string;
-    label: string;
-    onSuggestionSelected?: (x: string) => void;
-};
-type autocompleteT = Array<{
-    autocomplete: { id: string; main: string; secondary: string };
-    identifier: string;
-}>;
-const HotelSearch = (props: props) => {
+import InputField from "../../InputField/InputField";
+import Suggestions from "../../Suggestions/Suggestions";
+import { hotelAutoComplete as fetchSuggestions } from "../../../utils/fetchAutocomplete";
+import { propsType, autocompleteT } from "./types";
+const HotelSearch = (props: propsType) => {
     const [showSuggestions, setShowSuggestions] = useState(false);
     const [suggestions, setSuggestions] = useState<autocompleteT>([]);
     const [searchTerm, setSearchTerm] = useState(props.value || "");
