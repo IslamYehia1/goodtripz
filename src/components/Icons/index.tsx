@@ -13,6 +13,7 @@ import { ReactComponent as PoolIcon } from "../../icons/pool_black_24dp.svg";
 import { ReactComponent as PetIcon } from "../../icons/pets_black_24dp.svg";
 import { ReactComponent as RightArrow } from "../../icons/right-arrow.svg";
 import { ReactComponent as LeftArrow } from "../../icons/leftArrow.svg";
+import { ReactComponent as Star } from "../../icons/star_rate_black_24dp.svg";
 
 export {
     FlightIcon,
@@ -30,4 +31,5 @@ export {
     PetIcon,
     RightArrow,
     LeftArrow,
+    Star,
 };

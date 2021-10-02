@@ -1,16 +1,20 @@
 import roomPicture from "../../img/room1.jpg";
 import { propsType } from "./types";
-import { PoolIcon, PetIcon } from "../Icons";
+import { PoolIcon, PetIcon, Star } from "../Icons";
 const HotelOffer = (props: propsType) => {
     return (
         <div className="hotelOffer">
-            <img src={roomPicture} alt="The room" />
+            <div className="hotelPicture">
+                <img src={roomPicture} alt="The room" />
+            </div>
 
             <div className="hotelDetails">
-                <div>{props.reviews}</div>
-                <div>
-                    <div>{props.hotelName}</div>
-                    <div>{props.address}</div>
+                <div className="reviews">
+                    <Star /> <span>{props.reviews}</span>
+                </div>
+                <div className="hotelInfo">
+                    <div className="hotelName">{props.hotelName}</div>
+                    <div className="address">{props.address}</div>
                 </div>
                 <div className="lilAminities">
                     <div className="lilAmenity">
@@ -22,11 +26,13 @@ const HotelOffer = (props: propsType) => {
                         <span>Pets allowed</span>
                     </div>
                 </div>
-                <div className="hotelPrice">
-                    <div className="refundable">{props.refundable}</div>
-                    <div className="price">
-                        <div className="dollarAmount">{`${props.price}`}</div>
-                        <div>Per night</div>
+                <div className="refundable">{props.refundable}</div>
+                <div className="price">
+                    <div className="dollarAmount">{`${props.price} `}</div>
+                    <div className="per">
+                        <span>Per</span>
+                        <span>/</span>
+                        <span>night</span>
                     </div>
                 </div>
             </div>

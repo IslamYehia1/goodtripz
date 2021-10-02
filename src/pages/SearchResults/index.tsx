@@ -1,36 +1,20 @@
 import { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./searchResults.scss";
 import Button from "../../components/Button/Button";
 import FlightsSideBar from "./FlightsSideBar";
 import HotelsSideBar from "./HotelsSideBar";
 import FlightOffers from "./FlightOffers";
 import HotelsOffers from "./HotelsOffers";
-import { FlightIcon, HotelIcon, CarIcon } from "../../components/Icons";
 import { SortIcon, FilterIcon } from "../../components/Icons";
-import { fetchFlights } from "../../utils/fetchFlights";
-import { fetchAirport } from "../../utils/fetchAirportName";
 import { searchResultsT } from "./types";
-var fakeOffers = require("./offers.json");
+import SideBarNav from "./SideBarNav";
 
 const SearchResults = (props: searchResultsT) => {
     const { type } = useParams<{ type: string }>();
-
     const [searchType, setSearchType] = useState(type);
     const [isMobile, setIsMobile] = useState(false);
     const [filterModal, setFilterModal] = useState(false);
-    const [searchResults, setSearchResults] = useState<Array<Object>>();
-    const [cities, setCities] = useState({
-        from: "City",
-        to: "City",
-    });
-    const queryParams = new URLSearchParams(useLocation().search);
-    const query = {
-        from: queryParams.get("from"),
-        to: queryParams.get("to"),
-        date: queryParams.get("date"),
-        returnDate: queryParams.get("returnDate") || undefined,
-    };
 
     useEffect(() => {
         if (window.innerWidth <= 790) setIsMobile(true);
@@ -44,72 +28,15 @@ const SearchResults = (props: searchResultsT) => {
         window.addEventListener("resize", checkSize);
     }, []);
 
-    useEffect(() => {
-        (async () => {
-            try {
-                // if (from && to && date) {
-                //     setSearchResults(
-                //         await fetchFlights({
-                //             from: from,
-                //             to: to,
-                //             date: date,
-                //             returnDate: returnDate,
-                //             adults: 1,
-                //             children: 0,
-                //         })
-                //     );
-                // }
-                if (query.from && query.to) {
-                    const fromCity = await fetchAirport(query.from);
-                    const toCity = await fetchAirport(query.to);
-                    if (toCity && fromCity) {
-                        setCities({
-                            from: fromCity.City,
-                            to: toCity.City,
-                        });
-                    }
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        })();
-    }, [query.from, query.to, query.date, query.returnDate]);
-
     return (
         <div className="searchResultsPage">
             <div className="sideBar">
-                <div className="lilTabs">
-                    <Button
-                        handleClick={(e) => {
-                            setSearchType("flights");
-                        }}
-                        id={searchType === "flights" ? "activeLilTab" : ""}
-                        className="lilTab button"
-                        icon={FlightIcon}
-                    >
-                        Flights
-                    </Button>
-                    <Button
-                        handleClick={(e) => {
-                            setSearchType("hotels");
-                        }}
-                        id={searchType === "hotels" ? "activeLilTab" : ""}
-                        className="lilTab button"
-                        icon={HotelIcon}
-                    >
-                        Hotels
-                    </Button>
-                    <Button
-                        handleClick={(e) => {
-                            setSearchType("car");
-                        }}
-                        id={searchType === "car" ? "activeLilTab" : ""}
-                        className="lilTab button"
-                        icon={CarIcon}
-                    >
-                        Cars
-                    </Button>
-                </div>
+                <SideBarNav
+                    activeTab={searchType}
+                    onTabChange={(tab) => {
+                        setSearchType(tab);
+                    }}
+                />
                 {searchType === "flights" && (
                     <FlightsSideBar
                         closeModal={() => {
@@ -154,7 +81,7 @@ const SearchResults = (props: searchResultsT) => {
                 </div>
                 {searchType === "flights" && (
                     // <FlightOffers offers={searchResults} />
-                    <FlightOffers offers={fakeOffers} cities={cities} />
+                    <FlightOffers />
                 )}
                 {searchType === "hotels" && <HotelsOffers />}
             </div>
