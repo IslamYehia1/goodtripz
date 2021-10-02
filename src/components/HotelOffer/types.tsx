@@ -5,4 +5,5 @@ export type propsType = {
     amenities?: [string];
     price?: string;
     refundable?: string;
+    picture?: string;
 };

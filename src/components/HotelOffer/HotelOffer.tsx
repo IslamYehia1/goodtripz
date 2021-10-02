@@ -1,11 +1,11 @@
-import roomPicture from "../../img/room1.jpg";
+// import roomPicture from "../../img/room1.jpg";
 import { propsType } from "./types";
 import { PoolIcon, PetIcon, Star } from "../Icons";
 const HotelOffer = (props: propsType) => {
     return (
         <div className="hotelOffer">
             <div className="hotelPicture">
-                <img src={roomPicture} alt="The room" />
+                <img src={props.picture} alt="The room" />
             </div>
 
             <div className="hotelDetails">
@@ -30,7 +30,7 @@ const HotelOffer = (props: propsType) => {
                 <div className="price">
                     <div className="dollarAmount">{`${props.price} `}</div>
                     <div className="per">
-                        <span>Per</span>
+                        <span>{`Per `}</span>
                         <span>/</span>
                         <span>night</span>
                     </div>
