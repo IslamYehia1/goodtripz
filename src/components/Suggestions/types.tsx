@@ -4,6 +4,7 @@ export type autocompleteT = Array<{
 }>;
 export type propsType = {
     suggestions: autocompleteT;
-    className: string;
+    suggestionsClass?: string;
+    className?: string;
     onSuggestionClick?: (x: { suggestion: string; identifier: string }) => void;
 };

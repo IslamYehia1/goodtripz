@@ -1,16 +1,15 @@
-import "./buttonStyle.scss";
+import style from "./Button.module.scss";
+// import Image from "next/image";
 import { propsType } from "./types";
 const Button = (props: propsType) => {
-    const SVG = props.icon;
-
     return (
         <button
             onClick={props.handleClick}
             id={props.id}
-            className={props.className}
+            className={`${props.className} ${style.button}`}
         >
             {/* {props.tempIcon && <img alt={props.alt} src={props.icon} />} */}
-            {SVG && <SVG />}
+            {props.icon && <props.icon />}
             <span>{props.children}</span>
         </button>
     );

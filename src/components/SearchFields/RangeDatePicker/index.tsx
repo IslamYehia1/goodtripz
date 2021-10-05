@@ -1,17 +1,19 @@
 import ToDateField from "./ToDateField";
 import FromDateField from "./FromDateField";
 import { useState } from "react";
-import "./datePicker.scss";
+import style from "./RangeDatePicker.module.scss";
 type propsType = {
     className?: string;
     fieldClass?: string;
     wrapperClass?: string;
+    rangeClass?: string;
     fromLabel?: string;
     toLabel?: string;
-    icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+    icon?: string;
     onClick?: React.MouseEventHandler<HTMLDivElement>;
     onFromDateSelected?: (day: Date) => void;
     onToDateSelected?: (day: Date) => void;
+    singleDateClass?: string;
 };
 const RangeDatePicker = (props: propsType) => {
     const today = new Date();
@@ -26,22 +28,24 @@ const RangeDatePicker = (props: propsType) => {
     }
 
     return (
-        <div className={props.wrapperClass} onClick={props.onClick}>
+        <div className={props.rangeClass} onClick={props.onClick}>
             <FromDateField
                 className={props.className}
-                wrapperClass={props.fieldClass}
+                wrapperClass={props.wrapperClass}
                 label={props.fromLabel}
                 icon={props.icon}
                 state={state}
                 setState={stateSetter}
                 today={today}
+                singleDateClass={props.singleDateClass}
                 onDayChange={(day: Date) => {
                     if (props.onFromDateSelected) props.onFromDateSelected(day);
                 }}
             />
             <ToDateField
                 className={props.className}
-                wrapperClass={props.fieldClass}
+                wrapperClass={props.wrapperClass}
+                singleDateClass={props.singleDateClass}
                 label={props.toLabel}
                 icon={props.icon}
                 state={state}

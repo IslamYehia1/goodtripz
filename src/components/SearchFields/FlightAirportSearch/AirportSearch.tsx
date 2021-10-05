@@ -46,7 +46,7 @@ const AirportSearch = (props: propsType) => {
                     setShowSuggestions(false);
                 }
             }}
-            className={props.wrapperClass}
+            // className={props.wrapperClass}
             onFocus={() => setShowSuggestions(true)}
         >
             {showSuggestions && (
@@ -65,6 +65,7 @@ const AirportSearch = (props: propsType) => {
             <InputField
                 label={props.label}
                 className={props.inputClass}
+                wrapperClass={props.wrapperClass}
                 icon={props.icon}
                 name="destination"
                 placeholder={props.placeholder}

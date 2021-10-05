@@ -1,6 +1,7 @@
-import "./suggestions.scss";
-import airportIcon from "../../icons/airport.svg";
+import { AirportIcon } from "../Icons";
 import { propsType } from "./types";
+import Image from "next/image";
+import style from "./Suggestions.module.scss";
 const Suggestions = (props: propsType) => {
     const suggestions = props.suggestions.map(
         ({ autocomplete, identifier }) => (
@@ -14,7 +15,7 @@ const Suggestions = (props: propsType) => {
                         });
                 }}
             >
-                <img src={airportIcon} alt="Airport drawing" />
+                <AirportIcon />
                 <div>
                     <span>{autocomplete.main}</span>
                     <span>{autocomplete.secondary}</span>
@@ -23,9 +24,9 @@ const Suggestions = (props: propsType) => {
         )
     );
     return (
-        <ul tabIndex={0} className={props.className}>
-            {suggestions}
-        </ul>
+        <div className={`${style.suggestions} ${props.className}`}>
+            <ul tabIndex={0}>{suggestions}</ul>
+        </div>
     );
 };
 

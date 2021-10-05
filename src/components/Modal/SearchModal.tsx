@@ -3,6 +3,7 @@ import { searchModalProps } from "./types";
 import Button from "../Button/Button";
 import { useState } from "react";
 import { LeftArrow } from "../Icons";
+import style from "./Modal.module.scss";
 const SearchModal = (props: searchModalProps) => {
     const [isOpen, setIsOpen] = useState(false);
     return (
@@ -20,7 +21,7 @@ const SearchModal = (props: searchModalProps) => {
             {isOpen && (
                 <Button
                     handleClick={() => setIsOpen(false)}
-                    className="button modalCloseBtn"
+                    className={style.modalCloseBtn}
                     icon={LeftArrow}
                 />
             )}

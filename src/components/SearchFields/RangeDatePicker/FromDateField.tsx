@@ -4,7 +4,7 @@ import { DateUtils } from "react-day-picker";
 import "react-day-picker/lib/style.css";
 import { fromPropsType } from "./propTypes";
 import InputField from "../../InputField/InputField";
-
+import style from "./RangeDatePicker.module.scss";
 const { isDayAfter, isDayBefore, isSameDay } = DateUtils;
 const FromDateField = (props: fromPropsType) => {
     const { from, to, lastHoveredDay } = props.state;
@@ -51,9 +51,10 @@ const FromDateField = (props: fromPropsType) => {
         }
     }
     return (
-        <div className={props.wrapperClass}>
+        <div className={props.singleDateClass}>
             <InputField
                 className={props.className}
+                wrapperClass={props.wrapperClass}
                 icon={props.icon}
                 label={props.label}
                 name="fromDateInput"

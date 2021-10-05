@@ -1,6 +1,7 @@
 export type propsType = {
-    icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+    icon?: string;
     className?: string;
+    wrapperClass?: string;
     name?: string;
     placeholder?: string;
     label?: string;

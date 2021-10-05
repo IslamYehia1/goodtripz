@@ -3,7 +3,7 @@ import DayPickerInput from "react-day-picker/DayPickerInput";
 import { useRef, useEffect } from "react";
 import { toPropsType } from "./propTypes";
 import InputField from "../../InputField/InputField";
-
+import style from "./RangeDatePicker.module.scss";
 const { isDayBefore } = DateUtils;
 
 const ToDateField = (props: toPropsType) => {
@@ -48,9 +48,10 @@ const ToDateField = (props: toPropsType) => {
         }
     }
     return (
-        <div className={props.wrapperClass}>
+        <div className={props.singleDateClass}>
             <InputField
                 className={props.className}
+                wrapperClass={props.wrapperClass}
                 icon={props.icon}
                 label={props.label}
                 name="toDateInput"

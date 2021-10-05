@@ -1,35 +1,48 @@
 // import roomPicture from "../../img/room1.jpg";
 import { propsType } from "./types";
 import { PoolIcon, PetIcon, Star } from "../Icons";
+import Image from "next/image";
+import style from "./HotelOffer.module.scss";
 const HotelOffer = (props: propsType) => {
     return (
-        <div className="hotelOffer">
-            <div className="hotelPicture">
-                <img src={props.picture} alt="The room" />
+        <div className={style.hotelOffer}>
+            <div className={style.hotelPicture}>
+                {props.picture && (
+                    <Image
+                        // layout="responsive"
+                        width="100%"
+                        height="100%"
+                        className={style.img}
+                        src={props.picture}
+                        alt="The room"
+                    />
+                )}
             </div>
 
-            <div className="hotelDetails">
-                <div className="reviews">
+            <div className={style.hotelDetails}>
+                <div className={style.reviews}>
                     <Star /> <span>{props.reviews}</span>
                 </div>
-                <div className="hotelInfo">
-                    <div className="hotelName">{props.hotelName}</div>
-                    <div className="address">{props.address}</div>
+                <div className={style.hotelInfo}>
+                    <div className={style.hotelName}>{props.hotelName}</div>
+                    <div className={style.address}>{props.address}</div>
                 </div>
-                <div className="lilAminities">
-                    <div className="lilAmenity">
+                <div className={style.lilAminities}>
+                    <div className={style.lilAmenity}>
                         <PoolIcon />
                         <span>Pool</span>
                     </div>
-                    <div className="lilAmenity">
+                    <div className={style.lilAmenity}>
                         <PetIcon />
                         <span>Pets allowed</span>
                     </div>
                 </div>
-                <div className="refundable">{props.refundable}</div>
-                <div className="price">
-                    <div className="dollarAmount">{`${props.price} `}</div>
-                    <div className="per">
+                <div className={style.refundable}>{props.refundable}</div>
+                <div className={style.price}>
+                    <div
+                        className={style.dollarAmount}
+                    >{`${props.price} `}</div>
+                    <div className={style.per}>
                         <span>{`Per `}</span>
                         <span>/</span>
                         <span>night</span>

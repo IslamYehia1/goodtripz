@@ -1,21 +1,26 @@
-import { ReactComponent as FlightIcon } from "../../icons/flight_takeoff_black_24dp.svg";
-import { ReactComponent as HotelIcon } from "../../icons/hotel_black_24dp.svg";
-import { ReactComponent as CarIcon } from "../../icons/directions_car_filled_black_24dp.svg";
-import { ReactComponent as SortIcon } from "../../icons/sort_black_24dp.svg";
-import { ReactComponent as FilterIcon } from "../../icons/filter_list_black_24dp.svg";
-import { ReactComponent as SearchIcon } from "../../icons/search_white.svg";
-import { ReactComponent as FlyFromIcon } from "../../icons/flight_takeoff_black_24dp.svg";
-import { ReactComponent as FlyToIcon } from "../../icons/flight_land_black_24dp.svg";
-import { ReactComponent as ExpandIcon } from "../../icons/expand_more_black_24dp.svg";
-import { ReactComponent as DateIcon } from "../../icons/calendar_black.svg";
-import { ReactComponent as LocationIcon } from "../../icons/location.svg";
-import { ReactComponent as PoolIcon } from "../../icons/pool_black_24dp.svg";
-import { ReactComponent as PetIcon } from "../../icons/pets_black_24dp.svg";
-import { ReactComponent as RightArrow } from "../../icons/right-arrow.svg";
-import { ReactComponent as LeftArrow } from "../../icons/leftArrow.svg";
-import { ReactComponent as Star } from "../../icons/star_rate_black_24dp.svg";
+import FlightIcon from "../../../public/icons/flight_takeoff_black_24dp.svg";
+import HotelIcon from "../../../public/icons/hotel_black_24dp.svg";
+import CarIcon from "../../../public/icons/directions_car_filled_black_24dp.svg";
+import SortIcon from "../../../public/icons/sort_black_24dp.svg";
+import FilterIcon from "../../../public/icons/filter_list_black_24dp.svg";
+import SearchIcon from "../../../public/icons/search_white.svg";
+import FlyFromIcon from "../../../public/icons/flight_takeoff_black_24dp.svg";
+import FlyToIcon from "../../../public/icons/flight_land_black_24dp.svg";
+import ExpandIcon from "../../../public/icons/expand_more_black_24dp.svg";
+import DateIcon from "../../../public/icons/calendar_black.svg";
+import LocationIcon from "../../../public/icons/location.svg";
+import PoolIcon from "../../../public/icons/pool_black_24dp.svg";
+import PetIcon from "../../../public/icons/pets_black_24dp.svg";
+import RightArrow from "../../../public/icons/right-arrow.svg";
+import LeftArrow from "../../../public/icons/leftArrow.svg";
+import Star from "../../../public/icons/star_rate_black_24dp.svg";
+import AirportIcon from "../../../public/icons/airport.svg";
+import Logo from "../../../public/icons/logo.svg";
+import MenuIcon from "../../../public/icons/menu.svg";
 
 export {
+    MenuIcon,
+    Logo,
     FlightIcon,
     FlyFromIcon,
     FlyToIcon,
@@ -32,4 +37,5 @@ export {
     RightArrow,
     LeftArrow,
     Star,
+    AirportIcon,
 };

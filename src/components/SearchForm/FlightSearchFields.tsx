@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {SearchIcon,ExpandIcon,FlyToIcon,FlyFromIcon,DateIcon} from "../Icons"; //prettier-ignore
 import DateInput from "../SearchFields/RangeDatePicker";
 import Button from "../Button/Button";
 import { SearchModal } from "../Modal";
 import AirportSearch from "../SearchFields/FlightAirportSearch/AirportSearch";
-import { useHistory } from "react-router-dom";
-
+import { useRouter } from "next/router";
+import style from "./SearchForm.module.scss";
 const FlightSearchFields = () => {
-    let history = useHistory();
+    let history = useRouter();
     function handleSearch() {
         history.push(
             `/searchResults/flights?from=${searchTerms.from}&to=${searchTerms.to}&date=${searchTerms.date}&returnDate=${searchTerms.returnDate}&adults=${searchTerms.adults}&children=${searchTerms.children}`
@@ -21,25 +21,26 @@ const FlightSearchFields = () => {
         adults: 1,
         children: 0,
     });
+
     return (
-        <form onSubmit={handleSearch} className="flightSearchFields">
-            <div className="options">
-                <SearchModal className="modal">
-                    <span className="travellers">
+        <form onSubmit={handleSearch} className={style.flightSearchFields}>
+            <div className={style.options}>
+                <SearchModal className={style.modal}>
+                    <span className={style.travellers}>
                         <Button
                             icon={ExpandIcon}
-                            className="button"
+                            className={style.button}
                             handleClick={() => {}}
                         >
                             {`${searchTerms.adults}`} Adult
                         </Button>
                     </span>
                 </SearchModal>
-                <SearchModal className="modal">
-                    <span className="flightType">
+                <SearchModal className={style.modal}>
+                    <span className={style.flightType}>
                         <Button
                             icon={ExpandIcon}
-                            className="button"
+                            className={style.button}
                             handleClick={() => {}}
                         >
                             Round trip
@@ -47,17 +48,17 @@ const FlightSearchFields = () => {
                     </span>
                 </SearchModal>
             </div>
-            <div className="fields">
+            <div className={style.fields}>
                 {/* -------- Departure airport search field -------- */}
                 <SearchModal
-                    altClassName="aSearchField flightSearchField"
-                    className="modal"
+                    altClassName={`${style.aSearchField} ${style.flightSearchField}`}
+                    className={style.modal}
                 >
                     <AirportSearch
                         label="Flying from"
-                        inputClass="searchTextInput"
-                        suggestionsClass="suggestions"
-                        // wrapperClass="aSearchField flightSearchField"
+                        inputClass={style.textField}
+                        wrapperClass={style.textFieldWrapper}
+                        suggestionsClass={style.suggestions}
                         icon={FlyFromIcon}
                         placeholder="Departure airport"
                         onSuggestionSelect={(suggestion) =>
@@ -71,15 +72,15 @@ const FlightSearchFields = () => {
                 {/* -------- Destination airport search field -------- */}
 
                 <SearchModal
-                    altClassName="aSearchField flightSearchField"
-                    className="modal"
+                    altClassName={`${style.aSearchField} ${style.flightSearchField}`}
+                    className={style.modal}
                 >
                     <AirportSearch
                         label="Flying to"
                         icon={FlyToIcon}
-                        inputClass="searchTextInput"
-                        suggestionsClass="suggestions"
-                        // wrapperClass="aSearchField flightSearchField"
+                        inputClass={style.textField}
+                        wrapperClass={style.textFieldWrapper}
+                        suggestionsClass={style.suggestions}
                         placeholder="Destination airport"
                         onSuggestionSelect={(suggestion) => {
                             setSearchTerms({
@@ -92,15 +93,15 @@ const FlightSearchFields = () => {
                 {/* -------- Date picker search field -------- */}
 
                 <SearchModal
-                    altClassName="aSearchField flightSearchField
-                    dateSearchField"
-                    className="modal"
+                    altClassName={`${style.aSearchField} ${style.flightSearchField} ${style.dateSearchField}`}
+                    className={style.modal}
                 >
                     <DateInput
                         fromLabel="Date"
                         toLabel="Return date"
                         icon={DateIcon}
-                        className="searchTextInput"
+                        className={style.textField}
+                        wrapperClass={style.textFieldWrapper}
                         onFromDateSelected={(day: Date) => {
                             setSearchTerms({
                                 ...searchTerms,
@@ -116,7 +117,7 @@ const FlightSearchFields = () => {
                     />
                 </SearchModal>
                 <Button
-                    className="button searchButton"
+                    className={`${style.button} ${style.searchButton}`}
                     icon={SearchIcon}
                     handleClick={handleSearch}
                 >

@@ -1,0 +1,180 @@
+@import "../../../styles/variables.scss";
+.hotelOffer {
+    @include normalFont;
+    white-space: nowrap;
+    background: #ffffff;
+    box-shadow: 4px 4px 30px 7px rgba(0, 0, 0, 0.03);
+    padding: 1%;
+    border-radius: 20px;
+    display: flex;
+    margin-bottom: 20px;
+    min-width: 550px;
+    height: 230px;
+
+    .hotelPicture {
+        width: 42%;
+        & > div {
+            height: 100%;
+            width: 100%;
+        }
+        .img {
+            border-radius: 14px;
+            object-fit: cover;
+            display: block;
+            max-height: 100%;
+            height: 100%;
+            width: 100%;
+        }
+    }
+    .hotelDetails {
+        display: flex;
+        width: 47%;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        // gap: 15px;
+        flex-grow: 1;
+        padding: 20px;
+        & > div {
+            margin-bottom: 15px;
+        }
+        .lilAminities {
+            order: 4;
+            display: flex;
+            width: 100%;
+            gap: 20%;
+            .lilAmenity {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                svg {
+                    width: 17px;
+                    height: 17px;
+                }
+            }
+        }
+        .reviews {
+            order: 1;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 5px;
+            svg {
+                width: 18px;
+                height: 18px;
+                margin-bottom: 3px;
+            }
+        }
+        .hotelInfo {
+            order: 2;
+            width: 100%;
+            .hotelName {
+                @include semiBoldFont;
+                font-size: 17px;
+                margin-bottom: 5px;
+            }
+        }
+
+        .price {
+            @include semiBoldFont;
+            order: 6;
+            display: flex;
+            width: 30%;
+            // font-size: 22px;
+            text-align: end;
+            flex-direction: column;
+            align-items: flex-end;
+            .per {
+                span:nth-child(2) {
+                    display: none;
+                }
+            }
+        }
+        .refundable {
+            order: 5;
+            width: 47%;
+            color: #357266;
+        }
+    }
+}
+
+@media only screen and (max-width: 1280px) {
+    .hotelPrice {
+        flex-direction: column;
+    }
+}
+@media only screen and (max-width: 1024px) {
+    .hotelOffer {
+        display: flex;
+        flex-direction: column;
+        height: unset;
+        min-width: unset;
+        padding: 1.5%;
+        .hotelDetails {
+            width: 100%;
+        }
+        .hotelPicture {
+            height: 30vw;
+            width: 100%;
+        }
+    }
+}
+
+@media only screen and (max-width: 790px) {
+    .hotelOffer {
+        background-color: $white;
+        .hotelPicture {
+            height: 40vw;
+            width: 100%;
+        }
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .hotelOffer {
+        .hotelPicture {
+            height: 55vw;
+            width: 100%;
+        }
+        .hotelDetails {
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 20px 20px 10px 20px;
+            .reviews {
+                order: 2;
+                justify-content: flex-end;
+                width: 55%;
+                text-align: right;
+            }
+            .price {
+                display: flex;
+                flex-direction: row;
+                order: 1;
+                width: 44%;
+                justify-content: flex-start;
+                gap: 5px;
+                .per {
+                    @include normalFont;
+                    display: flex;
+                    gap: 5px;
+                    span:first-child {
+                        display: none;
+                    }
+                    span:nth-child(2) {
+                        display: block;
+                    }
+                }
+            }
+            .address {
+                opacity: 0.8;
+            }
+            .lilAminities {
+                display: none;
+            }
+            .refundable {
+                display: none;
+            }
+        }
+    }
+}

@@ -1,35 +1,36 @@
-import "./flightOffer.scss";
-import airlineLogo from "../../img/airlineLogo.svg";
+import style from "./FlightOffer.module.scss";
+import AirlineLogo from "../../../public/img/airlineLogo.svg";
 import { propsType } from "./types";
-
 const FlightOffer = (props: propsType) => {
     return (
-        <div className="flightOffer">
-            <div className="firstRow">
-                <div className="departure">
+        <div className={style.flightOffer}>
+            <div className={style.firstRow}>
+                <div className={style.departure}>
                     {/* <div className="time departureTime">14:00</div> */}
-                    <div className="time departureTime">
+                    <div className={`${style.time} ${style.departureTime}`}>
                         {props.departureTime}
                     </div>
-                    <div className="departureCity">
+                    <div className={style.departureCity}>
                         {`${props.cities.from} (${props.departure})`}
                     </div>
                 </div>
-                <div className="details">
+                <div className={style.details}>
                     <span>
                         {`${props.duration} , ${props.stopsNumber}`} Stop in{" "}
                         {props.stops.toString()}
                     </span>
                 </div>
-                <div className="arrival">
+                <div className={style.arrival}>
                     {/* <div className="time arrivalTime">14:00</div> */}
-                    <div className="time arrivalTime">{props.arrivalTime}</div>
+                    <div className={`${style.time} ${style.arrivalTime}`}>
+                        {props.arrivalTime}
+                    </div>
                     {/* <div className="arrivalCity">New York (NYC)</div> */}
-                    <div className="arrivalCity">
+                    <div className={style.arrivalCity}>
                         {`${props.cities.to} (${props.destination})`}
                     </div>
                 </div>
-                <div className="twoCircles">
+                <div className={style.twoCircles}>
                     <svg
                         width="16"
                         height="16"
@@ -54,7 +55,7 @@ const FlightOffer = (props: propsType) => {
                             cy="8"
                             r="7"
                             stroke="#0A1F39"
-                            stroke-width="2"
+                            strokeWidth="2"
                             fill="#F7F9FC"
                         />
                     </svg>
@@ -71,21 +72,17 @@ const FlightOffer = (props: propsType) => {
                 </div>
                 {/* <TwoCircles /> */}
             </div>
-            <div className="middleRow"></div>
-            <div className="lastRow">
-                <div className="airline">
-                    <img
-                        src={airlineLogo}
-                        alt="Emiraties Airlines"
-                        className="logo"
-                    />
+            <div className={style.middleRow}></div>
+            <div className={style.lastRow}>
+                <div className={style.airline}>
+                    <AirlineLogo className={style.logo} />
                     {/* Delta Airline */}
                 </div>
-                <div className="fare">
-                    <span className="class">
+                <div className={style.fare}>
+                    <span className={style.class}>
                         <span>Economy</span>
                     </span>
-                    <span className="price">
+                    <span className={style.price}>
                         {props.price}
                         <span>Per person</span>
                     </span>

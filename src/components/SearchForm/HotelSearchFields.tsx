@@ -2,12 +2,15 @@ import Button from "../Button/Button";
 import DateInput from "../SearchFields/RangeDatePicker";
 import { SearchIcon } from "../Icons";
 import { SearchModal } from "../Modal";
+import Image from "next/image";
 import HotelSearch from "../SearchFields/HotelPlaceSearch/HotelPlaceSearch";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { LocationIcon, DateIcon, ExpandIcon } from "../Icons";
+import { useRouter } from "next/router";
+import style from "./SearchForm.module.scss";
+
 const HotelSearchFields = () => {
-    const history = useHistory();
+    const history = useRouter();
     function searchHandler() {
         history.push(
             `/SearchResults/hotels?place=${searchTerms.place}&checkIn=${searchTerms.checkIn}&checkOut=${searchTerms.checkOut}`
@@ -20,36 +23,37 @@ const HotelSearchFields = () => {
         checkOut: "",
     });
     return (
-        <form onSubmit={searchHandler} className="hotelSearchFields">
-            <div className="options">
-                <span className="travellers">
+        <form onSubmit={searchHandler} className={style.hotelSearchFields}>
+            <div className={style.options}>
+                <span className={style.travellers}>
                     <Button
                         icon={ExpandIcon}
-                        className="button"
+                        className={style.button}
                         handleClick={() => {}}
                     >
                         1 Traveller
                     </Button>
                 </span>
-                <span className="flightType">
+                <span className={style.flightType}>
                     <Button
                         icon={ExpandIcon}
-                        className="button"
+                        className={style.button}
                         handleClick={() => {}}
                     >
                         Round trip
                     </Button>
                 </span>
             </div>
-            <div className="fields">
+            <div className={style.fields}>
                 <SearchModal
-                    altClassName="aSearchField hotelSearchField"
-                    className="modal"
+                    altClassName={`${style.aSearchField} ${style.hotelSearchField}`}
+                    className={style.modal}
                 >
                     <HotelSearch
                         label="Going to"
                         icon={LocationIcon}
-                        inputClass="searchTextInput"
+                        inputClass={style.textField}
+                        inputWrapperClass={style.textFieldWrapper}
                         onSuggestionSelected={(suggestion) => {
                             setSearchTerms({
                                 ...searchTerms,
@@ -60,14 +64,15 @@ const HotelSearchFields = () => {
                 </SearchModal>
 
                 <SearchModal
-                    altClassName="aSearchField hotelSearchField dateSearchField"
-                    className="modal"
+                    altClassName={`${style.aSearchField} ${style.hotelSearchField} ${style.dateSearchField}`}
+                    className={style.modal}
                 >
                     <DateInput
                         fromLabel="Check in"
                         toLabel="Check out"
                         icon={DateIcon}
-                        className="searchTextInput"
+                        className={style.textField}
+                        wrapperClass={style.textFieldWrapper}
                         onFromDateSelected={(day: Date) => {
                             setSearchTerms({
                                 ...searchTerms,
@@ -83,7 +88,7 @@ const HotelSearchFields = () => {
                     />
                 </SearchModal>
                 <Button
-                    className="button searchButton"
+                    className={`${style.button} ${style.searchButton}`}
                     handleClick={searchHandler}
                     icon={SearchIcon}
                 >

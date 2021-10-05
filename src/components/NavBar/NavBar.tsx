@@ -1,29 +1,29 @@
-import "./navBar.scss";
-import { ReactComponent as Logo } from "../../icons/logo.svg";
-import { ReactComponent as MenuIcon } from "../../icons/menu.svg";
-import { Link } from "react-router-dom";
+import style from "./NavBar.module.scss";
+import { Logo } from "../Icons";
+import { MenuIcon } from "../Icons";
+import Link from "next/link";
 import { propsType } from "./types";
 const NavBar = (props: propsType) => {
     return (
-        <nav className="navBar">
-            <div className="logo">
-                <Link to="/">
-                    <Logo className="logo" />
+        <nav className={style.navBar}>
+            <div className={style.logo}>
+                <Link passHref href="/">
+                    <Logo className={style.logo} />
                 </Link>
             </div>
-            <div className="navLinks">
+            <div className={style.navLinks}>
                 <ul>
                     <li>
-                        <Link to="/help">Help</Link>
+                        <Link href="/help">Help</Link>
                     </li>
                     <li>
-                        <Link to="/mytrips">My trips</Link>
+                        <Link href="/mytrips">My trips</Link>
                     </li>
-                    <li className="signIn">
+                    <li className={style.signIn}>
                         <a href="#">Sign In</a>
                     </li>
                     <li>
-                        <MenuIcon className="menuIcon" />
+                        <MenuIcon className={style.menuIcon} />
                     </li>
                 </ul>
             </div>

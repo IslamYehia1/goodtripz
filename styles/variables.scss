@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+$primary: #4f96f7;
+$dark: #0a1f38;
+$white: #f7f9fc;
+$background: #eff0f7;
+@mixin normalFont {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+@mixin semiBoldFont {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+}
+
+@mixin boldFont {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 800;
+}

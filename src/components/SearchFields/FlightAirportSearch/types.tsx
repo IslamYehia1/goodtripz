@@ -1,9 +1,9 @@
 export type propsType = {
     label: string;
-    icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+    icon?: string;
     placeholder: string;
     inputClass: string;
-    suggestionsClass: string;
+    suggestionsClass?: string;
     wrapperClass?: string;
     value?: string;
     onSuggestionSelect?: (suggestion: string) => void;

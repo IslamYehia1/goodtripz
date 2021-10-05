@@ -30,6 +30,7 @@ const HotelSearch = (props: propsType) => {
                 placeholder="Hotel location"
                 label={props.label}
                 className={props.inputClass}
+                wrapperClass={props.inputWrapperClass}
                 icon={props.icon}
                 name="hotelLocation"
                 value={searchTerm}
@@ -43,7 +44,7 @@ const HotelSearch = (props: propsType) => {
                         if (props.onSuggestionSelected)
                             props.onSuggestionSelected(suggestion);
                     }}
-                    className="suggestions"
+                    // className="suggestions"
                     suggestions={suggestions}
                 />
             )}

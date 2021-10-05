@@ -1,12 +1,13 @@
-import "./cardStyle.scss";
+import style from "./Card.module.scss";
 import { propsType } from "./types";
+import Image from "next/image";
 const Card = (props: propsType) => {
     return (
-        <div className="card">
-            <div className="cardImg">
-                <img src={props.img} alt={props.alt} />
+        <div className={`${style.card} ${props.className}`}>
+            <div className={style.cardImg}>
+                <Image priority={true} src={props.img} alt={props.alt} />
             </div>
-            <div className="cardTitle">
+            <div className={style.cardTitle}>
                 <p>{props.title}</p>
             </div>
         </div>

@@ -1,8 +1,7 @@
 import { propsType } from "./types";
-
 const InputField = (props: propsType) => {
     return (
-        <div className={`${props.className}Wrapper`}>
+        <div className={`${props.wrapperClass}`}>
             {props.icon && <props.icon />}
             <div className={props.className}>
                 <label htmlFor={props.name}>{props.label}</label>
