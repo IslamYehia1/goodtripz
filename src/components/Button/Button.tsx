@@ -7,6 +7,7 @@ const Button = (props: propsType) => {
             onClick={props.handleClick}
             id={props.id}
             className={`${props.className} ${style.button}`}
+            type={props.type}
         >
             {/* {props.tempIcon && <img alt={props.alt} src={props.icon} />} */}
             {props.icon && <props.icon />}

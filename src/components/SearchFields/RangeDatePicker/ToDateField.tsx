@@ -19,30 +19,58 @@ const ToDateField = (props: toPropsType) => {
         { before: new Date() },
         { before: from },
     ] as Modifier[];
+    // let modifiers = { start: from, end: lastHoveredDay };
+    let modifiers = { start: from, end: lastHoveredDay };
+    // let selectedDays: any = from
+    //     ? [from, { from: from, to: lastHoveredDay }]
+    //     : [{ from: undefined, to: undefined }];
+    let selectedDays: any = [from, { from: undefined, to: undefined }];
+    if (from && to) {
+        selectedDays = [
+            from,
+            {
+                from: from,
+                to: to,
+            },
+        ];
+        modifiers = {
+            start: from,
+            end: to,
+        };
+    } else if (from && !to) {
+        selectedDays = [from, { from: from, to: lastHoveredDay }];
+    }
 
-    const selectedDays = from
-        ? [from, { from: from, to: lastHoveredDay }]
-        : [{ from: undefined, to: undefined }];
-    const modifiers = { start: from, end: lastHoveredDay };
     function onDayClick(day: Date) {
         if (from && isDayBefore(day, from)) return;
-        props.setState({
-            ...props.state,
-            to: day,
-            lastHoveredDay: day,
-        });
+        // props.setState({
+        //     ...props.state,
+        //     to: day,
+        //     lastHoveredDay: day,
+        // });
+        props.setState({ type: "to", to: day });
+        props.setState({ type: "lastHoveredDay", to: day });
     }
     function onDayMouseEnter(day: Date) {
         if (from && isDayBefore(day, from)) {
+            // props.setState({
+            //     ...props.state,
+            //     lastHoveredDay: undefined,
+            // });
             props.setState({
-                ...props.state,
+                type: "lastHoveredDay",
                 lastHoveredDay: undefined,
             });
+
             return;
         }
         if (!isDayBefore(day, props.today)) {
+            // props.setState({
+            //     ...props.state,
+            //     lastHoveredDay: day,
+            // });
             props.setState({
-                ...props.state,
+                type: "lastHoveredDay",
                 lastHoveredDay: day,
             });
         }
@@ -68,6 +96,7 @@ const ToDateField = (props: toPropsType) => {
                         className: "Range",
                         numberOfMonths: 2,
                         fromMonth: props.today,
+                        month: from || props.today,
                         selectedDays: selectedDays,
                         disabledDays: disabledDays,
                         modifiers: modifiers,

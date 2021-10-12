@@ -1,34 +1,15 @@
 import FlightOffer from "../../FlightOffer/FlightOffer";
 import { flightOffersT } from "./types";
 import { useEffect, useState } from "react";
-import { fetchAirport } from "../../../utils/fetchAirportName";
 import { useRouter } from "next/router";
-import HotelOffer from "../../HotelOffer/HotelOffer";
 var offers = require("./offers.json");
-const FlightOffers = (props: flightOffersT) => {
+
+const FlightOffers = ({ searchQuery, cities }: flightOffersT) => {
     // let Reso;
     // if (offers) {
     //     console.log(offers);
     // }
     const [searchResults, setSearchResults] = useState<Array<Object>>(offers);
-    // const queryParams = new URLSearchParams(useRouter().query);
-    const queryParams = useRouter().query;
-    // const query = {
-    //     from: queryParams.get("from"),
-    //     to: queryParams.get("to"),
-    //     date: queryParams.get("date"),
-    //     returnDate: queryParams.get("returnDate") || undefined,
-    // };
-    const query: any = {
-        from: queryParams.from,
-        to: queryParams.to,
-        date: queryParams.date,
-        returnDate: queryParams.returnDate || undefined,
-    };
-    const [cities, setCities] = useState({
-        from: "City",
-        to: "City",
-    });
 
     useEffect(() => {
         (async () => {
@@ -45,21 +26,11 @@ const FlightOffers = (props: flightOffersT) => {
                 //         })
                 //     );
                 // }
-                if (query.from && query.to) {
-                    const fromCity = await fetchAirport(query.from);
-                    const toCity = await fetchAirport(query.to);
-                    if (toCity && fromCity) {
-                        setCities({
-                            from: fromCity.City,
-                            to: toCity.City,
-                        });
-                    }
-                }
             } catch (error) {
                 console.log(error);
             }
         })();
-    }, [query.from, query.to, query.date, query.returnDate]);
+    }, []);
 
     return (
         <>

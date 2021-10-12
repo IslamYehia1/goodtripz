@@ -17,25 +17,28 @@ import Star from "../../../public/icons/star_rate_black_24dp.svg";
 import AirportIcon from "../../../public/icons/airport.svg";
 import Logo from "../../../public/icons/logo.svg";
 import MenuIcon from "../../../public/icons/menu.svg";
-
+import PlusIcon from "../../../public/icons/add_circle_black_24dp.svg";
+import MinusIcon from "../../../public/icons/remove_circle_black_24dp.svg";
 export {
-    MenuIcon,
-    Logo,
-    FlightIcon,
-    FlyFromIcon,
-    FlyToIcon,
-    ExpandIcon,
-    HotelIcon,
-    CarIcon,
-    SortIcon,
-    FilterIcon,
-    SearchIcon,
-    LocationIcon,
-    DateIcon,
-    PoolIcon,
-    PetIcon,
-    RightArrow,
-    LeftArrow,
-    Star,
-    AirportIcon,
+  MenuIcon,
+  Logo,
+  FlightIcon,
+  FlyFromIcon,
+  FlyToIcon,
+  ExpandIcon,
+  HotelIcon,
+  CarIcon,
+  SortIcon,
+  FilterIcon,
+  SearchIcon,
+  LocationIcon,
+  DateIcon,
+  PoolIcon,
+  PetIcon,
+  RightArrow,
+  LeftArrow,
+  Star,
+  AirportIcon,
+  PlusIcon,
+  MinusIcon,
 };

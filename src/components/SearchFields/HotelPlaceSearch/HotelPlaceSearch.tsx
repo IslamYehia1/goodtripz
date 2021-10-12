@@ -10,7 +10,9 @@ const HotelSearch = (props: propsType) => {
     function isSuggestionClicked(e: React.FocusEvent<HTMLDivElement>) {
         return (
             e.relatedTarget !== null &&
-            (e.relatedTarget as HTMLElement).classList.contains("suggestions")
+            (e.relatedTarget as HTMLElement).classList.contains(
+                props.suggestionsClass
+            )
         );
     }
 
@@ -44,7 +46,7 @@ const HotelSearch = (props: propsType) => {
                         if (props.onSuggestionSelected)
                             props.onSuggestionSelected(suggestion);
                     }}
-                    // className="suggestions"
+                    className={props.suggestionsClass}
                     suggestions={suggestions}
                 />
             )}

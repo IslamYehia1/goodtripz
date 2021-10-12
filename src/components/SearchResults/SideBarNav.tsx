@@ -10,9 +10,9 @@ const SideBarNav = ({ onTabChange, activeTab }: propsType) => {
         <div className={style.lilTabs}>
             <Button
                 handleClick={(e) => {
-                    // onTabChange("flights");
+                    if (onTabChange) onTabChange("flights");
                 }}
-                id={activeTab === "flights" ? "activeLilTab" : ""}
+                id={activeTab === "flights" ? style.activeLilTab : ""}
                 className={`${style.lilTab} ${style.button}`}
                 icon={FlightIcon}
             >
@@ -20,9 +20,9 @@ const SideBarNav = ({ onTabChange, activeTab }: propsType) => {
             </Button>
             <Button
                 handleClick={(e) => {
-                    // onTabChange("hotels");
+                    if (onTabChange) onTabChange("hotels");
                 }}
-                id={activeTab === "hotels" ? "activeLilTab" : ""}
+                id={activeTab === "hotels" ? style.activeLilTab : ""}
                 className={`${style.lilTab} ${style.button}`}
                 icon={HotelIcon}
             >
@@ -30,9 +30,9 @@ const SideBarNav = ({ onTabChange, activeTab }: propsType) => {
             </Button>
             <Button
                 handleClick={(e) => {
-                    // onTabChange("cars");
+                    if (onTabChange) onTabChange("cars");
                 }}
-                id={activeTab === "car" ? "activeLilTab" : ""}
+                id={activeTab === "car" ? style.activeLilTab : ""}
                 className={`${style.lilTab} ${style.button}`}
                 icon={CarIcon}
             >

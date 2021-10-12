@@ -1,6 +1,6 @@
 import { DayModifiers } from "react-day-picker";
 import DayPickerInput from "react-day-picker/DayPickerInput";
-
+import { Dispatch } from "react";
 export type toPropsType = {
     state: {
         [key: string]: Date | undefined;
@@ -12,7 +12,7 @@ export type toPropsType = {
     label?: string;
     wrapperClass?: string;
     singleDateClass?: string;
-    setState: (params: { [key: string]: Date | undefined }) => void;
+    setState: Dispatch<any>;
     onDayChange: (
         day: Date,
         DayModifiers: DayModifiers,
@@ -24,7 +24,7 @@ export type fromPropsType = {
         [key: string]: Date | undefined;
     };
     today: Date;
-    setState: (params: { [key: string]: Date | undefined }) => void;
+    setState: Dispatch<any>;
     className?: string;
     icon?: string;
     label?: string;

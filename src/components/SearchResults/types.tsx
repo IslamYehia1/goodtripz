@@ -1,7 +1,12 @@
-export type FlightsSideBarT = {
+export type flightsSideBarT = {
     closeModal: () => void;
     isFullScreen: Boolean;
     isMobile: Boolean;
+    searchQuery: any;
+    cities: {
+        from: string;
+        to: string;
+    };
 };
 
 export type hotelsSideBarT = {

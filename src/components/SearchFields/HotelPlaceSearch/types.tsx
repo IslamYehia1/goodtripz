@@ -1,6 +1,7 @@
 export type propsType = {
     inputClass: string;
     inputWrapperClass: string;
+    suggestionsClass: string;
     icon?: string;
     value?: string;
     label: string;

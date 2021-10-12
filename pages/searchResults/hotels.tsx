@@ -4,20 +4,20 @@ import SideBarNav from "../../src/components/SearchResults/SideBarNav";
 import useIsMobile from "../../src/utils/useIsMobile";
 import style from "../../styles/SearchResults.module.scss";
 import FilterAndSort from "../../src/components/FilterAndSort";
-
+import { useRouter } from "next/router";
 import { useState } from "react";
 const Hotels = () => {
     const isMobile = useIsMobile();
     const [filterModal, setFilterModal] = useState(false);
-
+    const router = useRouter();
     return (
         <div className={style.searchResultsPage}>
             <div className={style.sideBar}>
                 <SideBarNav
                     activeTab={"hotels"}
-                    // onTabChange={(tab) => {
-                    //     setSearchType(tab);
-                    // }}
+                    onTabChange={(tab) => {
+                        router.replace("flights/");
+                    }}
                 />
                 <HotelsSideBar
                     closeModal={() => {

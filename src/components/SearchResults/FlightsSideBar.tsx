@@ -4,10 +4,11 @@ import { FiltersModal, SearchModal } from "../../components/Modal";
 import InputField from "../../components/InputField/InputField";
 import Button from "../../components/Button/Button";
 import { SearchIcon } from "../../components/Icons";
-import { FlightsSideBarT } from "./types";
+import { flightsSideBarT } from "./types";
 import style from "../../../styles/SearchResults.module.scss";
+import { useEffect } from "react";
 
-const FlightsSideBar = (props: FlightsSideBarT) => {
+const FlightsSideBar = (props: flightsSideBarT) => {
     return (
         <>
             <div className={`${style.sideSection} ${style.searchTerms}`}>
@@ -21,7 +22,7 @@ const FlightsSideBar = (props: FlightsSideBarT) => {
                         wrapperClass={style.textFieldWrapper}
                         suggestionsClass={style.suggestions}
                         placeholder="Departure"
-                        value="New york"
+                        value={`${props.cities.from} (${props.searchQuery.from})`}
                     />
                 </SearchModal>
                 <SearchModal
@@ -33,16 +34,19 @@ const FlightsSideBar = (props: FlightsSideBarT) => {
                         inputClass={style.textField}
                         wrapperClass={style.textFieldWrapper}
                         suggestionsClass={style.suggestions}
-                        value="New york"
+                        value={`${props.cities.to} (${props.searchQuery.to})`}
                         placeholder="Destination"
                     />
                 </SearchModal>
 
                 <SearchModal className={style.modal}>
                     <DateInput
+                        fromVal={props.searchQuery.date}
+                        toVal={props.searchQuery.returnDate}
                         rangeClass={style.dateRangeWrapper}
                         singleDateClass={style.lilSearchField}
-                        className={style.searchField}
+                        className={style.textField}
+                        wrapperClass={style.textFieldWrapper}
                         fromLabel="Date"
                         toLabel="Return date"
                     />
@@ -51,7 +55,7 @@ const FlightsSideBar = (props: FlightsSideBarT) => {
                     <InputField
                         className={style.textField}
                         wrapperClass={style.textFieldWrapper}
-                        value="Amesterdam"
+                        value={`${props.searchQuery.adults} adults, ${props.searchQuery.childs} children`}
                         label="Travellers"
                         name="travellers"
                     />
@@ -60,7 +64,7 @@ const FlightsSideBar = (props: FlightsSideBarT) => {
                     <InputField
                         className={style.textField}
                         wrapperClass={style.textFieldWrapper}
-                        value="Amesterdam"
+                        value="Economy"
                         label="Tier"
                         name="tier"
                     />

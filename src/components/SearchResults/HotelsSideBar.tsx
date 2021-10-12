@@ -16,13 +16,15 @@ const HotelsSideBar = (props: hotelsSideBarT) => {
                         label="Going to"
                         value="Cairo Festival City, Nasr City, Egypt"
                         inputClass={style.searchInput}
+                        suggestionsClass={style.suggetionsClass}
                     />
                 </SearchModal>
                 <SearchModal className="modal">
                     <DateInput
-                        rangeClass={style.lilDateFields}
+                        rangeClass={style.dateRangeWrapper}
                         singleDateClass={style.lilSearchField}
-                        className={style.searchInput}
+                        className={style.textField}
+                        wrapperClass={style.textFieldWrapper}
                         fromLabel="Check in"
                         toLabel="Check out"
                     />
