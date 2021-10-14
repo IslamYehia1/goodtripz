@@ -11,7 +11,9 @@ export default function useIsMobile() {
       }
     }
     window.addEventListener("resize", checkSize);
-    return removeEventListener("resize", checkSize);
+    return function cleanUp() {
+      removeEventListener("resize", checkSize);
+    };
   }, []);
   return isMobile;
 }

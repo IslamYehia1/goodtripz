@@ -1,6 +1,6 @@
 export type searchTermsT = {
-  from: string;
-  to: string;
+  from: any;
+  to: any;
   date: string;
   returnDate: string;
   adults: any;
@@ -10,4 +10,5 @@ export type searchTermsT = {
 export type actionT = {
   type: string;
   val: string;
+  IATA?: string;
 };

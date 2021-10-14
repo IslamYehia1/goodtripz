@@ -1,7 +1,7 @@
 @import "../../../styles/variables.scss";
 .navBar {
   @include semiBoldFont;
-  z-index: 100000;
+  z-index: 3;
   width: 69%;
   display: flex;
   justify-content: space-between;
@@ -49,7 +49,7 @@
   .navBar {
     position: absolute;
     .logo {
-      color: $white;
+      // color: $white;
     }
     ul {
       li {
@@ -57,7 +57,7 @@
       }
       li:last-child {
         display: inline-block;
-        color: $white;
+        // color: $white;
       }
     }
   }

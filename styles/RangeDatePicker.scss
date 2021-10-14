@@ -1,79 +1,110 @@
 @import "./variables.scss";
 
 .Range {
-    .DayPicker-Caption {
-        padding-left: 45px !important ;
-    }
+  .DayPicker-Caption {
+    padding-left: 45px !important ;
+  }
 }
 .Range {
-    .DayPicker-NavButton--prev {
-        display: block !important ;
-        left: 22px !important;
-        top: 18px !important;
-        right: auto !important;
-        width: 17px !important;
-        height: 18px !important;
-    }
+  .DayPicker-NavButton--prev {
+    display: block !important ;
+    left: 22px !important;
+    top: 18px !important;
+    right: auto !important;
+    width: 17px !important;
+    height: 18px !important;
+  }
 }
 .Range {
-    .DayPicker-NavButton--next {
-        width: 17px !important;
-        height: 18px !important;
-    }
+  .DayPicker-NavButton--next {
+    width: 17px !important;
+    height: 18px !important;
+  }
 }
 
 .Range {
-    @include semiBoldFont;
+  @include semiBoldFont;
 }
 .Range .DayPicker-Day--start:not(.DayPicker-Day--outside) {
-    background-color: #4f96f7 !important ;
-    color: #f0f8ff !important;
-    border-radius: 10%;
+  background-color: #4f96f7 !important ;
+  color: #f0f8ff !important;
+  border-radius: 10%;
 }
 .Range .DayPicker-Day--end:not(.DayPicker-Day--outside) {
-    background-color: #4f96f7 !important ;
-    color: #f0f8ff !important;
-    border-radius: 10%;
+  background-color: #4f96f7 !important ;
+  color: #f0f8ff !important;
+  border-radius: 10%;
 }
 
 .Range
-    .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
-    background-color: #f0f8ff !important;
-    color: #4a90e2 !important;
+  .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+  background-color: #f0f8ff !important;
+  color: #4a90e2 !important;
 }
 
 .Range .DayPicker-Day {
-    border-radius: 0;
+  border-radius: 0;
 }
 .Range {
-    .DayPicker-Months {
-        display: flex;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-    }
+  .DayPicker-Months {
+    display: flex;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+  }
 }
 
 .DayPickerInput-OverlayWrapper {
-    position: absolute !important ;
-    z-index: 3;
-    left: -30%;
+  position: absolute !important ;
+  z-index: 3;
+  left: -30%;
+  bottom: 100%;
+  margin-bottom: 16px;
+  .DayPickerInput-Overlay {
+    position: absolute;
+    left: 0;
     bottom: 100%;
-    margin-bottom: 16px;
-    .DayPickerInput-Overlay {
-        position: absolute;
-        left: 0;
-        bottom: 100%;
-        padding: 10px;
-        border-radius: 20px;
-        overflow: hidden;
-    }
+    padding: 10px;
+    border-radius: 20px;
+    overflow: hidden;
+  }
 }
 .enclosure {
-    width: 70%;
-    position: relative;
-    left: 200px;
-    z-index: 1;
-    input {
-        width: 200px;
+  width: 70%;
+  position: relative;
+  left: 200px;
+  z-index: 1;
+  input {
+    width: 200px;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .DayPickerInput-OverlayWrapper {
+    position: relative !important;
+    width: 100% !important ;
+    margin-bottom: 0 !important;
+
+    // position: relative;
+    // top: 100px !important;
+    // left: 0 !important;
+  }
+  .DayPickerInput-OverlayWrapper .DayPickerInput-Overlay {
+    box-sizing: border-box !important;
+    width: 94vw !important ;
+
+    top: 100px !important;
+    // bottom: 0 !important;
+    left: 0px !important;
+    right: 0px !important ;
+    margin: 0 auto;
+    // right: 0px !important;
+    height: 400px;
+  }
+  .Range {
+    .DayPicker-Months {
+      display: flex;
+      flex-direction: column !important;
+      flex-wrap: nowrap !important;
     }
+  }
 }

@@ -125,47 +125,33 @@ const HotelSearchFields = () => {
         </SearchExtraModal>
       </div>
       <div className={style.fields}>
-        <SearchModal
-          altClassName={`${style.aSearchField} ${style.hotelSearchField}`}
-          className={style.modal}
-        >
-          <HotelSearch
-            label="Going to"
-            icon={LocationIcon}
-            inputClass={style.textField}
-            inputWrapperClass={style.textFieldWrapper}
-            suggestionsClass={style.suggestions}
-            onSuggestionSelected={(suggestion) => {
-              dispatch({ type: "place", val: suggestion });
-            }}
-          />
-        </SearchModal>
+        <HotelSearch
+          label="Going to"
+          icon={LocationIcon}
+          inputClass={style.textField}
+          inputWrapperClass={style.textFieldWrapper}
+          suggestionsClass={style.suggestions}
+          searchTerm={searchTerms.place}
+          dispatch={dispatch}
+          onSuggestionSelected={(suggestion) => {
+            dispatch({ type: "place", val: suggestion });
+          }}
+        />
 
-        <SearchModal
-          altClassName={`${style.aSearchField} ${style.hotelSearchField} ${style.dateSearchField}`}
-          className={style.modal}
-        >
-          <DateInput
-            fromLabel="Check in"
-            toLabel="Check out"
-            icon={DateIcon}
-            range={true}
-            className={style.textField}
-            wrapperClass={style.textFieldWrapper}
-            onFromDateSelected={(day: Date) => {
-              dispatch({
-                type: "checkIn",
-                val: day.toISOString().substring(0, 10),
-              });
-            }}
-            onToDateSelected={(day: Date) => {
-              dispatch({
-                type: "checkOut",
-                val: day.toISOString().substring(0, 10),
-              });
-            }}
-          />
-        </SearchModal>
+        <DateInput
+          fromLabel="Check in"
+          toLabel="Check out"
+          icon={DateIcon}
+          range={true}
+          // className={style.textField}
+          singleDateClass={style.textField}
+          className={` ${style.aSearchField} ${style.flightSearchField} ${style.dateSearchField}`}
+          wrapperClass={style.textFieldWrapper}
+          dispatch={({ from, to }) => {
+            dispatch({ type: "date", val: from });
+            dispatch({ type: "returnDate", val: to });
+          }}
+        />
         <Button
           className={`${style.button} ${style.searchButton}`}
           handleClick={searchHandler}

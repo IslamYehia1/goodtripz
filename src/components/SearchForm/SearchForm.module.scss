@@ -1,19 +1,19 @@
 @import "../../../styles/variables.scss";
 .modal {
   .suggestions {
-    top: 15%;
+    top: 100%;
   }
-  .textFieldWrapper {
+  .aSearchField {
     &::after {
       content: none;
     }
     svg {
       display: none;
-      color: red;
+      // color: red;
     }
     padding-left: 15vw;
     position: relative;
-    top: 15px;
+    // top: 15px;
     left: 0;
     right: 0;
   }
@@ -147,9 +147,9 @@
 }
 // aSearchField is a universal class for search fields
 .aSearchField {
-  & > div {
-    display: flex;
-  }
+  // & > div {
+  display: flex;
+  // }
   flex-grow: 1;
   position: relative;
   margin-right: 1.5%;
@@ -256,7 +256,7 @@
   }
   .options {
     justify-content: flex-start;
-    & > div {
+    & > span {
       // width: 30%;
       padding: 2vw 4vw 2vw 6%;
       background-color: rgb(79, 150, 247, 0.1);
@@ -265,10 +265,10 @@
     .button {
       color: $primary !important;
     }
-    .travellers {
-    }
-    .fareType {
-    }
+    // .travellers {
+    // }
+    // .fareType {
+    // }
   }
 }
 

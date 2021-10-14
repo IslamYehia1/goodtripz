@@ -1,3 +1,8 @@
+type actionT = {
+  type: string;
+  val: string;
+};
+
 export type propsType = {
   label: string;
   icon?: string;
@@ -6,8 +11,11 @@ export type propsType = {
   suggestionsClass: string;
   wrapperClass?: string;
   value?: string;
-  onSuggestionSelect: (suggestion: string) => void;
+  // onSuggestionSelect: (suggestion: string) => void;
   closeModal?: () => void;
+  dispatch: React.Dispatch<any>;
+  searchTerm: string;
+  className: string;
 };
 export type autocompleteT = Array<{
   autocomplete: { id: string; main: string; secondary: string };

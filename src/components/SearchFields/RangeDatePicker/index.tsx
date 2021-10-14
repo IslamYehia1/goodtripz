@@ -2,8 +2,8 @@ import ToDateField from "./ToDateField";
 import FromDateField from "./FromDateField";
 import { useState, useEffect, useReducer } from "react";
 import { useRouter } from "next/router";
-import dayjs from "dayjs";
-import style from "./RangeDatePicker.module.scss";
+import style from "../../SearchForm/SearchForm.module.scss";
+import SearchModal from "../../Modal/SearchModal";
 type propsType = {
   fromVal?: string;
   toVal?: string;
@@ -15,10 +15,9 @@ type propsType = {
   toLabel?: string;
   icon?: string;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
-  onFromDateSelected?: (day: Date) => void;
-  onToDateSelected?: (day: Date) => void;
   singleDateClass?: string;
   range: Boolean;
+  dispatch: ({}: any) => void;
 };
 type ACTIONTYPE = {
   type: "fromURL" | "to" | "from" | "lastHoveredDay";
@@ -26,26 +25,19 @@ type ACTIONTYPE = {
   to?: Date;
   lastHoveredDay?: Date;
 };
+type stateType = {
+  from: Date;
+  to: Date;
+  lastHoveredDay: Date;
+};
 const RangeDatePicker = (props: propsType) => {
   const today = new Date();
   const router = useRouter();
-  // const fromVal = props.fromVal ? new Date(props.fromVal) : undefined;
-  // const toVal = props.toVal ? new Date(props.toVal) : undefined;
-  // const [state, setState] = useState<{ [key: string]: Date | undefined }>({
-  //     from: undefined,
-  //     to: undefined,
-  //     lastHoveredDay: undefined,
-  // });
-  type stateType = {
-    from: Date;
-    to: Date;
-    lastHoveredDay: Date;
-  };
+  const [fullScreen, setFullScreen] = useState(false);
   function reducer(prevState: any, action: ACTIONTYPE) {
     switch (action.type) {
       case "fromURL":
         if (props.fromVal && props.toVal) {
-          // console.log(new Date(props.fromVal), new Date(props.toVal));
           return {
             from: new Date(props.fromVal),
             to: new Date(props.toVal),
@@ -68,45 +60,59 @@ const RangeDatePicker = (props: propsType) => {
     lastHoveredDay: undefined,
   });
 
-  // function stateSetter(param: { [key: string]: Date | undefined }) {
-  //     setState(param);
-  // }
   useEffect(() => {
     if (!router.isReady) return;
     dispatch({ type: "fromURL" });
   }, [router.isReady]);
 
   return (
-    <div className={props.rangeClass} onClick={props.onClick}>
-      <FromDateField
+    <SearchModal
+      closeModal={() => {
+        setFullScreen(false);
+      }}
+      isFullScreen={fullScreen}
+      className={style.modal}
+    >
+      <div
         className={props.className}
-        wrapperClass={props.wrapperClass}
-        label={props.fromLabel}
-        icon={props.icon}
-        state={state}
-        setState={dispatch}
-        today={today}
-        singleDateClass={props.singleDateClass}
-        onDayChange={(day: Date) => {
-          if (props.onFromDateSelected) props.onFromDateSelected(day);
+        onClick={props.onClick}
+        onFocus={() => {
+          if (window.innerWidth <= 650) setFullScreen(true);
         }}
-      />
-      {props.range && (
-        <ToDateField
-          className={props.className}
+      >
+        <FromDateField
           wrapperClass={props.wrapperClass}
-          singleDateClass={props.singleDateClass}
-          label={props.toLabel}
+          label={props.fromLabel}
           icon={props.icon}
           state={state}
           setState={dispatch}
           today={today}
+          singleDateClass={props.singleDateClass}
           onDayChange={(day: Date) => {
-            if (props.onToDateSelected) props.onToDateSelected(day);
+            props.dispatch({
+              from: day.toISOString().substring(0, 10),
+            });
           }}
         />
-      )}
-    </div>
+        {/*Only show the second date input if we want a range date picker */}
+        {props.range && (
+          <ToDateField
+            wrapperClass={props.wrapperClass}
+            singleDateClass={props.singleDateClass}
+            label={props.toLabel}
+            icon={props.icon}
+            state={state}
+            setState={dispatch}
+            today={today}
+            onDayChange={(day: Date) => {
+              props.dispatch({
+                to: day.toISOString().substring(0, 10),
+              });
+            }}
+          />
+        )}
+      </div>
+    </SearchModal>
   );
 };
 

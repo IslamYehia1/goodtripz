@@ -2,7 +2,6 @@ import React, { useState, useEffect, useReducer } from "react";
 import {SearchIcon,ExpandIcon,FlyToIcon,FlyFromIcon,DateIcon} from "../Icons"; //prettier-ignore
 import DateInput from "../SearchFields/RangeDatePicker";
 import Button from "../Button/Button";
-import { SearchModal } from "../Modal";
 import AirportSearch from "../SearchFields/FlightAirportSearch/AirportSearch";
 import { useRouter } from "next/router";
 import style from "./SearchForm.module.scss";
@@ -14,8 +13,8 @@ const FlightSearchFields = () => {
   let history = useRouter();
 
   const initial = {
-    from: "",
-    to: "",
+    from: { name: "", IATA: "" },
+    to: { name: "", IATA: "" },
     date: "",
     returnDate: "",
     adults: "1",
@@ -27,9 +26,21 @@ const FlightSearchFields = () => {
   function reducer(prevState: searchTermsT, action: actionT): searchTermsT {
     switch (action.type) {
       case "from":
-        return { ...prevState, from: action.val };
+        return {
+          ...prevState,
+          from: {
+            name: action.val,
+            IATA: action.IATA ? action.IATA : undefined,
+          },
+        };
       case "to":
-        return { ...prevState, to: action.val };
+        return {
+          ...prevState,
+          to: {
+            name: action.val,
+            IATA: action.IATA ? action.IATA : undefined,
+          },
+        };
       case "date":
         return { ...prevState, date: action.val };
       case "returnDate":
@@ -115,7 +126,11 @@ const FlightSearchFields = () => {
               }}
               type="button"
             >
-              Adults
+              <span>
+                {`${
+                  parseInt(searchTerms.adults) + parseInt(searchTerms.children)
+                } Travellers`}{" "}
+              </span>
             </Button>
             {optionWindow === "travellers" && (
               <div className={style.optionsWindow}>
@@ -162,67 +177,51 @@ const FlightSearchFields = () => {
       </div>
       <div className={style.fields}>
         {/* -------- Departure airport search field -------- */}
-        {/* <SearchModal
-          altClassName={`${style.aSearchField} ${style.flightSearchField}`}
-          className={style.modal}
-        > */}
+
         <AirportSearch
           label="Flying from"
+          className={`${style.aSearchField} ${style.flightSearchField}`}
           inputClass={style.textField}
           wrapperClass={style.textFieldWrapper}
           suggestionsClass={style.suggestions}
           icon={FlyFromIcon}
           placeholder="Departure airport"
-          onSuggestionSelect={(suggestion) =>
-            dispatch({ type: "from", val: suggestion })
+          dispatch={({ val, IATA }) =>
+            dispatch({ type: "from", val: val, IATA: IATA })
           }
+          searchTerm={searchTerms.from.name}
         />
-        {/* </SearchModal> */}
         {/* -------- Destination airport search field -------- */}
-        {/* 
-        <SearchModal
-          altClassName={`${style.aSearchField} ${style.flightSearchField}`}
-          className={style.modal}
-        > */}
+
         <AirportSearch
           label="Flying to"
+          className={`${style.aSearchField} ${style.flightSearchField}`}
           icon={FlyToIcon}
           inputClass={style.textField}
           wrapperClass={style.textFieldWrapper}
           suggestionsClass={style.suggestions}
           placeholder="Destination airport"
-          onSuggestionSelect={(suggestion) => {
-            dispatch({ type: "to", val: suggestion });
-          }}
+          dispatch={({ val, IATA }) =>
+            dispatch({ type: "to", val: val, IATA: IATA })
+          }
+          searchTerm={searchTerms.to.name}
         />
-        {/* </SearchModal> */}
         {/* -------- Date picker search field -------- */}
 
-        <SearchModal
-          altClassName={`${style.aSearchField} ${style.flightSearchField} ${style.dateSearchField}`}
-          className={style.modal}
-        >
-          <DateInput
-            fromLabel="Date"
-            toLabel="Return date"
-            range={false}
-            icon={DateIcon}
-            className={style.textField}
-            wrapperClass={style.textFieldWrapper}
-            onFromDateSelected={(day: Date) => {
-              dispatch({
-                type: "date",
-                val: day.toISOString().substring(0, 10),
-              });
-            }}
-            onToDateSelected={(day: Date) => {
-              dispatch({
-                type: "returnDate",
-                val: day.toISOString().substring(0, 10),
-              });
-            }}
-          />
-        </SearchModal>
+        <DateInput
+          fromLabel="Date"
+          toLabel="Return date"
+          range={true}
+          icon={DateIcon}
+          singleDateClass={style.textField}
+          className={` ${style.aSearchField} ${style.flightSearchField} ${style.dateSearchField}`}
+          wrapperClass={style.textFieldWrapper}
+          dispatch={({ from, to }) => {
+            dispatch({ type: "date", val: from });
+            dispatch({ type: "returnDate", val: to });
+          }}
+        />
+
         <Button
           className={`${style.button} ${style.searchButton}`}
           type="submit"
