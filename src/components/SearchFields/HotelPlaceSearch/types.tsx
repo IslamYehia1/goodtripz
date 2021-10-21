@@ -5,6 +5,7 @@ export type propsType = {
   icon?: string;
   value?: string;
   label: string;
+  className: string;
   onSuggestionSelected?: (x: string) => void;
   searchTerm: string;
   dispatch: React.Dispatch<any>;

@@ -15,7 +15,7 @@ type propsType = {
   toLabel?: string;
   icon?: string;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
-  singleDateClass?: string;
+  textFieldClass?: string;
   range: Boolean;
   dispatch: ({}: any) => void;
 };
@@ -87,7 +87,7 @@ const RangeDatePicker = (props: propsType) => {
           state={state}
           setState={dispatch}
           today={today}
-          singleDateClass={props.singleDateClass}
+          singleDateClass={props.textFieldClass}
           onDayChange={(day: Date) => {
             props.dispatch({
               from: day.toISOString().substring(0, 10),
@@ -98,7 +98,7 @@ const RangeDatePicker = (props: propsType) => {
         {props.range && (
           <ToDateField
             wrapperClass={props.wrapperClass}
-            singleDateClass={props.singleDateClass}
+            singleDateClass={props.textFieldClass}
             label={props.toLabel}
             icon={props.icon}
             state={state}

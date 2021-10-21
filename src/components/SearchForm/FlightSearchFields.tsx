@@ -6,9 +6,8 @@ import AirportSearch from "../SearchFields/FlightAirportSearch/AirportSearch";
 import { useRouter } from "next/router";
 import style from "./SearchForm.module.scss";
 import { PlusIcon, MinusIcon } from "../Icons";
-import { searchTermsT, actionT } from "./types";
 import SearchExtraModal from "../Modal/SearchExtraModal";
-
+import reducer from "../SearchResults/flightsReducer";
 const FlightSearchFields = () => {
   let history = useRouter();
 
@@ -20,60 +19,16 @@ const FlightSearchFields = () => {
     adults: "1",
     children: "0",
   };
-  const [optionWindow, setOptionWindow] = useState("");
+  // Note: the reducer is in a standalone file as it is shared
+  //between this component and the flight search fields in the
+  //search results to keep the state between two pages independent
   const [searchTerms, dispatch] = useReducer(reducer, initial);
-
-  function reducer(prevState: searchTermsT, action: actionT): searchTermsT {
-    switch (action.type) {
-      case "from":
-        return {
-          ...prevState,
-          from: {
-            name: action.val,
-            IATA: action.IATA ? action.IATA : undefined,
-          },
-        };
-      case "to":
-        return {
-          ...prevState,
-          to: {
-            name: action.val,
-            IATA: action.IATA ? action.IATA : undefined,
-          },
-        };
-      case "date":
-        return { ...prevState, date: action.val };
-      case "returnDate":
-        return { ...prevState, returnDate: action.val };
-      case "addAdult":
-        return {
-          ...prevState,
-          adults: (parseInt(prevState.adults) + 1).toString(),
-        };
-      case "removeAdult":
-        return {
-          ...prevState,
-          adults: (parseInt(prevState.adults) - 1).toString(),
-        };
-      case "addChild":
-        return {
-          ...prevState,
-          children: (parseInt(prevState.children) + 1).toString(),
-        };
-      case "removeChild":
-        return {
-          ...prevState,
-          children: (parseInt(prevState.children) - 1).toString(),
-        };
-      default:
-        return prevState;
-    }
-  }
+  const [optionWindow, setOptionWindow] = useState("");
 
   function handleSearch(e: React.SyntheticEvent) {
     e.preventDefault();
     history.push(
-      `/searchResults/flights?from=${searchTerms.from}&to=${searchTerms.to}&date=${searchTerms.date}&returnDate=${searchTerms.returnDate}&adults=${searchTerms.adults}&children=${searchTerms.children}`
+      `/searchResults/flights?from=${searchTerms.from.IATA}&to=${searchTerms.to.IATA}&date=${searchTerms.date}&returnDate=${searchTerms.returnDate}&adults=${searchTerms.adults}&children=${searchTerms.children}`
     );
   }
 
@@ -217,8 +172,8 @@ const FlightSearchFields = () => {
           className={` ${style.aSearchField} ${style.flightSearchField} ${style.dateSearchField}`}
           wrapperClass={style.textFieldWrapper}
           dispatch={({ from, to }) => {
-            dispatch({ type: "date", val: from });
-            dispatch({ type: "returnDate", val: to });
+            if (from) dispatch({ type: "date", val: from });
+            if (to) dispatch({ type: "returnDate", val: to });
           }}
         />
 

@@ -22,7 +22,8 @@ const AirportSearch = (props: propsType) => {
   const autocomplete = useCallback(throttle(200, fetchAutocomplete), []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    autocomplete(props.searchTerm);
+    console.log(props.searchTerm);
+    if (props.searchTerm) autocomplete(props.searchTerm);
   }, [autocomplete, props.searchTerm]);
   useEffect(() => {
     if (props.value) {

@@ -10,9 +10,10 @@ import { isSuggestionClicked } from "../../../utils";
 const HotelSearch = (props: propsType) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [suggestions, setSuggestions] = useState<autocompleteT>([]);
-  const [fullScreen, setFullScreen] = useState(true);
+  const [fullScreen, setFullScreen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  const isMobile = useIsMobile;
+  const isMobile = useIsMobile();
+  // console.log(isMobile);
   useEffect(() => {
     (async () => {
       setSuggestions(await fetchSuggestions(props.searchTerm));
@@ -32,9 +33,15 @@ const HotelSearch = (props: propsType) => {
       setShowSuggestions(false);
       setFullScreen(false);
     }
-  }, [isFocused]);
+  }, [isFocused, isMobile]);
   return (
-    <SearchModal isFullScreen={fullScreen} className={style.modal}>
+    <SearchModal
+      closeModal={() => {
+        setFullScreen(false);
+      }}
+      isFullScreen={fullScreen}
+      className={style.modal}
+    >
       <div
         onFocus={() => {
           setIsFocused(true);
@@ -43,7 +50,7 @@ const HotelSearch = (props: propsType) => {
           if (!isSuggestionClicked(e, props.suggestionsClass))
             setShowSuggestions(false);
         }}
-        className={`${style.aSearchField} ${style.hotelSearchField}`}
+        className={props.className}
       >
         <InputField
           placeholder="Hotel location"

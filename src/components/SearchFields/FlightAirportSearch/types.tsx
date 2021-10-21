@@ -14,7 +14,7 @@ export type propsType = {
   // onSuggestionSelect: (suggestion: string) => void;
   closeModal?: () => void;
   dispatch: React.Dispatch<any>;
-  searchTerm: string;
+  searchTerm?: string;
   className: string;
 };
 export type autocompleteT = Array<{

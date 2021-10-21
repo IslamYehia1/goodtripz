@@ -1,12 +1,11 @@
 import AirportSearch from "../../components/SearchFields/FlightAirportSearch/AirportSearch";
 import DateInput from "../../components/SearchFields/RangeDatePicker";
-import { FiltersModal, SearchModal } from "../../components/Modal";
+import { FiltersModal } from "../../components/Modal";
 import InputField from "../../components/InputField/InputField";
 import Button from "../../components/Button/Button";
-import { SearchIcon } from "../../components/Icons";
 import { flightsSideBarT } from "./types";
+import { SearchIcon } from "../../components/Icons";
 import style from "../../../styles/SearchResults.module.scss";
-import { useEffect } from "react";
 
 const FlightsSideBar = (props: flightsSideBarT) => {
   return (
@@ -19,8 +18,14 @@ const FlightsSideBar = (props: flightsSideBarT) => {
           wrapperClass={style.textFieldWrapper}
           suggestionsClass={style.suggestions}
           placeholder="Departure"
-          searchTerm={`${props.cities.from} (${props.searchQuery.from})`}
-          dispatch={() => {}}
+          searchTerm={`${props.searchQuery.from.name}`}
+          dispatch={({ val, IATA }) => {
+            props.dispatch({
+              type: "from",
+              val: val,
+              IATA: IATA || props.searchQuery.from.IATA,
+            });
+          }}
         />
 
         <AirportSearch
@@ -29,28 +34,37 @@ const FlightsSideBar = (props: flightsSideBarT) => {
           inputClass={style.textField}
           wrapperClass={style.textFieldWrapper}
           suggestionsClass={style.suggestions}
-          searchTerm={`${props.cities.to} (${props.searchQuery.to})`}
           placeholder="Destination"
-          dispatch={() => {}}
+          searchTerm={`${props.searchQuery.to.name}`}
+          dispatch={({ val, IATA }) => {
+            props.dispatch({
+              type: "to",
+              val: val,
+              IATA: IATA || props.searchQuery.to.IATA,
+            });
+          }}
         />
 
         <DateInput
           className={`${style.dateRangeWrapper} `}
+          // rangeClass={style.dateRangeWrapper}
           wrapperClass={style.lilSearchField}
-          singleDateClass={style.textField}
+          textFieldClass={style.textField}
           fromVal={props.searchQuery.date}
           toVal={props.searchQuery.returnDate}
           range={true}
-          rangeClass={style.dateRangeWrapper}
           fromLabel="Date"
           toLabel="Return date"
-          dispatch={({ from, to }) => {}}
+          dispatch={({ from, to }) => {
+            if (from) props.dispatch({ type: "from", val: from });
+            if (to) props.dispatch({ type: "to", val: to });
+          }}
         />
         <div className={style.lilSearchField}>
           <InputField
             className={style.textField}
             wrapperClass={style.textFieldWrapper}
-            value={`${props.searchQuery.adults} adults, ${props.searchQuery.childs} children`}
+            value={`${props.searchQuery.adults} adults, ${props.searchQuery.children} children`}
             label="Travellers"
             name="travellers"
           />

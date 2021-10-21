@@ -2,12 +2,13 @@ import { useRouter } from "next/router";
 import FlightsSideBar from "../../src/components/SearchResults/FlightsSideBar";
 import FlightOffers from "../../src/components/SearchResults/FlightOffers";
 import SideBarNav from "../../src/components/SearchResults/SideBarNav";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 import { searchResultsT } from "../../src/components/SearchResults/types";
 import style from "../../styles/SearchResults.module.scss";
 import useIsMobile from "../../src/utils/useIsMobile";
 import FilterAndSort from "../../src/components/FilterAndSort";
 import { fetchAirport } from "../../src/utils/fetchAirportName";
+import reducer from "../../src/components/SearchResults/flightsReducer";
 type searchQueryT = {
   from?: string | string[];
   to?: string | string[];
@@ -18,26 +19,46 @@ type searchQueryT = {
 };
 const SearchResults = (props: searchResultsT) => {
   const [filterModal, setFilterModal] = useState(false);
-  const [searchQuery, setSearchQuery] = useState<searchQueryT>({});
   const isMobile = useIsMobile();
   const router = useRouter();
-  const { from, to, date, returnDate, adults, childs } = router.query;
-  const [cities, setCities] = useState({
-    from: "City",
-    to: "City",
+  const query = router.query;
+  const initial: any = {
+    from: { name: "", IATA: "" },
+    to: { name: "", IATA: "" },
+    date: "",
+    returnDate: "",
+    adults: "1",
+    children: "0",
+  };
+  const [searchTerms, dispatch] = useReducer(reducer, initial);
+
+  const [airports, setAirports] = useState({
+    from: { city: "City", name: "WHAAT" },
+    to: { city: "City", name: "WOOOW" },
   });
   useEffect(() => {
     if (!router.isReady) return;
-    setSearchQuery({ from, to, date, returnDate, adults, childs });
+    dispatch({ type: "pullFromUrl", query: query, val: "" });
+    // console.log(searchTerms);
     (async () => {
       try {
-        if (from && to) {
-          const fromCity = await fetchAirport(from as string);
-          const toCity = await fetchAirport(to as string);
-          if (toCity && fromCity) {
-            setCities({
-              from: fromCity.City,
-              to: toCity.City,
+        if (query.from && query.to) {
+          const fromAirport = await fetchAirport(query.from as string);
+          const toAirport = await fetchAirport(query.from as string);
+          dispatch({
+            type: "from",
+            val: fromAirport!.Name,
+            IATA: searchTerms.from.IATA,
+          });
+          dispatch({
+            type: "to",
+            val: toAirport!.City,
+            IATA: searchTerms.from.IATA,
+          });
+          if (toAirport && fromAirport) {
+            setAirports({
+              from: { city: fromAirport.City, name: fromAirport.Name },
+              to: { city: toAirport.City, name: toAirport.Name },
             });
           }
         }
@@ -45,7 +66,7 @@ const SearchResults = (props: searchResultsT) => {
         console.log(error);
       }
     })();
-  }, [router.isReady, from, to, date, returnDate, adults, childs]);
+  }, [router.isReady]);
   return (
     <div className={style.searchResultsPage}>
       <div className={style.sideBar}>
@@ -59,10 +80,13 @@ const SearchResults = (props: searchResultsT) => {
           closeModal={() => {
             setFilterModal(false);
           }}
-          cities={cities}
-          searchQuery={searchQuery}
+          airports={airports}
+          searchQuery={searchTerms}
           isFullScreen={filterModal}
           isMobile={isMobile}
+          dispatch={({ val, IATA }) =>
+            dispatch({ type: "from", val: val, IATA: IATA })
+          }
         />
       </div>
       <div className={style.searchResults}>
@@ -75,7 +99,7 @@ const SearchResults = (props: searchResultsT) => {
           }}
         />
         {/* <FlightOffers offers={searchResults} /> */}
-        <FlightOffers cities={cities} searchQuery={searchQuery} />
+        <FlightOffers airports={airports} searchQuery={query} />
       </div>
     </div>
   );

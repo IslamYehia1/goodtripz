@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import style from "./SearchForm.module.scss";
 import SearchExtraModal from "../Modal/SearchExtraModal";
 import { PlusIcon, MinusIcon } from "../Icons";
-
+import reducer from "../SearchResults/hotelsReducer";
 const HotelSearchFields = () => {
   const history = useRouter();
   function searchHandler() {
@@ -27,38 +27,7 @@ const HotelSearchFields = () => {
     adults: "1",
     rooms: "1",
   };
-  function reducer(prevState: typeof initial, action: any) {
-    switch (action.type) {
-      case "place":
-        return { ...prevState, place: action.val };
-      case "checkIn":
-        return { ...prevState, checkIn: action.val };
-      case "checkOut":
-        return { ...prevState, checkOut: action.val };
-      case "addAdult":
-        return {
-          ...prevState,
-          adults: (parseInt(prevState.adults) + 1).toString(),
-        };
-      case "removeAdult":
-        return {
-          ...prevState,
-          adults: (parseInt(prevState.adults) - 1).toString(),
-        };
-      case "addRoom":
-        return {
-          ...prevState,
-          adults: (parseInt(prevState.adults) + 1).toString(),
-        };
-      case "removeRoom":
-        return {
-          ...prevState,
-          adults: (parseInt(prevState.adults) - 1).toString(),
-        };
-      default:
-        return prevState;
-    }
-  }
+
   const [searchTerms, dispatch] = useReducer(reducer, initial);
   return (
     <form onSubmit={searchHandler} className={style.hotelSearchFields}>
@@ -128,6 +97,7 @@ const HotelSearchFields = () => {
         <HotelSearch
           label="Going to"
           icon={LocationIcon}
+          className={`${style.aSearchField} ${style.hotelSearchField}`}
           inputClass={style.textField}
           inputWrapperClass={style.textFieldWrapper}
           suggestionsClass={style.suggestions}
@@ -144,12 +114,12 @@ const HotelSearchFields = () => {
           icon={DateIcon}
           range={true}
           // className={style.textField}
-          singleDateClass={style.textField}
+          textFieldClass={style.textField}
           className={` ${style.aSearchField} ${style.flightSearchField} ${style.dateSearchField}`}
           wrapperClass={style.textFieldWrapper}
           dispatch={({ from, to }) => {
-            dispatch({ type: "date", val: from });
-            dispatch({ type: "returnDate", val: to });
+            if (from) dispatch({ type: "checkIn", val: from });
+            if (to) dispatch({ type: "checkOut", val: to });
           }}
         />
         <Button
