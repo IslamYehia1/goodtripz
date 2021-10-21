@@ -168,7 +168,7 @@ const FlightSearchFields = () => {
           toLabel="Return date"
           range={true}
           icon={DateIcon}
-          singleDateClass={style.textField}
+          textFieldClass={style.textField}
           className={` ${style.aSearchField} ${style.flightSearchField} ${style.dateSearchField}`}
           wrapperClass={style.textFieldWrapper}
           dispatch={({ from, to }) => {
