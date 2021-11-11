@@ -27,6 +27,11 @@ const FromDateField = (props: fromPropsType) => {
   }
 
   const inputRef = useRef<DayPickerInput>(null);
+
+  // useEffect(() => {
+  //   if (!props.isFullScreen) inputRef!.current!.getInput().blur();
+  // }, [props.isFullScreen]);
+
   useEffect(() => {
     if (to && !from) {
       inputRef!.current!.getInput().focus();

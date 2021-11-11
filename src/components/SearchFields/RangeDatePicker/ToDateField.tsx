@@ -8,11 +8,14 @@ const { isDayBefore } = DateUtils;
 
 const ToDateField = (props: toPropsType) => {
   const { from, to, lastHoveredDay } = props.state;
+
   useEffect(() => {
-    if (from && !to) {
-      inputRef!.current!.getInput().focus();
-    }
+    if (from && !to) inputRef!.current!.getInput().focus();
   }, [from, to]);
+
+  // useEffect(() => {
+  //   if (!props.isFullScreen) inputRef!.current!.getInput().blur();
+  // }, [props.isFullScreen]);
 
   const inputRef = useRef<DayPickerInput>(null);
   const disabledDays = [{ before: new Date() }, { before: from }] as Modifier[];

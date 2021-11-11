@@ -1,6 +1,6 @@
 import ToDateField from "./ToDateField";
 import FromDateField from "./FromDateField";
-import { useState, useEffect, useReducer } from "react";
+import { useState, useEffect, useReducer, useRef } from "react";
 import { useRouter } from "next/router";
 import style from "../../SearchForm/SearchForm.module.scss";
 import SearchModal from "../../Modal/SearchModal";
@@ -33,6 +33,7 @@ type stateType = {
 const RangeDatePicker = (props: propsType) => {
   const today = new Date();
   const router = useRouter();
+  const wrapperRef = useRef<any>(null);
   const [fullScreen, setFullScreen] = useState(false);
   function reducer(prevState: any, action: ACTIONTYPE) {
     switch (action.type) {
@@ -65,6 +66,12 @@ const RangeDatePicker = (props: propsType) => {
     dispatch({ type: "fromURL" });
   }, [router.isReady]);
 
+  useEffect(() => {
+    if (state.from && state.to) {
+      setFullScreen(false);
+    }
+  }, [state.from, state.to]);
+
   return (
     <SearchModal
       closeModal={() => {
@@ -79,8 +86,10 @@ const RangeDatePicker = (props: propsType) => {
         onFocus={() => {
           if (window.innerWidth <= 650) setFullScreen(true);
         }}
+        ref={wrapperRef}
       >
         <FromDateField
+          isFullScreen={fullScreen}
           wrapperClass={props.wrapperClass}
           label={props.fromLabel}
           icon={props.icon}
@@ -97,6 +106,7 @@ const RangeDatePicker = (props: propsType) => {
         {/*Only show the second date input if we want a range date picker */}
         {props.range && (
           <ToDateField
+            isFullScreen={fullScreen}
             wrapperClass={props.wrapperClass}
             singleDateClass={props.textFieldClass}
             label={props.toLabel}
