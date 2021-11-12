@@ -6,7 +6,7 @@ import style from "./SearchForm.module.scss";
 import homeStyle from "../../../styles/Home.module.scss";
 
 const SearchForm = () => {
-  const [formState, setFormState] = useState("hotel");
+  const [formState, setFormState] = useState("flight");
   return (
     <div id={homeStyle.searchForm}>
       <div className={style.form}>
