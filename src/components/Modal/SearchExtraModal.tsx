@@ -2,7 +2,7 @@ import Modal from "./Modal";
 import Button from "../Button/Button";
 import { LeftArrow } from "../Icons";
 import { useEffect, useState } from "react";
-
+import style from "./Modal.module.scss";
 type propsType = {
   isOpen: Boolean;
   className: string;
@@ -23,7 +23,7 @@ const SearchExtraModal = (props: propsType) => {
       {isOpen && (
         <Button
           handleClick={() => props.closeModal()}
-          className="button modalCloseBtn"
+          className={style.modalCloseBtn}
           icon={LeftArrow}
         />
       )}

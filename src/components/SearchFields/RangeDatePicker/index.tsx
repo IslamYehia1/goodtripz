@@ -1,10 +1,16 @@
+/* Range date picker maintains a local state that 
+ gets an update from the global state when router.isReady */
 import ToDateField from "./ToDateField";
 import FromDateField from "./FromDateField";
-import { useState, useEffect, useReducer, useRef } from "react";
+import { useState, useEffect, useReducer, useRef, RefObject } from "react";
 import { useRouter } from "next/router";
-import style from "../../SearchForm/SearchForm.module.scss";
+import style from "../../HomeSearchForm/SearchForm.module.scss";
 import SearchModal from "../../Modal/SearchModal";
+import useIsMobile from "../../../utils/useIsMobile";
+import Button from "../../Button/Button";
 type propsType = {
+  isActive: string;
+  setActiveField: any;
   fromVal?: string;
   toVal?: string;
   className?: string;
@@ -20,7 +26,7 @@ type propsType = {
   dispatch: ({}: any) => void;
 };
 type ACTIONTYPE = {
-  type: "fromURL" | "to" | "from" | "lastHoveredDay";
+  type: "pullFromGlobalState" | "to" | "from" | "lastHoveredDay";
   from?: Date;
   to?: Date;
   lastHoveredDay?: Date;
@@ -35,9 +41,13 @@ const RangeDatePicker = (props: propsType) => {
   const router = useRouter();
   const wrapperRef = useRef<any>(null);
   const [fullScreen, setFullScreen] = useState(false);
+  const isMobile = useIsMobile();
+
+  const [isFocused, setIsFocused] = useState("");
+
   function reducer(prevState: any, action: ACTIONTYPE) {
     switch (action.type) {
-      case "fromURL":
+      case "pullFromGlobalState":
         if (props.fromVal && props.toVal) {
           return {
             from: new Date(props.fromVal),
@@ -60,10 +70,22 @@ const RangeDatePicker = (props: propsType) => {
     to: undefined,
     lastHoveredDay: undefined,
   });
+  useEffect(() => {
+    if (!props.setActiveField) return;
+    if (state.to && !state.from) {
+      props.setActiveField("from");
+    }
+    if (state.from && !state.to) {
+      props.setActiveField("to");
+    }
+    if (state.from && state.to) {
+      props.setActiveField("");
+    }
+  }, [state.from, state.to]);
 
   useEffect(() => {
     if (!router.isReady) return;
-    dispatch({ type: "fromURL" });
+    dispatch({ type: "pullFromGlobalState" });
   }, [router.isReady]);
 
   useEffect(() => {
@@ -76,19 +98,29 @@ const RangeDatePicker = (props: propsType) => {
     <SearchModal
       closeModal={() => {
         setFullScreen(false);
+        props.setActiveField("");
       }}
       isFullScreen={fullScreen}
       className={style.modal}
     >
       <div
         className={props.className}
-        onClick={props.onClick}
         onFocus={() => {
-          if (window.innerWidth <= 650) setFullScreen(true);
+          if (window.innerWidth <= 650) {
+            setFullScreen(true);
+          }
         }}
+        onClick={props.onClick}
         ref={wrapperRef}
       >
         <FromDateField
+          handleFocus={() => {
+            props.setActiveField("from");
+            if (isMobile) setFullScreen(true);
+          }}
+          isFocused={props.isActive === "from"}
+          setFocused={props.setActiveField}
+          isMobile={isMobile}
           isFullScreen={fullScreen}
           wrapperClass={props.wrapperClass}
           label={props.fromLabel}
@@ -106,7 +138,14 @@ const RangeDatePicker = (props: propsType) => {
         {/*Only show the second date input if we want a range date picker */}
         {props.range && (
           <ToDateField
+            handleFocus={() => {
+              props.setActiveField("to");
+              if (isMobile) setFullScreen(true);
+            }}
             isFullScreen={fullScreen}
+            isMobile={isMobile}
+            isFocused={props.isActive === "to"}
+            setFocused={props.setActiveField}
             wrapperClass={props.wrapperClass}
             singleDateClass={props.textFieldClass}
             label={props.toLabel}

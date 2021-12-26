@@ -4,6 +4,10 @@ type actionT = {
 };
 
 export type propsType = {
+  isActive?: Boolean;
+  setActiveField?: any;
+  activate?: any;
+  deactivate?: any;
   label: string;
   icon?: string;
   placeholder: string;

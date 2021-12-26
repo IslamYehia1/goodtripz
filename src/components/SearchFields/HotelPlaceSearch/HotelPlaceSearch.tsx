@@ -4,16 +4,14 @@ import Suggestions from "../../Suggestions/Suggestions";
 import { hotelAutoComplete as fetchSuggestions } from "../../../utils/fetchAutocomplete";
 import { propsType, autocompleteT } from "./types";
 import { SearchModal } from "../../Modal/";
-import style from "../../SearchForm/SearchForm.module.scss";
+import style from "../../HomeSearchForm/SearchForm.module.scss";
 import useIsMobile from "../../../utils/useIsMobile";
 import { isSuggestionClicked } from "../../../utils";
 const HotelSearch = (props: propsType) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [suggestions, setSuggestions] = useState<autocompleteT>([]);
   const [fullScreen, setFullScreen] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
   const isMobile = useIsMobile();
-  // console.log(isMobile);
   useEffect(() => {
     (async () => {
       setSuggestions(await fetchSuggestions(props.searchTerm));
@@ -23,17 +21,17 @@ const HotelSearch = (props: propsType) => {
     if (props.value) props.dispatch(props.value);
   }, [props.value]);
   useEffect(() => {
-    if (isFocused && isMobile) {
+    if (props.isActive && isMobile) {
       setShowSuggestions(true);
       setFullScreen(true);
-    } else if (isFocused) {
+    } else if (props.isActive) {
       setShowSuggestions(true);
     }
-    if (!isFocused) {
+    if (!props.isActive) {
       setShowSuggestions(false);
       setFullScreen(false);
     }
-  }, [isFocused, isMobile]);
+  }, [props.isActive, isMobile]);
   return (
     <SearchModal
       closeModal={() => {
@@ -44,15 +42,15 @@ const HotelSearch = (props: propsType) => {
     >
       <div
         onFocus={() => {
-          setIsFocused(true);
+          props.activate();
         }}
         onBlur={(e) => {
-          if (!isSuggestionClicked(e, props.suggestionsClass))
-            setShowSuggestions(false);
+          if (!isSuggestionClicked(e, props.suggestionsClass)) setShowSuggestions(false);
         }}
         className={props.className}
       >
         <InputField
+          isFocused={props.isActive}
           placeholder="Hotel location"
           label={props.label}
           className={props.inputClass}
@@ -60,15 +58,13 @@ const HotelSearch = (props: propsType) => {
           icon={props.icon}
           name="hotelLocation"
           value={props.searchTerm}
-          onChange={(e) =>
-            props.dispatch({ type: "place", val: e.target.value })
-          }
+          onChange={(e) => props.dispatch({ type: "place", val: e.target.value })}
         />
         {showSuggestions && (
           <Suggestions
             onSuggestionClick={({ suggestion }) => {
               props.dispatch({ type: "place", val: suggestion });
-              setIsFocused(false);
+              props.deactivate();
             }}
             className={props.suggestionsClass}
             suggestions={suggestions}

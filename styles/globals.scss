@@ -1,42 +1,42 @@
 @import "./variables.scss";
 #__next {
-    display: flex;
-    z-index: 1;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    max-width: 100%;
-    width: 100%;
+  display: flex;
+  z-index: 1;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  max-width: 100%;
+  width: 100%;
 }
 * {
-    background: none;
-    border: none;
-    padding: 0;
-    box-sizing: border-box;
+  background: none;
+  border: none;
+  padding: 0;
+  box-sizing: border-box;
 }
 input {
-    &:focus {
-        outline: none;
-    }
+  &:focus {
+    outline: none;
+  }
 }
 html,
 body {
-    padding: 0;
-    margin: 0;
-    background-color: $background;
-    color: $dark;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100vw;
-    // max-width: calc((var(--vw, 1vw) * 100));
-    overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+  background-color: $background;
+  color: $dark;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  // max-width: calc((var(--vw, 1vw) * 100));
+  overflow-x: hidden;
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 a {
-    text-decoration: none;
-    color: $dark;
+  text-decoration: none;
+  color: $dark;
 }

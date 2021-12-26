@@ -28,19 +28,46 @@
   .recommendation {
     width: 100% !important;
   }
-  .travellers {
+  // .travellers {
+  //   position: relative;
+  //   top: 50px;
+  // }
+  .searchFilterWrapper {
     position: relative;
-    top: 50px;
+    width: 100%;
+    height: 60px;
+    background-color: white;
+    // left: 55px;
+    .button {
+      position: relative;
+      left: 60px;
+      top: 20px;
+    }
+
+    & > button svg {
+      display: none;
+    }
   }
   .optionsWindow {
-    top: 20px;
+    font-size: 14px;
+    top: 70px;
+    width: 95%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: min-content;
+
+    ul {
+      width: 100%;
+    }
   }
 }
 .travellers {
   position: relative;
 }
 .optionsWindow {
-  @include semiBoldFont;
+  @include normalFont;
+  font-size: 14px;
   color: $dark;
   position: absolute;
   bottom: 100%;
@@ -49,6 +76,7 @@
   z-index: 2;
   box-shadow: 0px 4px 46px 4px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
+
   ul {
     padding: 10px 30px;
     list-style: none;
@@ -64,7 +92,6 @@
     }
   }
 }
-@import "../../../styles/variables.scss";
 .form {
   box-shadow: 0px 4px 60px 6px rgba(0, 0, 0, 0.04);
   border-radius: 0px 0 10px 10px;
@@ -256,7 +283,7 @@
   }
   .options {
     justify-content: flex-start;
-    & > span {
+    & > div {
       // width: 30%;
       padding: 2vw 4vw 2vw 6%;
       background-color: rgb(79, 150, 247, 0.1);

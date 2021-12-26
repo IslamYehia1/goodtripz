@@ -1,21 +1,24 @@
 import { DateUtils, Modifier } from "react-day-picker";
 import DayPickerInput from "react-day-picker/DayPickerInput";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, forwardRef } from "react";
 import { toPropsType } from "./propTypes";
 import InputField from "../../InputField/InputField";
 import style from "./RangeDatePicker.module.scss";
+
 const { isDayBefore } = DateUtils;
 
 const ToDateField = (props: toPropsType) => {
   const { from, to, lastHoveredDay } = props.state;
 
   useEffect(() => {
-    if (from && !to) inputRef!.current!.getInput().focus();
-  }, [from, to]);
-
-  // useEffect(() => {
-  //   if (!props.isFullScreen) inputRef!.current!.getInput().blur();
-  // }, [props.isFullScreen]);
+    if (props.isFocused) {
+      inputRef!.current!.getInput().focus();
+      if (props.isMobile) inputRef!.current!.showDayPicker();
+    }
+    if (!props.isFocused) {
+      inputRef!.current!.getInput().blur();
+    }
+  }, [props.isFocused]);
 
   const inputRef = useRef<DayPickerInput>(null);
   const disabledDays = [{ before: new Date() }, { before: from }] as Modifier[];
@@ -58,6 +61,13 @@ const ToDateField = (props: toPropsType) => {
       });
     }
   }
+  function handleFocus() {
+    if (props.isFullScreen) inputRef.current?.showDayPicker();
+  }
+  // function handleBlur() {
+  //   if (props.isFullScreen) inputRef.current?.showDayPicker();
+  // }
+
   return (
     <InputField
       className={props.singleDateClass}
@@ -70,7 +80,11 @@ const ToDateField = (props: toPropsType) => {
       {" "}
       <DayPickerInput
         inputProps={{
+          readonly: "readonly",
           name: "toDateInput",
+          onFocus: () => {
+            props.handleFocus();
+          },
         }}
         ref={inputRef}
         value={to}

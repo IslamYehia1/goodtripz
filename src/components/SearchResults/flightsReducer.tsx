@@ -1,4 +1,5 @@
 export type searchTermsT = {
+  type: string;
   from: any;
   to: any;
   date: string;
@@ -22,6 +23,7 @@ export default function reducer(
       const { from, to, date, returnDate, adults, children } = action.query;
       if (from && to && date) {
         return {
+          type: returnDate ? `oneWay` : `roundTrip`,
           from: { IATA: from },
           to: { IATA: to },
           date: `${date}`,
@@ -32,7 +34,11 @@ export default function reducer(
       } else {
         return prevState;
       }
-
+    case "flightType":
+      return {
+        ...prevState,
+        type: action.val,
+      };
     case "from":
       return {
         ...prevState,

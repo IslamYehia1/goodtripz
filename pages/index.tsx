@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { useEffect } from "react";
 import style from "../styles/Home.module.scss";
 import { RightArrow } from "../src/components/Icons";
-import SearchForm from "../src/components/SearchForm";
+import SearchForm from "../src/components/HomeSearchForm";
 import Card from "../src/components/Card/Card";
 import Article from "../src/components/Article/Article";
 import image1 from "../public/img/image1.jpg";

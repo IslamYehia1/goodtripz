@@ -1,4 +1,7 @@
 export type propsType = {
+  activate: any;
+  deactivate: any;
+  isActive: Boolean;
   inputClass: string;
   inputWrapperClass: string;
   suggestionsClass: string;

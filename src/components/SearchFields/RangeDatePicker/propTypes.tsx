@@ -13,11 +13,12 @@ export type toPropsType = {
   wrapperClass?: string;
   singleDateClass?: string;
   setState: Dispatch<any>;
-  onDayChange: (
-    day: Date,
-    DayModifiers: DayModifiers,
-    dayPickerInput: DayPickerInput
-  ) => void;
+  handleFocus?: any;
+  isFocused?: Boolean;
+  isMobile: Boolean;
+  setFocused: any;
+
+  onDayChange: (day: Date, DayModifiers: DayModifiers, dayPickerInput: DayPickerInput) => void;
 };
 export type fromPropsType = {
   state: {
@@ -26,14 +27,14 @@ export type fromPropsType = {
   today: Date;
   setState: Dispatch<any>;
   isFullScreen: Boolean;
+  handleFocus?: any;
   className?: string;
   icon?: string;
   label?: string;
   wrapperClass?: string;
+  isFocused?: Boolean;
+  isMobile: Boolean;
+  setFocused: any;
   singleDateClass?: string;
-  onDayChange: (
-    day: Date,
-    DayModifiers: DayModifiers,
-    dayPickerInput: DayPickerInput
-  ) => void;
+  onDayChange: (day: Date, DayModifiers: DayModifiers, dayPickerInput: DayPickerInput) => void;
 };

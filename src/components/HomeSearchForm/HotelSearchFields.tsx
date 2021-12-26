@@ -4,53 +4,57 @@ import { SearchIcon } from "../Icons";
 import { SearchModal } from "../Modal";
 import Image from "next/image";
 import HotelSearch from "../SearchFields/HotelPlaceSearch/HotelPlaceSearch";
-import { useState, useReducer } from "react";
+import React, { useState, useReducer } from "react";
 import { LocationIcon, DateIcon, ExpandIcon } from "../Icons";
 import { useRouter } from "next/router";
 import style from "./SearchForm.module.scss";
 import SearchExtraModal from "../Modal/SearchExtraModal";
 import { PlusIcon, MinusIcon } from "../Icons";
 import reducer from "../SearchResults/hotelsReducer";
+import SearchFilter from "./SearchFilter";
 const HotelSearchFields = () => {
   const history = useRouter();
-  function searchHandler() {
+  function searchHandler(e: React.SyntheticEvent) {
+    e.preventDefault();
     history.push(
       `/searchResults/hotels?place=${searchTerms.place}&checkIn=${searchTerms.checkIn}&checkOut=${searchTerms.checkOut}`
     );
   }
-  const [optionWindow, setOptionWindow] = useState("");
 
   const initial = {
     place: "",
     checkIn: "",
     checkOut: "",
     adults: "1",
+    children: "0",
     rooms: "1",
   };
+  const [activeField, setActiveField] = useState<"placeSearch" | "checkInDate" | "checkOutDate" | "travellers" | "">(
+    ""
+  );
 
   const [searchTerms, dispatch] = useReducer(reducer, initial);
   return (
     <form onSubmit={searchHandler} className={style.hotelSearchFields}>
       <div className={style.options}>
-        <SearchExtraModal
-          isOpen={optionWindow === "travellers"}
-          className={style.modal}
-          closeModal={() => {
-            setOptionWindow("");
-          }}
+        <SearchFilter
+          label={`${parseInt(searchTerms.adults) + parseInt(searchTerms.children)} Travellers`}
+          expand={() => setActiveField("travellers")}
+          shrink={() => setActiveField("")}
+          isExpanded={activeField === "travellers"}
         >
-          <span className={style.travellers}>
+          <div className={style.travellers}>
             <Button
               icon={ExpandIcon}
               className={style.button}
               handleClick={() => {
-                if (optionWindow === "travellers") setOptionWindow("");
-                else setOptionWindow("travellers");
+                if (activeField === "travellers") setActiveField("");
+                else setActiveField("travellers");
               }}
             >
               1 Traveller
             </Button>
-            {optionWindow === "travellers" && (
+            {activeField === "travellers" && (
               <div className={style.optionsWindow}>
                 <ul>
                   <li>
@@ -90,11 +94,14 @@ const HotelSearchFields = () => {
                 </ul>
               </div>
             )}
-          </span>
-        </SearchExtraModal>
+          </div>
+        </SearchFilter>
       </div>
       <div className={style.fields}>
         <HotelSearch
+          isActive={activeField === "placeSearch"}
+          activate={() => setActiveField("placeSearch")}
+          deactivate={() => setActiveField("")}
           label="Going to"
           icon={LocationIcon}
           className={`${style.aSearchField} ${style.hotelSearchField}`}
@@ -109,6 +116,8 @@ const HotelSearchFields = () => {
         />
 
         <DateInput
+          isActive={activeField}
+          setActiveField={setActiveField}
           fromLabel="Check in"
           toLabel="Check out"
           icon={DateIcon}
@@ -122,11 +131,7 @@ const HotelSearchFields = () => {
             if (to) dispatch({ type: "checkOut", val: to });
           }}
         />
-        <Button
-          className={`${style.button} ${style.searchButton}`}
-          handleClick={searchHandler}
-          icon={SearchIcon}
-        >
+        <Button className={`${style.button} ${style.searchButton}`} handleClick={searchHandler} icon={SearchIcon}>
           <SearchIcon />
         </Button>
       </div>

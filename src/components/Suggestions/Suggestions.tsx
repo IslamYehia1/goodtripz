@@ -23,7 +23,7 @@ const Suggestions = (props: propsType) => {
   ));
   return (
     // <div>
-    <ul className={`${style.suggestions} ${props.className}`} tabIndex={0}>
+    <ul className={`${style.suggestions} ${props.className}`} tabIndex={1}>
       {suggestions}
     </ul>
     // </div>

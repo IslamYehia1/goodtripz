@@ -1,67 +1,66 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, RefObject } from "react";
 import { airportAutocomplete as fetchSuggestions } from "../../../utils/fetchAutocomplete";
 import Suggestions from "../../Suggestions/Suggestions";
 import InputField from "../../InputField/InputField";
-import style from "../../SearchForm/SearchForm.module.scss";
+import style from "../../HomeSearchForm/SearchForm.module.scss";
 import { propsType, autocompleteT } from "./types";
 import { SearchModal } from "../../Modal";
 import useIsMobile from "../../../utils/useIsMobile";
 import { isSuggestionClicked, throttle } from "../../../utils";
-
 const AirportSearch = (props: propsType) => {
   const [suggestions, setSuggestions] = useState<autocompleteT>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  // Whenever the Input is focused && isMobile we need to trigger the SearchModal,
   const [fullScreen, setFullScreen] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
   const isMobile = useIsMobile();
+  useEffect(() => {
+    if (!isMobile) {
+      setFullScreen(false);
+    }
+    if (props.isActive && isMobile) {
+      setFullScreen(true);
+      setShowSuggestions(true);
+    } else if (props.isActive) {
+      setShowSuggestions(true);
+    }
+
+    if (!props.isActive) {
+      setShowSuggestions(false);
+      setFullScreen(false);
+    }
+  }, [props.isActive, isMobile]);
 
   const fetchAutocomplete = async (searchTerm: any) => {
     const results = await fetchSuggestions(searchTerm);
     setSuggestions(results);
   };
-  const autocomplete = useCallback(throttle(200, fetchAutocomplete), []); // eslint-disable-line react-hooks/exhaustive-deps
+  // const autocomplete = useCallback(throttle(200, fetchAutocomplete), []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    console.log(props.searchTerm);
-    if (props.searchTerm) autocomplete(props.searchTerm);
-  }, [autocomplete, props.searchTerm]);
+    if (props.searchTerm) fetchAutocomplete(props.searchTerm);
+  }, [props.searchTerm]);
   useEffect(() => {
     if (props.value) {
       props.dispatch({ val: props.value });
     }
   }, [props.value]);
-  useEffect(() => {
-    if (!isMobile) {
-      setFullScreen(false);
-    }
-    if (isFocused && isMobile) {
-      setFullScreen(true);
-      setShowSuggestions(true);
-    } else if (isFocused) {
-      setShowSuggestions(true);
-    }
-    if (!isFocused) {
-      setShowSuggestions(false);
-      setFullScreen(false);
-    }
-  }, [isFocused, isMobile]);
 
   return (
     <SearchModal
       className={style.modal}
       isFullScreen={fullScreen}
       closeModal={() => {
-        setIsFocused(false);
+        props.deactivate();
       }}
     >
       <div
         className={props.className}
         onFocus={() => {
-          setIsFocused(true);
+          props.activate();
         }}
         onBlur={(e) => {
           if (!isMobile && !isSuggestionClicked(e, props.suggestionsClass)) {
-            setIsFocused(false);
+            props.deactivate();
           }
         }}
       >
@@ -74,12 +73,14 @@ const AirportSearch = (props: propsType) => {
                 val: suggestion,
                 IATA: identifier,
               });
-              setIsFocused(false);
+              props.deactivate();
             }}
           />
         )}
         <InputField
+          isFocused={props.isActive}
           label={props.label}
+          autoComplete="off"
           className={props.inputClass}
           wrapperClass={props.wrapperClass}
           icon={props.icon}
