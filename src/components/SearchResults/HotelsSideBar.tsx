@@ -1,14 +1,21 @@
 import HotelSearch from "../../components/SearchFields/HotelPlaceSearch/HotelPlaceSearch";
-import { FiltersModal, SearchModal } from "../../components/Modal";
+import { FiltersModal } from "../../components/Modal";
 import DateInput from "../../components/SearchFields/RangeDatePicker";
 import style from "../../../styles/SearchResults.module.scss";
+import { useState } from "react";
 import { hotelsSideBarT } from "./types";
 
 const HotelsSideBar = (props: hotelsSideBarT) => {
+  const [activeField, setActiveField] = useState<"placeSearch" | "checkInDate" | "checkOutDate" | "travellers" | "">(
+    ""
+  );
   return (
     <>
       <div className={`${style.sideSection} ${style.searchTerms}`}>
         <HotelSearch
+          isActive={activeField === "placeSearch"}
+          activate={() => setActiveField("placeSearch")}
+          deactivate={() => setActiveField("")}
           inputWrapperClass={style.textFieldWrapper}
           label="Going to"
           // value={`${props.searchTerms.place}`}
@@ -18,20 +25,20 @@ const HotelsSideBar = (props: hotelsSideBarT) => {
           suggestionsClass={style.suggetionsClass}
           dispatch={props.dispatch}
         />
-        <SearchModal className="modal">
-          <DateInput
-            range={true}
-            dispatch={({ from, to }) => {
-              if (from) props.dispatch({ type: "checkIn", val: from });
-              if (to) props.dispatch({ type: "checkOut", val: to });
-            }}
-            className={style.dateRangeWrapper}
-            wrapperClass={style.lilSearchField}
-            textFieldClass={style.textField}
-            fromLabel="Check in"
-            toLabel="Check out"
-          />
-        </SearchModal>
+        <DateInput
+          isActive={activeField}
+          setActiveField={setActiveField}
+          range={true}
+          dispatch={({ from, to }) => {
+            if (from) props.dispatch({ type: "checkIn", val: from });
+            if (to) props.dispatch({ type: "checkOut", val: to });
+          }}
+          className={style.dateRangeWrapper}
+          wrapperClass={style.lilSearchField}
+          textFieldClass={style.textField}
+          fromLabel="Check in"
+          toLabel="Check out"
+        />
       </div>
       <FiltersModal
         closeModal={() => {

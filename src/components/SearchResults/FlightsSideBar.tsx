@@ -6,12 +6,23 @@ import Button from "../../components/Button/Button";
 import { flightsSideBarT } from "./types";
 import { SearchIcon } from "../../components/Icons";
 import style from "../../../styles/SearchResults.module.scss";
+import { useState } from "react";
 
 const FlightsSideBar = (props: flightsSideBarT) => {
+  const [activeField, setActiveField] = useState<
+    "departure" | "arrival" | "date" | "returnDate" | "travellersFilter" | "flightTypeFilter" | ""
+  >("");
   return (
     <>
       <div className={`${style.sideSection} ${style.searchTerms}`}>
         <AirportSearch
+          isActive={activeField === "departure"}
+          activate={() => {
+            setActiveField("departure");
+          }}
+          deactivate={() => {
+            setActiveField("");
+          }}
           label="From"
           className={style.lilSearchField}
           inputClass={style.textField}
@@ -29,6 +40,13 @@ const FlightsSideBar = (props: flightsSideBarT) => {
         />
 
         <AirportSearch
+          isActive={activeField === "arrival"}
+          activate={() => {
+            setActiveField("arrival");
+          }}
+          deactivate={() => {
+            setActiveField("");
+          }}
           label="To"
           className={style.lilSearchField}
           inputClass={style.textField}
@@ -47,7 +65,8 @@ const FlightsSideBar = (props: flightsSideBarT) => {
 
         <DateInput
           className={`${style.dateRangeWrapper} `}
-          // rangeClass={style.dateRangeWrapper}
+          isActive={activeField}
+          setActiveField={setActiveField}
           wrapperClass={style.lilSearchField}
           textFieldClass={style.textField}
           fromVal={props.searchQuery.date}
@@ -90,12 +109,7 @@ const FlightsSideBar = (props: flightsSideBarT) => {
           <>
             <div className={`${style.sideSection} ${style.priceRange}`}>
               <span>Price range</span>
-              <input
-                type="range"
-                min="1"
-                max="100"
-                className={style.priceSlider}
-              />
+              <input type="range" min="1" max="100" className={style.priceSlider} />
             </div>
             <div className={`${style.sideSection} ${style.addExtra}`}>
               <div className={`${style.addHotel}`}>
@@ -108,11 +122,7 @@ const FlightsSideBar = (props: flightsSideBarT) => {
               </div>
             </div>
             <div>
-              <Button
-                handleClick={() => {}}
-                className={`${style.button} ${style.updateSearchBtn}`}
-                icon={SearchIcon}
-              >
+              <Button handleClick={() => {}} className={`${style.button} ${style.updateSearchBtn}`} icon={SearchIcon}>
                 Update
               </Button>
             </div>

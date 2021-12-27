@@ -1,14 +1,11 @@
 import Button from "../Button/Button";
 import DateInput from "../SearchFields/RangeDatePicker";
 import { SearchIcon } from "../Icons";
-import { SearchModal } from "../Modal";
-import Image from "next/image";
 import HotelSearch from "../SearchFields/HotelPlaceSearch/HotelPlaceSearch";
 import React, { useState, useReducer } from "react";
 import { LocationIcon, DateIcon, ExpandIcon } from "../Icons";
 import { useRouter } from "next/router";
 import style from "./SearchForm.module.scss";
-import SearchExtraModal from "../Modal/SearchExtraModal";
 import { PlusIcon, MinusIcon } from "../Icons";
 import reducer from "../SearchResults/hotelsReducer";
 import SearchFilter from "./SearchFilter";
