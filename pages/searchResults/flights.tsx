@@ -8,7 +8,7 @@ import style from "../../styles/SearchResults.module.scss";
 import useIsMobile from "../../src/utils/useIsMobile";
 import FilterAndSort from "../../src/components/FilterAndSort";
 import { fetchAirport } from "../../src/utils/fetchAirportName";
-import reducer from "../../src/components/SearchResults/flightsReducer";
+import reducer from "../../src/utils/flightsSearchReducer";
 type searchQueryT = {
   from?: string | string[];
   to?: string | string[];
@@ -84,9 +84,7 @@ const SearchResults = (props: searchResultsT) => {
           searchQuery={searchTerms}
           isFullScreen={filterModal}
           isMobile={isMobile}
-          dispatch={({ val, IATA }) =>
-            dispatch({ type: "from", val: val, IATA: IATA })
-          }
+          dispatch={({ val, IATA }) => dispatch({ type: "from", val: val, IATA: IATA })}
         />
       </div>
       <div className={style.searchResults}>

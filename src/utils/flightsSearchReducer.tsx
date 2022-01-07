@@ -7,17 +7,18 @@ export type searchTermsT = {
   adults: any;
   children: any;
 };
-type actionT = {
-  type: string;
-  val: string;
-  IATA?: string;
-  query?: any;
-};
+type actionT =
+  | {
+      type: string;
+      val: string;
+      IATA?: string;
+      query?: any;
+    }
+  | {
+      type: "addAdult" | "removeAdult" | "addChild" | "removeChild";
+    };
 // const { from, to, date, returnDate, adults, children } = useRouter().query;
-export default function reducer(
-  prevState: searchTermsT,
-  action: actionT
-): searchTermsT {
+export default function reducer(prevState: searchTermsT, action: actionT): searchTermsT {
   switch (action.type) {
     case "pullFromUrl":
       const { from, to, date, returnDate, adults, children } = action.query;

@@ -7,7 +7,7 @@ type propsType = {
   isOpen: Boolean;
   className: string;
   children: React.ReactNode;
-  closeModal: () => void;
+  closeModal?: () => void;
 };
 const SearchExtraModal = (props: propsType) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,13 +20,7 @@ const SearchExtraModal = (props: propsType) => {
   }, [props.isOpen]);
   return (
     <Modal isOpen={isOpen} className={props.className}>
-      {isOpen && (
-        <Button
-          handleClick={() => props.closeModal()}
-          className={style.modalCloseBtn}
-          icon={LeftArrow}
-        />
-      )}
+      {/* {isOpen && <Button handleClick={() => props.closeModal()} className={style.modalCloseBtn} icon={LeftArrow} />} */}
       {props.children}
     </Modal>
   );

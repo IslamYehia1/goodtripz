@@ -1,5 +1,5 @@
 import AirportSearch from "../../components/SearchFields/FlightAirportSearch/AirportSearch";
-import DateInput from "../../components/SearchFields/RangeDatePicker";
+import DateInput from "../RangeDatePicker";
 import { FiltersModal } from "../../components/Modal";
 import InputField from "../../components/InputField/InputField";
 import Button from "../../components/Button/Button";
@@ -122,7 +122,11 @@ const FlightsSideBar = (props: flightsSideBarT) => {
               </div>
             </div>
             <div>
-              <Button handleClick={() => {}} className={`${style.button} ${style.updateSearchBtn}`} icon={SearchIcon}>
+              <Button
+                handleClick={() => {}}
+                className={`${style.button} ${style.updateSearchBtn}`}
+                icon={SearchIcon}
+              >
                 Update
               </Button>
             </div>

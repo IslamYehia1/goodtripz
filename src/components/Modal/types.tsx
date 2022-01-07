@@ -1,14 +1,14 @@
 export type modalProps = {
   isOpen?: Boolean;
-  className: string;
+  className?: string;
   onFocus?: () => void;
   onClick?: () => void;
   altClassName?: string;
 };
 export type searchModalProps = {
   // isOpen?: Boolean;
-  className: string;
-  children: React.ReactNode;
+  className?: string;
+  children?: React.ReactNode;
   altClassName?: string;
   openWindow?: () => void;
   openOnFocus?: Boolean;

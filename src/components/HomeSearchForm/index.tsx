@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Button from "../Button/Button";
-import FlightSearchFields from "./FlightSearchFields";
-import HotelSearchFields from "./HotelSearchFields";
+import FlightSearchFields from "./Flights/FlightSearchFields";
+import HotelSearchFields from "./Hotels/HotelSearchFields";
 import style from "./SearchForm.module.scss";
 import homeStyle from "../../../styles/Home.module.scss";
-
+import { FlightsProvider } from "./FlightsContext";
+import { HotelSearchProvider } from "./HotelsContext";
 const SearchForm = () => {
   const [formState, setFormState] = useState("flight");
   return (
@@ -57,8 +58,16 @@ const SearchForm = () => {
           </span>
         </div>
         <div className={style.searchFields}>
-          {formState === "flight" && <FlightSearchFields />}
-          {formState === "hotel" && <HotelSearchFields />}
+          {formState === "flight" && (
+            <FlightsProvider>
+              <FlightSearchFields />
+            </FlightsProvider>
+          )}
+          {formState === "hotel" && (
+            <HotelSearchProvider>
+              <HotelSearchFields />
+            </HotelSearchProvider>
+          )}
         </div>
       </div>
     </div>

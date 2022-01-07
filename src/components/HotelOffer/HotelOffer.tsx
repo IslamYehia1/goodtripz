@@ -10,8 +10,10 @@ const HotelOffer = (props: propsType) => {
         {props.picture && (
           <Image
             // layout="responsive"
+            quality="100"
             width="100%"
             height="100%"
+            layout="responsive"
             className={style.img}
             src={props.picture}
             alt="The room"

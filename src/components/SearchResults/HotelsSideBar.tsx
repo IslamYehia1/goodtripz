@@ -1,14 +1,14 @@
 import HotelSearch from "../../components/SearchFields/HotelPlaceSearch/HotelPlaceSearch";
 import { FiltersModal } from "../../components/Modal";
-import DateInput from "../../components/SearchFields/RangeDatePicker";
+import DateInput from "../RangeDatePicker";
 import style from "../../../styles/SearchResults.module.scss";
 import { useState } from "react";
 import { hotelsSideBarT } from "./types";
 
 const HotelsSideBar = (props: hotelsSideBarT) => {
-  const [activeField, setActiveField] = useState<"placeSearch" | "checkInDate" | "checkOutDate" | "travellers" | "">(
-    ""
-  );
+  const [activeField, setActiveField] = useState<
+    "placeSearch" | "checkInDate" | "checkOutDate" | "travellers" | ""
+  >("");
   return (
     <>
       <div className={`${style.sideSection} ${style.searchTerms}`}>

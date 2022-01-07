@@ -5,19 +5,22 @@ import "../src/components/NavBar/NavBar";
 import "../styles/RangeDatePicker.scss";
 import NavBar from "../src/components/NavBar/NavBar";
 import { useRouter } from "next/router";
+import UIProvider from "../src/components/UI";
 function MyApp({ Component, pageProps }: AppProps) {
-  const [searchState, steSearchState] = useState("flights");
+  const [searchState, setSearchState] = useState("flights");
   const router = useRouter();
   return (
     <>
-      <NavBar />
-      <Component
-        setSearchState={(newState: string) => {
-          steSearchState(newState);
-        }}
-        searchState={searchState}
-        {...pageProps}
-      />
+      <UIProvider>
+        <NavBar />
+        <Component
+          setSearchState={(newState: string) => {
+            setSearchState(newState);
+          }}
+          searchState={searchState}
+          {...pageProps}
+        />
+      </UIProvider>
     </>
   );
 }
