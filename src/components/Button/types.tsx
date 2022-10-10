@@ -6,5 +6,7 @@ export type propsType = {
   className?: string;
   alt?: string;
   id?: string;
+  tabIndex?: number;
+  onBlur?: any;
   handleClick?: React.MouseEventHandler<HTMLButtonElement>;
 };

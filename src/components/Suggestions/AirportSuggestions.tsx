@@ -29,7 +29,7 @@ const AirportsSuggestions = ({ inputValue, onSuggestionClick }: propsType) => {
   if (!inputValue || !suggestions)
     return (
       <ul className={style.suggestions}>
-        <p>Type to search </p>
+        <p className={style.placeHolder}>Type to search </p>
       </ul>
     );
 

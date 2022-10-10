@@ -8,6 +8,8 @@ const Button = (props: propsType) => {
       id={props.id}
       className={`${props.className} ${style.button}`}
       type={props.type || "button"}
+      tabIndex={props.tabIndex}
+      onBlur={props.onBlur}
     >
       {/* {props.tempIcon && <img alt={props.alt} src={props.icon} />} */}
       {props.icon && <props.icon />}

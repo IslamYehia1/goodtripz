@@ -1,4 +1,4 @@
-import FlightOffer from "../../FlightOffer/FlightOffer";
+import FlightOffer from "./FlightOffer";
 import { flightOffersT } from "./types";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";

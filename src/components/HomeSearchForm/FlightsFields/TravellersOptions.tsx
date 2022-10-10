@@ -1,7 +1,8 @@
 import Button from "../../Button/Button";
 import { PlusIcon, MinusIcon } from "../../Icons";
 import style from "../SearchForm.module.scss";
-import { useFlightContext } from "../FlightsContext";
+import { useFlightContext } from "../../CommonContexts/FlightsContext";
+import { useUIContext } from "../../UI";
 
 const TravellersOptions = () => {
   const {
@@ -12,8 +13,9 @@ const TravellersOptions = () => {
     adults,
     children,
   } = useFlightContext();
+  const { isModalOn } = useUIContext();
   return (
-    <div className={style.optionsWindow}>
+    <div tabIndex={0} className={`${style.optionsWindow} ${isModalOn ? style.inModal : ""}`}>
       <ul>
         <li>
           <Button handleClick={addAdultTraveller} icon={PlusIcon} />

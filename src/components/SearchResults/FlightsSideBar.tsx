@@ -1,89 +1,120 @@
-import AirportSearch from "../../components/SearchFields/FlightAirportSearch/AirportSearch";
+import SearchField from "../HomeSearchForm/SearchField";
 import DateInput from "../RangeDatePicker";
-import { FiltersModal } from "../../components/Modal";
 import InputField from "../../components/InputField/InputField";
-import Button from "../../components/Button/Button";
 import { flightsSideBarT } from "./types";
-import { SearchIcon } from "../../components/Icons";
 import style from "../../../styles/SearchResults.module.scss";
-import { useState } from "react";
-
+import { useFlightContext } from "../CommonContexts/FlightsContext";
+import AirportsSuggestions from "../Suggestions/AirportSuggestions";
+import { useUIContext } from "../UI";
+import useIsMobile from "../../utils/useIsMobile";
+import SidebarSections from "./SidebarSections";
 const FlightsSideBar = (props: flightsSideBarT) => {
-  const [activeField, setActiveField] = useState<
-    "departure" | "arrival" | "date" | "returnDate" | "travellersFilter" | "flightTypeFilter" | ""
-  >("");
+  const {
+    from,
+    to,
+    setFlightOrigin,
+    setFlightDestination,
+    adults,
+    children,
+    activeField,
+    setActiveField,
+    type,
+    setFlightDate,
+    setReturnDate,
+    date,
+    returnDate,
+  } = useFlightContext();
+  const { isModalOn, openModal, closeModal } = useUIContext();
+  const isMobile = useIsMobile();
+
   return (
     <>
       <div className={`${style.sideSection} ${style.searchTerms}`}>
-        <AirportSearch
-          isActive={activeField === "departure"}
-          activate={() => {
-            setActiveField("departure");
-          }}
-          deactivate={() => {
-            setActiveField("");
-          }}
-          label="From"
-          className={style.lilSearchField}
+        <SearchField
+          className={`${style.lilSearchField}`}
           inputClass={style.textField}
           wrapperClass={style.textFieldWrapper}
-          suggestionsClass={style.suggestions}
-          placeholder="Departure"
-          searchTerm={`${props.searchQuery.from.name}`}
-          dispatch={({ val, IATA }) => {
-            props.dispatch({
-              type: "from",
-              val: val,
-              IATA: IATA || props.searchQuery.from.IATA,
-            });
+          suggestions={AirportsSuggestions}
+          onSuggestionSelect={({ suggestion, IATA }: any) => {
+            setFlightOrigin(suggestion, IATA);
           }}
+          onChange={(value: any) => {
+            setFlightOrigin(value);
+          }}
+          isActive={activeField === "origin"}
+          onActivate={() => {
+            if (setActiveField) setActiveField("origin");
+            if (isMobile) openModal("originFlightSearch");
+          }}
+          onDeactivate={() => {
+            if (setActiveField) setActiveField("");
+            if (isModalOn) closeModal();
+          }}
+          value={from.name}
+          label="Flying from"
+          placeholder="Origin airport"
+          name="flightDestination"
+          // icon={FlyFromIcon}
         />
-
-        <AirportSearch
-          isActive={activeField === "arrival"}
-          activate={() => {
-            setActiveField("arrival");
-          }}
-          deactivate={() => {
-            setActiveField("");
-          }}
-          label="To"
-          className={style.lilSearchField}
+        <SearchField
+          className={`${style.lilSearchField}`}
           inputClass={style.textField}
           wrapperClass={style.textFieldWrapper}
-          suggestionsClass={style.suggestions}
-          placeholder="Destination"
-          searchTerm={`${props.searchQuery.to.name}`}
-          dispatch={({ val, IATA }) => {
-            props.dispatch({
-              type: "to",
-              val: val,
-              IATA: IATA || props.searchQuery.to.IATA,
-            });
+          suggestions={AirportsSuggestions}
+          onSuggestionSelect={({ suggestion, IATA }: any) => {
+            setFlightDestination(suggestion, IATA);
           }}
+          onChange={(value: any) => {
+            setFlightDestination(value);
+          }}
+          isActive={activeField === "destination"}
+          onActivate={() => {
+            if (setActiveField) setActiveField("destination");
+            if (isMobile) openModal("destinationFlightSearch");
+          }}
+          onDeactivate={() => {
+            if (setActiveField) setActiveField("");
+            if (isModalOn) closeModal();
+          }}
+          value={to.name}
+          label="Flying from"
+          placeholder="Origin airport"
+          name="flightDestination"
+          // icon={FlyFromIcon}
         />
 
         <DateInput
-          className={`${style.dateRangeWrapper} `}
-          isActive={activeField}
-          setActiveField={setActiveField}
-          wrapperClass={style.lilSearchField}
-          textFieldClass={style.textField}
-          fromVal={props.searchQuery.date}
-          toVal={props.searchQuery.returnDate}
-          range={true}
+          activeField={activeField}
           fromLabel="Date"
           toLabel="Return date"
-          dispatch={({ from, to }) => {
-            if (from) props.dispatch({ type: "from", val: from });
-            if (to) props.dispatch({ type: "to", val: to });
+          range={type === "roundTrip"}
+          // icon={DateIcon}
+          textFieldClass={style.textField}
+          className={`${style.dateRangeWrapper}`}
+          wrapperClass={style.lilSearchField}
+          fromDate={date}
+          toDate={returnDate}
+          onActivate={(field) => {
+            if (isMobile) openModal("flightDates");
+            setActiveField(field);
+          }}
+          onDeActivate={() => {
+            setActiveField("");
+            if (isModalOn) closeModal();
+          }}
+          setFromDate={(date) => {
+            setFlightDate(date.toISOString().substring(0, 10));
+          }}
+          setToDate={(date) => {
+            setReturnDate(date.toISOString().substring(0, 10));
           }}
         />
+
         <div className={style.lilSearchField}>
           <InputField
             className={style.textField}
             wrapperClass={style.textFieldWrapper}
-            value={`${props.searchQuery.adults} adults, ${props.searchQuery.children} children`}
+            value={`${adults} adults, ${children} children`}
             label="Travellers"
             name="travellers"
           />
@@ -98,41 +129,15 @@ const FlightsSideBar = (props: flightsSideBarT) => {
           />
         </div>
       </div>
-      <FiltersModal
+      {/* <FiltersModal
         closeModal={() => {
           props.closeModal();
         }}
         isOpen={props.isFullScreen}
         className={style.modal}
-      >
-        {(!props.isMobile || props.isFullScreen) && (
-          <>
-            <div className={`${style.sideSection} ${style.priceRange}`}>
-              <span>Price range</span>
-              <input type="range" min="1" max="100" className={style.priceSlider} />
-            </div>
-            <div className={`${style.sideSection} ${style.addExtra}`}>
-              <div className={`${style.addHotel}`}>
-                <input type="checkbox" name="addHotel" />
-                <label htmlFor="addHotel">Add hotel</label>
-              </div>
-              <div className={`${style.addCar}`}>
-                <input type="checkbox" name="addCar" />
-                <label htmlFor="addCar">Add car</label>
-              </div>
-            </div>
-            <div>
-              <Button
-                handleClick={() => {}}
-                className={`${style.button} ${style.updateSearchBtn}`}
-                icon={SearchIcon}
-              >
-                Update
-              </Button>
-            </div>
-          </>
-        )}
-      </FiltersModal>
+      > */}
+      {!isMobile && <SidebarSections />}
+      {/* </FiltersModal> */}
     </>
   );
 };

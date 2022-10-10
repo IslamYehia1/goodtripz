@@ -1,4 +1,4 @@
-import HotelOffer from "../../HotelOffer/HotelOffer";
+import HotelOffer from "./HotelOffer";
 const hotelOffers = require("./hotelOffers.json");
 const HotelOffers = () => {
   const offers = hotelOffers.data.map(
@@ -10,7 +10,7 @@ const HotelOffers = () => {
         <HotelOffer
           key={location_id}
           reviews={`${rating}/5 (${num_reviews} reviews)`}
-          picture={photo.images.large.url}
+          picture={photo.images.medium.url}
           hotelName={name}
           address={`${location_string}`}
           refundable="Fully refundable"

@@ -1,5 +1,5 @@
 import style from "./FlightOffer.module.scss";
-import AirlineLogo from "../../../public/img/airlineLogo.svg";
+import AirlineLogo from "../../../../public/img/airlineLogo.svg";
 import { propsType } from "./types";
 const FlightOffer = (props: propsType) => {
   return (
@@ -7,9 +7,7 @@ const FlightOffer = (props: propsType) => {
       <div className={style.firstRow}>
         <div className={style.departure}>
           {/* <div className="time departureTime">14:00</div> */}
-          <div className={`${style.time} ${style.departureTime}`}>
-            {props.departureTime}
-          </div>
+          <div className={`${style.time} ${style.departureTime}`}>{props.departureTime}</div>
           <div className={style.departureCity}>
             {/* {`${props.airports.from.city} (${props.departure})`} */}
             {`${props.airports.from.city} (${props.departure})`}
@@ -17,15 +15,12 @@ const FlightOffer = (props: propsType) => {
         </div>
         <div className={style.details}>
           <span>
-            {`${props.duration} , ${props.stopsNumber}`} Stop in{" "}
-            {props.stops.toString()}
+            {`${props.duration} , ${props.stopsNumber}`} Stop in {props.stops.toString()}
           </span>
         </div>
         <div className={style.arrival}>
           {/* <div className="time arrivalTime">14:00</div> */}
-          <div className={`${style.time} ${style.arrivalTime}`}>
-            {props.arrivalTime}
-          </div>
+          <div className={`${style.time} ${style.arrivalTime}`}>{props.arrivalTime}</div>
           {/* <div className="arrivalCity">New York (NYC)</div> */}
           <div className={style.arrivalCity}>
             {/* {`${props.airports.to.city} (${props.destination})`} */}
@@ -34,24 +29,10 @@ const FlightOffer = (props: propsType) => {
         </div>
         <div className={style.twoCircles}>
           <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
-            <circle
-              cx="8"
-              cy="8"
-              r="7"
-              stroke="#0A1F39"
-              strokeWidth="2"
-              fill="#F7F9FC"
-            />
+            <circle cx="8" cy="8" r="7" stroke="#0A1F39" strokeWidth="2" fill="#F7F9FC" />
           </svg>
           <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
-            <circle
-              cx="8"
-              cy="8"
-              r="7"
-              stroke="#0A1F39"
-              strokeWidth="2"
-              fill="#F7F9FC"
-            />
+            <circle cx="8" cy="8" r="7" stroke="#0A1F39" strokeWidth="2" fill="#F7F9FC" />
           </svg>
           <svg>
             <line

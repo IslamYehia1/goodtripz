@@ -1,71 +1,93 @@
-import HotelSearch from "../../components/SearchFields/HotelPlaceSearch/HotelPlaceSearch";
-import { FiltersModal } from "../../components/Modal";
 import DateInput from "../RangeDatePicker";
 import style from "../../../styles/SearchResults.module.scss";
-import { useState } from "react";
 import { hotelsSideBarT } from "./types";
-
+import { useUIContext } from "../UI";
+import { useHotelsContext } from "../CommonContexts/HotelsContext";
+import SearchField from "../HomeSearchForm/SearchField";
+import useIsMobile from "../../utils/useIsMobile";
+import Suggestions from "../Suggestions/HotelPlaceSuggestions";
 const HotelsSideBar = (props: hotelsSideBarT) => {
-  const [activeField, setActiveField] = useState<
-    "placeSearch" | "checkInDate" | "checkOutDate" | "travellers" | ""
-  >("");
+  const { isModalOn, openModal, closeModal } = useUIContext();
+  const {
+    activeField,
+    setActiveField,
+    setHotelPlace,
+    place,
+    checkIn,
+    checkOut,
+    setCheckInDate,
+    setCheckOutDate,
+  } = useHotelsContext();
+  const isMobile = useIsMobile();
   return (
     <>
       <div className={`${style.sideSection} ${style.searchTerms}`}>
-        <HotelSearch
-          isActive={activeField === "placeSearch"}
-          activate={() => setActiveField("placeSearch")}
-          deactivate={() => setActiveField("")}
-          inputWrapperClass={style.textFieldWrapper}
+        <SearchField
+          value={place}
           label="Going to"
-          // value={`${props.searchTerms.place}`}
+          placeholder={"Hotel place"}
+          suggestions={Suggestions}
+          name={"hotelPlaceSearch"}
           className={`${style.lilSearchField} ${style.lilHotelField}`}
-          searchTerm={`${props.searchTerms.place}`}
+          wrapperClass={style.textFieldWrapper}
           inputClass={style.searchInput}
-          suggestionsClass={style.suggetionsClass}
-          dispatch={props.dispatch}
-        />
-        <DateInput
-          isActive={activeField}
-          setActiveField={setActiveField}
-          range={true}
-          dispatch={({ from, to }) => {
-            if (from) props.dispatch({ type: "checkIn", val: from });
-            if (to) props.dispatch({ type: "checkOut", val: to });
+          isActive={activeField === "hotelPlaceSearch"}
+          onChange={(place: string) => {
+            setHotelPlace(place);
           }}
-          className={style.dateRangeWrapper}
-          wrapperClass={style.lilSearchField}
-          textFieldClass={style.textField}
+          onSuggestionSelect={({ suggestion }: { suggestion: string }) => {
+            setHotelPlace(suggestion);
+          }}
+          onActivate={() => {
+            if (isMobile) openModal("hotelPlaceSearch");
+            setActiveField("hotelPlaceSearch");
+          }}
+          onDeactivate={() => {
+            if (isModalOn) closeModal();
+            setActiveField("");
+          }}
+        />
+
+        <DateInput
+          activeField={activeField}
+          onActivate={(field) => {
+            if (isMobile) openModal("hotelDates");
+            setActiveField(field);
+          }}
+          onDeActivate={() => {
+            if (isModalOn) closeModal();
+            setActiveField("");
+          }}
+          setFromDate={(date) => setCheckInDate(date.toISOString().substring(0, 10))}
+          setToDate={(date) => setCheckOutDate(date.toISOString().substring(0, 10))}
           fromLabel="Check in"
           toLabel="Check out"
+          range={true}
+          textFieldClass={style.textField}
+          className={style.dateRangeWrapper}
+          wrapperClass={style.lilSearchField}
+          fromDate={checkIn}
+          toDate={checkOut}
         />
       </div>
-      <FiltersModal
-        closeModal={() => {
-          props.closeModal();
-        }}
-        isOpen={props.isFullScreen}
-        className="modal"
-      >
-        {(!props.isMobile || props.isFullScreen) && (
-          <>
-            <div className={`${style.sideSection} ${style.priceRange}`}>
-              <span>Price range</span>
-              <input type="range" min="1" max="100" className="priceSlider" />
+      {!isMobile && (
+        <>
+          <div className={`${style.sideSection} ${style.priceRange}`}>
+            <span>Price range</span>
+            <input type="range" min="1" max="100" className="priceSlider" />
+          </div>
+          <div className={`${style.sideSection} ${style.addExtra}`}>
+            <div className={style.addHotel}>
+              <input type="checkbox" name="addHotel" />
+              <label htmlFor="addHotel">Add hotel</label>
             </div>
-            <div className={`${style.sideSection} ${style.addExtra}`}>
-              <div className={style.addHotel}>
-                <input type="checkbox" name="addHotel" />
-                <label htmlFor="addHotel">Add hotel</label>
-              </div>
-              <div className={style.addCar}>
-                <input type="checkbox" name="addCar" />
-                <label htmlFor="addCar">Add car</label>
-              </div>
+            <div className={style.addCar}>
+              <input type="checkbox" name="addCar" />
+              <label htmlFor="addCar">Add car</label>
             </div>
-          </>
-        )}
-      </FiltersModal>
+          </div>
+        </>
+      )}
     </>
   );
 };

@@ -1,13 +1,14 @@
 import type { NextPage } from "next";
 import { useEffect } from "react";
 import style from "../styles/Home.module.scss";
-import { RightArrow } from "../src/components/Icons";
 import SearchForm from "../src/components/HomeSearchForm";
 import Card from "../src/components/Card/Card";
 import Article from "../src/components/Article/Article";
 import image1 from "../public/img/image1.jpg";
 import image2 from "../public/img/image2.jpg";
-
+import { FlightsProvider } from "../src/components/CommonContexts/FlightsContext";
+import { HotelSearchProvider } from "../src/components/CommonContexts/HotelsContext";
+import { RightArrow } from "../src/components/Icons";
 const Home: NextPage = () => {
   useEffect(() => {
     let vh = window.innerHeight * 0.01;
@@ -32,19 +33,24 @@ const Home: NextPage = () => {
                 INDONESIA <RightArrow />
               </h3>
               <span className={style.exploreText}>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 <p>
-                  Ut in massa lacinia, aliquam massa non, euismod augue. Lorem ipsum dolor sit amet,{" "}
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in massa lacinia,
+                  aliquam massa non,
                 </p>
+                <p>euismod augue. Lorem ipsum dolor sit amet. </p>
               </span>
 
               <button className={style.exploreButton}>
                 <span>Explore</span>
-                {/* <Image alt="right arrow" src={RightArrow} /> */}
+                <RightArrow alt="right arrow" src={RightArrow} />
               </button>
             </div>
           </div>
-          <SearchForm />
+          <FlightsProvider>
+            <HotelSearchProvider>
+              <SearchForm />
+            </HotelSearchProvider>
+          </FlightsProvider>
         </div>
         <div className={style.homeSectionTwo}>
           <div>

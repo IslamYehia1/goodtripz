@@ -26,6 +26,7 @@ const SearchField = (props: PROPS) => {
   const inputRef: RefObject<HTMLInputElement> = useRef(null);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [inputState, setInputState] = useState("");
+
   useEffect(() => {
     if (props.value) setInputState(props.value);
   }, [props.value]);
@@ -48,7 +49,7 @@ const SearchField = (props: PROPS) => {
   }, [isModalOn]);
   function focusHandler() {
     props.onActivate();
-    // setShowSuggestions(true);
+    setShowSuggestions(true);
   }
   function blurHandler(e: React.FocusEvent<HTMLInputElement>) {
     e.preventDefault();

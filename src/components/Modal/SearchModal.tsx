@@ -5,10 +5,13 @@ import { useEffect, useState } from "react";
 import { LeftArrow } from "../Icons";
 import style from "./Modal.module.scss";
 import { useUIContext } from "../UI/index";
-import AirportSearchTemp from "../HomeSearchForm/Flights/OriginFlightField";
-import FlightDateField from "../HomeSearchForm/Flights/FlightDateFIeld";
-import PlaceSearchField from "../HomeSearchForm/Hotels/PlaceSearchField";
-import HotelDateField from "../HomeSearchForm/Hotels/HotelDateField";
+import OriginFlightField from "../HomeSearchForm/FlightsFields/OriginFlightField";
+import DestinationFlightField from "../HomeSearchForm/FlightsFields/DestinationFlightField";
+import FlightDateField from "../HomeSearchForm/FlightsFields/FlightDateFIeld";
+import PlaceSearchField from "../HomeSearchForm/HotelsFileds/PlaceSearchField";
+import HotelDateField from "../HomeSearchForm/HotelsFileds/HotelDateField";
+import TravellersOptions from "../HomeSearchForm/FlightsFields/TravellersOptions";
+import FlightTypeOptions from "../HomeSearchForm/FlightsFields/FlightTypeOptions";
 const SearchModal = (props: searchModalProps) => {
   const { isModalOn, currentModal, closeModal } = useUIContext();
   useEffect(() => {
@@ -26,10 +29,13 @@ const SearchModal = (props: searchModalProps) => {
         />
       )}
 
-      {currentModal === "FlightOriginSearch" && <AirportSearchTemp />}
+      {currentModal === "originFlightSearch" && <OriginFlightField />}
+      {currentModal === "destinationFlightSearch" && <DestinationFlightField />}
       {currentModal === "flightDates" && <FlightDateField />}
       {currentModal === "hotelPlaceSearch" && <PlaceSearchField />}
       {currentModal === "hotelDates" && <HotelDateField />}
+      {currentModal === "travellersOptions" && <TravellersOptions />}
+      {currentModal === "flightTypeOptions" && <FlightTypeOptions />}
     </Modal>
   );
 };

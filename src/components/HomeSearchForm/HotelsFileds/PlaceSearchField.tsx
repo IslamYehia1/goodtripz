@@ -1,9 +1,10 @@
 import SearchField from "../SearchField";
 import style from "../SearchForm.module.scss";
 import Suggestions from "../../Suggestions/HotelPlaceSuggestions";
-import { useHotelsContext } from "../HotelsContext";
+import { useHotelsContext } from "../../CommonContexts/HotelsContext";
 import { useUIContext } from "../../UI";
 import useIsMobile from "../../../utils/useIsMobile";
+import { HotelIcon } from "../../Icons";
 const PlaceSearchField = (props: any) => {
   const { setHotelPlace, setActiveField, activeField } = useHotelsContext();
   const { isModalOn, openModal, closeModal } = useUIContext();
@@ -14,6 +15,7 @@ const PlaceSearchField = (props: any) => {
       className={`${style.aSearchField} ${style.hotelSearchField}`}
       wrapperClass={style.textFieldWrapper}
       inputClass={style.textField}
+      icon={HotelIcon}
       label={"Going to"}
       placeholder="Hotel location"
       name={"hotelLocation"}
@@ -25,7 +27,6 @@ const PlaceSearchField = (props: any) => {
         setHotelPlace(suggestion);
       }}
       onActivate={() => {
-        console.log("SHOULD OPEN");
         if (isMobile) openModal("hotelPlaceSearch");
         setActiveField("hotelPlace");
       }}

@@ -1,15 +1,11 @@
-import HotelsSideBar from "../../src/components/SearchResults/HotelsSideBar";
-import HotelOffers from "../../src/components/SearchResults/HotelOffers";
-import SideBarNav from "../../src/components/SearchResults/SideBarNav";
 import useIsMobile from "../../src/utils/useIsMobile";
-import style from "../../styles/SearchResults.module.scss";
-import FilterAndSort from "../../src/components/FilterAndSort";
 import { useRouter } from "next/router";
 import { useState, useReducer, useEffect } from "react";
 import reducer from "../../src/components/SearchResults/hotelsReducer";
+import { HotelSearchProvider } from "../../src/components/CommonContexts/HotelsContext";
+import { SearchModal } from "../../src/components/Modal";
+import HotelsResultsOverlay from "../../src/components/SearchResults/HotelsResultsOverlay";
 const Hotels = () => {
-  const isMobile = useIsMobile();
-  const [filterModal, setFilterModal] = useState(false);
   const router = useRouter();
   const query = router.query;
   const initial = {
@@ -26,36 +22,10 @@ const Hotels = () => {
     dispatch({ type: "pullFromUrl", query: query });
   }, [router.isReady]);
   return (
-    <div className={style.searchResultsPage}>
-      <div className={style.sideBar}>
-        <SideBarNav
-          activeTab={"hotels"}
-          onTabChange={(tab) => {
-            router.replace("flights/");
-          }}
-        />
-        <HotelsSideBar
-          dispatch={dispatch}
-          closeModal={() => {
-            setFilterModal(false);
-          }}
-          searchTerms={searchTerms}
-          isFullScreen={filterModal}
-          isMobile={isMobile}
-        />
-      </div>
-      <div className={style.searchResults}>
-        <FilterAndSort
-          sortClick={() => {
-            if (isMobile) setFilterModal(true);
-          }}
-          filterClick={() => {
-            if (isMobile) setFilterModal(true);
-          }}
-        />
-        <HotelOffers />
-      </div>
-    </div>
+    <HotelSearchProvider>
+      <SearchModal />
+      <HotelsResultsOverlay />
+    </HotelSearchProvider>
   );
 };
 

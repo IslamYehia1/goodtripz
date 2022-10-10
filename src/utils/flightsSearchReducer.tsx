@@ -16,6 +16,10 @@ type actionT =
     }
   | {
       type: "addAdult" | "removeAdult" | "addChild" | "removeChild";
+    }
+  | {
+      type: "pullFromUrl";
+      query: any;
     };
 // const { from, to, date, returnDate, adults, children } = useRouter().query;
 export default function reducer(prevState: searchTermsT, action: actionT): searchTermsT {

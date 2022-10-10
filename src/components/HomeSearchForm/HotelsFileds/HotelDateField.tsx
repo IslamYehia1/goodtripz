@@ -1,5 +1,5 @@
 import DateInput from "../../RangeDatePicker";
-import { useHotelsContext } from "../HotelsContext";
+import { useHotelsContext } from "../../CommonContexts/HotelsContext";
 import { useUIContext } from "../../UI";
 import useIsMobile from "../../../utils/useIsMobile";
 import { DateIcon } from "../../Icons";

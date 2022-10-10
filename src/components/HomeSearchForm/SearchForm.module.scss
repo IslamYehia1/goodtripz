@@ -56,7 +56,6 @@
     right: 0;
     margin: auto;
     height: min-content;
-
     ul {
       width: 100%;
     }
@@ -76,7 +75,18 @@
   z-index: 2;
   box-shadow: 0px 4px 46px 4px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
-
+  &.inModal {
+    font-size: 14px;
+    top: 70px;
+    width: 95%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: min-content;
+    ul {
+      width: 100%;
+    }
+  }
   ul {
     padding: 10px 30px;
     list-style: none;
@@ -150,6 +160,8 @@
   .textField {
     @include semiBoldFont;
     display: flex;
+    gap: 1.3px;
+
     flex-direction: column;
     white-space: nowrap;
     label {
@@ -157,7 +169,7 @@
     }
     input {
       display: block;
-      opacity: 0.8;
+      opacity: 0.6;
       font-size: 15px;
       width: 90%;
       &::placeholder {
@@ -192,13 +204,18 @@
     min-width: 20px;
     width: 20px;
   }
+  .textFieldWrapper {
+    width: 50%;
+  }
   max-width: 30%;
 }
 .options {
   display: flex;
-  padding: 18px 2% 18px 0;
+  padding: 20px 2% 20px 0;
   color: $dark;
   gap: 22px;
+  justify-content: flex-start;
+
   .button {
     @include semiBoldFont;
     flex-direction: row-reverse;
@@ -247,6 +264,13 @@
 }
 
 @media only screen and (max-width: 1024px) {
+  .options {
+    & > div {
+      padding: 1.4vw 4vw 1.4vw 6%;
+      background-color: rgb(79, 150, 247, 0.1);
+      border-radius: 10px;
+    }
+  }
   .searchTabs {
     width: 100%;
     .searchTab {
@@ -281,31 +305,23 @@
       max-width: unset;
     }
   }
+}
+
+@media only screen and (max-width: 650px) {
   .options {
-    justify-content: flex-start;
     & > div {
       // width: 30%;
       padding: 2vw 4vw 2vw 6%;
       background-color: rgb(79, 150, 247, 0.1);
       border-radius: 10px;
     }
-    .button {
-      color: $primary !important;
-    }
-    // .travellers {
-    // }
-    // .fareType {
-    // }
   }
-}
-
-@media only screen and (max-width: 650px) {
   .form {
     box-shadow: unset;
     background: $background;
   }
   .aSearchField {
-    padding: 5vw 0 5vw 6%;
+    padding: 4vw 0 4vw 6%;
     margin: 0;
     max-width: unset;
     box-shadow: unset;
@@ -323,6 +339,14 @@
       right: 0;
       bottom: 0;
     }
+    &.inModal {
+      &::after {
+        content: none;
+      }
+      & svg {
+        visibility: hidden;
+      }
+    }
   }
   .fields {
     flex-direction: column;
@@ -337,6 +361,7 @@
         content: none;
       }
     }
+
     .searchButton {
       padding: 3vw 25vw;
       max-width: unset;

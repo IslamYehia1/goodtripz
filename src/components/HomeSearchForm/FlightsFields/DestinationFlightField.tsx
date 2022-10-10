@@ -1,14 +1,20 @@
 import style from "../../HomeSearchForm/SearchForm.module.scss";
 import {FlyToIcon} from "../../Icons"; //prettier-ignore
-import SearchField from "../../HomeSearchForm/SearchField";
+import SearchField from "../SearchField";
 import AirportsSuggestions from "../../Suggestions/AirportSuggestions";
-import { useFlightContext } from "../../HomeSearchForm/FlightsContext";
+import { useFlightContext } from "../../CommonContexts/FlightsContext";
+import { useUIContext } from "../../UI";
 import { useEffect, useState } from "react";
+import useIsMobile from "../../../utils/useIsMobile";
 const OriginFlightField = () => {
   const { setFlightDestination, to, activeField, setActiveField } = useFlightContext();
+  const { isModalOn, openModal, closeModal } = useUIContext();
+  const isMobile = useIsMobile();
   return (
     <SearchField
-      className={`${style.aSearchField} ${style.flightSearchField}`}
+      className={`${style.aSearchField} ${style.flightSearchField} ${
+        isModalOn ? style.inModal : ""
+      } `}
       inputClass={style.textField}
       wrapperClass={style.textFieldWrapper}
       suggestions={AirportsSuggestions}
@@ -21,13 +27,15 @@ const OriginFlightField = () => {
       isActive={activeField === "destination"}
       onActivate={() => {
         setActiveField("destination");
+        if (isMobile) openModal("destinationFlightSearch");
       }}
       onDeactivate={() => {
+        if (isModalOn) closeModal();
         setActiveField("");
       }}
       value={to.name}
-      label="Flying from"
-      placeholder="Departure airport"
+      label="Flying to"
+      placeholder="Destination airport"
       name="flightOrigin"
       icon={FlyToIcon}
     />

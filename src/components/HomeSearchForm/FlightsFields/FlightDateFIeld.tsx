@@ -1,6 +1,6 @@
 import DateInput from "../../RangeDatePicker";
 import style from "../SearchForm.module.scss";
-import { useFlightContext } from "../FlightsContext";
+import { useFlightContext } from "../../CommonContexts/FlightsContext";
 import {DateIcon} from "../../Icons"; //prettier-ignore
 import useIsMobile from "../../../utils/useIsMobile";
 import { useUIContext } from "../../UI";
@@ -21,7 +21,7 @@ const FlightDateField = () => {
       wrapperClass={style.textFieldWrapper}
       fromDate={date}
       toDate={returnDate}
-      onActivate={(field) => {
+      onActivate={(field: string) => {
         if (isMobile) openModal("flightDates");
         setActiveField(field);
       }}
@@ -29,10 +29,10 @@ const FlightDateField = () => {
         setActiveField("");
         if (isModalOn) closeModal();
       }}
-      setFromDate={(date) => {
+      setFromDate={(date: Date) => {
         setFlightDate(date.toISOString().substring(0, 10));
       }}
-      setToDate={(date) => {
+      setToDate={(date: Date) => {
         setReturnDate(date.toISOString().substring(0, 10));
       }}
     />

@@ -1,212 +1,224 @@
 @import "./variables.scss";
 
 .searchResultsPage {
-    display: flex;
+  display: flex;
+  width: 70%;
+  min-width: 1280px;
+  background-color: #f7f9fc;
+  box-shadow: 0px 4px 17px 5px rgba(0, 0, 0, 0.03);
+  border-radius: 20px;
+  .searchResults {
+    padding: 4%;
     width: 70%;
-    min-width: 1280px;
-    background-color: #f7f9fc;
-    box-shadow: 0px 4px 17px 5px rgba(0, 0, 0, 0.03);
-    border-radius: 20px;
-    .searchResults {
-        padding: 4%;
-        width: 70%;
-    }
+  }
 }
 .sideBar {
-    @include semiBoldFont;
-    min-width: 330px;
-    width: 30%;
-    padding: 2% 0 2% 3%;
-    .lilTabs {
-        display: flex;
-        justify-content: center;
-        gap: 50px;
-        margin-bottom: 40px;
-        margin-top: 20px;
-        .lilTab.button {
-            flex-direction: column;
-            gap: 5px;
-            color: $dark;
-        }
+  @include semiBoldFont;
+  min-width: 330px;
+  width: 30%;
+  padding: 2% 0 2% 3%;
+  .lilTabs {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    .lilTab.button {
+      flex-direction: column;
+      gap: 5px;
+      color: $dark;
     }
+  }
 
-    #activeLilTab {
-        color: $primary;
+  #activeLilTab {
+    color: $primary;
+  }
+  .searchTerms {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10% 1% 0 10%;
+    gap: 6%;
+    label {
+      @include normalFont;
+      font-size: 14px;
     }
-    .searchTerms {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        padding: 10% 1% 0 10%;
-        gap: 6%;
-        label {
-            @include normalFont;
-            font-size: 14px;
-        }
-        input {
-            width: 90%;
-            margin-top: 3px;
-            font-size: 15px;
-        }
+    input {
+      width: 90%;
+      margin-top: 3px;
+      font-size: 15px;
     }
+  }
 }
 .textField {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 .lilSearchField {
-    width: 40%;
-    margin-bottom: 40px;
+  width: 40%;
+  margin-bottom: 40px;
 }
 .lilHotelField {
-    width: 100%;
+  width: 100%;
 }
 .dateRangeWrapper {
-    width: 100%;
-    gap: 6%;
-    white-space: nowrap;
-    display: flex;
-    flex-wrap: wrap;
+  width: 100%;
+  gap: 6%;
+  white-space: nowrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .sideSection {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    padding: 10%;
-    background-color: #ffff;
-    border-radius: 20px;
-    box-shadow: 0px 4px 17px 5px rgba(0, 0, 0, 0.03);
-    margin-bottom: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 10%;
+  background-color: #ffff;
+  border-radius: 20px;
+  box-shadow: 0px 4px 17px 5px rgba(0, 0, 0, 0.03);
+  margin-bottom: 20px;
 }
 
 .addExtra {
-    .addHotel {
-        margin-bottom: 15px;
-    }
-    input {
-        margin: 0 10px 0 0;
-    }
+  .addHotel {
+    margin-bottom: 15px;
+  }
+  input {
+    margin: 0 10px 0 0;
+  }
+}
+.filterAndSort {
+  display: flex;
+  gap: 20px;
+}
+.button {
+  padding: 0 0 20px 0;
+  color: $primary;
+
+  svg {
+    margin-right: 7px;
+  }
 }
 
 .updateSearchBtn {
-    background-color: $primary;
-    color: $white;
-    padding: 10px 20px 10px 20px;
-    border-radius: 10px;
-    float: right;
-    gap: 5px;
+  background-color: $primary;
+  color: $white;
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
+  float: right;
+  gap: 5px;
 }
 
 @media only screen and (max-width: 1280px) {
-    .searchResultsPage {
-        width: 95%;
-        min-width: unset;
-    }
+  .searchResultsPage {
+    width: 95%;
+    min-width: unset;
+  }
 }
 
 @media only screen and (max-width: 1024px) {
-    .searchResultsPage {
-        .sideBar {
-            min-width: 280px;
-            font-size: 14px;
-            .lilTabs {
-                gap: 35px;
-                font-size: 14px;
-            }
-        }
+  .searchResultsPage {
+    .sideBar {
+      min-width: 280px;
+      font-size: 14px;
+      .lilTabs {
+        gap: 35px;
+        font-size: 14px;
+      }
     }
+  }
 }
 @media only screen and (max-width: 790px) {
-    .searchResultsPage {
-        flex-direction: column;
+  .searchResultsPage {
+    flex-direction: column;
+    background: none;
+    box-shadow: unset;
+    .sideBar {
+      // display: none;
+      .searchTerms {
         background: none;
         box-shadow: unset;
-        .sideBar {
-            // display: none;
-            .searchTerms {
-                background: none;
-                box-shadow: unset;
-                gap: 0;
-                flex-wrap: nowrap;
-                padding: 2% 0 2% 0;
-                overflow: auto;
-                -ms-overflow-style: none; /* IE and Edge */
-                scrollbar-width: none; /* Firefox */
-                &::-webkit-scrollbar {
-                    display: none;
-                }
-                .lilSearchField {
-                    background-color: $white;
-                    padding: 20px;
-                    min-width: 130px;
-                    margin-right: 20px;
-                    border-radius: 20px;
-                    margin-bottom: 0;
-                }
-                .lilHotelField {
-                    min-width: 200px;
-                }
-                .dateRangeWrapper {
-                    flex-wrap: nowrap;
-                }
-            }
+        gap: 0;
+        flex-wrap: nowrap;
+        padding: 2% 0 2% 0;
+        overflow: auto;
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+        &::-webkit-scrollbar {
+          display: none;
         }
-        .searchResults {
-            width: 100%;
-            padding: 0;
+        .lilSearchField {
+          background-color: $white;
+          padding: 20px;
+          min-width: 130px;
+          margin-right: 20px;
+          border-radius: 20px;
+          margin-bottom: 0;
         }
-        .sideBar {
-            width: 100%;
-            padding: 0;
+        .lilHotelField {
+          min-width: 200px;
         }
+        .dateRangeWrapper {
+          flex-wrap: nowrap;
+        }
+      }
     }
+    .searchResults {
+      width: 100%;
+      padding: 0;
+    }
+    .sideBar {
+      width: 100%;
+      padding: 0;
+    }
+  }
 }
 @media only screen and (max-width: 650px) {
-    .sideBar {
-        .lilTabs {
-            margin-bottom: 20px;
-            .lilTab {
-                svg {
-                    display: none;
-                }
-            }
+  .sideBar {
+    .lilTabs {
+      margin-bottom: 20px;
+      .lilTab {
+        svg {
+          display: none;
         }
+      }
     }
-    .searchResultsPage {
-        margin-top: 70px;
-    }
+  }
+  .searchResultsPage {
+    margin-top: 70px;
+  }
 }
 .modal {
-    .textField {
-        &::after {
-            content: none;
-        }
-        svg {
-            display: none;
-        }
-        padding-left: 15vw;
-        position: relative;
-        top: 15px;
-        left: 0;
-        right: 0;
+  .textField {
+    &::after {
+      content: none;
     }
-    .modalCloseBtn {
-        position: absolute;
-        left: 20px;
-        top: 20px;
-        z-index: 50;
+    svg {
+      display: none;
     }
-    .modalCloseBtn.dateModalCloseBtn {
-        position: relative;
-        margin: 20px 0 0 20px;
-    }
-    .closeDateModal {
-        width: 100%;
-    }
-    .suggestions {
-        width: 100% !important;
-        top: 0 !important;
-    }
+    padding-left: 15vw;
+    position: relative;
+    top: 15px;
+    left: 0;
+    right: 0;
+  }
+  .modalCloseBtn {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    z-index: 50;
+  }
+  .modalCloseBtn.dateModalCloseBtn {
+    position: relative;
+    margin: 20px 0 0 20px;
+  }
+  .closeDateModal {
+    width: 100%;
+  }
+  .suggestions {
+    width: 100% !important;
+    top: 0 !important;
+  }
 }

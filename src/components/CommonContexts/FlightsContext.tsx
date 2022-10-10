@@ -8,7 +8,7 @@ import React, {
   useEffect,
 } from "react";
 import reducer from "../../utils/flightsSearchReducer";
-
+import { useRouter } from "next/router";
 type FLIGHTS_CONTEXT = {
   type: string;
   from: {
@@ -50,6 +50,7 @@ const flightsContext = createContext<FLIGHTS_CONTEXT>(initial);
 function FlightsProvider(props: any) {
   const [searchTerms, dispatch] = useReducer(reducer, initial);
   const [activeField, setActiveField] = useState("");
+  const router = useRouter();
 
   const setFlightType = useCallback(
     (value) => {
@@ -100,6 +101,12 @@ function FlightsProvider(props: any) {
   const removeChildTraveller = useCallback(() => {
     dispatch({ type: "removeChild" });
   }, [dispatch]);
+  const pullFromUrl = useCallback(
+    (query: any) => {
+      dispatch({ type: "pullFromUrl", query: query });
+    },
+    [dispatch]
+  );
 
   const value = useMemo(
     () => ({
@@ -115,6 +122,7 @@ function FlightsProvider(props: any) {
       removeAdultTraveller,
       addChildTraveller,
       removeChildTraveller,
+      pullFromUrl,
     }),
     [searchTerms, activeField]
   );
