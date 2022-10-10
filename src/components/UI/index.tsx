@@ -48,7 +48,7 @@ function UIProvider(props: any) {
     dispatch({ type: "closeModal" });
   };
   const providerFuncs = useMemo(() => ({ ...state, openModal, closeModal }), [state]);
-  return <UIContext.Provider value={providerFuncs} children={props.children} />;
+  return <UIContext.Provider value={providerFuncs}> {props.children}</UIContext.Provider>;
 }
 export const useUIContext = () => {
   const context = useContext(UIContext);
