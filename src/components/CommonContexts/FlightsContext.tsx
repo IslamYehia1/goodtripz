@@ -53,35 +53,35 @@ function FlightsProvider(props: any) {
   const router = useRouter();
 
   const setFlightType = useCallback(
-    (value) => {
+    (value: any) => {
       dispatch({ type: "flightType", val: value });
     },
     [dispatch]
   );
 
   const setFlightOrigin = useCallback(
-    (origin, IATA) => {
+    (origin: any, IATA: any) => {
       dispatch({ type: "from", val: origin, IATA: IATA });
     },
     [dispatch]
   );
 
   const setFlightDestination = useCallback(
-    (destination, IATA) => {
+    (destination: any, IATA: any) => {
       dispatch({ type: "to", val: destination, IATA: IATA });
     },
     [dispatch]
   );
 
   const setFlightDate = useCallback(
-    (date) => {
+    (date: any) => {
       dispatch({ type: "date", val: date });
     },
     [dispatch]
   );
 
   const setReturnDate = useCallback(
-    (returnDate) => {
+    (returnDate: any) => {
       dispatch({ type: "returnDate", val: returnDate });
     },
     [dispatch]

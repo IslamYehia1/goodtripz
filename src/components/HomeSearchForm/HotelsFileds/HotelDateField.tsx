@@ -12,7 +12,7 @@ const HotelDateField = () => {
   return (
     <DateInput
       activeField={activeField}
-      onActivate={(field) => {
+      onActivate={(field: any) => {
         if (isMobile) openModal("hotelDates");
         setActiveField(field);
       }}
@@ -20,8 +20,8 @@ const HotelDateField = () => {
         if (isModalOn) closeModal();
         setActiveField("");
       }}
-      setFromDate={(date) => setCheckInDate(date.toISOString().substring(0, 10))}
-      setToDate={(date) => setCheckOutDate(date.toISOString().substring(0, 10))}
+      setFromDate={(date: any) => setCheckInDate(date.toISOString().substring(0, 10))}
+      setToDate={(date: any) => setCheckOutDate(date.toISOString().substring(0, 10))}
       fromLabel="Check in"
       toLabel="Check out"
       range={true}

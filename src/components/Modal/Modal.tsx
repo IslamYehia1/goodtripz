@@ -3,12 +3,13 @@ import ReactDOM from "react-dom";
 import style from "./Modal.module.scss";
 import { modalProps, modalState } from "./types";
 import ClientOnlyPortal from "./ClientOnlyPortal";
-class Modal extends React.Component<modalProps, modalState> {
+// class Modal extends React.Component<modalProps, modalState> {
+class Modal extends React.Component<any, any> {
   // el: HTMLDivElement;
   altClassName?: string;
   className?: string;
   // modalRoot: HTMLElement;
-  constructor(props: modalProps) {
+  constructor(props: any) {
     super(props);
     // this.modalRoot = document.getElementById("modalRoot") as HTMLElement;
     this.altClassName = this.props.altClassName;
@@ -35,9 +36,7 @@ class Modal extends React.Component<modalProps, modalState> {
     if (this.props.isOpen) {
       element = (
         <ClientOnlyPortal selector="#modalRoot">
-          <div className={`${style.modal} ${this.props.className}`}>
-            {this.props.children}
-          </div>
+          <div className={`${style.modal} ${this.props.className}`}>{this.props.children}</div>
         </ClientOnlyPortal>
       );
     } else {
@@ -52,7 +51,7 @@ class Modal extends React.Component<modalProps, modalState> {
         //     }}
         // >
         this.props.children;
-        // </div>
+      // </div>
     }
     return <>{element}</>;
   }

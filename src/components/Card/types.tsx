@@ -1,6 +1,6 @@
 export type propsType = {
-    title: string;
-    img: StaticImageData;
-    alt: string;
-    className?: string;
+  title: string;
+  img: any;
+  alt: string;
+  className?: string;
 };
