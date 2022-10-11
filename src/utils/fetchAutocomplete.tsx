@@ -23,7 +23,7 @@ export async function hotelAutoComplete(searchTerm: string) {
   if (isInvalid(searchTerm)) return temp;
 
   try {
-    const rawSuggestions = await fetch(`${SERVER_URL}autocomplete/hotels?query=${searchTerm}`);
+    const rawSuggestions = await fetch(`${SERVER_URL}/autocomplete/hotels?query=${searchTerm}`);
     const suggestions = await rawSuggestions.json();
     suggestions.forEach((suggestion: suggestionType) => {
       temp.push({

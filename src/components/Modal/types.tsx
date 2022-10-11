@@ -1,9 +1,12 @@
+import { ReactFragment } from "react";
+
 export type modalProps = {
   isOpen?: Boolean;
   className?: string;
   onFocus?: () => void;
   onClick?: () => void;
   altClassName?: string;
+  children: ReactFragment;
 };
 export type searchModalProps = {
   // isOpen?: Boolean;

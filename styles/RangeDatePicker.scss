@@ -1,10 +1,15 @@
 @import "./variables.scss";
-
+.rdp-months {
+}
 .Range {
+  width: auto !important;
+  position: relative !important ;
+  margin: 0 !important;
   .DayPicker-Caption {
     padding-left: 45px !important ;
   }
 }
+
 .DayPickerInput {
   input {
     cursor: pointer !important;
@@ -41,8 +46,9 @@
   border-radius: 10%;
 }
 
-.Range .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
-  background-color: #f0f8ff !important;
+.Range
+  .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+  // background-color: #f0f8ff !important;
   color: #4a90e2 !important;
 }
 
@@ -116,4 +122,17 @@
       width: 100%;
     }
   }
+}
+
+.rdp {
+  --rdp-cell-size: 40px;
+  --rdp-accent-color: #4f96f7 !important;
+  --rdp-background-color: #e7edff;
+  /* Switch to dark colors for dark themes */
+  --rdp-accent-color-dark: #3003e1;
+  --rdp-background-color-dark: #180270;
+  /* Outline border for focused elements */
+  --rdp-outline: 2px solid var(--rdp-accent-color);
+  /* Outline border for focused and selected elements */
+  --rdp-outline-selected: 2px solid rgba(0, 0, 0, 0.75);
 }

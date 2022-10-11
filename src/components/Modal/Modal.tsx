@@ -3,13 +3,12 @@ import ReactDOM from "react-dom";
 import style from "./Modal.module.scss";
 import { modalProps, modalState } from "./types";
 import ClientOnlyPortal from "./ClientOnlyPortal";
-// class Modal extends React.Component<modalProps, modalState> {
-class Modal extends React.Component<any, any> {
+class Modal extends React.Component<modalProps, modalState> {
   // el: HTMLDivElement;
   altClassName?: string;
   className?: string;
   // modalRoot: HTMLElement;
-  constructor(props: any) {
+  constructor(props: modalProps) {
     super(props);
     // this.modalRoot = document.getElementById("modalRoot") as HTMLElement;
     this.altClassName = this.props.altClassName;

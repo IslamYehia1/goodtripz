@@ -7,12 +7,12 @@ import { flightsContext } from "../../CommonContexts/FlightsContext";
 import OriginFlightField from "./OriginFlightField";
 import DestinationFlightField from "./DestinationFlightField";
 import FlightDateField from "./FlightDateFIeld";
-import FlightTypeOptions from "./FlightTypeOptions";
-import TravellersOptions from "./TravellersOptions";
+
 import SearchModal from "../../Modal/SearchModal";
 import { useFlightContext } from "../../CommonContexts/FlightsContext";
 import useIsMobile from "../../../utils/useIsMobile";
 import { useUIContext } from "../../UI";
+import SearchOptions from "./SearchOptions";
 type ACTIVE_FIELD =
   | "departure"
   | "arrival"
@@ -50,29 +50,7 @@ const FlightSearchFields = () => {
   return (
     <form onSubmit={handleSearch} className={style.flightSearchFields}>
       <div className={style.options}>
-        <div tabIndex={0} onBlur={handleOutsideClick} className={style.filterButtonWrapper}>
-          <Button
-            icon={ExpandIcon}
-            className={style.button}
-            handleClick={() => toggleField("flightTypeOptions")}
-            type="button"
-          >
-            {type === "oneWay" ? "One way" : "Round trip"}
-          </Button>
-          {activeField === "flightTypeOptions" && <FlightTypeOptions />}
-        </div>
-
-        <div className={style.filterButtonWrapper} onBlur={handleOutsideClick}>
-          <Button
-            icon={ExpandIcon}
-            className={style.button}
-            handleClick={() => toggleField("travellersOptions")}
-            type="button"
-          >
-            {`${parseInt(adults) + parseInt(children)} Travellers`}
-          </Button>
-          {activeField === "travellersOptions" && <TravellersOptions />}
-        </div>
+        <SearchOptions />
       </div>
       <div className={style.fields}>
         {/* -------- Departure airport search field -------- */}

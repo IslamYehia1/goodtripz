@@ -2,7 +2,9 @@ import React, { useState, useEffect, useRef, RefObject, useContext } from "react
 import style from "./SearchForm.module.scss";
 import useIsMobile from "../../utils/useIsMobile";
 import { useUIContext } from "../UI";
+
 import { isSuggestionClicked } from "../../utils";
+import useOutsideClick from "../../utils/useOutsideClick";
 type PROPS = {
   className: string;
   wrapperClass: string;
@@ -19,6 +21,7 @@ type PROPS = {
   onActivate?: any;
   onDeactivate?: any;
 };
+
 const SearchField = (props: PROPS) => {
   const { isModalOn } = useUIContext();
   const isMobile = useIsMobile();
@@ -26,6 +29,10 @@ const SearchField = (props: PROPS) => {
   const inputRef: RefObject<HTMLInputElement> = useRef(null);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [inputState, setInputState] = useState("");
+  const fieldRef = useOutsideClick(props.isActive, () => {
+    props.onDeactivate();
+    console.log("CATCH ME OUTSIIIDE");
+  });
 
   useEffect(() => {
     if (props.value) setInputState(props.value);
@@ -47,16 +54,9 @@ const SearchField = (props: PROPS) => {
       props.onDeactivate();
     }
   }, [isModalOn]);
-  function focusHandler() {
+  function focusHandler(e: any) {
+    e.stopPropagation();
     props.onActivate();
-    setShowSuggestions(true);
-  }
-  function blurHandler(e: React.FocusEvent<HTMLInputElement>) {
-    e.preventDefault();
-    if (!isMobile && !isSuggestionClicked(e, style.suggestions)) {
-      props.onDeactivate();
-      setShowSuggestions(false);
-    }
   }
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -64,7 +64,7 @@ const SearchField = (props: PROPS) => {
     props.onChange(event.target.value);
   }
   return (
-    <div className={props.className}>
+    <div ref={fieldRef as any} className={props.className} onFocus={focusHandler} tabIndex={0}>
       {showSuggestions && (
         <div className={style.suggestions} tabIndex={-1}>
           <Suggestions
@@ -84,8 +84,7 @@ const SearchField = (props: PROPS) => {
           <input
             autoComplete="off"
             ref={inputRef}
-            onFocus={focusHandler}
-            onBlur={blurHandler}
+            // onBlur={blurHandler}
             placeholder={props.placeholder}
             type="text"
             value={inputState}
