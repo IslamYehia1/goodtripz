@@ -1,4 +1,4 @@
-const SERVER_URL = "http://goodtripz.westeurope.cloudapp.azure.com";
+const SERVER_URL = "https://goodtripz.westeurope.cloudapp.azure.com";
 // const SERVER_URL = "http://localhost:8080";
 
 type suggestionType = {
