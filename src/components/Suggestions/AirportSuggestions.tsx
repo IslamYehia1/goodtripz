@@ -3,6 +3,7 @@ import { AirportIcon } from "../Icons";
 import { airportAutocomplete as fetchSuggestions } from "../../utils/fetchAutocomplete";
 import style from "./Suggestions.module.scss";
 import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 export type autocompleteT = Array<{
   autocomplete: { id: string; main: string; secondary: string };
   identifier: string;
@@ -16,24 +17,29 @@ export type propsType = {
 };
 
 const AirportsSuggestions = ({ inputValue, onSuggestionClick }: propsType) => {
-  const [suggestions, setSuggestions] = useState<autocompleteT>();
-  async function fetchAutocomplete(searchTerm: any) {
-    const results = await fetchSuggestions(searchTerm);
-    if (results.length === 0) return;
-    setSuggestions(results);
-  }
+  const { isLoading, error, data, isFetching }: any = useQuery(
+    ["airportAutoComplete", inputValue],
+    () => fetchSuggestions(inputValue) as any
+  );
   useEffect(() => {
-    fetchAutocomplete(inputValue);
-  }, [inputValue]);
+    console.log(data);
+  }, [data]);
 
-  if (!inputValue || !suggestions)
+  if (isLoading) {
     return (
       <ul className={style.suggestions}>
-        <p className={style.placeHolder}>Type to search </p>
+        <p className={style.placeHolder}>Loading</p>
+      </ul>
+    );
+  }
+  if (!inputValue || !(data.length > 0))
+    return (
+      <ul className={style.suggestions}>
+        <p className={style.placeHolder}>Search by city or airport name</p>
       </ul>
     );
 
-  const SuggestionsList = suggestions.map(({ autocomplete, identifier }) => (
+  const SuggestionsList = data?.map(({ autocomplete, identifier }: any) => (
     <li
       key={autocomplete.id}
       onClick={() => {
@@ -44,10 +50,14 @@ const AirportsSuggestions = ({ inputValue, onSuggestionClick }: propsType) => {
           });
       }}
     >
-      <AirportIcon />
-      <div>
-        <span>{autocomplete.main}</span>
-        <span>{autocomplete.secondary}</span>
+      <div className={style.suggestionWrapper}>
+        <div className={style.airportIconWrapper}>
+          <AirportIcon />
+        </div>
+        <div className={style.airportInfoWrapper}>
+          <span>{autocomplete.main}</span>
+          <span>{autocomplete.secondary}</span>
+        </div>
       </div>
     </li>
   ));

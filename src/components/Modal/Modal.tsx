@@ -7,27 +7,23 @@ class Modal extends React.Component<modalProps, modalState> {
   // el: HTMLDivElement;
   altClassName?: string;
   className?: string;
-  // modalRoot: HTMLElement;
+  modalRoot?: HTMLElement;
   constructor(props: modalProps) {
     super(props);
-    // this.modalRoot = document.getElementById("modalRoot") as HTMLElement;
+    if (typeof window !== "undefined")
+      this.modalRoot = document.getElementById("modalRoot") as HTMLElement;
     this.altClassName = this.props.altClassName;
     this.className = this.props.className;
     // this.el = document.createElement("div");
   }
   componentDidUpdate(prevProps: modalProps) {
-    // if (this.props.isOpen !== prevProps.isOpen && this.props.isOpen) {
-    //     this.modalRoot!.appendChild(this.el);
-    //     document.body.style.overflow = "hidden";
-    //     this.el.classList.add(this.props.className);
-    // }
-    // if (
-    //     this.props.isOpen !== prevProps.isOpen &&
-    //     this.props.isOpen === false
-    // ) {
-    //     this.modalRoot!.removeChild(this.el);
-    //     document.body.style.overflow = "unset";
-    // }
+    if (typeof window === "undefined") return;
+    if (this.props.isOpen !== prevProps.isOpen && this.props.isOpen) {
+      document.querySelector("html")!.style.overflow = "hidden";
+    }
+    if (this.props.isOpen !== prevProps.isOpen && this.props.isOpen === false) {
+      document.querySelector("html")!.style.overflow = "auto";
+    }
   }
 
   render() {

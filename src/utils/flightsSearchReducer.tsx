@@ -67,22 +67,30 @@ export default function reducer(prevState: searchTermsT, action: actionT): searc
     case "addAdult":
       return {
         ...prevState,
-        adults: (parseInt(prevState.adults) + 1).toString(),
+        adults:
+          prevState.adults < 4 ? (parseInt(prevState.adults) + 1).toString() : prevState.adults,
       };
     case "removeAdult":
       return {
         ...prevState,
-        adults: (parseInt(prevState.adults) - 1).toString(),
+        adults:
+          prevState.adults > 1 ? (parseInt(prevState.adults) - 1).toString() : prevState.adults,
       };
     case "addChild":
       return {
         ...prevState,
-        children: (parseInt(prevState.children) + 1).toString(),
+        children:
+          prevState.children < 4
+            ? (parseInt(prevState.children) + 1).toString()
+            : prevState.children,
       };
     case "removeChild":
       return {
         ...prevState,
-        children: (parseInt(prevState.children) - 1).toString(),
+        children:
+          prevState.children > 0
+            ? (parseInt(prevState.children) - 1).toString()
+            : prevState.children,
       };
     default:
       return prevState;

@@ -8,13 +8,22 @@ import { useEffect, useState } from "react";
 import useIsMobile from "../../../utils/useIsMobile";
 const OriginFlightField = () => {
   const { setFlightDestination, to, activeField, setActiveField } = useFlightContext();
-  const { isModalOn, openModal, closeModal } = useUIContext();
+  const { isModalOn, openModal, closeModal, currentModal } = useUIContext();
   const isMobile = useIsMobile();
+  const [isActive, setIsActive] = useState(false);
+  useEffect(() => {
+    if (activeField === "destinationFlightSearch") {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  }, [isMobile]);
   return (
     <SearchField
       className={`${style.aSearchField} ${style.flightSearchField} ${
-        isModalOn ? style.inModal : ""
+        isActive && isModalOn ? style.inModal : ""
       } `}
+      animate={{ flexGrow: isActive ? 5 : 2 }}
       inputClass={style.textField}
       wrapperClass={style.textFieldWrapper}
       suggestions={AirportsSuggestions}
@@ -24,13 +33,13 @@ const OriginFlightField = () => {
       onChange={(value: any) => {
         setFlightDestination(value);
       }}
-      isActive={activeField === "destination"}
+      isActive={isActive}
       onActivate={() => {
-        setActiveField("destination");
-        if (isMobile) openModal("destinationFlightSearch");
+        setActiveField("destinationFlightSearch");
+        // if (isMobile) openModal("destinationFlightSear ch");
       }}
       onDeactivate={() => {
-        if (isModalOn) closeModal();
+        // if (isModalOn) closeModal();
         setActiveField("");
       }}
       value={to.name}

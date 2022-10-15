@@ -44,7 +44,6 @@ function UIProvider(props: any) {
   };
   const closeModal = (value: string) => {
     console.log("MODAL CLOSED", value);
-
     dispatch({ type: "closeModal" });
   };
   const providerFuncs = useMemo(() => ({ ...state, openModal, closeModal }), [state]);

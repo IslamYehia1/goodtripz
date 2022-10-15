@@ -76,15 +76,16 @@
   min-width: 800px;
   box-sizing: border-box;
   max-height: 429px;
+  z-index: 2;
 }
 
 .recommendation {
   @include semiBoldFont;
-  background: url("../public/img/background.jpg") rgba(10, 31, 56, 0.2) no-repeat;
+  // background: url("../public/img/background.jpg") rgba(10, 31, 56, 0.2) no-repeat;
   background-blend-mode: multiply;
   background-size: cover;
   background-position: center center;
-  border-radius: 30px;
+  // border-radius: 30px;
   color: $white;
   font-size: 34px;
   height: 85%;
@@ -92,10 +93,50 @@
   margin-left: 5vw;
   margin-right: 5vw;
   box-sizing: border-box;
+  overflow: hidden;
+  .backgroundImgWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    overflow: hidden;
+    isolation: isolate;
+    pointer-events: none;
+    & * {
+      width: 100%;
+      min-height: 100%;
+      max-height: 100%;
+    }
+    // background-color: black;
+    .overlay {
+      background-color: black;
+      border-radius: inherit;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      opacity: 0.2;
+      left: 0;
+    }
+  }
+  .background {
+    border-radius: 30px;
+    position: absolute;
+    width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    will-change: opacity;
+
+    // opacity: 0.8;
+  }
   .explore {
     // margin: 25vh auto 35vh auto;
     margin: 15% auto 19% auto;
-    position: relative;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 11%;
     width: 78%;
     min-width: 800px;
     height: 100%;
@@ -177,7 +218,12 @@
 @media only screen and (max-width: 1024px) {
   .homeSectionOne {
     height: calc(100vw * (9 / 10) - 74px);
-
+    .backgroundImgWrapper {
+      border-radius: 0;
+      & * {
+        border-radius: 0;
+      }
+    }
     .recommendation {
       margin-left: 0;
       margin-right: 0;
@@ -223,6 +269,16 @@
       min-height: 700px;
       box-sizing: border-box;
       height: calc(var(--vh, 1vh) * 100);
+      max-height: unset;
+      .backgroundImgWrapper {
+        height: 70%;
+        max-width: 70%;
+        min-height: 70%;
+        min-width: 100%;
+        .background {
+          object-position: center center;
+        }
+      }
       .recommendation {
         height: 100%;
         .explore {
@@ -230,6 +286,7 @@
           margin: 0 auto;
           padding-top: 25vh;
           padding-bottom: 60%;
+          left: 5%;
           h3 {
             font-size: 5vw;
           }

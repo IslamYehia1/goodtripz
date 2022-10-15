@@ -12,11 +12,10 @@ import PlaceSearchField from "../HomeSearchForm/HotelsFileds/PlaceSearchField";
 import HotelDateField from "../HomeSearchForm/HotelsFileds/HotelDateField";
 import TravellersOptions from "../HomeSearchForm/FlightsFields/TravellersOptions";
 import FlightTypeOptions from "../HomeSearchForm/FlightsFields/FlightTypeOptions";
+import HotelsTravellersOptions from "../HomeSearchForm/HotelsFileds/TravellersOptions";
 const SearchModal = (props: searchModalProps) => {
   const { isModalOn, currentModal, closeModal } = useUIContext();
-  useEffect(() => {
-    console.log("WOORKING", currentModal);
-  }, [isModalOn, currentModal]);
+
   return (
     <Modal className={style.modal} isOpen={isModalOn}>
       {isModalOn && (
@@ -34,7 +33,8 @@ const SearchModal = (props: searchModalProps) => {
       {currentModal === "flightDates" && <FlightDateField />}
       {currentModal === "hotelPlaceSearch" && <PlaceSearchField />}
       {currentModal === "hotelDates" && <HotelDateField />}
-      {currentModal === "travellersOptions" && <TravellersOptions />}
+      {currentModal === "flightTravellersOptions" && <TravellersOptions />}
+      {currentModal === "hotelsTravellersOptions" && <HotelsTravellersOptions />}
       {currentModal === "flightTypeOptions" && <FlightTypeOptions />}
     </Modal>
   );

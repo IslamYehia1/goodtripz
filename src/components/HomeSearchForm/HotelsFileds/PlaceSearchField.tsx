@@ -11,14 +11,17 @@ const PlaceSearchField = (props: any) => {
   const isMobile = useIsMobile();
   return (
     <SearchField
-      isActive={activeField === "hotelPlace"}
-      className={`${style.aSearchField} ${style.hotelSearchField}`}
+      isActive={activeField === "hotelPlaceSearch"}
+      className={`${style.aSearchField} ${style.hotelSearchField} ${
+        activeField == "hotelPlaceSearch" && isModalOn ? style.inModal : ""
+      }`}
       wrapperClass={style.textFieldWrapper}
       inputClass={style.textField}
       icon={HotelIcon}
       label={"Going to"}
       placeholder="Hotel location"
       name={"hotelLocation"}
+      // animate={{ flexGrow: activeField === "destination" ? 5 : 2 }}
       suggestions={Suggestions}
       onChange={(place: string) => {
         setHotelPlace(place);
@@ -28,10 +31,10 @@ const PlaceSearchField = (props: any) => {
       }}
       onActivate={() => {
         if (isMobile) openModal("hotelPlaceSearch");
-        setActiveField("hotelPlace");
+        setActiveField("hotelPlaceSearch");
       }}
       onDeactivate={() => {
-        if (isModalOn) closeModal();
+        // if (isModalOn) closeModal();
         setActiveField("");
       }}
     />

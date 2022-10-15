@@ -18,15 +18,13 @@ type autocompleteT = Array<{
   identifier: string;
 }>;
 export async function hotelAutoComplete(searchTerm: string) {
-  let temp: autocompleteT = [];
-
-  if (isInvalid(searchTerm)) return temp;
-
+  let results: autocompleteT = [];
+  if (isInvalid(searchTerm)) return results;
   try {
     const rawSuggestions = await fetch(`${SERVER_URL}/autocomplete/hotels?query=${searchTerm}`);
     const suggestions = await rawSuggestions.json();
     suggestions.forEach((suggestion: suggestionType) => {
-      temp.push({
+      results.push({
         autocomplete: {
           id: suggestion.place_id,
           main: suggestion.structured_formatting.main_text,
@@ -35,10 +33,10 @@ export async function hotelAutoComplete(searchTerm: string) {
         identifier: "ops",
       });
     });
-    return temp;
+    return results;
   } catch (err) {
     console.log(err);
-    return temp;
+    return results;
   }
 }
 type airportsResultType = {
@@ -46,19 +44,19 @@ type airportsResultType = {
 };
 
 export async function airportAutocomplete(searchTerm: string) {
-  let temp: autocompleteT = [];
-  if (isInvalid(searchTerm)) return temp;
+  let results: autocompleteT = [];
+  if (isInvalid(searchTerm)) return results;
 
   try {
-    const results = await (
+    const response = await (
       await fetch(
         // `http://goodtripz.westeurope.cloudapp.azure.com/autocomplete/airports?query=${searchTerm}`
         `${SERVER_URL}/autocomplete/airports?query=${searchTerm}`
       )
     ).json();
     // results.forEach((result: airportsResultType) => {
-    results.hits.forEach((result: any) => {
-      temp.push({
+    response.hits.forEach((result: any) => {
+      results.push({
         autocomplete: {
           id: `${result.id}`,
           main: `${result.name} (Code: ${result.iata_code})`,
@@ -67,11 +65,12 @@ export async function airportAutocomplete(searchTerm: string) {
         identifier: result.iata_code,
       });
     });
-    return temp;
+    return results;
   } catch (error) {
     console.log("ERROOOOR", error);
-    return temp;
+    return results;
   }
+  return results;
 }
 
 // const APILink = "https://api.aviowiki.com/free/airports/search?query";

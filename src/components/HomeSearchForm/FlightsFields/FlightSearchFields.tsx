@@ -12,6 +12,7 @@ import SearchModal from "../../Modal/SearchModal";
 import { useFlightContext } from "../../CommonContexts/FlightsContext";
 import useIsMobile from "../../../utils/useIsMobile";
 import { useUIContext } from "../../UI";
+import { motion } from "framer-motion";
 import SearchOptions from "./SearchOptions";
 type ACTIVE_FIELD =
   | "departure"
@@ -27,7 +28,7 @@ const FlightSearchFields = () => {
   const isMobile = useIsMobile();
   const { activeField, setActiveField, from, to, date, returnDate, adults, children, type } =
     useFlightContext();
-  const { openModal } = useUIContext();
+  const { openModal, isModalOn, currentModal, closeModal } = useUIContext();
   // Only one filter window can be open at once, hence the lefted state
   function handleSearch(e: React.SyntheticEvent) {
     e.preventDefault();
@@ -47,8 +48,26 @@ const FlightSearchFields = () => {
     }
   }
 
+  useEffect(() => {
+    if (activeField && isMobile) {
+      openModal(activeField);
+    } else {
+      closeModal();
+    }
+  }, [isMobile, activeField]);
+  useEffect(() => {
+    if (isMobile && !isModalOn) {
+      setActiveField("");
+    }
+  }, [isMobile, isModalOn]);
+
   return (
-    <form onSubmit={handleSearch} className={style.flightSearchFields}>
+    <motion.form
+      initial={{ scale: 0.6 }}
+      animate={{ scale: 1 }}
+      onSubmit={handleSearch}
+      className={style.flightSearchFields}
+    >
       <div className={style.options}>
         <SearchOptions />
       </div>
@@ -69,7 +88,7 @@ const FlightSearchFields = () => {
           <SearchIcon />
         </Button>
       </div>
-    </form>
+    </motion.form>
   );
 };
 

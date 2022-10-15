@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, RefObject, useContext } from "react
 import style from "./SearchForm.module.scss";
 import useIsMobile from "../../utils/useIsMobile";
 import { useUIContext } from "../UI";
-
+import { motion, AnimatePresence } from "framer-motion";
 import { isSuggestionClicked } from "../../utils";
 import useOutsideClick from "../../utils/useOutsideClick";
 type PROPS = {
@@ -20,6 +20,7 @@ type PROPS = {
   isActive?: Boolean;
   onActivate?: any;
   onDeactivate?: any;
+  animate?: any;
 };
 
 const SearchField = (props: PROPS) => {
@@ -31,7 +32,6 @@ const SearchField = (props: PROPS) => {
   const [inputState, setInputState] = useState("");
   const fieldRef = useOutsideClick(props.isActive, () => {
     props.onDeactivate();
-    console.log("CATCH ME OUTSIIIDE");
   });
 
   useEffect(() => {
@@ -49,12 +49,8 @@ const SearchField = (props: PROPS) => {
   // The modal can be closed by the "back" button in the modal itself
   // so the field should be deactivated if the modal got closed from an
   // outside event.
-  useEffect(() => {
-    if (!isModalOn && props.isActive) {
-      props.onDeactivate();
-    }
-  }, [isModalOn]);
-  function focusHandler(e: any) {
+
+  function activateField(e: any) {
     e.stopPropagation();
     props.onActivate();
   }
@@ -64,9 +60,21 @@ const SearchField = (props: PROPS) => {
     props.onChange(event.target.value);
   }
   return (
-    <div ref={fieldRef as any} className={props.className} onFocus={focusHandler} tabIndex={0}>
+    <motion.div
+      onFocus={activateField}
+      animate={props.animate}
+      style={{ pointerEvents: "all" }}
+      className={style.searchFragment}
+      ref={fieldRef as any}
+    >
       {showSuggestions && (
-        <div className={style.suggestions} tabIndex={-1}>
+        // <AnimatePresence>
+        <motion.div
+          initial={{ y: 100 }}
+          animate={{ y: 0 }}
+          className={style.suggestions}
+          tabIndex={-1}
+        >
           <Suggestions
             inputValue={inputState}
             onSuggestionClick={(suggestion: any) => {
@@ -75,26 +83,34 @@ const SearchField = (props: PROPS) => {
               props.onDeactivate();
             }}
           />
-        </div>
+        </motion.div>
+        // </AnimatePresence>
       )}
-      <div className={`${props.wrapperClass}`}>
-        {props.icon && <props.icon />}
-        <div className={props.inputClass}>
-          <label htmlFor={props.name}>{props.label}</label>
-          <input
-            autoComplete="off"
-            ref={inputRef}
-            // onBlur={blurHandler}
-            placeholder={props.placeholder}
-            type="text"
-            value={inputState}
-            name={props.name}
-            onChange={handleChange}
-            tabIndex={-1}
-          />
+      <div
+        // className={style.fieldWrapper}
+        tabIndex={0}
+        onClick={activateField}
+        className={props.className}
+      >
+        <div className={`${props.wrapperClass}`}>
+          {props.icon && <props.icon />}
+          <div className={props.inputClass}>
+            <label htmlFor={props.name}>{props.label}</label>
+            <input
+              autoComplete="off"
+              ref={inputRef}
+              // onBlur={blurHandler}
+              placeholder={props.placeholder}
+              type="text"
+              value={inputState}
+              name={props.name}
+              onChange={handleChange}
+              tabIndex={-1}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
