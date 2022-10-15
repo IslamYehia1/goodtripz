@@ -17,7 +17,7 @@ const OriginFlightField = () => {
     } else {
       setIsActive(false);
     }
-  }, [isMobile]);
+  }, [isMobile, activeField]);
   return (
     <SearchField
       className={`${style.aSearchField} ${style.flightSearchField} ${
