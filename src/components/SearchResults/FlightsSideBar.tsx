@@ -94,7 +94,7 @@ const FlightsSideBar = (props: flightsSideBarT) => {
           wrapperClass={style.lilSearchField}
           fromDate={date}
           toDate={returnDate}
-          onActivate={(field) => {
+          onActivate={(field: string) => {
             if (isMobile) openModal("flightDates");
             setActiveField(field);
           }}
@@ -102,10 +102,10 @@ const FlightsSideBar = (props: flightsSideBarT) => {
             setActiveField("");
             if (isModalOn) closeModal();
           }}
-          setFromDate={(date) => {
+          setFromDate={(date: Date) => {
             setFlightDate(date.toISOString().substring(0, 10));
           }}
-          setToDate={(date) => {
+          setToDate={(date: Date) => {
             setReturnDate(date.toISOString().substring(0, 10));
           }}
         />

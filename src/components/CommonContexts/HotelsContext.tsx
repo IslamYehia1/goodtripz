@@ -1,5 +1,5 @@
 import { createContext, useReducer, useCallback, useMemo, useContext, useState } from "react";
-import reducer from "../SearchResults/hotelsReducer";
+import reducer from "../../utils/hotelsReducer";
 type HOTELS_CONTEXT = {
   place: string;
   checkIn: string;

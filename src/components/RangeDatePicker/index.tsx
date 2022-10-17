@@ -76,9 +76,10 @@ export default function App(props: any) {
         <div className={style.dateFieldsWrapper}>
           <div className={`${props.wrapperClass}`}>
             {props.icon && <props.icon />}
-            <div className={props.singleDateClass}>
-              <label htmlFor={"toDateInput"}>{props.label}</label>
+            <div className={props.textFieldClass}>
+              <label htmlFor={"fromDateInput"}>{props.fromLabel}</label>
               <input
+                name={"fromDateInput"}
                 readOnly
                 tabIndex={-1}
                 value={range!.from ? format(range!.from, "P") : undefined}
@@ -89,10 +90,11 @@ export default function App(props: any) {
           {props.range && (
             <div className={`${props.wrapperClass}`}>
               {props.icon && <props.icon />}
-              <div className={props.singleDateClass}>
-                <label htmlFor={"toDateInput"}>{props.label}</label>
+              <div className={props.textFieldClass}>
+                <label htmlFor={"toDateInput"}>{props.toLabel}</label>
                 <input
                   readOnly
+                  name={"toDateInput"}
                   tabIndex={-1}
                   value={range!.to ? format(range!.to, "P") : undefined}
                   placeholder="Pick a date"

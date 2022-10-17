@@ -64,7 +64,7 @@ const SearchField = (props: PROPS) => {
       onFocus={activateField}
       animate={props.animate}
       style={{ pointerEvents: "all" }}
-      className={style.searchFragment}
+      className={`${style.searchFragment} ${props.className}`}
       ref={fieldRef as any}
     >
       {showSuggestions && (
@@ -90,25 +90,25 @@ const SearchField = (props: PROPS) => {
         // className={style.fieldWrapper}
         tabIndex={0}
         onClick={activateField}
-        className={props.className}
+        className={`${props.wrapperClass}`}
       >
-        <div className={`${props.wrapperClass}`}>
-          {props.icon && <props.icon />}
-          <div className={props.inputClass}>
-            <label htmlFor={props.name}>{props.label}</label>
-            <input
-              autoComplete="off"
-              ref={inputRef}
-              // onBlur={blurHandler}
-              placeholder={props.placeholder}
-              type="text"
-              value={inputState}
-              name={props.name}
-              onChange={handleChange}
-              tabIndex={-1}
-            />
-          </div>
+        {/* <div> */}
+        {props.icon && <props.icon />}
+        <div className={props.inputClass}>
+          <label htmlFor={props.name}>{props.label}</label>
+          <input
+            autoComplete="off"
+            ref={inputRef}
+            // onBlur={blurHandler}
+            placeholder={isMobile ? props.label : props.placeholder}
+            type="text"
+            value={inputState}
+            name={props.name}
+            onChange={handleChange}
+            tabIndex={-1}
+          />
         </div>
+        {/* </div> */}
       </div>
     </motion.div>
   );

@@ -1,7 +1,7 @@
 import useIsMobile from "../../src/utils/useIsMobile";
 import { useRouter } from "next/router";
 import { useState, useReducer, useEffect } from "react";
-import reducer from "../../src/components/SearchResults/hotelsReducer";
+import reducer from "../../src/utils/hotelsReducer";
 import { HotelSearchProvider } from "../../src/components/CommonContexts/HotelsContext";
 import { SearchModal } from "../../src/components/Modal";
 import HotelsResultsOverlay from "../../src/components/SearchResults/HotelsResultsOverlay";

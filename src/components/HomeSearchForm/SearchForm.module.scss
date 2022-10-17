@@ -75,6 +75,15 @@
     height: 100%;
   }
 }
+.carsSearchFields {
+  margin-top: 30px;
+  .column {
+    width: 49%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
 .filterButtonWrapper.inModal {
   .button {
     width: 100%;
@@ -213,6 +222,7 @@
       opacity: 0.6;
       font-size: 15px;
       width: 90%;
+      @include normalFont;
       &::placeholder {
         @include normalFont;
         font-size: 15px;
@@ -265,6 +275,9 @@
   }
   .textFieldWrapper {
     width: 50%;
+    &:first-child {
+      margin-right: 1rem;
+    }
     input {
       width: 5rem;
     }
@@ -434,7 +447,7 @@
     padding: 4vw 0 4vw 6%;
     margin: 0;
     box-shadow: unset;
-    border-radius: 0;
+    // border-radius: 0;
     opacity: 1;
     position: relative;
     z-index: 5;
@@ -458,12 +471,8 @@
   }
   .fields {
     flex-direction: column;
-    .searchFragment {
-      &:first-child {
-        .aSearchField {
-          border-radius: 20px 20px 0 0;
-        }
-      }
+    .searchFragment:first-child {
+      border-radius: 20px 20px 0 0;
     }
 
     .dateSearchField {

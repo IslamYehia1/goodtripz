@@ -53,7 +53,7 @@ const ResultsPageContainer = () => {
         <SideBarNav
           activeTab={"flights"}
           onTabChange={(tab) => {
-            router.replace("hotels/");
+            router.replace(tab);
           }}
         />
         <FlightsSideBar airports={airports} />

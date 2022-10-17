@@ -5,6 +5,8 @@ import HotelSearchFields from "./HotelsFileds/HotelSearchFields";
 import style from "./SearchForm.module.scss";
 import homeStyle from "../../../styles/Home.module.scss";
 import { SearchModal } from "../Modal";
+import CarsFields from "./CarsFields";
+import { CarsSearchProvider } from "../CommonContexts/CarsContext";
 const SearchForm = () => {
   const [formState, setFormState] = useState("flight");
   return (
@@ -38,10 +40,10 @@ const SearchForm = () => {
             <span className={style.searchTab}>
               <Button
                 handleClick={(e) => {
-                  setFormState("car");
+                  setFormState("cars");
                 }}
                 className={style.button}
-                id={formState === "car" ? style.active : ""}
+                id={formState === "cars" ? style.active : ""}
               >
                 Cars
               </Button>
@@ -61,6 +63,7 @@ const SearchForm = () => {
           <div className={style.searchFields}>
             {formState === "flight" && <FlightSearchFields />}
             {formState === "hotel" && <HotelSearchFields />}
+            <CarsSearchProvider>{formState === "cars" && <CarsFields />}</CarsSearchProvider>
           </div>
         </div>
       </div>

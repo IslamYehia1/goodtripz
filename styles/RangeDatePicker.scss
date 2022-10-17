@@ -87,6 +87,11 @@
     width: 200px;
   }
 }
+.rdp {
+  --rdp-accent-color-dark: #4f96f7 !important;
+  --rdp-accent-color: #4f96f7 !important;
+  --rdp-background-color-dark: #4f96f7 !important;
+}
 
 @media only screen and (max-width: 650px) {
   .DayPickerInput-OverlayWrapper {
@@ -128,9 +133,7 @@
   }
   .rdp {
     --rdp-cell-size: 13vw !important;
-    --rdp-accent-color-dark: #4f96f7 !important;
-    --rdp-accent-color: #4f96f7 !important;
-    --rdp-background-color-dark: #4f96f7 !important;
+
     overflow: scroll;
 
     .rdp-caption_label {

@@ -36,6 +36,8 @@ const SearchModal = (props: searchModalProps) => {
       {currentModal === "flightTravellersOptions" && <TravellersOptions />}
       {currentModal === "hotelsTravellersOptions" && <HotelsTravellersOptions />}
       {currentModal === "flightTypeOptions" && <FlightTypeOptions />}
+      {currentModal === "pickUpLocation" && <FlightTypeOptions />}
+      {currentModal === "dropOffLocation" && <FlightTypeOptions />}
     </Modal>
   );
 };
