@@ -8,10 +8,16 @@ import Button from "../../Button/Button";
 import {SearchIcon,ExpandIcon} from "../../Icons"; //prettier-ignore
 import CarsTime from "./CarsTime";
 import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import useIsMobile from "../../../utils/useIsMobile";
+import { useUIContext } from "../../UI";
+
 function CarsFields() {
   const { activeField, setActiveField, dropOffLocation, pickUpLocation, pickUpDate, dropOffDate } =
     useCarsContext();
   const history = useRouter();
+  const { openModal, isModalOn, currentModal, closeModal } = useUIContext();
+  const isMobile = useIsMobile();
 
   function searchHandler(e: React.SyntheticEvent) {
     e.preventDefault();
@@ -19,6 +25,20 @@ function CarsFields() {
       `/searchResults/cars?pickUp=${pickUpLocation}&dropOff=${dropOffLocation}&pickUpDate=${pickUpDate}&dropOffDate=${dropOffDate}`
     );
   }
+
+  useEffect(() => {
+    if (activeField && isMobile) {
+      openModal(activeField);
+    } else {
+      closeModal();
+    }
+  }, [isMobile, activeField]);
+  useEffect(() => {
+    if (isMobile && !isModalOn) {
+      setActiveField("");
+    }
+  }, [isMobile, isModalOn]);
+
   return (
     <motion.form
       initial={{ scale: 0.6 }}

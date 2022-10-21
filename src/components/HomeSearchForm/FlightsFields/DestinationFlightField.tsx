@@ -20,7 +20,8 @@ const OriginFlightField = () => {
   }, [isMobile, activeField]);
   return (
     <SearchField
-      className={`${style.aSearchField} ${style.flightSearchField} ${
+      // ${style.aSearchField}
+      className={`${style.searchFragment} ${style.flightSearchField} ${
         isActive && isModalOn ? style.inModal : ""
       } `}
       animate={{ flexGrow: isActive ? 5 : 2 }}

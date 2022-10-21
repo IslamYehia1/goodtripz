@@ -11,10 +11,13 @@ function DropOffPlace() {
   const { activeField, setActiveField, setDropOffLocation, dropOffLocation } = useCarsContext();
   const { isModalOn } = useUIContext();
   const [isActive, setIsActive] = useState(false);
-
+  useEffect(() => {
+    if (activeField === "dropOffLocation") setIsActive(true);
+    else setIsActive(false);
+  }, [activeField]);
   return (
     <SearchField
-      className={`${style.aSearchField} ${style.flightSearchField} ${
+      className={`${style.searchFragment} ${style.aSearchField} ${style.flightSearchField} ${
         isActive && isModalOn ? style.inModal : ""
       } `}
       inputClass={style.textField}
@@ -38,7 +41,7 @@ function DropOffPlace() {
       animate={{ flexGrow: activeField === "dropOffLocation" ? 5 : 2 }}
       value={dropOffLocation}
       label="Drop-off Location"
-      placeholder="Where will you drop the car off?"
+      placeholder="Search the place"
       name="flightDestination"
       icon={LocationIcon}
     />

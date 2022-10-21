@@ -17,10 +17,12 @@ const OriginFlightField = () => {
     } else {
       setIsActive(false);
     }
-  }, [activeField]);
+  }, [activeField, setActiveField]);
+  useEffect(() => {}, [isModalOn, isActive]);
   return (
     <SearchField
-      className={`${style.aSearchField} ${style.flightSearchField} ${
+      // ${style.aSearchField}
+      className={`${style.searchFragment} ${style.flightSearchField} ${
         isActive && isModalOn ? style.inModal : ""
       } `}
       inputClass={style.textField}
@@ -32,7 +34,7 @@ const OriginFlightField = () => {
       onChange={(value: any) => {
         setFlightOrigin(value);
       }}
-      isActive={activeField === "originFlightSearch"}
+      isActive={isActive}
       onActivate={() => {
         if (setActiveField) setActiveField("originFlightSearch");
         // if (isMobile) openModal("originFlightSearch");
@@ -41,7 +43,7 @@ const OriginFlightField = () => {
         if (setActiveField) setActiveField("");
         // if (isModalOn) closeModal();
       }}
-      animate={{ flexGrow: activeField === "originFlightSearch" ? 5 : 2 }}
+      animate={{ flexGrow: isActive ? 5 : 2 }}
       value={from.name}
       label="Flying from"
       placeholder="Origin airport"

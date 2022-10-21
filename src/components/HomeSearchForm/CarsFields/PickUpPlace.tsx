@@ -11,12 +11,14 @@ function PickUpPlace() {
   const { activeField, setActiveField, setPickUpLocation, pickUpLocation } = useCarsContext();
   const { isModalOn } = useUIContext();
   const [isActive, setIsActive] = useState(false);
+  useEffect(() => {}, [isActive]);
   useEffect(() => {
     if (activeField === "pickUpLocation") setIsActive(true);
+    else setIsActive(false);
   }, [activeField]);
   return (
     <SearchField
-      className={`${style.aSearchField} ${style.flightSearchField} ${
+      className={`${style.searchFragment} ${style.aSearchField} ${style.flightSearchField} ${
         isActive && isModalOn ? style.inModal : ""
       } `}
       inputClass={style.textField}
@@ -40,7 +42,7 @@ function PickUpPlace() {
       animate={{ flexGrow: activeField === "pickUpLocation" ? 5 : 2 }}
       value={pickUpLocation}
       label="Pick-up Location"
-      placeholder="Where do you want the car from?"
+      placeholder="Search the place"
       name="flightDestination"
       icon={LocationIcon}
     />

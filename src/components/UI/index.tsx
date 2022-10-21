@@ -38,12 +38,9 @@ function UIReducer(state: STATE, action: ACTION): STATE {
 function UIProvider(props: any) {
   const [state, dispatch] = useReducer(UIReducer, initialUiState);
   const openModal = (value: string) => {
-    console.log("MODAL OPENED", value);
-
     dispatch({ type: "openModal", value: value });
   };
   const closeModal = (value: string) => {
-    console.log("MODAL CLOSED", value);
     dispatch({ type: "closeModal" });
   };
   const providerFuncs = useMemo(() => ({ ...state, openModal, closeModal }), [state]);

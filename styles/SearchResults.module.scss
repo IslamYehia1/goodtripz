@@ -50,6 +50,15 @@
     }
   }
 }
+.dateRangeWrapper {
+  justify-content: unset;
+}
+.singleDateField {
+  max-width: 40%;
+}
+.textFieldWrapper {
+  width: 100%;
+}
 .textField {
   display: flex;
   flex-direction: column;
@@ -102,6 +111,9 @@
     margin-right: 7px;
   }
 }
+.button.filterBtn {
+  color: $dark;
+}
 
 .updateSearchBtn {
   background-color: $primary;
@@ -149,6 +161,23 @@
         scrollbar-width: none; /* Firefox */
         &::-webkit-scrollbar {
           display: none;
+        }
+        .dateRangeWrapper {
+          min-width: auto !important;
+          max-width: auto !important;
+          .textField {
+            min-width: auto !important;
+            max-width: auto !important;
+            input {
+              width: 7rem;
+            }
+          }
+        }
+        .lilSearchField.singleDateField {
+          min-width: auto;
+          max-width: auto;
+          width: auto;
+          justify-content: space-between;
         }
         .lilSearchField {
           background-color: $white;

@@ -61,10 +61,9 @@ const SearchField = (props: PROPS) => {
   }
   return (
     <motion.div
-      onFocus={activateField}
       animate={props.animate}
       style={{ pointerEvents: "all" }}
-      className={`${style.searchFragment} ${props.className}`}
+      className={`${props.className}`}
       ref={fieldRef as any}
     >
       {showSuggestions && (
@@ -89,7 +88,8 @@ const SearchField = (props: PROPS) => {
       <div
         // className={style.fieldWrapper}
         tabIndex={0}
-        onClick={activateField}
+        // onClick={activateField}
+        onFocus={activateField}
         className={`${props.wrapperClass}`}
       >
         {/* <div> */}

@@ -32,8 +32,6 @@ const FromDateField = (props: DATE_FIELD_PROPS) => {
       props.setState({ type: "to", to: undefined });
     }
     if (isSameDay(day, props.today) || isAfter(day, props.today)) {
-      console.log(day);
-
       props.setState({ type: "from", from: day });
       props.setState({ type: "lastHoveredDay", lastHoveredDay: day });
     }
@@ -64,7 +62,7 @@ const FromDateField = (props: DATE_FIELD_PROPS) => {
             numberOfMonths={2}
             fromMonth={props.today}
             month={from || props.today}
-            selected={selectedDays}
+            selected={selectedDays as any}
             disabled={{ before: new Date() }}
             // modifiers={modifiers}
             onDayClick={onDayClick}

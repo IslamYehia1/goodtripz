@@ -37,7 +37,7 @@ const ResultsPageContainer = () => {
           </Button>
           {isMobile && (
             <Button
-              className={`${style.filterBtn}`}
+              className={`${style.button} ${style.filterBtn}`}
               icon={FilterIcon}
               handleClick={() => {
                 if (isMobile && !isModalOn) openModal("hotelsResultsFilter");

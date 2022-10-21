@@ -12,7 +12,8 @@ const PlaceSearchField = (props: any) => {
   return (
     <SearchField
       isActive={activeField === "hotelPlaceSearch"}
-      className={`${style.aSearchField} ${style.hotelSearchField} ${
+      // ${style.aSearchField}
+      className={`${style.searchFragment} ${style.hotelSearchField} ${
         activeField == "hotelPlaceSearch" && isModalOn ? style.inModal : ""
       }`}
       wrapperClass={style.textFieldWrapper}

@@ -21,6 +21,11 @@ export default function App(props: any) {
   const { isModalOn, openModal, closeModal } = useUIContext();
   const [range, setRange] = useState<DateRange | undefined>(defaultSelected);
   const isMobile = useIsMobile();
+  const fieldRef: any = useOutsideClick(props.isActive, () => {
+    // setActiveField("");
+    props.onDeactivate();
+  });
+
   function activateDateField() {
     props.onActivate();
   }
@@ -41,8 +46,8 @@ export default function App(props: any) {
     //   onClick={props.onClick}
     //   tabIndex={0}
     // >
-    <>
-      {props.activeField && (
+    <div className={props.className} ref={fieldRef}>
+      {props.isActive && (
         // {true && (
         <AnimatePresence>
           <motion.div initial={{ y: 100 }} animate={{ y: 0 }} className={`${props.overlayClass}`}>
@@ -61,7 +66,7 @@ export default function App(props: any) {
               <div className={style.buttonWrapper}>
                 <Button
                   handleClick={() => {
-                    props.onDeActivate();
+                    props.onDeactivate();
                   }}
                   className={style.doneBtn}
                 >
@@ -72,39 +77,41 @@ export default function App(props: any) {
           </motion.div>
         </AnimatePresence>
       )}
-      <div className={props.className} onFocus={activateDateField} onClick={activateDateField}>
-        <div className={style.dateFieldsWrapper}>
-          <div className={`${props.wrapperClass}`}>
+      <div
+        onClick={activateDateField}
+        onFocus={activateDateField}
+        className={`${style.dateFieldsWrapper} ${props.wrapperClass}`}
+      >
+        <div className={`${props.singleDateFieldClass}`}>
+          {props.icon && <props.icon />}
+          <div className={props.textFieldClass}>
+            <label htmlFor={"fromDateInput"}>{props.fromLabel}</label>
+            <input
+              name={"fromDateInput"}
+              readOnly
+              tabIndex={-1}
+              value={range!.from ? format(range!.from, "P") : undefined}
+              placeholder="Pick a date"
+            />
+          </div>
+        </div>
+        {props.range && (
+          <div className={`${props.singleDateFieldClass}`}>
             {props.icon && <props.icon />}
             <div className={props.textFieldClass}>
-              <label htmlFor={"fromDateInput"}>{props.fromLabel}</label>
+              <label htmlFor={"toDateInput"}>{props.toLabel}</label>
               <input
-                name={"fromDateInput"}
                 readOnly
+                name={"toDateInput"}
                 tabIndex={-1}
-                value={range!.from ? format(range!.from, "P") : undefined}
+                value={range!.to ? format(range!.to, "P") : undefined}
                 placeholder="Pick a date"
               />
             </div>
           </div>
-          {props.range && (
-            <div className={`${props.wrapperClass}`}>
-              {props.icon && <props.icon />}
-              <div className={props.textFieldClass}>
-                <label htmlFor={"toDateInput"}>{props.toLabel}</label>
-                <input
-                  readOnly
-                  name={"toDateInput"}
-                  tabIndex={-1}
-                  value={range!.to ? format(range!.to, "P") : undefined}
-                  placeholder="Pick a date"
-                />
-              </div>
-            </div>
-          )}
-        </div>
+        )}
       </div>
-    </>
+    </div>
     // </div>
   );
 }

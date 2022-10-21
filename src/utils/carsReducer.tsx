@@ -11,7 +11,7 @@ export default function reducer(prevState: any, action: any) {
     case "dropOffTime":
       return { ...prevState, dropOffTime: action.val };
     default:
-      console.log("This action.type is not found");
+      console.log("Error: This action.type is not found");
       return prevState;
   }
 }

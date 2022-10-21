@@ -2,6 +2,7 @@
 .modal {
   .suggestions {
     top: 100%;
+    // background-color: red;
   }
   .aSearchField {
     &::after {
@@ -192,12 +193,23 @@
     border-bottom: 2px solid $primary;
   }
 }
-
+.singleDateField {
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
 .textFieldWrapper {
   display: flex;
   align-items: center;
   cursor: pointer;
   color: $dark;
+  // pointer-events: all;
+  cursor: pointer;
+  padding: 24px 24px 24px 28px;
+  border-radius: 18px;
+  background-color: $white;
+  box-shadow: 0px 4px 18px 11px rgba(0, 0, 0, 0.03);
+
   label {
     pointer-events: none;
   }
@@ -243,43 +255,46 @@
   // }
   flex-direction: column;
   justify-content: center;
+  // pointer-events: all;
   cursor: pointer;
-  & * {
+  & > * {
     cursor: pointer;
+    // pointer-events: none;
   }
-  pointer-events: all;
   flex-grow: 2;
   flex-basis: auto;
-  position: relative;
+  // position: relative;
   // padding: 24px 0 24px 28px;
-  padding: 24px 24px 24px 28px;
-  border-radius: 18px;
-  background-color: $white;
-  position: relative;
-  background: #f7f9fc;
-  box-shadow: 0px 4px 18px 11px rgba(0, 0, 0, 0.03);
+  // padding: 24px 24px 24px 28px;
+  // border-radius: 18px;
+  // position: relative;
 }
 .searchFragment {
   position: relative;
   margin-right: 1.5%;
+  background: transparent;
+  flex-grow: 2;
+  &.dateSearchField {
+    flex-grow: unset;
+  }
 }
 .fieldWrapper {
 }
 .dateSearchField {
   // flex-grow: 1;
-  height: 100%;
+  // height: 100%;
   svg {
     min-width: 20px;
     width: 20px;
-    margin-right: 10px;
+    margin-right: 20px;
   }
   .textFieldWrapper {
-    width: 50%;
+    // width: 50%;
     &:first-child {
-      margin-right: 1rem;
+      // margin-right: 1rem;
     }
     input {
-      width: 5rem;
+      width: 6rem;
     }
   }
   // max-width: 30%;
@@ -329,9 +344,25 @@
     height: 30px;
   }
 }
+.searchFragment.inModal {
+  .textFieldWrapper {
+    padding-left: 15vw;
+    &::after {
+      content: none;
+    }
+    svg {
+      display: none;
+      // color: red;
+    }
+  }
+  position: relative;
+  // top: 15px;
+  left: 0;
+  right: 0;
+}
 
 @media only screen and (max-width: 1280px) {
-  .aSearchField {
+  .textField {
     label {
       display: none;
     }
@@ -354,22 +385,26 @@
     }
   }
   .searchFragment {
+    width: 49%;
     max-width: 49%;
     flex-grow: 2;
     margin-right: 0;
+    margin-bottom: 1rem;
   }
-
+  .textFieldWrapper {
+    padding: 2vw 0 2vw 6%;
+    border-radius: 7px;
+  }
   .aSearchField {
     svg {
       width: 20px;
       height: 20px;
     }
     margin-bottom: 15px;
-    padding: 2vw 0 2vw 6%;
-    border-radius: 7px;
   }
   .fields {
     flex-wrap: wrap;
+
     .dateSearchField {
       // margin-bottom: 0;
       height: auto;
@@ -378,7 +413,7 @@
       flex-grow: 1;
       border-radius: 7px;
       max-width: 49%;
-      margin-bottom: 15px;
+      margin-bottom: 1rem;
     }
     // .hotelSearchField:first-child {
     //   width: 100%;
@@ -395,19 +430,33 @@
 .aSearchField {
   &.inModal {
     // border-bottom: 2px solid rgb(218, 218, 218) !important;
-    &::after {
-      content: none;
-    }
-    & svg {
-      visibility: hidden;
+    justify-content: flex-start;
+    .textFieldWrapper {
+      background-color: $white;
+      &::after {
+        content: none;
+      }
+      & svg {
+        visibility: hidden;
+      }
     }
   }
 }
-
+.searchFragment.dateSearchField.inModal {
+  // border-radius: 0 0 20px 20px;
+  // overflow: hidden;
+  .textFieldWrapper {
+    z-index: 100;
+    &:after {
+      content: none;
+    }
+  }
+}
 @media only screen and (max-width: 650px) {
   .suggestions {
     top: 0;
   }
+
   .textFieldWrapper {
     .textField {
       width: 90%;
@@ -415,6 +464,9 @@
   }
   .dateSearchField {
     .textFieldWrapper {
+      &:first-child {
+        margin: 0;
+      }
       svg {
         margin-right: 30px;
       }
@@ -441,44 +493,62 @@
   }
   .searchFragment {
     max-width: unset;
+    margin-right: 0;
     height: 100%;
+    width: unset;
+    &:first-child {
+      .textFieldWrapper {
+        border-radius: 20px 20px 0 0;
+        overflow: hidden;
+      }
+    }
+    & .dateSearchField {
+      border-radius: 0 0 20px 20px;
+      overflow: hidden;
+    }
   }
-  .aSearchField {
-    padding: 4vw 0 4vw 6%;
+  .searchFragment {
     margin: 0;
-    box-shadow: unset;
-    // border-radius: 0;
-    opacity: 1;
-    position: relative;
+    padding: 0;
+    .textFieldWrapper {
+      padding: 4vw 0 4vw 6%;
+      margin: 0;
+      box-shadow: unset;
+      border-radius: 0;
+      opacity: 1;
+      position: relative;
+      height: 65px;
+      &::after {
+        content: "";
+        position: absolute;
+        border: 1px solid $dark;
+        opacity: 0.1;
+        width: 80%;
+        right: 0;
+        bottom: 0;
+      }
+    }
     z-index: 5;
-    height: 65px;
     // height: 13vw;
     svg {
       opacity: 0.7;
     }
-    &::after {
-      content: "";
-      position: absolute;
-      border: 1px solid $dark;
-      opacity: 0.1;
-      width: 80%;
-      right: 0;
-      bottom: 0;
-    }
+
     &.hotelSearchField {
       flex-grow: 5;
     }
   }
   .fields {
     flex-direction: column;
-    .searchFragment:first-child {
-      border-radius: 20px 20px 0 0;
-    }
+    overflow: hidden;
 
-    .dateSearchField {
+    .searchFragment.dateSearchField {
       border-radius: 0 0 20px 20px;
-      &:after {
-        content: none;
+      overflow: hidden;
+      .textFieldWrapper {
+        &:after {
+          content: none;
+        }
       }
     }
 

@@ -10,51 +10,47 @@ function DropOffPlace() {
   const { isModalOn, openModal, closeModal } = useUIContext();
   const { activeField, setActiveField, pickUpDate, setPickUpDate, setDropOffDate, dropOffDate } =
     useCarsContext();
-  const fieldRef: any = useOutsideClick(activeField == "date", () => {
-    setActiveField("");
-  });
+  // const fieldRef: any = useOutsideClick(activeField == "carsDates", () => {
+  //   setActiveField("");
+  // });
 
   const isMobile = useIsMobile();
-  useEffect(() => {
-    console.log("LOOK", activeField);
-  }, [activeField]);
+  useEffect(() => {}, [activeField]);
   return (
-    <div className={style.searchFragment} ref={fieldRef}>
-      {" "}
-      <DateInput
-        activeField={activeField === "date"}
-        overlayClass={`${style.dateOverlay} ${
-          activeField == "date" && isModalOn ? style.inModal : ""
-        }`}
-        fromLabel="Pick-up date"
-        toLabel="Drop-off date"
-        range={true}
-        icon={DateIcon}
-        textFieldClass={style.textField}
-        className={`${style.aSearchField} ${style.flightSearchField} ${style.dateSearchField} ${
-          activeField == "date" && isModalOn ? style.inModal : ""
-        }`}
-        wrapperClass={style.textFieldWrapper}
-        fromDate={pickUpDate}
-        toDate={dropOffDate}
-        onActivate={() => {
-          if (setActiveField) {
-            setActiveField("date");
-          }
-          if (isMobile) openModal("flightDates");
-        }}
-        onDeActivate={() => {
-          if (setActiveField) setActiveField("");
-          if (isModalOn) closeModal();
-        }}
-        setFromDate={(date: Date) => {
-          setPickUpDate(date.toISOString().substring(0, 10));
-        }}
-        setToDate={(date: Date) => {
-          setDropOffDate(date.toISOString().substring(0, 10));
-        }}
-      />
-    </div>
+    // <div className={style.searchFragment}>
+    //   {" "}
+    <DateInput
+      isActive={activeField === "carsDates"}
+      overlayClass={`${style.dateOverlay} ${
+        activeField == "carsDates" && isModalOn ? style.inModal : ""
+      }`}
+      singleDateFieldClass={style.singleDateField}
+      fromLabel="Pick-up date"
+      toLabel="Drop-off date"
+      range={true}
+      icon={DateIcon}
+      textFieldClass={style.textField}
+      // ${style.aSearchField}
+      className={`${style.searchFragment} ${style.dateSearchField} ${
+        activeField == "carsDates" && isModalOn ? style.inModal : ""
+      }`}
+      wrapperClass={style.textFieldWrapper}
+      fromDate={pickUpDate}
+      toDate={dropOffDate}
+      onActivate={() => {
+        if (setActiveField) setActiveField("carsDates");
+      }}
+      onDeactivate={() => {
+        if (setActiveField) setActiveField("");
+      }}
+      setFromDate={(date: Date) => {
+        setPickUpDate(date.toISOString().substring(0, 10));
+      }}
+      setToDate={(date: Date) => {
+        setDropOffDate(date.toISOString().substring(0, 10));
+      }}
+    />
+    // </div>
   );
 }
 export default DropOffPlace;

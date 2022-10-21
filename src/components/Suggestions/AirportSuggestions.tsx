@@ -21,9 +21,6 @@ const AirportsSuggestions = ({ inputValue, onSuggestionClick }: propsType) => {
     ["airportAutoComplete", inputValue],
     () => fetchSuggestions(inputValue) as any
   );
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   if (isLoading) {
     return (

@@ -6,11 +6,8 @@ import { propsType } from "./types";
 import { useRouter } from "next/router";
 const NavBar = ({ className }: propsType) => {
   const router = useRouter();
-  console.log(router.pathname);
   return (
-    <nav
-      className={`${style.navBar} ${router.pathname === "/" ? style.home : ""}`}
-    >
+    <nav className={`${style.navBar} ${router.pathname === "/" ? style.home : ""}`}>
       <div className={style.logo}>
         <Link passHref href="/">
           <Logo className={style.logo} />

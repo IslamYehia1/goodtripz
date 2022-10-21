@@ -2,96 +2,113 @@ import DateInput from "../RangeDatePicker";
 import style from "../../../styles/SearchResults.module.scss";
 import { hotelsSideBarT } from "./types";
 import { useUIContext } from "../UI";
-import { useHotelsContext } from "../CommonContexts/HotelsContext";
+import { useCarsContext } from "../CommonContexts/CarsContext";
 import SearchField from "../HomeSearchForm/SearchField";
 import useIsMobile from "../../utils/useIsMobile";
 import Suggestions from "../Suggestions/HotelPlaceSuggestions";
+import { useEffect } from "react";
 const CarsSideBar = (props: hotelsSideBarT) => {
   const { isModalOn, openModal, closeModal } = useUIContext();
   const {
     activeField,
     setActiveField,
-    setHotelPlace,
-    place,
-    checkIn,
-    checkOut,
-    setCheckInDate,
-    setCheckOutDate,
-  } = useHotelsContext();
+    setPickUpLocation,
+    pickUpLocation,
+    setDropOffLocation,
+    dropOffLocation,
+    setPickUpDate,
+    setDropOffDate,
+    pickUpDate,
+    dropOffDate,
+  } = useCarsContext();
+
   const isMobile = useIsMobile();
+
+  useEffect(() => {
+    if (activeField && isMobile) {
+      openModal(activeField);
+    } else {
+      closeModal();
+    }
+  }, [isMobile, activeField]);
+  useEffect(() => {
+    if (isMobile && !isModalOn) {
+      setActiveField("");
+    }
+  }, [isMobile, isModalOn]);
+
   return (
     <>
       <div className={`${style.sideSection} ${style.searchTerms}`}>
         <SearchField
-          value={place}
-          label="Pick Up Location"
+          value={pickUpLocation}
+          label="Drop Off Location"
           placeholder={"Hotel place"}
-          suggestions={Suggestions}
-          name={"hotelPlaceSearch"}
+          name={"pickUpLocation"}
           className={`${style.lilSearchField} ${style.lilHotelField}`}
           wrapperClass={style.textFieldWrapper}
           inputClass={style.searchInput}
-          isActive={activeField === "dropOffLocation"}
-          onChange={(place: string) => {
-            setHotelPlace(place);
+          isActive={activeField === "pickUpLocation"}
+          suggestions={Suggestions}
+          onSuggestionSelect={({ suggestion, IATA }: any) => {
+            setPickUpLocation(suggestion, IATA);
           }}
-          onSuggestionSelect={({ suggestion }: { suggestion: string }) => {
-            setHotelPlace(suggestion);
+          onChange={(value: any) => {
+            setPickUpLocation(value);
           }}
           onActivate={() => {
-            if (isMobile) openModal("hotelPlaceSearch");
-            if (setActiveField) setActiveField("hotelPlaceSearch");
+            if (setActiveField) setActiveField("pickUpLocation");
+            // if (isMobile) openModal("originFlightSearch");
           }}
           onDeactivate={() => {
-            if (isModalOn) closeModal();
             if (setActiveField) setActiveField("");
+            // if (isModalOn) closeModal();
           }}
         />
         <SearchField
-          value={place}
+          value={dropOffLocation}
           label="Drop Off Location"
           placeholder={"Hotel place"}
-          suggestions={Suggestions}
           name={"dropOffLocation"}
           className={`${style.lilSearchField} ${style.lilHotelField}`}
           wrapperClass={style.textFieldWrapper}
           inputClass={style.searchInput}
           isActive={activeField === "dropOffLocation"}
-          onChange={(place: string) => {
-            setHotelPlace(place);
+          suggestions={Suggestions}
+          onSuggestionSelect={({ suggestion, IATA }: any) => {
+            setDropOffLocation(suggestion, IATA);
           }}
-          onSuggestionSelect={({ suggestion }: { suggestion: string }) => {
-            setHotelPlace(suggestion);
+          onChange={(value: any) => {
+            setDropOffLocation(value);
           }}
           onActivate={() => {
-            if (isMobile) openModal("dropOffLocation");
             if (setActiveField) setActiveField("dropOffLocation");
+            // if (isMobile) openModal("originFlightSearch");
           }}
           onDeactivate={() => {
-            if (isModalOn) closeModal();
             if (setActiveField) setActiveField("");
+            // if (isModalOn) closeModal();
           }}
         />
         <DateInput
-          activeField={activeField}
+          isActive={activeField === "carsDates"}
           onActivate={(field: any) => {
-            if (isMobile) openModal("carsDates");
-            if (setActiveField) setActiveField(field);
+            if (setActiveField) setActiveField("carsDates");
           }}
-          onDeActivate={() => {
-            if (isModalOn) closeModal();
+          onDeactivate={() => {
             if (setActiveField) setActiveField("");
           }}
-          setFromDate={(date: any) => setCheckInDate(date.toISOString().substring(0, 10))}
-          setToDate={(date: any) => setCheckOutDate(date.toISOString().substring(0, 10))}
+          setFromDate={(date: any) => setPickUpDate(date.toISOString().substring(0, 10))}
+          setToDate={(date: any) => setDropOffDate(date.toISOString().substring(0, 10))}
           fromLabel="Pick-up"
           toLabel="Drop-off"
           range={true}
+          singleDateFieldClass={style.singleDateField}
           textFieldClass={style.textField}
-          className={style.dateRangeWrapper}
-          wrapperClass={style.lilSearchField}
-          fromDate={checkIn}
-          toDate={checkOut}
+          className={`${style.dateRangeWrapper}`}
+          wrapperClass={`${style.lilSearchField} ${style.dateRangeWrapper}`}
+          fromDate={pickUpDate}
+          toDate={dropOffDate}
         />
       </div>
       {!isMobile && (

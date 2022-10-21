@@ -10,17 +10,15 @@ import { FlightsProvider } from "../src/components/CommonContexts/FlightsContext
 import { HotelSearchProvider } from "../src/components/CommonContexts/HotelsContext";
 import { RightArrow } from "../src/components/Icons";
 import { AnimatePresence, motion, useAnimationControls } from "framer-motion";
-
 import Image from "next/image";
+import { CarsSearchProvider } from "../src/components/CommonContexts/CarsContext";
 const Home: NextPage = () => {
   const [currentImg, setCurrentImg] = useState(0);
   const overlayControls = useAnimationControls();
   const sequence = async () => {
     await overlayControls.start({
       opacity: 0.4,
-      onAnimationStart: () => {
-        console.log("FIRST STARTED");
-      },
+      onAnimationStart: () => {},
       transition: {
         // delay: 1,
       },
@@ -30,9 +28,7 @@ const Home: NextPage = () => {
       transition: {
         delay: 2,
         duration: 1,
-        onAnimationStart: () => {
-          console.log("SECOND STARTED");
-        },
+        onAnimationStart: () => {},
       },
     });
   };
@@ -118,11 +114,13 @@ const Home: NextPage = () => {
               </button>
             </div>
           </div>
-          <FlightsProvider>
-            <HotelSearchProvider>
-              <SearchForm />
-            </HotelSearchProvider>
-          </FlightsProvider>
+          {/* <FlightsProvider> */}
+          {/* <HotelSearchProvider> */}
+          {/* <CarsSearchProvider> */}
+          <SearchForm />
+          {/* </CarsSearchProvider> */}
+          {/* </HotelSearchProvider> */}
+          {/* </FlightsProvider> */}
         </div>
         <div className={style.homeSectionTwo}>
           <div>

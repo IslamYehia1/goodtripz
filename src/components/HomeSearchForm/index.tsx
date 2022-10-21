@@ -7,11 +7,12 @@ import homeStyle from "../../../styles/Home.module.scss";
 import { SearchModal } from "../Modal";
 import CarsFields from "./CarsFields";
 import { CarsSearchProvider } from "../CommonContexts/CarsContext";
+import { FlightsProvider } from "../CommonContexts/FlightsContext";
+import { HotelSearchProvider } from "../CommonContexts/HotelsContext";
 const SearchForm = () => {
   const [formState, setFormState] = useState("flight");
   return (
     <>
-      <SearchModal />
       <div id={homeStyle.searchForm}>
         <div className={style.form}>
           <div className={style.searchTabs}>
@@ -61,9 +62,30 @@ const SearchForm = () => {
             </span>
           </div>
           <div className={style.searchFields}>
-            {formState === "flight" && <FlightSearchFields />}
-            {formState === "hotel" && <HotelSearchFields />}
-            <CarsSearchProvider>{formState === "cars" && <CarsFields />}</CarsSearchProvider>
+            <FlightsProvider>
+              {formState === "flight" && (
+                <>
+                  <SearchModal />
+                  <FlightSearchFields />
+                </>
+              )}
+            </FlightsProvider>
+            <HotelSearchProvider>
+              {formState === "hotel" && (
+                <>
+                  <SearchModal />
+                  <HotelSearchFields />
+                </>
+              )}
+            </HotelSearchProvider>
+            <CarsSearchProvider>
+              {formState === "cars" && (
+                <>
+                  <SearchModal />
+                  <CarsFields />
+                </>
+              )}
+            </CarsSearchProvider>
           </div>
         </div>
       </div>

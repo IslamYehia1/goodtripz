@@ -6,6 +6,7 @@ import { useHotelsContext } from "../CommonContexts/HotelsContext";
 import SearchField from "../HomeSearchForm/SearchField";
 import useIsMobile from "../../utils/useIsMobile";
 import Suggestions from "../Suggestions/HotelPlaceSuggestions";
+import { useEffect } from "react";
 const HotelsSideBar = (props: hotelsSideBarT) => {
   const { isModalOn, openModal, closeModal } = useUIContext();
   const {
@@ -19,6 +20,20 @@ const HotelsSideBar = (props: hotelsSideBarT) => {
     setCheckOutDate,
   } = useHotelsContext();
   const isMobile = useIsMobile();
+
+  useEffect(() => {
+    if (activeField && isMobile) {
+      openModal(activeField);
+    } else {
+      closeModal();
+    }
+  }, [isMobile, activeField]);
+  useEffect(() => {
+    if (isMobile && !isModalOn) {
+      setActiveField("");
+    }
+  }, [isMobile, isModalOn]);
+
   return (
     <>
       <div className={`${style.sideSection} ${style.searchTerms}`}>
@@ -39,23 +54,23 @@ const HotelsSideBar = (props: hotelsSideBarT) => {
             setHotelPlace(suggestion);
           }}
           onActivate={() => {
-            if (isMobile) openModal("hotelPlaceSearch");
+            // if (isMobile) openModal("hotelPlaceSearch");
             setActiveField("hotelPlaceSearch");
           }}
           onDeactivate={() => {
-            if (isModalOn) closeModal();
+            // if (isModalOn) closeModal();
             setActiveField("");
           }}
         />
 
         <DateInput
-          activeField={activeField}
+          isActive={activeField}
           onActivate={(field: any) => {
-            if (isMobile) openModal("hotelDates");
-            setActiveField(field);
+            // if (isMobile) openModal("hotelDates");
+            setActiveField("hotelsDates");
           }}
-          onDeActivate={() => {
-            if (isModalOn) closeModal();
+          onDeactivate={() => {
+            // if (isModalOn) closeModal();
             setActiveField("");
           }}
           setFromDate={(date: any) => setCheckInDate(date.toISOString().substring(0, 10))}
@@ -65,7 +80,9 @@ const HotelsSideBar = (props: hotelsSideBarT) => {
           range={true}
           textFieldClass={style.textField}
           className={style.dateRangeWrapper}
-          wrapperClass={style.lilSearchField}
+          wrapperClass={`${style.lilSearchField} ${style.dateRangeWrapper}`}
+          singleDateFieldClass={style.singleDateField}
+          // className={`${style.dateRangeWrapper}`}
           fromDate={checkIn}
           toDate={checkOut}
         />

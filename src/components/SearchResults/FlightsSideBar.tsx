@@ -8,6 +8,7 @@ import AirportsSuggestions from "../Suggestions/AirportSuggestions";
 import { useUIContext } from "../UI";
 import useIsMobile from "../../utils/useIsMobile";
 import SidebarSections from "./SidebarSections";
+import { useEffect } from "react";
 const FlightsSideBar = (props: flightsSideBarT) => {
   const {
     from,
@@ -27,6 +28,19 @@ const FlightsSideBar = (props: flightsSideBarT) => {
   const { isModalOn, openModal, closeModal } = useUIContext();
   const isMobile = useIsMobile();
 
+  useEffect(() => {
+    if (activeField && isMobile) {
+      openModal(activeField);
+    } else {
+      closeModal();
+    }
+  }, [isMobile, activeField]);
+  useEffect(() => {
+    if (isMobile && !isModalOn) {
+      setActiveField("");
+    }
+  }, [isMobile, isModalOn]);
+
   return (
     <>
       <div className={`${style.sideSection} ${style.searchTerms}`}>
@@ -41,14 +55,14 @@ const FlightsSideBar = (props: flightsSideBarT) => {
           onChange={(value: any) => {
             setFlightOrigin(value);
           }}
-          isActive={activeField === "origin"}
+          isActive={activeField === "originFlightSearch"}
           onActivate={() => {
-            if (setActiveField) setActiveField("origin");
-            if (isMobile) openModal("originFlightSearch");
+            if (setActiveField) setActiveField("originFlightSearch");
+            // if (isMobile) openModal("originFlightSearch");
           }}
           onDeactivate={() => {
             if (setActiveField) setActiveField("");
-            if (isModalOn) closeModal();
+            // if (isModalOn) closeModal();
           }}
           value={from.name}
           label="Flying from"
@@ -67,14 +81,14 @@ const FlightsSideBar = (props: flightsSideBarT) => {
           onChange={(value: any) => {
             setFlightDestination(value);
           }}
-          isActive={activeField === "destination"}
+          isActive={activeField === "destinationFlightSearch"}
           onActivate={() => {
-            if (setActiveField) setActiveField("destination");
-            if (isMobile) openModal("destinationFlightSearch");
+            if (setActiveField) setActiveField("destinationFlightSearch");
+            // if (isMobile) openModal("destinationFlightSearch");
           }}
           onDeactivate={() => {
             if (setActiveField) setActiveField("");
-            if (isModalOn) closeModal();
+            // if (isModalOn) closeModal();
           }}
           value={to.name}
           label="Flying from"
@@ -84,23 +98,24 @@ const FlightsSideBar = (props: flightsSideBarT) => {
         />
 
         <DateInput
-          activeField={activeField}
+          isActive={activeField === "flightDates"}
           fromLabel="Date"
           toLabel="Return date"
           range={type === "roundTrip"}
           // icon={DateIcon}
+          singleDateFieldClass={style.singleDateField}
           textFieldClass={style.textField}
           className={`${style.dateRangeWrapper}`}
-          wrapperClass={style.lilSearchField}
+          wrapperClass={`${style.lilSearchField} ${style.dateRangeWrapper}`}
           fromDate={date}
           toDate={returnDate}
           onActivate={(field: string) => {
-            if (isMobile) openModal("flightDates");
-            setActiveField(field);
+            // if (isMobile) openModal("flightDates");
+            setActiveField("flightDates");
           }}
-          onDeActivate={() => {
+          onDeactivate={() => {
             setActiveField("");
-            if (isModalOn) closeModal();
+            // if (isModalOn) closeModal();
           }}
           setFromDate={(date: Date) => {
             setFlightDate(date.toISOString().substring(0, 10));

@@ -10,39 +10,43 @@ const HotelDateField = () => {
     useHotelsContext();
   const { isModalOn, openModal, closeModal } = useUIContext();
   const isMobile = useIsMobile();
-  const fieldRef: any = useOutsideClick(activeField == "date", () => {
-    setActiveField("");
-  });
+  // const fieldRef: any = useOutsideClick(activeField == "hotelsDates", () => {
+  //   setActiveField("");
+  // });
   return (
-    <div ref={fieldRef} className={`${style.searchFragment} ${style.dateSearchField}`}>
-      <DateInput
-        activeField={activeField == "date"}
-        onActivate={(field: any) => {
-          // if (isMobile) openModal("hotelDates");
-          setActiveField("date");
-        }}
-        overlayClass={`${style.dateOverlay} ${
-          activeField == "date" && isModalOn ? style.inModal : ""
-        }`}
-        onDeActivate={() => {
-          // if (isModalOn) closeModal();
-          setActiveField("");
-        }}
-        setFromDate={(date: any) => setCheckInDate(date.toISOString().substring(0, 10))}
-        setToDate={(date: any) => setCheckOutDate(date.toISOString().substring(0, 10))}
-        fromLabel="Check in"
-        toLabel="Check out"
-        range={true}
-        icon={DateIcon}
-        textFieldClass={style.textField}
-        className={`${style.aSearchField} ${style.flightSearchField} ${style.dateSearchField} ${
-          activeField == "date" && isModalOn ? style.inModal : ""
-        }`}
-        wrapperClass={style.textFieldWrapper}
-        fromDate={checkIn}
-        toDate={checkOut}
-      />
-    </div>
+    // <div ref={fieldRef}>
+    <DateInput
+      isActive={activeField == "hotelsDates"}
+      overlayClass={`${style.dateOverlay} ${
+        activeField == "hotelsDates" && isModalOn ? style.inModal : ""
+      }`}
+      className={`${style.searchFragment} ${style.dateSearchField} ${
+        activeField == "hotelsDates" && isModalOn ? style.inModal : ""
+      }`}
+      singleDateFieldClass={style.singleDateField}
+      onActivate={(field: any) => {
+        // if (isMobile) openModal("hotelDates");
+        setActiveField("hotelsDates");
+      }}
+      onDeactivate={() => {
+        // if (isModalOn) closeModal();
+        setActiveField("");
+      }}
+      setFromDate={(date: any) => setCheckInDate(date.toISOString().substring(0, 10))}
+      setToDate={(date: any) => setCheckOutDate(date.toISOString().substring(0, 10))}
+      fromLabel="Check in"
+      toLabel="Check out"
+      range={true}
+      icon={DateIcon}
+      textFieldClass={style.textField}
+      // className={`${style.aSearchField} ${style.flightSearchField} ${style.dateSearchField} ${
+      //   activeField == "hotelsDates" && isModalOn ? style.inModal : ""
+      // }`}
+      wrapperClass={style.textFieldWrapper}
+      fromDate={checkIn}
+      toDate={checkOut}
+    />
+    // </div>
   );
 };
 

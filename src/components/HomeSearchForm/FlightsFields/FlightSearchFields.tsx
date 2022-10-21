@@ -42,7 +42,6 @@ const FlightSearchFields = () => {
     else setActiveField(field);
   }
   function handleOutsideClick(e: React.FocusEvent<Element>) {
-    console.log(e.target);
     if (!e.relatedTarget || !(e.relatedTarget as HTMLElement).closest(`.${style.optionsWindow}`)) {
       setActiveField("");
     }

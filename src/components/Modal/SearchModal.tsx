@@ -13,6 +13,9 @@ import HotelDateField from "../HomeSearchForm/HotelsFileds/HotelDateField";
 import TravellersOptions from "../HomeSearchForm/FlightsFields/TravellersOptions";
 import FlightTypeOptions from "../HomeSearchForm/FlightsFields/FlightTypeOptions";
 import HotelsTravellersOptions from "../HomeSearchForm/HotelsFileds/TravellersOptions";
+import PickUpPlace from "../HomeSearchForm/CarsFields/PickUpPlace";
+import DropOffPlace from "../HomeSearchForm/CarsFields/DropOffPlace";
+import CarsDates from "../HomeSearchForm/CarsFields/CarsDates";
 const SearchModal = (props: searchModalProps) => {
   const { isModalOn, currentModal, closeModal } = useUIContext();
 
@@ -32,12 +35,13 @@ const SearchModal = (props: searchModalProps) => {
       {currentModal === "destinationFlightSearch" && <DestinationFlightField />}
       {currentModal === "flightDates" && <FlightDateField />}
       {currentModal === "hotelPlaceSearch" && <PlaceSearchField />}
-      {currentModal === "hotelDates" && <HotelDateField />}
+      {currentModal === "hotelsDates" && <HotelDateField />}
       {currentModal === "flightTravellersOptions" && <TravellersOptions />}
       {currentModal === "hotelsTravellersOptions" && <HotelsTravellersOptions />}
       {currentModal === "flightTypeOptions" && <FlightTypeOptions />}
-      {currentModal === "pickUpLocation" && <FlightTypeOptions />}
-      {currentModal === "dropOffLocation" && <FlightTypeOptions />}
+      {currentModal === "pickUpLocation" && <PickUpPlace />}
+      {currentModal === "dropOffLocation" && <DropOffPlace />}
+      {currentModal === "carsDates" && <CarsDates />}
     </Modal>
   );
 };
