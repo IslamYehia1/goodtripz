@@ -6,12 +6,9 @@ import Card from "../src/components/Card/Card";
 import Article from "../src/components/Article/Article";
 import image1 from "../public/img/image1.jpg";
 import image2 from "../public/img/image2.jpg";
-import { FlightsProvider } from "../src/components/CommonContexts/FlightsContext";
-import { HotelSearchProvider } from "../src/components/CommonContexts/HotelsContext";
 import { RightArrow } from "../src/components/Icons";
 import { AnimatePresence, motion, useAnimationControls } from "framer-motion";
-import Image from "next/image";
-import { CarsSearchProvider } from "../src/components/CommonContexts/CarsContext";
+
 const Home: NextPage = () => {
   const [currentImg, setCurrentImg] = useState(0);
   const overlayControls = useAnimationControls();
@@ -26,7 +23,7 @@ const Home: NextPage = () => {
     return await overlayControls.start({
       opacity: 0.2,
       transition: {
-        delay: 2,
+        delay: 1,
         duration: 1,
         onAnimationStart: () => {},
       },
@@ -43,6 +40,24 @@ const Home: NextPage = () => {
     "/img/background2.jpg",
     "/img/background3.jpg",
     "/img/background4.jpg",
+  ];
+  const places = [
+    {
+      title: "indonesia",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in massa lacinia,aliquam massa non",
+    },
+    {
+      title: "Palastine",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in massa lacinia,aliquam massa non",
+    },
+    {
+      title: "Egypt",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in massa lacinia,aliquam massa non",
+    },
+    {
+      title: "USA",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in massa lacinia,aliquam massa non",
+    },
   ];
 
   useEffect(() => {
@@ -76,7 +91,7 @@ const Home: NextPage = () => {
               ></motion.div>
               <AnimatePresence mode="popLayout">
                 <motion.img
-                  key={currentImg}
+                  key={images[currentImg]}
                   className={style.background}
                   initial={{ opacity: 0.1, scale: 1.1 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -87,7 +102,7 @@ const Home: NextPage = () => {
                       duration: 0.4,
                     },
                     scale: {
-                      duration: 6,
+                      duration: 7,
                       ease: "linear",
                     },
                   }}
@@ -96,31 +111,40 @@ const Home: NextPage = () => {
                 />
               </AnimatePresence>
             </div>
-            <div className={style.explore}>
-              <h3>
-                INDONESIA <RightArrow />
-              </h3>
-              <span className={style.exploreText}>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in massa lacinia,
-                  aliquam massa non,
-                </p>
-                <p>euismod augue. Lorem ipsum dolor sit amet. </p>
-              </span>
+            <div className={style.exploreWrapper}>
+              <AnimatePresence mode="popLayout">
+                {places.map((place: any, i) => {
+                  console.log(i);
+                  return (
+                    currentImg === i && (
+                      <motion.div
+                        initial={{ y: "-100%", opacity: 0 }}
+                        animate={{ y: "0%", opacity: 1, transition: { duration: 0.8 } }}
+                        exit={{ y: "100%", opacity: 0, transition: { duration: 0.8 } }}
+                        className={style.explore}
+                        key={i}
+                      >
+                        <h3>
+                          {place.title} <RightArrow />
+                        </h3>
+                        <span className={style.exploreText}>
+                          <p>{place.text}</p>
+                          <p>euismod augue. Lorem ipsum dolor sit amet. </p>
+                        </span>
 
-              <button className={style.exploreButton}>
-                <span>Explore</span>
-                <RightArrow alt="right arrow" src={RightArrow} />
-              </button>
+                        <button className={style.exploreButton}>
+                          <span>Explore</span>
+                          <RightArrow alt="right arrow" src={RightArrow} />
+                        </button>
+                      </motion.div>
+                    )
+                  );
+                })}
+              </AnimatePresence>
             </div>
           </div>
-          {/* <FlightsProvider> */}
-          {/* <HotelSearchProvider> */}
-          {/* <CarsSearchProvider> */}
+
           <SearchForm />
-          {/* </CarsSearchProvider> */}
-          {/* </HotelSearchProvider> */}
-          {/* </FlightsProvider> */}
         </div>
         <div className={style.homeSectionTwo}>
           <div>

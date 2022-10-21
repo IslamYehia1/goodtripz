@@ -94,6 +94,13 @@
   margin-right: 5vw;
   box-sizing: border-box;
   overflow: hidden;
+  display: grid;
+  grid-template: 1fr / 1fr;
+  place-items: center start;
+  & > * {
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+  }
   .backgroundImgWrapper {
     position: relative;
     width: 100%;
@@ -122,7 +129,7 @@
   }
   .background {
     border-radius: 30px;
-    position: absolute;
+    // position: absolute;
     width: 100%;
     max-height: 100%;
     object-fit: cover;
@@ -130,12 +137,22 @@
 
     // opacity: 0.8;
   }
+  .exploreWrapper {
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+    height: 12rem;
+    left: 11%;
+  }
+
   .explore {
     // margin: 25vh auto 35vh auto;
-    margin: 15% auto 19% auto;
-    position: absolute;
+    // margin: 15% auto 19% auto;
+    // position: absolute;
+    transform: translateY(-100%);
     z-index: 1;
-    top: 0;
+    // top: 0;
+    top: 29%;
     left: 11%;
     width: 78%;
     min-width: 800px;
@@ -148,6 +165,7 @@
     padding: 0;
     display: flex;
     align-items: center;
+    text-transform: uppercase;
     svg {
       // width: 20px;
       // height: 15px;
@@ -234,6 +252,12 @@
       p:nth-child(2) {
         display: none;
       }
+      .exploreWrapper {
+        justify-self: start;
+        align-self: start;
+        top: 30%;
+        left: 5%;
+      }
       .explore {
         width: 90%;
         min-width: unset;
@@ -271,6 +295,7 @@
       height: calc(var(--vh, 1vh) * 100);
       max-height: unset;
       .backgroundImgWrapper {
+        align-self: start;
         height: 70%;
         max-width: 70%;
         min-height: 70%;
@@ -281,12 +306,20 @@
       }
       .recommendation {
         height: 100%;
+        // place-items: start start;
+        .exploreWrapper {
+          justify-self: start;
+          align-self: start;
+          height: 9rem;
+          top: 22%;
+          left: unset;
+        }
         .explore {
           box-sizing: border-box;
           margin: 0 auto;
-          padding-top: 25vh;
-          padding-bottom: 60%;
-          left: 5%;
+          // padding-top: 25vh;
+          // padding-bottom: 60%;
+          // left: 5%;
           h3 {
             font-size: 5vw;
           }
