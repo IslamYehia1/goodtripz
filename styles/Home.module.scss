@@ -81,11 +81,7 @@
 
 .recommendation {
   @include semiBoldFont;
-  // background: url("../public/img/background.jpg") rgba(10, 31, 56, 0.2) no-repeat;
-  background-blend-mode: multiply;
-  background-size: cover;
-  background-position: center center;
-  // border-radius: 30px;
+
   color: $white;
   font-size: 34px;
   height: 85%;
@@ -302,6 +298,7 @@
         min-width: 100%;
         .background {
           object-position: center center;
+          // filter: blur(2px);
         }
       }
       .recommendation {

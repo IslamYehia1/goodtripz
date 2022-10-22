@@ -22,10 +22,12 @@ const Hotels = () => {
     dispatch({ type: "pullFromUrl", query: query });
   }, [router.isReady]);
   return (
-    <HotelSearchProvider>
+    // <HotelSearchProvider>
+    <>
       <SearchModal />
       <HotelsResultsOverlay />
-    </HotelSearchProvider>
+    </>
+    // </HotelSearchProvider>
   );
 };
 

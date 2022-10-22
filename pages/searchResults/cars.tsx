@@ -3,10 +3,12 @@ import { SearchModal } from "../../src/components/Modal";
 import ResultsPageContainer from "../../src/components/SearchResults/CarsResultsOverlay";
 const SearchResults = (props: any) => {
   return (
-    <CarsSearchProvider>
+    // <CarsSearchProvider>
+    <>
       <SearchModal />
       <ResultsPageContainer />
-    </CarsSearchProvider>
+    </>
+    //</CarsSearchProvider>
   );
 };
 

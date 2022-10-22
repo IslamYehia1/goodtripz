@@ -14,14 +14,14 @@ const Home: NextPage = () => {
   const overlayControls = useAnimationControls();
   const sequence = async () => {
     await overlayControls.start({
-      opacity: 0.4,
+      opacity: 0.6,
       onAnimationStart: () => {},
       transition: {
         // delay: 1,
       },
     });
     return await overlayControls.start({
-      opacity: 0.2,
+      opacity: 0.3,
       transition: {
         delay: 1,
         duration: 1,
@@ -35,27 +35,22 @@ const Home: NextPage = () => {
     })();
   }, [currentImg]);
 
-  const images = [
-    "/img/background.jpg",
-    "/img/background2.jpg",
-    "/img/background3.jpg",
-    "/img/background4.jpg",
-  ];
+  const images = ["/img/indonesia.jpg", "/img/greece.jpg", "/img/maldives.jpg", "/img/dubai.jpg"];
   const places = [
     {
       title: "indonesia",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in massa lacinia,aliquam massa non",
     },
     {
-      title: "Palastine",
+      title: "Greece",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in massa lacinia,aliquam massa non",
     },
     {
-      title: "Egypt",
+      title: "Maldives",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in massa lacinia,aliquam massa non",
     },
     {
-      title: "USA",
+      title: "Dubai",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in massa lacinia,aliquam massa non",
     },
   ];
@@ -95,14 +90,14 @@ const Home: NextPage = () => {
                   className={style.background}
                   initial={{ opacity: 0.1, scale: 1.1 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0.8, scale: 0.9 }}
+                  exit={{ opacity: 0.2, scale: 0.95, transition: { duration: 0.5 } }}
                   transition={{
                     // delay: 1,
                     opacity: {
                       duration: 0.4,
                     },
                     scale: {
-                      duration: 7,
+                      duration: 6,
                       ease: "linear",
                     },
                   }}
@@ -114,7 +109,6 @@ const Home: NextPage = () => {
             <div className={style.exploreWrapper}>
               <AnimatePresence mode="popLayout">
                 {places.map((place: any, i) => {
-                  console.log(i);
                   return (
                     currentImg === i && (
                       <motion.div

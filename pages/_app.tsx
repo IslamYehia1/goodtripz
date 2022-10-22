@@ -6,6 +6,9 @@ import "../styles/RangeDatePicker.scss";
 import NavBar from "../src/components/NavBar/NavBar";
 import { useRouter } from "next/router";
 import UIProvider from "../src/components/UI";
+import { FlightsProvider } from "../src/components/CommonContexts/FlightsContext";
+import { HotelSearchProvider } from "../src/components/CommonContexts/HotelsContext";
+import { CarsSearchProvider } from "../src/components/CommonContexts/CarsContext";
 import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
 const queryClient = new QueryClient();
 function MyApp({ Component, pageProps }: AppProps) {
@@ -16,14 +19,20 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <QueryClientProvider client={queryClient}>
         <UIProvider>
-          <NavBar />
-          <Component
-            setSearchState={(newState: string) => {
-              setSearchState(newState);
-            }}
-            searchState={searchState}
-            {...pageProps}
-          />
+          <FlightsProvider>
+            <HotelSearchProvider>
+              <CarsSearchProvider>
+                <NavBar />
+                <Component
+                  setSearchState={(newState: string) => {
+                    setSearchState(newState);
+                  }}
+                  searchState={searchState}
+                  {...pageProps}
+                />
+              </CarsSearchProvider>
+            </HotelSearchProvider>
+          </FlightsProvider>
         </UIProvider>
       </QueryClientProvider>
     </>

@@ -62,30 +62,30 @@ const SearchForm = () => {
             </span>
           </div>
           <div className={style.searchFields}>
-            <FlightsProvider>
-              {formState === "flight" && (
-                <>
-                  <SearchModal />
-                  <FlightSearchFields />
-                </>
-              )}
-            </FlightsProvider>
-            <HotelSearchProvider>
-              {formState === "hotel" && (
-                <>
-                  <SearchModal />
-                  <HotelSearchFields />
-                </>
-              )}
-            </HotelSearchProvider>
-            <CarsSearchProvider>
-              {formState === "cars" && (
-                <>
-                  <SearchModal />
-                  <CarsFields />
-                </>
-              )}
-            </CarsSearchProvider>
+            {/* <FlightsProvider> */}
+            {formState === "flight" && (
+              <>
+                <SearchModal />
+                <FlightSearchFields />
+              </>
+            )}
+            {/* </FlightsProvider> */}
+            {/* <HotelSearchProvider> */}
+            {formState === "hotel" && (
+              <>
+                <SearchModal />
+                <HotelSearchFields />
+              </>
+            )}
+            {/* </HotelSearchProvider> */}
+            {/* <CarsSearchProvider> */}
+            {formState === "cars" && (
+              <>
+                <SearchModal />
+                <CarsFields />
+              </>
+            )}
+            {/* </CarsSearchProvider> */}
           </div>
         </div>
       </div>

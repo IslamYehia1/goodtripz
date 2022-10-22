@@ -12,10 +12,12 @@ type searchQueryT = {
 };
 const SearchResults = (props: searchResultsT) => {
   return (
-    <FlightsProvider>
+    // <FlightsProvider>
+    <>
       <SearchModal />
       <ResultsPageContainer />
-    </FlightsProvider>
+    </>
+    // </FlightsProvider>
   );
 };
 

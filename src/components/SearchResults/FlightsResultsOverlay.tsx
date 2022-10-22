@@ -31,9 +31,9 @@ const ResultsPageContainer = () => {
           const fromAirport = await fetchAirport(query.from as string);
           const toAirport = await fetchAirport(query.from as string);
 
-          setFlightOrigin(fromAirport, query.from);
+          // setFlightOrigin(fromAirport, query.from);
 
-          setFlightDestination(toAirport, query.to);
+          // setFlightDestination(toAirport, query.to);
 
           if (toAirport && fromAirport) {
             setAirports({
