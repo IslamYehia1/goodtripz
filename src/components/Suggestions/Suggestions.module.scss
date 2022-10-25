@@ -7,7 +7,7 @@
   width: 100%;
   min-width: 370px;
   min-height: 100px;
-  background-color: $white;
+  background-color: inherit;
   border-radius: 20px;
   // position: absolute;
   overflow: hidden;
@@ -50,6 +50,13 @@
   ul {
     border-radius: 20px;
   }
+  .hotelSuggestion {
+    display: flex;
+  }
+  .locationIconWrapper {
+    display: flex;
+    align-items: center;
+  }
   li {
     &:hover {
       background-color: $background;
@@ -63,7 +70,7 @@
     @include semiBoldFont;
     font-size: 15px;
     color: $dark;
-    background-color: $white;
+    background-color: inherit;
     // display: flex;
     // align-items: center;
     padding: 15px 15px 15px 20px;
@@ -93,6 +100,7 @@
     // padding-top: 80px;
     // position: fixed;
     height: 100vh;
+    padding: 0;
     border-radius: 0;
     justify-content: flex-start;
     box-shadow: unset;

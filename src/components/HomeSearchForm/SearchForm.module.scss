@@ -59,6 +59,9 @@
   right: 0;
   // top: 10%;
   bottom: 100%;
+  & > ul {
+    background-color: $white;
+  }
 }
 .dateOverlay {
   position: absolute;
@@ -70,6 +73,7 @@
   }
   .searchFragment.dateSearchField {
     flex-grow: 1;
+    flex-basis: 0;
     height: inherit;
   }
   .dateSearchField {
@@ -460,6 +464,11 @@
   .textFieldWrapper {
     .textField {
       width: 90%;
+    }
+  }
+  .hotelSearchFields {
+    .searchFragment.dateSearchField {
+      flex-basis: unset;
     }
   }
   .dateSearchField {

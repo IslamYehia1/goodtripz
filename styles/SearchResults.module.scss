@@ -50,6 +50,32 @@
     }
   }
 }
+.sideSections.inModal {
+  position: relative;
+  top: 70px;
+}
+.leftFieldSuggestions {
+  position: absolute;
+  top: 95%;
+  left: -4%;
+  z-index: 5;
+  & > ul {
+    background-color: white;
+  }
+}
+.rightFieldSuggestions {
+  position: absolute;
+  top: 95%;
+  left: -50%;
+  z-index: 5;
+  & > ul {
+    background-color: white;
+  }
+}
+.dateOverlay {
+  position: absolute;
+  z-index: 5;
+}
 .dateRangeWrapper {
   justify-content: unset;
 }
@@ -67,6 +93,7 @@
 .lilSearchField {
   width: 40%;
   margin-bottom: 40px;
+  position: relative;
 }
 .lilHotelField {
   width: 100%;

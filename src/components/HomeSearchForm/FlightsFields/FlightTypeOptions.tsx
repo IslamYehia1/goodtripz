@@ -1,11 +1,7 @@
-import { ReactNode, useState } from "react";
 import style from "../SearchForm.module.scss";
-import {SearchIcon,ExpandIcon,FlyToIcon,FlyFromIcon,DateIcon} from "../../Icons"; //prettier-ignore
-import { loadGetInitialProps } from "next/dist/shared/lib/utils";
+import {ExpandIcon} from "../../Icons"; //prettier-ignore
 import { useFlightContext } from "../../CommonContexts/FlightsContext";
 import { useUIContext } from "../../UI";
-import OneWayIcon from "../../../../public/icons/oneWay.svg";
-import RoundTrip from "../../../../public/icons/roundTrip.svg";
 import Button from "../../Button/Button";
 import useOutsideClick from "../../../utils/useOutsideClick";
 import { AnimatePresence, motion } from "framer-motion";
@@ -13,8 +9,8 @@ type propsType = {
   // dispatch: any;
 };
 const FlightTypeOptions = () => {
-  const { setFlightType, setActiveField, activeField, type } = useFlightContext();
-  const { isModalOn } = useUIContext();
+  const { setFlightType, type } = useFlightContext();
+  const { isModalOn, setActiveField, activeField } = useUIContext();
   const flightOptionsRef = useOutsideClick(activeField === "flightTypeOptions", () => {
     setActiveField("");
   });

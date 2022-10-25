@@ -3,9 +3,10 @@ import style from "../../../styles/SearchResults.module.scss";
 import { hotelsSideBarT } from "./types";
 import { useUIContext } from "../UI";
 import { useCarsContext } from "../CommonContexts/CarsContext";
-import SearchField from "../HomeSearchForm/SearchField";
+import SearchField from "../SearchField/SearchField";
 import useIsMobile from "../../utils/useIsMobile";
 import Suggestions from "../Suggestions/HotelPlaceSuggestions";
+import ResultsSearchField from "./SearchField";
 import { useEffect } from "react";
 const CarsSideBar = (props: hotelsSideBarT) => {
   const { isModalOn, openModal, closeModal } = useUIContext();
@@ -40,6 +41,25 @@ const CarsSideBar = (props: hotelsSideBarT) => {
   return (
     <>
       <div className={`${style.sideSection} ${style.searchTerms}`}>
+        <ResultsSearchField
+          label="Pick-up Location"
+          placeholder="Search the place"
+          fieldName="pickUpLocation"
+          value={pickUpLocation}
+          setValue={(value: any) => {
+            setPickUpLocation(value);
+          }}
+        />
+        <ResultsSearchField
+          label="Drop-Off Location"
+          placeholder="Search the place"
+          fieldName="dropOffLocation"
+          value={dropOffLocation}
+          setValue={(value: any) => {
+            setDropOffLocation(value);
+          }}
+        />
+        {/* 
         <SearchField
           value={pickUpLocation}
           label="Drop Off Location"
@@ -50,6 +70,7 @@ const CarsSideBar = (props: hotelsSideBarT) => {
           inputClass={style.searchInput}
           isActive={activeField === "pickUpLocation"}
           suggestions={Suggestions}
+          suggestionsClass={style.leftFieldSuggestions}
           onSuggestionSelect={({ suggestion, IATA }: any) => {
             setPickUpLocation(suggestion, IATA);
           }}
@@ -75,6 +96,7 @@ const CarsSideBar = (props: hotelsSideBarT) => {
           inputClass={style.searchInput}
           isActive={activeField === "dropOffLocation"}
           suggestions={Suggestions}
+          suggestionsClass={style.leftFieldSuggestions}
           onSuggestionSelect={({ suggestion, IATA }: any) => {
             setDropOffLocation(suggestion, IATA);
           }}
@@ -89,7 +111,7 @@ const CarsSideBar = (props: hotelsSideBarT) => {
             if (setActiveField) setActiveField("");
             // if (isModalOn) closeModal();
           }}
-        />
+        /> */}
         <DateInput
           isActive={activeField === "carsDates"}
           onActivate={(field: any) => {

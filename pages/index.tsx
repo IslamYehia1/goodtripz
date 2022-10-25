@@ -128,7 +128,7 @@ const Home: NextPage = () => {
 
                         <button className={style.exploreButton}>
                           <span>Explore</span>
-                          <RightArrow alt="right arrow" src={RightArrow} />
+                          <RightArrow alt="right arrow" />
                         </button>
                       </motion.div>
                     )

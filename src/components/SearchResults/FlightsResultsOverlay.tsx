@@ -18,7 +18,7 @@ const ResultsPageContainer = () => {
     to: { city: "City", name: "WOOOW" },
   });
   const isMobile = useIsMobile();
-  const { isModalOn, openModal, closeModal } = useUIContext();
+  const { isModalOn, openModal, closeModal, setActiveField } = useUIContext();
   const router = useRouter();
   const query = router.query;
 
@@ -74,7 +74,7 @@ const ResultsPageContainer = () => {
               className={`${style.button} ${style.filterBtn}`}
               icon={FilterIcon}
               handleClick={() => {
-                if (isMobile && !isModalOn) openModal("flightsResultsFilter");
+                if (isMobile) setActiveField("sidebarSections");
               }}
             >
               Filter

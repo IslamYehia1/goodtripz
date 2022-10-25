@@ -1,5 +1,5 @@
 import { useCarsContext } from "../../CommonContexts/CarsContext";
-import SearchField from "../SearchField";
+import SearchField from "../../SearchField/SearchField";
 import style from "../SearchForm.module.scss";
 import { useUIContext } from "../../UI";
 import { useEffect, useState } from "react";

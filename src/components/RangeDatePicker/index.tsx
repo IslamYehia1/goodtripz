@@ -90,7 +90,7 @@ export default function App(props: any) {
               name={"fromDateInput"}
               readOnly
               tabIndex={-1}
-              value={range!.from ? format(range!.from, "P") : undefined}
+              value={range && range.from ? format(range!.from, "P") : undefined}
               placeholder="Pick a date"
             />
           </div>
@@ -104,7 +104,7 @@ export default function App(props: any) {
                 readOnly
                 name={"toDateInput"}
                 tabIndex={-1}
-                value={range!.to ? format(range!.to, "P") : undefined}
+                value={range && range.to ? format(range!.to, "P") : undefined}
                 placeholder="Pick a date"
               />
             </div>

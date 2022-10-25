@@ -7,10 +7,9 @@ import useOutsideClick from "../../../utils/useOutsideClick";
 import useIsMobile from "../../../utils/useIsMobile";
 import { useUIContext } from "../../UI";
 function SearchOptions() {
-  const { activeField, setActiveField, from, to, date, returnDate, adults, children, type } =
-    useFlightContext();
+  const { from, to, date, returnDate, adults, children, type } = useFlightContext();
   const isMobile = useIsMobile();
-  const { openModal, isModalOn } = useUIContext();
+  const { openModal, isModalOn, activeField, setActiveField } = useUIContext();
 
   return (
     <>

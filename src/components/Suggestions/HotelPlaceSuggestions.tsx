@@ -3,7 +3,9 @@ import { autocompleteT } from "./types";
 import { hotelAutoComplete as fetchSuggestions } from "../../utils/fetchAutocomplete";
 import style from "./Suggestions.module.scss";
 import { useQuery } from "@tanstack/react-query";
-const HotelPlaceSuggestions = ({ inputValue, onSuggestionClick }: any) => {
+import { LocationIcon } from "../Icons";
+
+const HotelPlaceSuggestions = ({ inputValue, onSuggestionSelect, className }: any) => {
   const [suggestions, setSuggestions] = useState<autocompleteT>([]);
   const { data, isLoading } = useQuery(["hotelPlaceAutoComplete", inputValue], () =>
     fetchSuggestions(inputValue)
@@ -15,7 +17,7 @@ const HotelPlaceSuggestions = ({ inputValue, onSuggestionClick }: any) => {
   // }, [inputValue]);
   if (isLoading) {
     return (
-      <ul className={style.suggestions}>
+      <ul className={`${style.suggestions} ${className || ""}`}>
         <div className={style.placeHolder}>
           <p>Loading</p>
         </div>
@@ -24,7 +26,7 @@ const HotelPlaceSuggestions = ({ inputValue, onSuggestionClick }: any) => {
   }
   if (!inputValue || !(data!.length > 0)) {
     return (
-      <ul className={style.suggestions}>
+      <ul className={`${style.suggestions} ${className || ""}`}>
         <div className={style.placeHolder}>
           <p>Search by a place</p>
         </div>
@@ -36,17 +38,24 @@ const HotelPlaceSuggestions = ({ inputValue, onSuggestionClick }: any) => {
       <li
         key={autocomplete.id}
         onClick={() => {
-          onSuggestionClick({
+          onSuggestionSelect({
             suggestion: `${autocomplete.main},  ${autocomplete.secondary}`,
-            IATA: identifier,
+            id: identifier,
           });
         }}
+        className={style.hotelSuggestion}
       >
-        <div>{autocomplete.main}</div>
-        <div>{autocomplete.secondary}</div>
+        <div className={style.locationIconWrapper}>
+          <LocationIcon />
+        </div>
+        <div>
+          <div>{autocomplete.main}</div>
+          <div>{autocomplete.secondary}</div>
+        </div>
       </li>
     );
   });
   return <ul className={style.suggestions}>{SuggestionsList}</ul>;
 };
+
 export default HotelPlaceSuggestions;

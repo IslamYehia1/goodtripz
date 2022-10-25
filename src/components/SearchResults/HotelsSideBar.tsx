@@ -3,22 +3,14 @@ import style from "../../../styles/SearchResults.module.scss";
 import { hotelsSideBarT } from "./types";
 import { useUIContext } from "../UI";
 import { useHotelsContext } from "../CommonContexts/HotelsContext";
-import SearchField from "../HomeSearchForm/SearchField";
 import useIsMobile from "../../utils/useIsMobile";
-import Suggestions from "../Suggestions/HotelPlaceSuggestions";
 import { useEffect } from "react";
+import ResultsSearchField from "./SearchField";
+import SidebarSections from "./SideSections";
 const HotelsSideBar = (props: hotelsSideBarT) => {
-  const { isModalOn, openModal, closeModal } = useUIContext();
-  const {
-    activeField,
-    setActiveField,
-    setHotelPlace,
-    place,
-    checkIn,
-    checkOut,
-    setCheckInDate,
-    setCheckOutDate,
-  } = useHotelsContext();
+  const { isModalOn, openModal, closeModal, activeField, setActiveField } = useUIContext();
+  const { setHotelPlace, place, checkIn, checkOut, setCheckInDate, setCheckOutDate } =
+    useHotelsContext();
   const isMobile = useIsMobile();
 
   useEffect(() => {
@@ -37,34 +29,18 @@ const HotelsSideBar = (props: hotelsSideBarT) => {
   return (
     <>
       <div className={`${style.sideSection} ${style.searchTerms}`}>
-        <SearchField
-          value={place}
+        <ResultsSearchField
           label="Going to"
-          placeholder={"Hotel place"}
-          suggestions={Suggestions}
-          name={"hotelPlaceSearch"}
-          className={`${style.lilSearchField} ${style.lilHotelField}`}
-          wrapperClass={style.textFieldWrapper}
-          inputClass={style.searchInput}
-          isActive={activeField === "hotelPlaceSearch"}
-          onChange={(place: string) => {
-            setHotelPlace(place);
-          }}
-          onSuggestionSelect={({ suggestion }: { suggestion: string }) => {
-            setHotelPlace(suggestion);
-          }}
-          onActivate={() => {
-            // if (isMobile) openModal("hotelPlaceSearch");
-            setActiveField("hotelPlaceSearch");
-          }}
-          onDeactivate={() => {
-            // if (isModalOn) closeModal();
-            setActiveField("");
+          placeholder="Hotel place"
+          fieldName="hotelPlaceSearch"
+          value={place}
+          setValue={(value: any) => {
+            setHotelPlace(value);
           }}
         />
 
         <DateInput
-          isActive={activeField}
+          isActive={activeField === "hotelsDates"}
           onActivate={(field: any) => {
             // if (isMobile) openModal("hotelDates");
             setActiveField("hotelsDates");
@@ -82,12 +58,15 @@ const HotelsSideBar = (props: hotelsSideBarT) => {
           className={style.dateRangeWrapper}
           wrapperClass={`${style.lilSearchField} ${style.dateRangeWrapper}`}
           singleDateFieldClass={style.singleDateField}
+          overlayClass={`${style.dateOverlay} ${
+            activeField == "flightDates" && isModalOn ? style.inModal : ""
+          }`}
           // className={`${style.dateRangeWrapper}`}
           fromDate={checkIn}
           toDate={checkOut}
         />
       </div>
-      {!isMobile && (
+      {/* {!isMobile && (
         <>
           <div className={`${style.sideSection} ${style.priceRange}`}>
             <span>Price range</span>
@@ -104,7 +83,8 @@ const HotelsSideBar = (props: hotelsSideBarT) => {
             </div>
           </div>
         </>
-      )}
+      )} */}
+      <SidebarSections />
     </>
   );
 };

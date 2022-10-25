@@ -6,9 +6,8 @@ import { DateIcon } from "../../Icons";
 import style from "../../HomeSearchForm/SearchForm.module.scss";
 import useOutsideClick from "../../../utils/useOutsideClick";
 const HotelDateField = () => {
-  const { activeField, setActiveField, setCheckInDate, setCheckOutDate, checkIn, checkOut } =
-    useHotelsContext();
-  const { isModalOn, openModal, closeModal } = useUIContext();
+  const { setCheckInDate, setCheckOutDate, checkIn, checkOut } = useHotelsContext();
+  const { isModalOn, openModal, closeModal, activeField, setActiveField } = useUIContext();
   const isMobile = useIsMobile();
   // const fieldRef: any = useOutsideClick(activeField == "hotelsDates", () => {
   //   setActiveField("");

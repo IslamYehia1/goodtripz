@@ -12,11 +12,11 @@ export type propsType = {
   suggestions: autocompleteT;
   suggestionsClass?: string;
   className?: string;
-  onSuggestionClick?: (x: { suggestion: string; IATA: string }) => void;
+  onSuggestionSelect?: (x: { suggestion: string; id: string }) => void;
   inputValue: string;
 };
 
-const AirportsSuggestions = ({ inputValue, onSuggestionClick }: propsType) => {
+const AirportsSuggestions = ({ inputValue, onSuggestionSelect }: propsType) => {
   const { isLoading, error, data, isFetching }: any = useQuery(
     ["airportAutoComplete", inputValue],
     () => fetchSuggestions(inputValue) as any
@@ -38,12 +38,12 @@ const AirportsSuggestions = ({ inputValue, onSuggestionClick }: propsType) => {
 
   const SuggestionsList = data?.map(({ autocomplete, identifier }: any) => (
     <li
-      key={autocomplete.id}
+      key={identifier}
       onClick={() => {
-        if (onSuggestionClick)
-          onSuggestionClick({
+        if (onSuggestionSelect)
+          onSuggestionSelect({
             suggestion: `${autocomplete.main},  ${autocomplete.secondary}`,
-            IATA: identifier,
+            id: identifier,
           });
       }}
     >

@@ -26,9 +26,9 @@ type ACTIVE_FIELD =
 const FlightSearchFields = () => {
   let history = useRouter();
   const isMobile = useIsMobile();
-  const { activeField, setActiveField, from, to, date, returnDate, adults, children, type } =
-    useFlightContext();
-  const { openModal, isModalOn, currentModal, closeModal } = useUIContext();
+  const { from, to, date, returnDate, adults, children, type } = useFlightContext();
+  const { openModal, isModalOn, activeField, setActiveField, currentModal, closeModal } =
+    useUIContext();
   // Only one filter window can be open at once, hence the lefted state
   function handleSearch(e: React.SyntheticEvent) {
     e.preventDefault();

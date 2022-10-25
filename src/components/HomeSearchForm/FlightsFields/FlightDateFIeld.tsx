@@ -6,10 +6,9 @@ import useIsMobile from "../../../utils/useIsMobile";
 import { useUIContext } from "../../UI";
 import useOutsideClick from "../../../utils/useOutsideClick";
 const FlightDateField = () => {
-  const { isModalOn, openModal, closeModal } = useUIContext();
+  const { isModalOn, openModal, closeModal, activeField, setActiveField } = useUIContext();
   const isMobile = useIsMobile();
-  const { type, date, returnDate, activeField, setActiveField, setFlightDate, setReturnDate } =
-    useFlightContext();
+  const { type, date, returnDate, setFlightDate, setReturnDate } = useFlightContext();
   // const fieldRef: any = useOutsideClick(activeField == "flightDates", () => {
   //   setActiveField("");
   // });

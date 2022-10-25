@@ -7,9 +7,8 @@ import { useCarsContext } from "../../CommonContexts/CarsContext";
 import { useEffect } from "react";
 import useOutsideClick from "../../../utils/useOutsideClick";
 function DropOffPlace() {
-  const { isModalOn, openModal, closeModal } = useUIContext();
-  const { activeField, setActiveField, pickUpDate, setPickUpDate, setDropOffDate, dropOffDate } =
-    useCarsContext();
+  const { isModalOn, openModal, closeModal, activeField, setActiveField } = useUIContext();
+  const { pickUpDate, setPickUpDate, setDropOffDate, dropOffDate } = useCarsContext();
   // const fieldRef: any = useOutsideClick(activeField == "carsDates", () => {
   //   setActiveField("");
   // });

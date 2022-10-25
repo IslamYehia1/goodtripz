@@ -14,10 +14,8 @@ const TravellersOptions = () => {
     addChildTraveller,
     adults,
     children,
-    activeField,
-    setActiveField,
   } = useFlightContext();
-  const { isModalOn } = useUIContext();
+  const { isModalOn, activeField, setActiveField } = useUIContext();
 
   const travellersOptionsRef = useOutsideClick(activeField === "flightTravellersOptions", () => {
     setActiveField("");

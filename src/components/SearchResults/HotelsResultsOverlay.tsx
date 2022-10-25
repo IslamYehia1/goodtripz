@@ -10,7 +10,7 @@ import { useUIContext } from "../UI";
 const HotelsResultsOverlay = () => {
   const router = useRouter();
   const isMobile = useIsMobile();
-  const { isModalOn, openModal } = useUIContext();
+  const { isModalOn, openModal, setActiveField } = useUIContext();
 
   return (
     <div className={style.searchResultsPage}>
@@ -39,7 +39,7 @@ const HotelsResultsOverlay = () => {
               className={`${style.button} ${style.filterBtn}`}
               icon={FilterIcon}
               handleClick={() => {
-                if (isMobile && !isModalOn) openModal("hotelsResultsFilter");
+                if (isMobile) setActiveField("sidebarSections");
               }}
             >
               Filter

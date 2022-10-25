@@ -13,10 +13,10 @@ import useIsMobile from "../../../utils/useIsMobile";
 import { useUIContext } from "../../UI";
 
 function CarsFields() {
-  const { activeField, setActiveField, dropOffLocation, pickUpLocation, pickUpDate, dropOffDate } =
-    useCarsContext();
+  const { dropOffLocation, pickUpLocation, pickUpDate, dropOffDate } = useCarsContext();
   const history = useRouter();
-  const { openModal, isModalOn, currentModal, closeModal } = useUIContext();
+  const { openModal, isModalOn, currentModal, closeModal, activeField, setActiveField } =
+    useUIContext();
   const isMobile = useIsMobile();
 
   function searchHandler(e: React.SyntheticEvent) {

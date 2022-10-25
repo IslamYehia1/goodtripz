@@ -59,7 +59,7 @@ export async function airportAutocomplete(searchTerm: string) {
       results.push({
         autocomplete: {
           id: `${result.id}`,
-          main: `${result.name} (Code: ${result.iata_code})`,
+          main: `${result.name} (${result.iata_code})`,
           secondary: `${result.municipality} , ${result.country}`,
         },
         identifier: result.iata_code,

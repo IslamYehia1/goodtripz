@@ -10,24 +10,26 @@ const NavBar = ({ className }: propsType) => {
     <nav className={`${style.navBar} ${router.pathname === "/" ? style.home : ""}`}>
       <div className={style.logo}>
         <Link passHref href="/">
-          <Logo className={style.logo} />
+          <a>
+            <Logo className={style.logo} />
+          </a>
         </Link>
       </div>
       <div className={style.navLinks}>
-        <ul>
-          <li>
-            <Link href="/help">Help</Link>
-          </li>
-          <li>
-            <Link href="/mytrips">My trips</Link>
-          </li>
-          <li className={style.signIn}>
+        <Link href="/help">
+          <a className={style.link}>Help</a>
+        </Link>
+
+        <Link href="/mytrips">
+          <a className={style.link}>My trips</a>
+        </Link>
+        <Link href="/mytrips">
+          <span className={`${style.link} ${style.signIn}`}>
             <a href="#">Sign In</a>
-          </li>
-          <li>
-            <MenuIcon className={style.menuIcon} />
-          </li>
-        </ul>
+          </span>
+        </Link>
+
+        <MenuIcon className={style.menuIcon} />
       </div>
     </nav>
   );

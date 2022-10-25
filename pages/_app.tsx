@@ -1,6 +1,6 @@
 import "../styles/globals.scss";
 import type { AppProps } from "next/app";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../src/components/NavBar/NavBar";
 import "../styles/RangeDatePicker.scss";
 import NavBar from "../src/components/NavBar/NavBar";
@@ -14,7 +14,9 @@ const queryClient = new QueryClient();
 function MyApp({ Component, pageProps }: AppProps) {
   const [searchState, setSearchState] = useState("flights");
   const router = useRouter();
-
+  useEffect(() => {
+    document.title = "Goodtripz";
+  }, []);
   return (
     <>
       <QueryClientProvider client={queryClient}>

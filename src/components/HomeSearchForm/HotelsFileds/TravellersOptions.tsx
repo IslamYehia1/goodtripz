@@ -15,11 +15,10 @@ const TravellersOptions = () => {
     addChildTraveller,
     adults,
     children,
-    setActiveField,
-    activeField,
   } = useHotelsContext();
+  const { activeField, setActiveField } = useUIContext();
   const isMobile = useIsMobile();
-  const ref = useOutsideClick(activeField === "HotelsTravellersOptions", () => {
+  const ref: any = useOutsideClick(activeField === "HotelsTravellersOptions", () => {
     setActiveField("");
   });
   const { isModalOn } = useUIContext();
@@ -27,6 +26,7 @@ const TravellersOptions = () => {
     <>
       <div
         // onBlur={handleOutsideClick}
+        ref={ref}
         className={`${style.filterButtonWrapper} ${
           activeField === "hotelsTravellersOptions" && isModalOn ? style.inModal : ""
         }`}
