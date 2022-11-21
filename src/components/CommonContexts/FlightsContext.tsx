@@ -19,6 +19,8 @@ type FLIGHTS_CONTEXT = {
     name: string;
     IATA: string;
   };
+  chosenFlight: any;
+  setChosenFlight?: any;
   activeField?: string;
   setActiveField?: any;
   date: string;
@@ -43,6 +45,7 @@ const initial = {
   returnDate: "",
   adults: "1",
   children: "0",
+  chosenFlight: {},
 };
 
 const flightsContext = createContext<FLIGHTS_CONTEXT>(initial);
@@ -51,7 +54,12 @@ function FlightsProvider(props: any) {
   const [searchTerms, dispatch] = useReducer(reducer, initial);
   const [activeField, setActiveField] = useState("");
   const router = useRouter();
-
+  const setChosenFlight = useCallback(
+    (offer: any) => {
+      dispatch({ type: "chosenFlight", val: offer });
+    },
+    [dispatch]
+  );
   const setFlightType = useCallback(
     (value: any) => {
       dispatch({ type: "flightType", val: value });
@@ -114,6 +122,7 @@ function FlightsProvider(props: any) {
       activeField,
       setActiveField,
       setFlightType,
+      setChosenFlight,
       setFlightOrigin,
       setFlightDestination,
       setFlightDate,

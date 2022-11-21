@@ -1,9 +1,27 @@
 import style from "./FlightOffer.module.scss";
 import AirlineLogo from "../../../../public/img/airlineLogo.svg";
+import { motion } from "framer-motion";
 import { propsType } from "./types";
+import { useRouter } from "next/router";
+import { useFlightContext } from "../../CommonContexts/FlightsContext";
 const FlightOffer = (props: propsType) => {
+  const router = useRouter();
+  const { setChosenFlight } = useFlightContext();
+  function handleFlightSelected(e: React.MouseEvent) {
+    setChosenFlight(props);
+    router.push({
+      pathname: "/tripSummary/FlightSummary",
+      query: {
+        offer: props.destination,
+      },
+    });
+  }
   return (
-    <div className={style.flightOffer}>
+    <motion.div
+      onClick={handleFlightSelected}
+      className={style.flightOffer}
+      whileHover={{ scale: 1.03 }}
+    >
       <div className={style.firstRow}>
         <div className={style.departure}>
           {/* <div className="time departureTime">14:00</div> */}
@@ -63,7 +81,7 @@ const FlightOffer = (props: propsType) => {
           </span>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

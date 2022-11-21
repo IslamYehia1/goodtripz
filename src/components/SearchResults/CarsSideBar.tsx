@@ -59,59 +59,7 @@ const CarsSideBar = (props: hotelsSideBarT) => {
             setDropOffLocation(value);
           }}
         />
-        {/* 
-        <SearchField
-          value={pickUpLocation}
-          label="Drop Off Location"
-          placeholder={"Hotel place"}
-          name={"pickUpLocation"}
-          className={`${style.lilSearchField} ${style.lilHotelField}`}
-          wrapperClass={style.textFieldWrapper}
-          inputClass={style.searchInput}
-          isActive={activeField === "pickUpLocation"}
-          suggestions={Suggestions}
-          suggestionsClass={style.leftFieldSuggestions}
-          onSuggestionSelect={({ suggestion, IATA }: any) => {
-            setPickUpLocation(suggestion, IATA);
-          }}
-          onChange={(value: any) => {
-            setPickUpLocation(value);
-          }}
-          onActivate={() => {
-            if (setActiveField) setActiveField("pickUpLocation");
-            // if (isMobile) openModal("originFlightSearch");
-          }}
-          onDeactivate={() => {
-            if (setActiveField) setActiveField("");
-            // if (isModalOn) closeModal();
-          }}
-        />
-        <SearchField
-          value={dropOffLocation}
-          label="Drop Off Location"
-          placeholder={"Hotel place"}
-          name={"dropOffLocation"}
-          className={`${style.lilSearchField} ${style.lilHotelField}`}
-          wrapperClass={style.textFieldWrapper}
-          inputClass={style.searchInput}
-          isActive={activeField === "dropOffLocation"}
-          suggestions={Suggestions}
-          suggestionsClass={style.leftFieldSuggestions}
-          onSuggestionSelect={({ suggestion, IATA }: any) => {
-            setDropOffLocation(suggestion, IATA);
-          }}
-          onChange={(value: any) => {
-            setDropOffLocation(value);
-          }}
-          onActivate={() => {
-            if (setActiveField) setActiveField("dropOffLocation");
-            // if (isMobile) openModal("originFlightSearch");
-          }}
-          onDeactivate={() => {
-            if (setActiveField) setActiveField("");
-            // if (isModalOn) closeModal();
-          }}
-        /> */}
+
         <DateInput
           isActive={activeField === "carsDates"}
           onActivate={(field: any) => {
@@ -129,6 +77,9 @@ const CarsSideBar = (props: hotelsSideBarT) => {
           textFieldClass={style.textField}
           className={`${style.dateRangeWrapper}`}
           wrapperClass={`${style.lilSearchField} ${style.dateRangeWrapper}`}
+          overlayClass={`${style.dateOverlay} ${
+            activeField == "flightDates" && isModalOn ? style.inModal : ""
+          }`}
           fromDate={pickUpDate}
           toDate={dropOffDate}
         />

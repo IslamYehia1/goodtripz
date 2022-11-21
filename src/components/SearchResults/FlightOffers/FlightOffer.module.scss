@@ -2,6 +2,7 @@
 
 .flightOffer {
   @include semiBoldFont;
+  cursor: pointer;
   position: relative;
   padding: 5%;
   border-radius: 20px;

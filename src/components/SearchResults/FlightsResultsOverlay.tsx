@@ -12,7 +12,7 @@ import { SortIcon, FilterIcon } from "../Icons";
 import useIsMobile from "../../utils/useIsMobile";
 import { useUIContext } from "../UI";
 const ResultsPageContainer = () => {
-  const { setFlightOrigin, setFlightDestination } = useFlightContext();
+  const { setFlightOrigin, setFlightDestination, from, to } = useFlightContext();
   const [airports, setAirports] = useState({
     from: { city: "City", name: "WHAAT" },
     to: { city: "City", name: "WOOOW" },
@@ -81,7 +81,11 @@ const ResultsPageContainer = () => {
             </Button>
           )}
         </div>
-        <FlightOffers airports={airports} searchQuery={query} />
+        {airports && from.name && to.name ? (
+          <FlightOffers airports={airports} searchQuery={query} />
+        ) : (
+          <div>No results</div>
+        )}
       </div>
     </div>
   );

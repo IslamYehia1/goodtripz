@@ -44,8 +44,8 @@ const FlightsSideBar = (props: flightsSideBarT) => {
     <>
       <div className={`${style.sideSection} ${style.searchTerms}`}>
         <ResultsSearchField
-          label="Pick-Up Place"
-          placeholder="Search the place"
+          label="Flying From"
+          placeholder="Origin Airport"
           fieldName="pickUpLocation"
           value={from.name}
           setValue={(value: any) => {
@@ -53,8 +53,8 @@ const FlightsSideBar = (props: flightsSideBarT) => {
           }}
         />
         <ResultsSearchField
-          label="Drop-Off Place"
-          placeholder="Search the place"
+          label="Flying To"
+          placeholder="Destination Airport"
           fieldName="dropOffLocation"
           value={to.name}
           setValue={(value: any) => {

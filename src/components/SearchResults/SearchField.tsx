@@ -4,7 +4,7 @@ import AirportsSuggestions from "../Suggestions/AirportSuggestions";
 import { useEffect, useState } from "react";
 import { useUIContext } from "../UI";
 
-function ResultsSearchField({ setValue, fieldName, icon, value }: any) {
+function ResultsSearchField({ setValue, fieldName, icon, value, label, placeholder }: any) {
   const { activeField, isModalOn, currentModal, setActiveField } = useUIContext();
   const [isActive, setIsActive] = useState(false);
   useEffect(() => {
@@ -36,8 +36,8 @@ function ResultsSearchField({ setValue, fieldName, icon, value }: any) {
         if (setActiveField) setActiveField("");
       }}
       value={value}
-      label="Flying from"
-      placeholder="Origin airport"
+      label={label}
+      placeholder={placeholder}
       name={fieldName}
       // icon={FlyFromIcon}
     />

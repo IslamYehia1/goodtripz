@@ -6,7 +6,9 @@ export type searchTermsT = {
   returnDate: string;
   adults: any;
   children: any;
+  chosenFlight?: any;
 };
+
 type actionT =
   | {
       type: string;
@@ -91,6 +93,11 @@ export default function reducer(prevState: searchTermsT, action: actionT): searc
           prevState.children > 0
             ? (parseInt(prevState.children) - 1).toString()
             : prevState.children,
+      };
+    case "chosenFlight":
+      return {
+        ...prevState,
+        chosenFlight: action.val,
       };
     default:
       return prevState;

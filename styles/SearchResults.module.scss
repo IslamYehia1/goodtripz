@@ -39,6 +39,7 @@
     flex-wrap: wrap;
     padding: 10% 1% 0 10%;
     gap: 6%;
+    white-space: nowrap;
     label {
       @include normalFont;
       font-size: 14px;
