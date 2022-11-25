@@ -1,6 +1,5 @@
 import style from "./CarOffer.module.scss";
 import Image from "next/image";
-import CarImg from "../../../../public/img/carImg.png";
 import DoorIcon from "../../../../public/icons/carDoor.svg";
 import SeatIcon from "../../../../public/icons/carSeat.svg";
 import GasIcon from "../../../../public/icons/gas.svg";
@@ -15,8 +14,8 @@ function CarOffer({ carImg }: any) {
       </div>
       <div className={style.offerTextWrapper}>
         <div className={style.info}>
-          <h1>Standard Sedan</h1>
-          <h4>Hyundai Elantra, Automatic</h4>
+          <h1>Hyundai Elantra</h1>
+          <h4>Standard Sedan, Automatic</h4>
           <div className={style.carOptions}>
             Automatic, Air Conditioning, additional options available, AM/FM Stereo
           </div>

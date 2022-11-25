@@ -1,13 +1,12 @@
 import style from "../../../styles/SearchResults.module.scss";
-import SideBarNav from "./SideBarNav";
+import SideBarNav from "../SideBarNav";
 import CarsSideBar from "./CarsSideBar";
-import HotelOffers from "./HotelOffers";
-import { SortIcon, FilterIcon } from "../Icons";
-import Button from "../Button/Button";
-import useIsMobile from "../../utils/useIsMobile";
-import { useUIContext } from "../UI";
+import { SortIcon, FilterIcon } from "../../Icons";
+import Button from "../../Button/Button";
+import useIsMobile from "../../../utils/useIsMobile";
+import { useUIContext } from "../../UI";
 import { useRouter } from "next/router";
-import CarsOffers from "./CarsOffers";
+import CarsOffers from "./Offers";
 const ResultsPageContainer = () => {
   const router = useRouter();
   const isMobile = useIsMobile();

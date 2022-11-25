@@ -1,4 +1,4 @@
-@import "../../../styles/variables.scss";
+@import "styles/variables.scss";
 
 .navBar {
   @include semiBoldFont;
@@ -52,16 +52,14 @@
     position: absolute;
     .logo {
       // color: $white;
-    }
-    // ul {
-    .link {
+    } // color: $white;
+
+    .navLinks {
       display: none;
     }
-    .link:last-child {
-      display: inline-block;
-      // color: $white;
+    .menuIcon {
+      display: block;
     }
-    // }
   }
   .home.navBar {
     .logo {

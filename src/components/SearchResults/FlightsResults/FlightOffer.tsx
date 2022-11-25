@@ -1,9 +1,9 @@
 import style from "./FlightOffer.module.scss";
-import AirlineLogo from "../../../../public/img/airlineLogo.svg";
+import AirlineLogo from "public/img/airlineLogo.svg";
 import { motion } from "framer-motion";
 import { propsType } from "./types";
 import { useRouter } from "next/router";
-import { useFlightContext } from "../../CommonContexts/FlightsContext";
+import { useFlightContext } from "src/components/CommonContexts/FlightsContext";
 const FlightOffer = (props: propsType) => {
   const router = useRouter();
   const { setChosenFlight } = useFlightContext();
@@ -37,11 +37,8 @@ const FlightOffer = (props: propsType) => {
           </span>
         </div>
         <div className={style.arrival}>
-          {/* <div className="time arrivalTime">14:00</div> */}
           <div className={`${style.time} ${style.arrivalTime}`}>{props.arrivalTime}</div>
-          {/* <div className="arrivalCity">New York (NYC)</div> */}
           <div className={style.arrivalCity}>
-            {/* {`${props.airports.to.city} (${props.destination})`} */}
             {`${props.airports.to.city} (${props.destination})`}
           </div>
         </div>
@@ -63,13 +60,11 @@ const FlightOffer = (props: propsType) => {
             />
           </svg>
         </div>
-        {/* <TwoCircles /> */}
       </div>
       <div className={style.middleRow}></div>
       <div className={style.lastRow}>
         <div className={style.airline}>
           <AirlineLogo className={style.logo} />
-          {/* Delta Airline */}
         </div>
         <div className={style.fare}>
           <span className={style.class}>

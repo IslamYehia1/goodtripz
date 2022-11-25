@@ -1,4 +1,4 @@
-@import "../../../styles/variables.scss";
+@import "styles/variables.scss";
 .suggestions {
   margin-bottom: 16px;
   list-style: none;
@@ -7,7 +7,7 @@
   width: 100%;
   min-width: 370px;
   min-height: 100px;
-  background-color: inherit;
+  background-color: $white;
   border-radius: 20px;
   // position: absolute;
   overflow: hidden;
@@ -94,12 +94,13 @@
 }
 @media only screen and (max-width: 790px) {
   .suggestions {
-    position: fixed;
-    bottom: 0;
-    top: 50px;
+    // position: fixed;
+    // bottom: 0;
+    // top: 50px;
+    width: 100%;
     // padding-top: 80px;
     // position: fixed;
-    height: 100vh;
+    // height: 100vh;
     padding: 0;
     border-radius: 0;
     justify-content: flex-start;

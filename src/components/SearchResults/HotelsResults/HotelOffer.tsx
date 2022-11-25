@@ -1,6 +1,6 @@
 // import roomPicture from "../../img/room1.jpg";
 import { propsType } from "./types";
-import { PoolIcon, PetIcon, Star } from "../../Icons";
+import { PoolIcon, PetIcon, Star } from "../../../Icons";
 import Image from "next/image";
 import style from "./HotelOffer.module.scss";
 const HotelOffer = (props: propsType) => {

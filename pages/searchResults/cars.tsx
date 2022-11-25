@@ -1,14 +1,11 @@
-import { CarsSearchProvider } from "../../src/components/CommonContexts/CarsContext";
 import { SearchModal } from "../../src/components/Modal";
-import ResultsPageContainer from "../../src/components/SearchResults/CarsResultsOverlay";
+import ResultsPageContainer from "../../src/components/SearchResults/CarsResults";
 const SearchResults = (props: any) => {
   return (
-    // <CarsSearchProvider>
     <>
       <SearchModal />
       <ResultsPageContainer />
     </>
-    //</CarsSearchProvider>
   );
 };
 

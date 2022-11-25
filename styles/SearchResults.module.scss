@@ -43,6 +43,7 @@
     label {
       @include normalFont;
       font-size: 14px;
+      overflow: hidden;
     }
     input {
       width: 90%;

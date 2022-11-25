@@ -18,21 +18,21 @@ import PickUpPlace from "../HomeSearchForm/CarsFields/PickUpPlace";
 import DropOffPlace from "../HomeSearchForm/CarsFields/DropOffPlace";
 import CarsDates from "../HomeSearchForm/CarsFields/CarsDates";
 const SearchModal = (props: searchModalProps) => {
-  const { isModalOn, currentModal, closeModal } = useUIContext();
+  // const { isModalOn, currentModal, closeModal } = useUIContext();
 
   return (
-    <Modal className={style.modal} isOpen={isModalOn}>
-      {isModalOn && (
+    <Modal className={props.className} isOpen={props.isOpen}>
+      {props.isOpen && (
         <Button
           handleClick={() => {
-            closeModal();
+            props.onClose && props.onClose();
           }}
           className={style.modalCloseBtn}
           icon={LeftArrow}
         />
       )}
-
-      {currentModal === "originFlightSearch" && <OriginFlightField />}
+      {props.children}
+      {/* {currentModal === "originFlightSearch" && <OriginFlightField />}
       {currentModal === "destinationFlightSearch" && <DestinationFlightField />}
       {currentModal === "flightDates" && <FlightDateField />}
       {currentModal === "sidebarSections" && <SidebarSections />}
@@ -43,7 +43,7 @@ const SearchModal = (props: searchModalProps) => {
       {currentModal === "flightTypeOptions" && <FlightTypeOptions />}
       {currentModal === "pickUpLocation" && <PickUpPlace />}
       {currentModal === "dropOffLocation" && <DropOffPlace />}
-      {currentModal === "carsDates" && <CarsDates />}
+      {currentModal === "carsDates" && <CarsDates />} */}
     </Modal>
   );
 };

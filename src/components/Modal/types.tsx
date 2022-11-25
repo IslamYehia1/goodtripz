@@ -17,7 +17,9 @@ export type searchModalProps = {
   openOnFocus?: Boolean;
   isFullScreen?: Boolean;
   onFocus?: () => void;
-  closeModal?: () => void;
+  // closeModal?: () => void;
+  onClose?: () => void;
+  isOpen?: boolean;
   // closeModal: () => void;
 };
 export type modalState = {

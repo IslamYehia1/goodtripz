@@ -32,9 +32,9 @@ function HomeSearchField({
   return (
     <SearchField
       // ${style.aSearchField}
-      className={`${style.searchFragment} ${style.flightSearchField} ${
-        isActive && isModalOn ? style.inModal : ""
-      } `}
+      // ${isActive && isModalOn ? style.inModal : ""}
+      className={`${style.searchFragment} ${style.flightSearchField}`}
+      modalClass={style.modal}
       animate={{ flexGrow: 5 }}
       inputClass={style.textField}
       wrapperClass={style.textFieldWrapper}

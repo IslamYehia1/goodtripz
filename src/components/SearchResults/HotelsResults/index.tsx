@@ -1,16 +1,14 @@
 import style from "../../../styles/SearchResults.module.scss";
-import SideBarNav from "./SideBarNav";
+import SideBarNav from "../SideBarNav";
 import { useRouter } from "next/router";
-import HotelsSideBar from "./HotelsSideBar";
-import HotelOffers from "./HotelOffers";
-import { SortIcon, FilterIcon } from "../Icons";
-import Button from "../Button/Button";
-import useIsMobile from "../../utils/useIsMobile";
-import { useUIContext } from "../UI";
+import HotelsSideBar from "./HotelsSearchFields";
+import HotelOffers from "./Offers";
+import { SortIcon, FilterIcon } from "../../Icons";
+import Button from "../../Button/Button";
+import useIsMobile from "../../../utils/useIsMobile";
 const HotelsResultsOverlay = () => {
   const router = useRouter();
   const isMobile = useIsMobile();
-  const { isModalOn, openModal, setActiveField } = useUIContext();
 
   return (
     <div className={style.searchResultsPage}>
@@ -29,7 +27,7 @@ const HotelsResultsOverlay = () => {
             className={`${style.button} ${style.sortBtn}`}
             icon={SortIcon}
             handleClick={() => {
-              if (isMobile && !isModalOn) openModal("hotelResultsSort");
+              // if (isMobile && !isModalOn) openModal("hotelResultsSort");
             }}
           >
             Sort by
@@ -39,7 +37,7 @@ const HotelsResultsOverlay = () => {
               className={`${style.button} ${style.filterBtn}`}
               icon={FilterIcon}
               handleClick={() => {
-                if (isMobile) setActiveField("sidebarSections");
+                // if (isMobile) setActiveField("sidebarSections");
               }}
             >
               Filter

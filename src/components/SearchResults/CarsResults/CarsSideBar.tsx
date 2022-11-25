@@ -1,12 +1,10 @@
-import DateInput from "../RangeDatePicker";
+import DateInput from "../../RangeDatePicker";
 import style from "../../../styles/SearchResults.module.scss";
-import { hotelsSideBarT } from "./types";
-import { useUIContext } from "../UI";
-import { useCarsContext } from "../CommonContexts/CarsContext";
-import SearchField from "../SearchField/SearchField";
-import useIsMobile from "../../utils/useIsMobile";
-import Suggestions from "../Suggestions/HotelPlaceSuggestions";
-import ResultsSearchField from "./SearchField";
+import { hotelsSideBarT } from "../types";
+import { useUIContext } from "../../UI";
+import { useCarsContext } from "../../CommonContexts/CarsContext";
+import useIsMobile from "../../../utils/useIsMobile";
+import ResultsSearchField from "../SearchField";
 import { useEffect } from "react";
 const CarsSideBar = (props: hotelsSideBarT) => {
   const { isModalOn, openModal, closeModal } = useUIContext();
@@ -61,13 +59,6 @@ const CarsSideBar = (props: hotelsSideBarT) => {
         />
 
         <DateInput
-          isActive={activeField === "carsDates"}
-          onActivate={(field: any) => {
-            if (setActiveField) setActiveField("carsDates");
-          }}
-          onDeactivate={() => {
-            if (setActiveField) setActiveField("");
-          }}
           setFromDate={(date: any) => setPickUpDate(date.toISOString().substring(0, 10))}
           setToDate={(date: any) => setDropOffDate(date.toISOString().substring(0, 10))}
           fromLabel="Pick-up"
@@ -77,9 +68,7 @@ const CarsSideBar = (props: hotelsSideBarT) => {
           textFieldClass={style.textField}
           className={`${style.dateRangeWrapper}`}
           wrapperClass={`${style.lilSearchField} ${style.dateRangeWrapper}`}
-          overlayClass={`${style.dateOverlay} ${
-            activeField == "flightDates" && isModalOn ? style.inModal : ""
-          }`}
+          overlayClass={`${style.dateOverlay}`}
           fromDate={pickUpDate}
           toDate={dropOffDate}
         />

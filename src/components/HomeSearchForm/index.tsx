@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import Button from "../Button/Button";
-import FlightSearchFields from "./FlightsFields/FlightSearchFields";
-import HotelSearchFields from "./HotelsFileds/HotelSearchFields";
+import FlightSearchFields from "./FlightsFields";
+import HotelSearchFields from "./HotelsFileds";
 import style from "./SearchForm.module.scss";
 import homeStyle from "../../../styles/Home.module.scss";
 import { SearchModal } from "../Modal";
 import CarsFields from "./CarsFields";
-import { CarsSearchProvider } from "../CommonContexts/CarsContext";
-import { FlightsProvider } from "../CommonContexts/FlightsContext";
-import { HotelSearchProvider } from "../CommonContexts/HotelsContext";
+
 const SearchForm = () => {
   const [formState, setFormState] = useState("flight");
   return (

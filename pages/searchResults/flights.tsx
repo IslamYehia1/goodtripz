@@ -1,7 +1,6 @@
 import { searchResultsT } from "../../src/components/SearchResults/types";
-import { FlightsProvider } from "../../src/components/CommonContexts/FlightsContext";
 import { SearchModal } from "../../src/components/Modal";
-import ResultsPageContainer from "../../src/components/SearchResults/FlightsResultsOverlay";
+import ResultsPageContainer from "../../src/components/SearchResults/FlightsResults";
 type searchQueryT = {
   from?: string | string[];
   to?: string | string[];
@@ -12,12 +11,10 @@ type searchQueryT = {
 };
 const SearchResults = (props: searchResultsT) => {
   return (
-    // <FlightsProvider>
     <>
       <SearchModal />
       <ResultsPageContainer />
     </>
-    // </FlightsProvider>
   );
 };
 

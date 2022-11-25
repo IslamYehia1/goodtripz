@@ -8,6 +8,25 @@ import image1 from "../public/img/image1.jpg";
 import image2 from "../public/img/image2.jpg";
 import { RightArrow } from "../src/components/Icons";
 import { AnimatePresence, motion, useAnimationControls } from "framer-motion";
+const images = ["/img/indonesia.jpg", "/img/greece.jpg", "/img/maldives.jpg", "/img/dubai.jpg"];
+const places = [
+  {
+    title: "indonesia",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in massa lacinia,aliquam massa non",
+  },
+  {
+    title: "Greece",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in massa lacinia,aliquam massa non",
+  },
+  {
+    title: "Maldives",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in massa lacinia,aliquam massa non",
+  },
+  {
+    title: "Dubai",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in massa lacinia,aliquam massa non",
+  },
+];
 
 const Home: NextPage = () => {
   const [currentImg, setCurrentImg] = useState(0);
@@ -34,26 +53,6 @@ const Home: NextPage = () => {
       await sequence();
     })();
   }, [currentImg]);
-
-  const images = ["/img/indonesia.jpg", "/img/greece.jpg", "/img/maldives.jpg", "/img/dubai.jpg"];
-  const places = [
-    {
-      title: "indonesia",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in massa lacinia,aliquam massa non",
-    },
-    {
-      title: "Greece",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in massa lacinia,aliquam massa non",
-    },
-    {
-      title: "Maldives",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in massa lacinia,aliquam massa non",
-    },
-    {
-      title: "Dubai",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in massa lacinia,aliquam massa non",
-    },
-  ];
 
   useEffect(() => {
     let vh = window.innerHeight * 0.01;
@@ -88,9 +87,24 @@ const Home: NextPage = () => {
                 <motion.img
                   key={images[currentImg]}
                   className={style.background}
-                  initial={{ opacity: 0.1, scale: 1.1 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0.2, scale: 0.95, transition: { duration: 0.5 } }}
+                  initial={{ opacity: 0.1, scale: 1.2 }}
+                  animate={{ opacity: 1, scale: 1.1 }}
+                  exit={{
+                    opacity: 0.2,
+                    scale: 1,
+                    filter: "blur(10px)",
+                    transition: {
+                      filter: {
+                        duration: 0.2,
+                      },
+                      opacity: {
+                        duration: 0.5,
+                      },
+                      scale: {
+                        duration: 0.5,
+                      },
+                    },
+                  }}
                   transition={{
                     // delay: 1,
                     opacity: {
@@ -98,7 +112,7 @@ const Home: NextPage = () => {
                     },
                     scale: {
                       duration: 6,
-                      ease: "linear",
+                      ease: "easeOut",
                     },
                   }}
                   style={{ minWidth: "100%", minHeight: "100%" }}

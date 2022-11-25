@@ -3,8 +3,16 @@ import style from "../../../styles/SearchResults.module.scss";
 import AirportsSuggestions from "../Suggestions/AirportSuggestions";
 import { useEffect, useState } from "react";
 import { useUIContext } from "../UI";
-
-function ResultsSearchField({ setValue, fieldName, icon, value, label, placeholder }: any) {
+import { SearchModal } from "../Modal";
+function ResultsSearchField({
+  setValue,
+  fieldName,
+  icon,
+  value,
+  label,
+  placeholder,
+  modalClass,
+}: any) {
   const { activeField, isModalOn, currentModal, setActiveField } = useUIContext();
   const [isActive, setIsActive] = useState(false);
   useEffect(() => {
@@ -19,6 +27,7 @@ function ResultsSearchField({ setValue, fieldName, icon, value, label, placehold
       className={`${style.lilSearchField}`}
       inputClass={style.textField}
       wrapperClass={style.textFieldWrapper}
+      modalClass={style.modal}
       suggestions={AirportsSuggestions}
       suggestionsClass={style.leftFieldSuggestions}
       onSuggestionSelect={({ suggestion, IATA }: any) => {

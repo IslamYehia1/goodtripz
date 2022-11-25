@@ -1,49 +1,22 @@
 import React, { useState, useEffect, useRef, RefObject, useContext } from "react";
-import style from "./SearchForm.module.scss";
 import useIsMobile from "../../utils/useIsMobile";
 import { useUIContext } from "../UI";
 import { motion, AnimatePresence } from "framer-motion";
-import { isSuggestionClicked } from "../../utils";
+import style from "./SearchField.module.scss";
 import useOutsideClick from "../../utils/useOutsideClick";
-
-type PROPS = {
-  className: string;
-  wrapperClass: string;
-  label: string;
-  icon?: string;
-  placeholder: string;
-  inputClass: string;
-  value?: string;
-  name: string;
-  suggestions: any;
-  onSuggestionSelect: any;
-  onChange?: any;
-  isActive?: Boolean;
-  onActivate?: any;
-  onDeactivate?: any;
-  animate?: any;
-  suggestionsClass?: string;
-};
-
-const SearchField = (props: PROPS) => {
-  const { isModalOn, activeField, setActiveField } = useUIContext();
+import SearchModal from "../Modal/SearchModal";
+import propsT from "./types";
+const SearchField = (props: propsT) => {
   const isMobile = useIsMobile();
   const Suggestions = props.suggestions;
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const inputRef: RefObject<HTMLInputElement> = useRef(null);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [inputState, setInputState] = useState("");
   const [isActive, setIsActive] = useState(false);
-  useEffect(() => {
-    if (activeField === props.name) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
-  }, [activeField, props.name]);
+
   const fieldRef = useOutsideClick(isActive, () => {
-    // props.onDeactivate();
     setIsActive(false);
-    setActiveField("");
   });
 
   useEffect(() => {
@@ -57,15 +30,16 @@ const SearchField = (props: PROPS) => {
       setShowSuggestions(false);
       inputRef.current?.blur();
     }
-  }, [isActive]);
-  // The modal can be closed by the "back" button in the modal itself
-  // so the field should be deactivated if the modal got closed from an
-  // outside event.
+  }, [isActive, isMobile, isModalOpen]);
 
+  useEffect(() => {
+    if (isModalOpen) setIsActive(true);
+    else setIsActive(false);
+  }, [isModalOpen]);
   function activateField(e: any) {
-    e.stopPropagation();
-    // props.onActivate();
-    setActiveField(props.name);
+    e.preventDefault();
+    if (isMobile) setIsModalOpen(true);
+    else setIsActive(true);
   }
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -74,58 +48,64 @@ const SearchField = (props: PROPS) => {
   }
 
   return (
-    <motion.div
-      animate={isActive ? props.animate : undefined}
-      style={{ pointerEvents: "all" }}
-      className={`${props.className}`}
-      ref={fieldRef as any}
+    <SearchModal
+      isOpen={isModalOpen}
+      className={`${props.modalClass} ${style.modal}`}
+      onClose={() => setIsModalOpen(false)}
     >
-      {showSuggestions && (
-        // <AnimatePresence>
-        <motion.div
-          initial={{ y: 100 }}
-          animate={{ y: 0 }}
-          className={props.suggestionsClass}
-          tabIndex={-1}
-        >
-          <Suggestions
-            inputValue={inputState}
-            onSuggestionSelect={(suggestion: any) => {
-              props.onSuggestionSelect(suggestion);
-              setInputState(suggestion.suggestion);
-              props.onDeactivate();
-            }}
-            className={props.suggestionsClass}
-          />
-        </motion.div>
-        // </AnimatePresence>
-      )}
-      <div
-        // className={style.fieldWrapper}
-        tabIndex={0}
-        // onClick={activateField}
-        onFocus={activateField}
-        className={`${props.wrapperClass}`}
+      <motion.div
+        animate={isActive ? props.animate : undefined}
+        style={{ pointerEvents: "all" }}
+        className={`${props.className} ${style.container}`}
+        ref={fieldRef as any}
       >
-        {/* <div> */}
-        {props.icon && <props.icon />}
-        <div className={props.inputClass}>
-          <label htmlFor={props.name}>{props.label}</label>
-          <input
-            autoComplete="off"
-            ref={inputRef}
-            // onBlur={blurHandler}
-            placeholder={isMobile ? props.label : props.placeholder}
-            type="text"
-            value={inputState}
-            name={props.name}
-            onChange={handleChange}
+        {showSuggestions && (
+          // <AnimatePresence>
+          <motion.div
+            initial={{ y: 100 }}
+            animate={{ y: 0 }}
+            className={`${props.suggestionsClass} ${style.suggestionsWrapper}`}
             tabIndex={-1}
-          />
+          >
+            <Suggestions
+              inputValue={inputState}
+              onSuggestionSelect={(suggestion: any) => {
+                props.onSuggestionSelect(suggestion);
+                setInputState(suggestion.suggestion);
+                if (isMobile) setIsModalOpen(false);
+                else setIsActive(false);
+
+                // props.onDeactivate();
+              }}
+              // className={props.suggestionsClass}
+              className={style.suggestions}
+            />
+          </motion.div>
+          // </AnimatePresence>
+        )}
+        <div
+          tabIndex={0}
+          onClick={activateField}
+          // onFocus={activateField}
+          className={`${props.wrapperClass} ${style.textFieldWrapper}`}
+        >
+          {props.icon && <props.icon />}
+          <div className={`${props.inputClass} ${style.input}`}>
+            <label htmlFor={props.name}>{props.label}</label>
+            <input
+              autoComplete="off"
+              ref={inputRef}
+              placeholder={isMobile ? props.label : props.placeholder}
+              type="text"
+              value={inputState}
+              name={props.name}
+              onChange={handleChange}
+              tabIndex={-1}
+            />
+          </div>
         </div>
-        {/* </div> */}
-      </div>
-    </motion.div>
+      </motion.div>
+    </SearchModal>
   );
 };
 

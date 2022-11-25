@@ -4,13 +4,13 @@ import PickUpPlace from "./PickUpPlace";
 import DropOffPlace from "./DropOffPlace";
 import CarsDates from "./CarsDates";
 import { useCarsContext } from "../../CommonContexts/CarsContext";
-import Button from "../../Button/Button";
+import Button from "src/components/Button/Button";
 import {SearchIcon,ExpandIcon} from "../../Icons"; //prettier-ignore
 import CarsTime from "./CarsTime";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import useIsMobile from "../../../utils/useIsMobile";
-import { useUIContext } from "../../UI";
+import useIsMobile from "src/utils/useIsMobile";
+import { useUIContext } from "src/components/UI";
 
 function CarsFields() {
   const { dropOffLocation, pickUpLocation, pickUpDate, dropOffDate } = useCarsContext();

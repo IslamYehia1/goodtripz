@@ -1,18 +1,17 @@
-import SideBarNav from "./SideBarNav";
-import FlightsSideBar from "./FlightsSideBar";
-import FlightOffers from "./FlightOffers";
-import style from "../../../styles/SearchResults.module.scss";
+import SideBarNav from "../SideBarNav";
+import FlightsSideBar from "./FlightsSearchFields";
+import FlightOffers from "./Offers";
+import style from "/styles/SearchResults.module.scss";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { fetchAirport } from "../../utils/fetchAirportName";
-import { useFlightContext } from "../CommonContexts/FlightsContext";
-// import style from "./FilterAndSort.module.scss";
-import Button from "../Button/Button";
-import { SortIcon, FilterIcon } from "../Icons";
-import useIsMobile from "../../utils/useIsMobile";
-import { useUIContext } from "../UI";
+import { fetchAirport } from "src/utils/fetchAirportName";
+import { useFlightContext } from "../../CommonContexts/FlightsContext";
+import Button from "../../Button/Button";
+import { SortIcon, FilterIcon } from "../../Icons";
+import useIsMobile from "../../../utils/useIsMobile";
+import { useUIContext } from "../../UI";
 const ResultsPageContainer = () => {
-  const { setFlightOrigin, setFlightDestination, from, to } = useFlightContext();
+  const { from, to } = useFlightContext();
   const [airports, setAirports] = useState({
     from: { city: "City", name: "WHAAT" },
     to: { city: "City", name: "WOOOW" },

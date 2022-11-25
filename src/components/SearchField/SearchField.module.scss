@@ -1,0 +1,66 @@
+@import "styles/variables.scss";
+.modal {
+  .container {
+    width: 100% !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    gap: 0;
+
+    .textFieldWrapper {
+      padding: 4vw 0 4vw 15vw;
+      border-bottom: 2px solid $background;
+      height: 65px;
+      display: flex;
+      align-items: center;
+      background: #f7f9fc;
+      margin: 0;
+      position: unset;
+      &::after {
+        content: none;
+      }
+      svg {
+        display: none;
+        // color: red;
+      }
+    }
+    position: relative;
+    // top: 15px;
+    left: 0;
+    right: 0;
+    .input {
+      padding-left: 0;
+      position: unset;
+      input {
+        font-size: 15px;
+      }
+      label {
+        display: none !important;
+      }
+    }
+  }
+  .suggestionsWrapper {
+    position: relative;
+    inset: 0 !important;
+    height: 100%;
+    background-color: $white;
+    & > ul {
+      background-color: transparent;
+    }
+    .suggestions {
+      position: relative !important ;
+      // height: 100%;
+      background-color: transparent;
+      margin-top: 0;
+    }
+  }
+  .dateOverlay {
+    bottom: 0;
+    width: 100%;
+    position: relative;
+    inset: 0;
+    overflow: scroll;
+  }
+}

@@ -28,9 +28,8 @@ const NavBar = ({ className }: propsType) => {
             <a href="#">Sign In</a>
           </span>
         </Link>
-
-        <MenuIcon className={style.menuIcon} />
       </div>
+      <MenuIcon className={style.menuIcon} />
     </nav>
   );
 };

@@ -25,10 +25,7 @@ type ACTIVE_FIELD =
 
 const FlightSearchFields = () => {
   let history = useRouter();
-  const isMobile = useIsMobile();
   const { from, to, date, returnDate, adults, children, type } = useFlightContext();
-  const { openModal, isModalOn, activeField, setActiveField, currentModal, closeModal } =
-    useUIContext();
   // Only one filter window can be open at once, hence the lefted state
   function handleSearch(e: React.SyntheticEvent) {
     e.preventDefault();
@@ -36,29 +33,6 @@ const FlightSearchFields = () => {
       `/searchResults/flights?from=${from.IATA}&to=${to.IATA}&date=${date}&returnDate=${returnDate}&adults=${adults}&children=${children}`
     );
   }
-  function toggleField(field: ACTIVE_FIELD) {
-    if (isMobile) openModal(field);
-    if (activeField === field) setActiveField("");
-    else setActiveField(field);
-  }
-  function handleOutsideClick(e: React.FocusEvent<Element>) {
-    if (!e.relatedTarget || !(e.relatedTarget as HTMLElement).closest(`.${style.optionsWindow}`)) {
-      setActiveField("");
-    }
-  }
-
-  useEffect(() => {
-    if (activeField && isMobile) {
-      openModal(activeField);
-    } else {
-      closeModal();
-    }
-  }, [isMobile, activeField]);
-  useEffect(() => {
-    if (isMobile && !isModalOn) {
-      setActiveField("");
-    }
-  }, [isMobile, isModalOn]);
 
   return (
     <motion.form

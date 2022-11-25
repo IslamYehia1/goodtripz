@@ -1,22 +1,8 @@
-@import "../../../styles/variables.scss";
+@import "styles/variables.scss";
 .modal {
   .suggestions {
     top: 100%;
     // background-color: red;
-  }
-  .aSearchField {
-    &::after {
-      content: none;
-    }
-    svg {
-      display: none;
-      // color: red;
-    }
-    padding-left: 15vw;
-    position: relative;
-    // top: 15px;
-    left: 0;
-    right: 0;
   }
 
   .modalCloseBtn.dateModalCloseBtn {
@@ -59,9 +45,8 @@
   right: 0;
   // top: 10%;
   bottom: 100%;
-  & > ul {
-    background-color: $white;
-  }
+
+  // background-color: $white;
 }
 .dateOverlay {
   position: absolute;
@@ -253,26 +238,26 @@
   border-top: 2px solid rgba(10, 31, 56, 0.03);
 }
 // aSearchField is a universal class for search fields
-.aSearchField {
-  // & > div {
-  display: flex;
-  // }
-  flex-direction: column;
-  justify-content: center;
-  // pointer-events: all;
-  cursor: pointer;
-  & > * {
-    cursor: pointer;
-    // pointer-events: none;
-  }
-  flex-grow: 2;
-  flex-basis: auto;
-  // position: relative;
-  // padding: 24px 0 24px 28px;
-  // padding: 24px 24px 24px 28px;
-  // border-radius: 18px;
-  // position: relative;
-}
+// .aSearchField {
+//   // & > div {
+//   display: flex;
+//   // }
+//   flex-direction: column;
+//   justify-content: center;
+//   // pointer-events: all;
+//   cursor: pointer;
+//   & > * {
+//     cursor: pointer;
+//     // pointer-events: none;
+//   }
+//   flex-grow: 2;
+//   flex-basis: auto;
+//   // position: relative;
+//   // padding: 24px 0 24px 28px;
+//   // padding: 24px 24px 24px 28px;
+//   // border-radius: 18px;
+//   // position: relative;
+// }
 .searchFragment {
   position: relative;
   margin-right: 1.5%;
@@ -399,13 +384,13 @@
     padding: 2vw 0 2vw 6%;
     border-radius: 7px;
   }
-  .aSearchField {
-    svg {
-      width: 20px;
-      height: 20px;
-    }
-    margin-bottom: 15px;
-  }
+  // .aSearchField {
+  //   svg {
+  //     width: 20px;
+  //     height: 20px;
+  //   }
+  //   margin-bottom: 15px;
+  // }
   .fields {
     flex-wrap: wrap;
 
@@ -431,21 +416,7 @@
     height: 100%;
   }
 }
-.aSearchField {
-  &.inModal {
-    // border-bottom: 2px solid rgb(218, 218, 218) !important;
-    justify-content: flex-start;
-    .textFieldWrapper {
-      background-color: $white;
-      &::after {
-        content: none;
-      }
-      & svg {
-        visibility: hidden;
-      }
-    }
-  }
-}
+
 .searchFragment.dateSearchField.inModal {
   // border-radius: 0 0 20px 20px;
   // overflow: hidden;
@@ -569,3 +540,22 @@
     }
   }
 }
+
+// .modal {
+//   .searchFragment {
+//     .textFieldWrapper {
+//       padding-left: 15vw;
+//       &::after {
+//         content: none;
+//       }
+//       svg {
+//         display: none;
+//         // color: red;
+//       }
+//     }
+//     position: relative;
+//     // top: 15px;
+//     left: 0;
+//     right: 0;
+//   }
+// }

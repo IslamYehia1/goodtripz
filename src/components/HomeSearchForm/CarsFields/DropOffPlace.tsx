@@ -9,13 +9,8 @@ import CarsSuggestions from "../../Suggestions/HotelPlaceSuggestions";
 import HomeSearchField from "../SearchField";
 
 function DropOffPlace() {
-  const { activeField, setActiveField, setDropOffLocation, dropOffLocation } = useCarsContext();
-  const { isModalOn } = useUIContext();
-  const [isActive, setIsActive] = useState(false);
-  useEffect(() => {
-    if (activeField === "dropOffLocation") setIsActive(true);
-    else setIsActive(false);
-  }, [activeField]);
+  const { setDropOffLocation, dropOffLocation } = useCarsContext();
+
   return (
     <HomeSearchField
       label="Drop-off place "
