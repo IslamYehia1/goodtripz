@@ -1,9 +1,9 @@
 import DateInput from "../../RangeDatePicker";
-import style from "../../../styles/SearchResults.module.scss";
+import style from "styles/SearchResults.module.scss";
 import { hotelsSideBarT } from "../types";
 import { useUIContext } from "../../UI";
 import { useCarsContext } from "../../CommonContexts/CarsContext";
-import useIsMobile from "../../../utils/useIsMobile";
+import useIsMobile from "src/utils/useIsMobile";
 import ResultsSearchField from "../SearchField";
 import { useEffect } from "react";
 const CarsSideBar = (props: hotelsSideBarT) => {

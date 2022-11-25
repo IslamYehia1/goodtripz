@@ -1,9 +1,9 @@
 import DateInput from "../../RangeDatePicker";
-import style from "../../../styles/SearchResults.module.scss";
+import style from "styles/SearchResults.module.scss";
 import { hotelsSideBarT } from "../types";
 import { useUIContext } from "../../UI";
 import { useHotelsContext } from "../../CommonContexts/HotelsContext";
-import useIsMobile from "../../../utils/useIsMobile";
+import useIsMobile from "src/utils/useIsMobile";
 import { useEffect } from "react";
 import ResultsSearchField from "../SearchField";
 import SidebarSections from "../SideSections";

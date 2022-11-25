@@ -1,11 +1,11 @@
-import style from "../../../styles/SearchResults.module.scss";
+import style from "styles/SearchResults.module.scss";
 import SideBarNav from "../SideBarNav";
 import { useRouter } from "next/router";
 import HotelsSideBar from "./HotelsSearchFields";
 import HotelOffers from "./Offers";
-import { SortIcon, FilterIcon } from "../../Icons";
+import { SortIcon, FilterIcon } from "src/components/Icons";
 import Button from "../../Button/Button";
-import useIsMobile from "../../../utils/useIsMobile";
+import useIsMobile from "src/utils/useIsMobile";
 const HotelsResultsOverlay = () => {
   const router = useRouter();
   const isMobile = useIsMobile();
