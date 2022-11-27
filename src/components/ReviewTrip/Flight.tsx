@@ -1,12 +1,12 @@
 import Image from "next/image";
 import style from "../../../styles/FlightSummary.module.scss";
-import emirates from "../../../public/img/emirates.png";
+import emirates from "../../../public/img/Emirates_Airlines.png";
 import Line from "../../../public/img/line.svg";
 
 function Flight() {
   return (
     <div className={style.flight}>
-      <Image src={emirates} className={style.airlineLogo} />
+      <Image alt="airlines logo" src={emirates} className={style.airlineLogo} />
       <div className={style.info}>
         <div className={style.airlineName}>
           <span>EMARATIES AIRLINES</span>
@@ -22,7 +22,13 @@ function Flight() {
           <span>5:00PM</span>
         </div>
         <div className={style.stops}>
-          <Line />
+          <div className={style.horizontalLineWrapper}>
+            <div className={style.horizontalLine}></div>
+            <div className={style.dots}>
+              <div className={style.dot}></div>
+              <div className={style.dot}></div>
+            </div>
+          </div>
         </div>
         <div className={style.to}>
           <span>To YNC</span>

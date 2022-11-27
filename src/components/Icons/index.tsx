@@ -19,6 +19,7 @@ import Logo from "../../../public/icons/logo.svg";
 import MenuIcon from "../../../public/icons/menu.svg";
 import PlusIcon from "../../../public/icons/add_circle_black_24dp.svg";
 import MinusIcon from "../../../public/icons/remove_circle_black_24dp.svg";
+import RightPlane from "public/icons/right_airplane.svg";
 export {
   MenuIcon,
   Logo,
@@ -41,4 +42,5 @@ export {
   AirportIcon,
   PlusIcon,
   MinusIcon,
+  RightPlane,
 };
