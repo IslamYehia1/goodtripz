@@ -1,59 +1,15 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useFlightContext } from "../../src/components/CommonContexts/FlightsContext";
-import S from "../../styles/FlightSummary.module.scss";
+import S from "styles/FlightSummary.module.scss";
 import Flight from "../../src/components/ReviewTrip/Flight";
 import Image from "next/image";
 import { RightPlane } from "src/components/Icons";
 import useIsMobile from "src/utils/useIsMobile";
 import airline from "public/img/Emirates_Airlines.png";
-
+import FlightPath from "./FlightPath";
+import FlightPrice from "./FlightPrice";
 // const airline = "public/img/Emirates_Airlines.png";
-type PROPS = {
-  flightPath: Array<{
-    fromAirport: string;
-    toAirport: string;
-    fromDate: string;
-    toDate: string;
-    airlineLogo: any;
-  }>;
-};
-function FlightPath({ flightPath }: PROPS) {
-  return (
-    <div className={S.segmentsWrapper}>
-      {flightPath.map(({ fromAirport, toAirport, fromDate, toDate, airlineLogo }) => {
-        return (
-          <>
-            <div className={S.logo}>
-              <Image alt="airport" src={airlineLogo} className={S.airlineLogo} />
-            </div>
-            <div className={S.segmentsTime}>
-              <div className={`${S.segmentTime} ${S.departureTime}`}>
-                <div>{fromDate}</div>
-              </div>
-              <div className={`${S.segmentTime} ${S.arrivalTime}`}>
-                <div>{toDate}</div>
-              </div>
-            </div>
-            <div className={S.lineWrapper}>
-              <div className={S.line}></div>
-              <div className={`${S.dot} ${S.dot1}`}></div>
-              <div className={`${S.dot} ${S.dot2}`}></div>
-            </div>
-            <div className={S.segments}>
-              <div className={`${S.segment} ${S.segment1}`}>
-                <div>{fromAirport}</div>
-              </div>
-              <div className={`${S.segment} ${S.segment2}`}>
-                <div>{toAirport} </div>
-              </div>{" "}
-            </div>
-          </>
-        );
-      })}
-    </div>
-  );
-}
 
 function FlightSummary() {
   const router = useRouter();
@@ -138,28 +94,15 @@ function FlightSummary() {
       </div>
       <div className={S.fareSummaryWrapper}>
         <h1 className={S.sectionTitle}>Fare Summary</h1>
-        <div className={S.fareSummarySection}>
-          <h1>Flight Summary</h1>
-          <div className={S.row}>
-            <span>1 Child</span>
-            <span>210 USD</span>
-          </div>
-          <div className={S.row}>
-            <span>1 Adult</span>
-            <span>210 USD</span>
-          </div>
-          <div className={S.lineSeperator}></div>
-          <div className={`${S.row} ${S.tax}`}>
-            <span>Tax</span>
-            <span>12.2 USD</span>
-          </div>
-          <div className={S.lineSeperator}></div>
-
-          <div className={`${S.row} ${S.total}`}>
-            <span>Total</span>
-            <span>600 USD</span>
-          </div>
-        </div>
+        <FlightPrice
+          priceBreakdown={{
+            adultsCount: 1,
+            childrenCount: 1,
+            childrenPrice: 100,
+            adultsPrice: 100,
+            totalPrice: 200,
+          }}
+        />
         <div className={S.fareSummarySection}>
           <h1>Flight Summary</h1>
         </div>

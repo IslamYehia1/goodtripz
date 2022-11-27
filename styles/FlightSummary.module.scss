@@ -10,6 +10,9 @@
   padding: 2%;
   display: flex;
   @include normalFont;
+  h1 {
+    @include semiBoldFont;
+  }
 }
 .flightsInfoWrapper {
   margin-right: 5%;
@@ -275,6 +278,9 @@
       font-size: 0.9rem;
     }
   }
+}
+
+@media screen and (max-width: 790px) {
   .flightTab {
     &.active {
       border-bottom: none;
