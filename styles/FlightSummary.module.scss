@@ -80,8 +80,11 @@
   width: 100%;
 }
 .flightTab {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
   flex-grow: 1;
-  padding: 20px;
+  padding: 25px 30px;
   cursor: pointer;
   &.active {
     border-bottom: 2px solid $primary;
