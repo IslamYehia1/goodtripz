@@ -86,6 +86,16 @@ export default function reducer(prevState: searchTermsT, action: actionT): searc
             ? (parseInt(prevState.children) + 1).toString()
             : prevState.children,
       };
+    case "adultsCount":
+      return {
+        ...prevState,
+        adults: action.val,
+      };
+    case "childrenCount":
+      return {
+        ...prevState,
+        children: action.val,
+      };
     case "removeChild":
       return {
         ...prevState,

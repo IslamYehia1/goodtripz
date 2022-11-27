@@ -10,7 +10,7 @@ const FlightOffer = (props: propsType) => {
   function handleFlightSelected(e: React.MouseEvent) {
     setChosenFlight(props);
     router.push({
-      pathname: "/tripSummary/FlightSummary",
+      pathname: "/reviewTrip/",
       query: {
         offer: props.destination,
       },

@@ -1,23 +1,44 @@
 @import "./variables.scss";
 
-.wrapper {
+.container {
   width: 70%;
-  margin: 0 auto;
+  margin: 1.5% auto;
   background: $white;
   min-width: 1280px;
   box-shadow: 0px 4px 17px 5px rgba(0, 0, 0, 0.03);
   border-radius: 20px;
-  padding: 2%;
-  display: flex;
+  padding: 3%;
   @include normalFont;
   h1 {
     @include semiBoldFont;
   }
 }
+.btn {
+  background-color: $primary;
+  color: $white;
+  padding: 11px 20px;
+  border-radius: 5px;
+  gap: 5px;
+  float: left;
+  margin-top: 2%;
+  & > span {
+    display: flex;
+    align-items: center;
+    gap: 10%;
+    @include normalFont;
+    font-size: 16px;
+    svg {
+      width: 40px;
+    }
+  }
+}
+.wrapper {
+  display: flex;
+}
 .flightsInfoWrapper {
   margin-right: 5%;
   min-width: 650px;
-  padding: 0 2%;
+  // padding: 0 2%;
   width: 70%;
 }
 .airlineName {
@@ -237,7 +258,7 @@
 }
 
 @media screen and (max-width: 1280px) {
-  .wrapper {
+  .container {
     width: 95%;
     min-width: unset;
   }
@@ -252,10 +273,12 @@
   }
 }
 @media screen and (max-width: 1024px) {
-  .wrapper {
-    flex-wrap: wrap;
+  .container {
     background-color: unset;
     box-shadow: unset;
+  }
+  .wrapper {
+    flex-wrap: wrap;
   }
   .flightTab {
     padding: 20px 0;

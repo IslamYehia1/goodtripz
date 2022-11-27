@@ -28,11 +28,13 @@ type FLIGHTS_CONTEXT = {
   adults: string;
   children: string;
   setFlightType?: any;
-  setFlightOrigin?: any;
-  setFlightDestination?: any;
+  setFlightOrigin: (airportName: string, IATA: string) => void;
+  setFlightDestination: (airportName: string, IATA: string) => void;
   setFlightDate?: any;
   setReturnDate?: any;
   addAdultTraveller?: any;
+  setAdultsCount?: any;
+  setChildrenCount?: any;
   removeAdultTraveller?: any;
   addChildTraveller?: any;
   removeChildTraveller?: any;
@@ -46,6 +48,8 @@ const initial = {
   adults: "1",
   children: "0",
   chosenFlight: {},
+  setFlightOrigin: () => {},
+  setFlightDestination: () => {},
 };
 
 const flightsContext = createContext<FLIGHTS_CONTEXT>(initial);
@@ -61,21 +65,21 @@ function FlightsProvider(props: any) {
     [dispatch]
   );
   const setFlightType = useCallback(
-    (value: any) => {
+    (value: string) => {
       dispatch({ type: "flightType", val: value });
     },
     [dispatch]
   );
 
   const setFlightOrigin = useCallback(
-    (origin: any, IATA: any) => {
+    (origin: string, IATA: string) => {
       dispatch({ type: "from", val: origin, IATA: IATA });
     },
     [dispatch]
   );
 
   const setFlightDestination = useCallback(
-    (destination: any, IATA: any) => {
+    (destination: string, IATA: string) => {
       dispatch({ type: "to", val: destination, IATA: IATA });
     },
     [dispatch]
@@ -101,7 +105,18 @@ function FlightsProvider(props: any) {
   const removeAdultTraveller = useCallback(() => {
     dispatch({ type: "removeAdult" });
   }, [dispatch]);
-
+  const setAdultsCount = useCallback(
+    (val: any) => {
+      dispatch({ type: "adultsCount", val: val });
+    },
+    [dispatch]
+  );
+  const setChildrenCount = useCallback(
+    (val: any) => {
+      dispatch({ type: "childrenCount", val: val });
+    },
+    [dispatch]
+  );
   const addChildTraveller = useCallback(() => {
     dispatch({ type: "addChild" });
   }, [dispatch]);
@@ -120,6 +135,8 @@ function FlightsProvider(props: any) {
     () => ({
       ...searchTerms,
       activeField,
+      setChildrenCount,
+      setAdultsCount,
       setActiveField,
       setFlightType,
       setChosenFlight,

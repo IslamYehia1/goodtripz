@@ -20,15 +20,6 @@ function HomeSearchField({
   label,
   placeholder,
 }: propsType) {
-  const [isActive, setIsActive] = useState(false);
-  const { activeField, isModalOn, currentModal, setActiveField } = useUIContext();
-  useEffect(() => {
-    if (activeField === fieldName) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
-  }, [activeField, fieldName]);
   return (
     <SearchField
       // ${style.aSearchField}
@@ -45,16 +36,6 @@ function HomeSearchField({
       //   }}
       onSuggestionSelect={(suggestion: any) => {
         setValue(suggestion);
-      }}
-      // onChange={(value: any) => {
-      //   setValue(value);
-      // }}
-      isActive={isActive}
-      onActivate={() => {
-        setActiveField(fieldName);
-      }}
-      onDeactivate={() => {
-        setActiveField("");
       }}
       value={value}
       label={label}

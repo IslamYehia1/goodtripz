@@ -9,7 +9,7 @@ function CarOffer({ carImg }: any) {
     <div className={style.carOfferWrapper}>
       <div className={style.carImgWrapper}>
         <div className={style.imgWrapper}>
-          <Image className={style.img} src={carImg} />
+          <Image alt="car" layout="fill" className={style.img} src={carImg} />
         </div>
       </div>
       <div className={style.offerTextWrapper}>

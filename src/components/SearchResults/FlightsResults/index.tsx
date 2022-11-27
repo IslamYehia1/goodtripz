@@ -10,8 +10,10 @@ import Button from "../../Button/Button";
 import { SortIcon, FilterIcon } from "../../Icons";
 import useIsMobile from "../../../utils/useIsMobile";
 import { useUIContext } from "../../UI";
+import { useGetExistingFlight } from "src/utils/useGetExistingSearch";
 const ResultsPageContainer = () => {
   const { from, to } = useFlightContext();
+  useGetExistingFlight();
   const [airports, setAirports] = useState({
     from: { city: "City", name: "WHAAT" },
     to: { city: "City", name: "WOOOW" },
@@ -20,32 +22,31 @@ const ResultsPageContainer = () => {
   const { isModalOn, openModal, closeModal, setActiveField } = useUIContext();
   const router = useRouter();
   const query = router.query;
+  // useEffect(() => {
+  //   if (!router.isReady) return;
 
-  useEffect(() => {
-    if (!router.isReady) return;
+  //   (async () => {
+  //     try {
+  //       if (query.from && query.to) {
+  //         const fromAirport = await fetchAirport(query.from as string);
+  //         const toAirport = await fetchAirport(query.from as string);
 
-    (async () => {
-      try {
-        if (query.from && query.to) {
-          const fromAirport = await fetchAirport(query.from as string);
-          const toAirport = await fetchAirport(query.from as string);
+  //         // setFlightOrigin(fromAirport, query.from);
 
-          // setFlightOrigin(fromAirport, query.from);
+  //         // setFlightDestination(toAirport, query.to);
 
-          // setFlightDestination(toAirport, query.to);
-
-          if (toAirport && fromAirport) {
-            setAirports({
-              from: { city: fromAirport.City, name: fromAirport.Name },
-              to: { city: toAirport.City, name: toAirport.Name },
-            });
-          }
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, [router.isReady]);
+  //         if (toAirport && fromAirport) {
+  //           setAirports({
+  //             from: { city: fromAirport.City, name: fromAirport.Name },
+  //             to: { city: toAirport.City, name: toAirport.Name },
+  //           });
+  //         }
+  //       }
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   })();
+  // }, [router.isReady]);
   return (
     <div className={style.searchResultsPage}>
       <div className={style.sideBar}>

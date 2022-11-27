@@ -7,7 +7,7 @@ import { flightsContext } from "../../CommonContexts/FlightsContext";
 import OriginFlightField from "./OriginFlightField";
 import DestinationFlightField from "./DestinationFlightField";
 import FlightDateField from "./FlightDateFIeld";
-
+import { useGetExistingFlight } from "src/utils/useGetExistingSearch";
 import SearchModal from "../../Modal/SearchModal";
 import { useFlightContext } from "../../CommonContexts/FlightsContext";
 import useIsMobile from "../../../utils/useIsMobile";
@@ -26,9 +26,11 @@ type ACTIVE_FIELD =
 const FlightSearchFields = () => {
   let history = useRouter();
   const { from, to, date, returnDate, adults, children, type } = useFlightContext();
-  // Only one filter window can be open at once, hence the lefted state
+  useGetExistingFlight();
   function handleSearch(e: React.SyntheticEvent) {
     e.preventDefault();
+    const flightParams = { from, to, date, returnDate, adults, children, type };
+    localStorage.setItem("flightParams", JSON.stringify(flightParams));
     history.push(
       `/searchResults/flights?from=${from.IATA}&to=${to.IATA}&date=${date}&returnDate=${returnDate}&adults=${adults}&children=${children}`
     );
