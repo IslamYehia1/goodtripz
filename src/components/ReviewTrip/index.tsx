@@ -4,8 +4,8 @@ import S from "./style.module.scss";
 function ReviewTrip() {
   return (
     <div className={S.container}>
-      {/* <ReviewFlight /> */}
-      <ReviewHotel />
+      <ReviewFlight />
+      {/* <ReviewHotel /> */}
     </div>
   );
 }
