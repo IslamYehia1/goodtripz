@@ -3,7 +3,7 @@ import Button from "../Button/Button";
 import FlightSearchFields from "./FlightsFields";
 import HotelSearchFields from "./HotelsFileds";
 import style from "./SearchForm.module.scss";
-import homeStyle from "../../../styles/Home.module.scss";
+import homeStyle from "styles/Home.module.scss";
 import { SearchModal } from "../Modal";
 import CarsFields from "./CarsFields";
 
@@ -60,30 +60,24 @@ const SearchForm = () => {
             </span>
           </div>
           <div className={style.searchFields}>
-            {/* <FlightsProvider> */}
             {formState === "flight" && (
               <>
                 <SearchModal />
                 <FlightSearchFields />
               </>
             )}
-            {/* </FlightsProvider> */}
-            {/* <HotelSearchProvider> */}
             {formState === "hotel" && (
               <>
                 <SearchModal />
                 <HotelSearchFields />
               </>
             )}
-            {/* </HotelSearchProvider> */}
-            {/* <CarsSearchProvider> */}
             {formState === "cars" && (
               <>
                 <SearchModal />
                 <CarsFields />
               </>
             )}
-            {/* </CarsSearchProvider> */}
           </div>
         </div>
       </div>

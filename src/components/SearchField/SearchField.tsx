@@ -50,7 +50,7 @@ const SearchField = (props: propsT) => {
   return (
     <SearchModal
       isOpen={isModalOpen}
-      className={`${props.modalClass} ${style.modal}`}
+      className={`${style.modal}`}
       onClose={() => setIsModalOpen(false)}
     >
       <motion.div

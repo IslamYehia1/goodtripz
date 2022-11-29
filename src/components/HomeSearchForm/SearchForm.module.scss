@@ -1,41 +1,5 @@
 @import "styles/variables.scss";
-.modal {
-  .suggestions {
-    top: 100%;
-    // background-color: red;
-  }
 
-  .modalCloseBtn.dateModalCloseBtn {
-    position: relative;
-    margin: 20px 0 0 20px;
-  }
-  .closeDateModal {
-    width: 100%;
-  }
-  .recommendation {
-    width: 100% !important;
-  }
-  // .travellers {
-  //   position: relative;
-  //   top: 50px;
-  // }
-  .searchButtonWrapper {
-    position: relative;
-    width: 100%;
-    height: 60px;
-    background-color: white;
-    // left: 55px;
-    .button {
-      position: relative;
-      left: 60px;
-      top: 20px;
-    }
-
-    & > button svg {
-      display: none;
-    }
-  }
-}
 .travellers {
   position: relative;
 }
@@ -237,27 +201,7 @@
   z-index: 2;
   border-top: 2px solid rgba(10, 31, 56, 0.03);
 }
-// aSearchField is a universal class for search fields
-// .aSearchField {
-//   // & > div {
-//   display: flex;
-//   // }
-//   flex-direction: column;
-//   justify-content: center;
-//   // pointer-events: all;
-//   cursor: pointer;
-//   & > * {
-//     cursor: pointer;
-//     // pointer-events: none;
-//   }
-//   flex-grow: 2;
-//   flex-basis: auto;
-//   // position: relative;
-//   // padding: 24px 0 24px 28px;
-//   // padding: 24px 24px 24px 28px;
-//   // border-radius: 18px;
-//   // position: relative;
-// }
+
 .searchFragment {
   position: relative;
   margin-right: 1.5%;

@@ -32,23 +32,6 @@
   min-height: 768px;
   height: 100vh;
 
-  .suggestionCards {
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    .card {
-      width: 23%;
-      min-width: 188px;
-      z-index: 10000;
-    }
-    width: 100%;
-    scrollbar-width: none; /* Firefox */
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 44px;
-    overflow: auto;
-  }
   h2 {
     margin-bottom: 0;
     @include semiBoldFont;
@@ -56,6 +39,23 @@
   }
 }
 
+.suggestionCards {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  .card {
+    width: 23%;
+    min-width: 188px;
+    z-index: 10000;
+  }
+  width: 100%;
+  scrollbar-width: none; /* Firefox */
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 44px;
+  overflow: auto;
+}
 .homeSectionThree {
   width: 100%;
   height: 100vh;
@@ -79,126 +79,6 @@
   z-index: 2;
 }
 
-.recommendation {
-  @include semiBoldFont;
-
-  color: $white;
-  font-size: 34px;
-  height: 85%;
-  position: relative;
-  margin-left: 5vw;
-  margin-right: 5vw;
-  box-sizing: border-box;
-  overflow: hidden;
-  display: grid;
-  grid-template: 1fr / 1fr;
-  place-items: center start;
-  & > * {
-    grid-column: 1 / 1;
-    grid-row: 1 / 1;
-  }
-  .backgroundImgWrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 30px;
-    overflow: hidden;
-    isolation: isolate;
-    pointer-events: none;
-    & * {
-      width: 100%;
-      min-height: 100%;
-      max-height: 100%;
-    }
-    // background-color: black;
-    .overlay {
-      background-color: black;
-      border-radius: inherit;
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 1;
-      opacity: 0.2;
-      left: 0;
-    }
-  }
-  .background {
-    border-radius: 30px;
-    // position: absolute;
-    width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-    will-change: opacity;
-
-    // opacity: 0.8;
-  }
-  .exploreWrapper {
-    overflow: hidden;
-    position: relative;
-    z-index: 2;
-    height: 12rem;
-    left: 11%;
-  }
-
-  .explore {
-    // margin: 25vh auto 35vh auto;
-    // margin: 15% auto 19% auto;
-    // position: absolute;
-    transform: translateY(-100%);
-    z-index: 1;
-    // top: 0;
-    top: 29%;
-    left: 11%;
-    width: 78%;
-    min-width: 800px;
-    height: 100%;
-  }
-  h3 {
-    @include semiBoldFont;
-    font-size: 2vw;
-    margin: 0 0 10px 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    text-transform: uppercase;
-    svg {
-      // width: 20px;
-      // height: 15px;
-      display: none;
-      margin-left: 10px;
-    }
-  }
-  .exploreText {
-    @include normalFont;
-    margin-bottom: 40px;
-    margin-top: 10px;
-    font-size: 16px;
-    width: 70%;
-    min-width: 500px;
-    p {
-      margin: 0;
-    }
-  }
-  .exploreButton {
-    background: none;
-    color: $white;
-    display: flex;
-    border: none;
-    font-size: 1.6vw;
-    padding: 3% 0 0 0;
-    span {
-      margin-right: 20px;
-      line-height: 28px;
-    }
-    svg {
-      width: 30px;
-      height: 30px;
-      color: white;
-      margin-top: 2px;
-    }
-  }
-}
 @media only screen and (max-width: 1400px) {
   #searchForm {
     width: 80%;
@@ -218,51 +98,10 @@
     }
   }
   // Where the background is
-  .recommendation {
-    .explore {
-      width: 82%;
-    }
-    p:nth-child(2) {
-      display: none;
-    }
-    margin-left: 4vw;
-    margin-right: 4vw;
-  }
 }
 @media only screen and (max-width: 1024px) {
   .homeSectionOne {
     height: calc(100vw * (9 / 10) - 74px);
-    .backgroundImgWrapper {
-      border-radius: 0;
-      & * {
-        border-radius: 0;
-      }
-    }
-    .recommendation {
-      margin-left: 0;
-      margin-right: 0;
-      border-radius: 0px;
-      h3 svg {
-        display: inline;
-      }
-      p:nth-child(2) {
-        display: none;
-      }
-      .exploreWrapper {
-        justify-self: start;
-        align-self: start;
-        top: 30%;
-        left: 5%;
-      }
-      .explore {
-        width: 90%;
-        min-width: unset;
-        .exploreButton {
-          font-size: 16px;
-          display: none;
-        }
-      }
-    }
   }
   #searchForm {
     width: 90%;
@@ -284,54 +123,21 @@
 }
 
 @media only screen and (max-width: 650px) {
-  #homepage {
-    .homeSectionOne {
-      min-height: 700px;
+  .homeSectionOne {
+    min-height: 700px;
+    box-sizing: border-box;
+    height: calc(var(--vh, 1vh) * 100);
+    max-height: unset;
+
+    #searchForm {
+      width: 100%;
+      margin: 0;
+      position: absolute;
+      bottom: 0;
+      background-color: $background;
+      box-shadow: unset;
       box-sizing: border-box;
-      height: calc(var(--vh, 1vh) * 100);
-      max-height: unset;
-      .backgroundImgWrapper {
-        align-self: start;
-        height: 70%;
-        max-width: 70%;
-        min-height: 70%;
-        min-width: 100%;
-        .background {
-          object-position: center center;
-          // filter: blur(2px);
-        }
-      }
-      .recommendation {
-        height: 100%;
-        // place-items: start start;
-        .exploreWrapper {
-          justify-self: start;
-          align-self: start;
-          height: 9rem;
-          top: 22%;
-          left: unset;
-        }
-        .explore {
-          box-sizing: border-box;
-          margin: 0 auto;
-          // padding-top: 25vh;
-          // padding-bottom: 60%;
-          // left: 5%;
-          h3 {
-            font-size: 5vw;
-          }
-        }
-      }
-      #searchForm {
-        width: 100%;
-        margin: 0;
-        position: absolute;
-        bottom: 0;
-        background-color: $background;
-        box-shadow: unset;
-        box-sizing: border-box;
-        border-radius: 30px 30px 0 0;
-      }
+      border-radius: 30px 30px 0 0;
     }
   }
 
