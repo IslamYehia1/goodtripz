@@ -1,2 +1,2 @@
-import ReviewFlight from "../../src/components/ReviewFlight/ReviewFlight";
-export default ReviewFlight;
+import ReviewTrip from "src/components/ReviewTrip";
+export default ReviewTrip;

@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useFlightContext } from "src/components/CommonContexts/FlightsContext";
-import S from "styles/FlightSummary.module.scss";
+import S from "./ReviewFlight.module.scss";
 import Flight from "./Flight";
 import SegmentsDetails from "./SegmentsDetails";
 import Image from "next/image";
 import useIsMobile from "src/utils/useIsMobile";
 import FlightPrice from "./FlightPrice";
-import Button from "../Button/Button";
-import { LongRightArrow } from "../Icons";
+import Button from "../../Button/Button";
+import { LongRightArrow } from "../../Icons";
 function ReviewFlight() {
   const router = useRouter();
   const isMobile = useIsMobile();
@@ -17,7 +17,7 @@ function ReviewFlight() {
     console.log(chosenFlight);
   }, []);
   return (
-    <div className={S.container}>
+    <>
       <div className={S.wrapper}>
         <div className={S.flightsInfoWrapper}>
           {!isMobile && (
@@ -55,7 +55,7 @@ function ReviewFlight() {
       >
         Checkout <LongRightArrow />
       </Button>
-    </div>
+    </>
   );
 }
 

@@ -14,7 +14,7 @@ const HotelOffer = (props: propsType) => {
             // width="100"
             // height="100"
             // unoptimized
-            layout="fill"
+            fill
             className={style.img}
             src={props.picture}
             alt="The room"

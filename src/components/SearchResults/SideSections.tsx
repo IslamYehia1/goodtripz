@@ -1,4 +1,4 @@
-import style from "../../../styles/SearchResults.module.scss";
+import style from "./SearchResults.module.scss";
 import useIsMobile from "../../utils/useIsMobile";
 import Button from "../Button/Button";
 import { SearchIcon } from "../Icons";

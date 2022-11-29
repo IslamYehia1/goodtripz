@@ -1,4 +1,4 @@
-import S from "styles/FlightSummary.module.scss";
+import S from "./ReviewFlight.module.scss";
 
 type propsT = {
   priceBreakdown: {

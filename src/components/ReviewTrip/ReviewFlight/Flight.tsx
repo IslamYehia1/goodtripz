@@ -1,6 +1,6 @@
 import Image from "next/image";
-import style from "../../../styles/FlightSummary.module.scss";
-import emirates from "../../../public/img/Emirates_Airlines.png";
+import style from "./ReviewFlight.module.scss";
+import emirates from "public/img/Emirates_Airlines.png";
 import Line from "../../../public/img/line.svg";
 
 function Flight() {

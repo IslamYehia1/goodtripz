@@ -1,5 +1,5 @@
 import Image from "next/image";
-import S from "styles/FlightSummary.module.scss";
+import S from "./ReviewFlight.module.scss";
 
 type PROPS = {
   flightPath: Array<{

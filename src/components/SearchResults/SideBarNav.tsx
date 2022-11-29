@@ -1,6 +1,6 @@
 import Button from "../../components/Button/Button";
 import { FlightIcon, HotelIcon, CarIcon } from "../../components/Icons";
-import style from "../../../styles/SearchResults.module.scss";
+import style from "./SearchResults.module.scss";
 type propsType = {
   onTabChange?: (tab: string) => void;
   activeTab: string;

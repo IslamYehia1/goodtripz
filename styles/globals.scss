@@ -40,3 +40,32 @@ a {
   text-decoration: none;
   color: $dark;
 }
+// .gm-style-cc {
+//   display: none;
+// }
+// .gmnoprint {
+//   display: none;
+// }
+// .gmnoprint a,
+// .gmnoprint span {
+//   display: none;
+// }
+// .gmnoprint div {
+//   background: none !important;
+// }
+// #GMapsID div div a div img {
+//   display: none;
+// }
+.gmnoprint a,
+.gmnoprint span {
+  display: none;
+}
+.gmnoprint div {
+  // background: none !important;
+}
+#GMapsID div div a div img {
+  display: none;
+}
+.gm-style-cc {
+  display: none;
+}

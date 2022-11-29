@@ -1,4 +1,4 @@
-import style from "styles/SearchResults.module.scss";
+import style from "../SearchResults.module.scss";
 import SideBarNav from "../SideBarNav";
 import { useRouter } from "next/router";
 import HotelsSideBar from "./HotelsSearchFields";

@@ -1,4 +1,4 @@
-import S from "styles/FlightSummary.module.scss";
+import S from "./ReviewFlight.module.scss";
 import { RightPlane } from "src/components/Icons";
 import useIsMobile from "src/utils/useIsMobile";
 import { useEffect, useState } from "react";

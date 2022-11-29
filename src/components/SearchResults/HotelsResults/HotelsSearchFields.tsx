@@ -1,5 +1,5 @@
 import DateInput from "../../RangeDatePicker";
-import style from "styles/SearchResults.module.scss";
+import style from "../SearchResults.module.scss";
 import { hotelsSideBarT } from "../types";
 import { useUIContext } from "../../UI";
 import { useHotelsContext } from "../../CommonContexts/HotelsContext";

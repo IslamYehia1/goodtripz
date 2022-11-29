@@ -1,7 +1,7 @@
 import DateInput from "../../RangeDatePicker";
 import InputField from "../../InputField/InputField";
 import { flightsSideBarT } from "../types";
-import style from "/styles/SearchResults.module.scss";
+import style from "../SearchResults.module.scss";
 import { useFlightContext } from "../../CommonContexts/FlightsContext";
 import SidebarSections from "../SideSections";
 import ResultsSearchField from "../SearchField";
@@ -28,8 +28,8 @@ const FlightsSideBar = (props: flightsSideBarT) => {
           placeholder="Origin Airport"
           fieldName="originFlightSearch"
           value={from.name}
-          setValue={(value: any) => {
-            setFlightOrigin(value);
+          setValue={(value: string, IATA: string) => {
+            setFlightOrigin(value, IATA);
           }}
         />
         <ResultsSearchField
@@ -37,8 +37,8 @@ const FlightsSideBar = (props: flightsSideBarT) => {
           placeholder="Destination Airport"
           fieldName="destinationFlightSearch"
           value={to.name}
-          setValue={(value: any) => {
-            setFlightDestination(value);
+          setValue={(value: string, IATA: string) => {
+            setFlightDestination(value, IATA);
           }}
         />
 

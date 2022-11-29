@@ -1,7 +1,7 @@
 import SideBarNav from "../SideBarNav";
 import FlightsSideBar from "./FlightsSearchFields";
 import FlightOffers from "./Offers";
-import style from "/styles/SearchResults.module.scss";
+import style from "../SearchResults.module.scss";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { fetchAirport } from "src/utils/fetchAirportName";
