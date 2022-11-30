@@ -1,12 +1,9 @@
-import ReviewFlight from "./ReviewFlight";
-import ReviewHotel from "./ReviewHotel";
+import FlightReview from "./ReviewFlight";
+import HotelReview from "./ReviewHotel";
 import S from "./style.module.scss";
-function ReviewTrip() {
-  return (
-    <div className={S.container}>
-      <ReviewFlight />
-      {/* <ReviewHotel /> */}
-    </div>
-  );
+export function ReviewFlight() {
+  return <FlightReview />;
 }
-export default ReviewTrip;
+export function ReviewHotel() {
+  return <HotelReview />;
+}

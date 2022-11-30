@@ -10,96 +10,95 @@
   margin-bottom: 20px;
   min-width: 550px;
   height: 230px;
-
-  .hotelPicture {
-    width: 42%;
-    overflow: hidden;
-    position: relative;
-    border-radius: 14px;
-    & > div {
-      height: 100%;
-      width: 100%;
-    }
-    .img {
-      object-fit: cover;
-      display: block;
-      max-height: 100%;
-      height: 100%;
-      width: 100%;
-    }
+  cursor: pointer;
+}
+.hotelPicture {
+  width: 42%;
+  overflow: hidden;
+  position: relative;
+  border-radius: 14px;
+  & > div {
+    height: 100%;
+    width: 100%;
   }
-  .hotelDetails {
-    display: flex;
-    width: 47%;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    // gap: 15px;
-    flex-grow: 1;
-    padding: 20px;
-    & > div {
-      margin-bottom: 15px;
-    }
-    .lilAminities {
-      order: 4;
-      display: flex;
-      width: 100%;
-      gap: 20%;
-      .lilAmenity {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        svg {
-          width: 17px;
-          height: 17px;
-        }
-      }
-    }
-    .reviews {
-      order: 1;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 5px;
-      svg {
-        width: 18px;
-        height: 18px;
-        margin-bottom: 3px;
-      }
-    }
-    .hotelInfo {
-      order: 2;
-      width: 100%;
-      .hotelName {
-        @include semiBoldFont;
-        font-size: 17px;
-        margin-bottom: 5px;
-      }
-    }
-
-    .price {
-      @include semiBoldFont;
-      order: 6;
-      display: flex;
-      width: 30%;
-      // font-size: 22px;
-      text-align: end;
-      flex-direction: column;
-      align-items: flex-end;
-      .per {
-        span:nth-child(2) {
-          display: none;
-        }
-      }
-    }
-    .refundable {
-      order: 5;
-      width: 47%;
-      color: #357266;
-    }
+  .img {
+    object-fit: cover;
+    display: block;
+    max-height: 100%;
+    height: 100%;
+    width: 100%;
   }
 }
+.hotelDetails {
+  display: flex;
+  width: 47%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  // gap: 15px;
+  flex-grow: 1;
+  padding: 20px;
+  & > div {
+    margin-bottom: 15px;
+  }
+  .lilAminities {
+    order: 4;
+    display: flex;
+    width: 100%;
+    gap: 20%;
+    .lilAmenity {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      svg {
+        width: 17px;
+        height: 17px;
+      }
+    }
+  }
+  .reviews {
+    order: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+    svg {
+      width: 18px;
+      height: 18px;
+      margin-bottom: 3px;
+    }
+  }
+  .hotelInfo {
+    order: 2;
+    width: 100%;
+    .hotelName {
+      @include semiBoldFont;
+      font-size: 17px;
+      margin-bottom: 5px;
+    }
+  }
 
+  .price {
+    @include semiBoldFont;
+    order: 6;
+    display: flex;
+    width: 30%;
+    // font-size: 22px;
+    text-align: end;
+    flex-direction: column;
+    align-items: flex-end;
+    .per {
+      span:nth-child(2) {
+        display: none;
+      }
+    }
+  }
+  .refundable {
+    order: 5;
+    width: 47%;
+    color: #357266;
+  }
+}
 @media only screen and (max-width: 1280px) {
   .hotelPrice {
     flex-direction: column;

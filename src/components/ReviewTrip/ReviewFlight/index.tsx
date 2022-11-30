@@ -9,6 +9,7 @@ import useIsMobile from "src/utils/useIsMobile";
 import FlightPrice from "./FlightPrice";
 import Button from "../../Button/Button";
 import { LongRightArrow } from "../../Icons";
+import Container from "src/components/Container";
 function ReviewFlight() {
   const router = useRouter();
   const isMobile = useIsMobile();
@@ -17,7 +18,7 @@ function ReviewFlight() {
     console.log(chosenFlight);
   }, []);
   return (
-    <>
+    <Container>
       <div className={S.wrapper}>
         <div className={S.infoWrapper}>
           <div className={S.flightsInfoWrapper}>
@@ -57,7 +58,7 @@ function ReviewFlight() {
           Checkout <LongRightArrow />
         </Button>
       </div>
-    </>
+    </Container>
   );
 }
 

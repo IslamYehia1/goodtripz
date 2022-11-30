@@ -3,9 +3,30 @@ import { propsType } from "./types";
 import { PoolIcon, PetIcon, Star } from "src/components/Icons";
 import Image from "next/image";
 import style from "./HotelOffer.module.scss";
+import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 const HotelOffer = (props: propsType) => {
+  const router = useRouter();
+
+  function handleClick() {
+    router.push({
+      pathname: "/hotelReview/",
+      query: {
+        // offer: props.destination,
+      },
+    });
+  }
   return (
-    <div className={style.hotelOffer}>
+    <motion.div
+      whileHover={{
+        scale: 1.03,
+      }}
+      transition={{
+        duration: 0.3,
+      }}
+      onClick={handleClick}
+      className={style.hotelOffer}
+    >
       <div className={style.hotelPicture}>
         {props.picture && (
           <Image
@@ -50,7 +71,7 @@ const HotelOffer = (props: propsType) => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default HotelOffer;

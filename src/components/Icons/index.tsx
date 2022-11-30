@@ -9,8 +9,8 @@ import FlyToIcon from "public/icons/flight_land_black_24dp.svg";
 import ExpandIcon from "public/icons/expand_more_black_24dp.svg";
 import DateIcon from "public/icons/calendar_black.svg";
 import LocationIcon from "public/icons/location.svg";
-import PoolIcon from "public/icons/pool_black_24dp.svg";
-import PetIcon from "public/icons/pets_black_24dp.svg";
+import PoolIcon from "public/icons/aminities/pool.svg";
+import PetIcon from "public/icons/aminities/pets.svg";
 import RightArrow from "public/icons/right-arrow.svg";
 import LongRightArrow from "public/icons/long-right-arrow.svg";
 import LeftArrow from "public/icons/leftArrow.svg";
@@ -21,6 +21,10 @@ import MenuIcon from "public/icons/menu.svg";
 import PlusIcon from "public/icons/add_circle_black_24dp.svg";
 import MinusIcon from "public/icons/remove_circle_black_24dp.svg";
 import RightPlane from "public/icons/right_airplane.svg";
+import ACIcon from "public/icons/aminities/air_conditioning.svg";
+import ParkingIcon from "public/icons/aminities/parking.svg";
+import SpaIcon from "public/icons/aminities/spa.svg";
+import WifiIcon from "public/icons/aminities/wifi.svg";
 export {
   MenuIcon,
   Logo,
@@ -45,4 +49,8 @@ export {
   MinusIcon,
   RightPlane,
   LongRightArrow,
+  ACIcon,
+  ParkingIcon,
+  SpaIcon,
+  WifiIcon,
 };
