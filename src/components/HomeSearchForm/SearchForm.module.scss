@@ -38,6 +38,9 @@
     gap: 20px;
   }
 }
+.inModal {
+  display: block;
+}
 .filterButtonWrapper.inModal {
   .button {
     width: 100%;
@@ -304,11 +307,11 @@
 
 @media only screen and (max-width: 1024px) {
   .options {
-    & > div {
-      padding: 1.4vw 4vw 1.4vw 6%;
-      background-color: rgb(79, 150, 247, 0.1);
-      border-radius: 10px;
-    }
+    // .filterButtonWrapper {
+    //   padding: 1.4vw 4vw 1.4vw 6%;
+    //   background-color: rgb(79, 150, 247, 0.1);
+    //   border-radius: 10px;
+    // }
   }
   .searchTabs {
     width: 100%;

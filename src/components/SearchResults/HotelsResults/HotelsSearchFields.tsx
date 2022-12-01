@@ -7,25 +7,16 @@ import useIsMobile from "src/utils/useIsMobile";
 import { useEffect } from "react";
 import ResultsSearchField from "../SearchField";
 import SidebarSections from "../SideSections";
+import { useRouter } from "next/router";
 const HotelsSideBar = (props: hotelsSideBarT) => {
-  const { isModalOn, openModal, closeModal, activeField, setActiveField } = useUIContext();
   const { setHotelPlace, place, checkIn, checkOut, setCheckInDate, setCheckOutDate } =
     useHotelsContext();
   const isMobile = useIsMobile();
-
+  const router = useRouter();
+  const query = router.query;
   useEffect(() => {
-    if (activeField && isMobile) {
-      openModal(activeField);
-    } else {
-      closeModal();
-    }
-  }, [isMobile, activeField]);
-  useEffect(() => {
-    if (isMobile && !isModalOn) {
-      setActiveField("");
-    }
-  }, [isMobile, isModalOn]);
-
+    if (router.query.place) setHotelPlace(router.query.place);
+  }, [query]);
   return (
     <>
       <div className={`${style.sideSection} ${style.searchTerms}`}>
@@ -40,15 +31,6 @@ const HotelsSideBar = (props: hotelsSideBarT) => {
         />
 
         <DateInput
-          isActive={activeField === "hotelsDates"}
-          onActivate={(field: any) => {
-            // if (isMobile) openModal("hotelDates");
-            setActiveField("hotelsDates");
-          }}
-          onDeactivate={() => {
-            // if (isModalOn) closeModal();
-            setActiveField("");
-          }}
           setFromDate={(date: any) => setCheckInDate(date.toISOString().substring(0, 10))}
           setToDate={(date: any) => setCheckOutDate(date.toISOString().substring(0, 10))}
           fromLabel="Check in"
@@ -58,9 +40,8 @@ const HotelsSideBar = (props: hotelsSideBarT) => {
           className={style.dateRangeWrapper}
           wrapperClass={`${style.lilSearchField} ${style.dateRangeWrapper}`}
           singleDateFieldClass={style.singleDateField}
-          overlayClass={`${style.dateOverlay} ${
-            activeField == "flightDates" && isModalOn ? style.inModal : ""
-          }`}
+          // activeField == "flightDates" && isModalOn ? style.inModal : ""
+          overlayClass={`${style.dateOverlay}`}
           // className={`${style.dateRangeWrapper}`}
           fromDate={checkIn}
           toDate={checkOut}

@@ -1,0 +1,71 @@
+@import "/styles/variables.scss";
+.button {
+  @include semiBoldFont;
+  flex-direction: row-reverse;
+  color: $primary;
+  font-size: 14px;
+  svg {
+    margin: 0px 0 2px 5px;
+    width: 20px;
+    height: 20px;
+  }
+}
+.optionsWindow {
+  @include normalFont;
+  font-size: 14px;
+  color: $dark;
+  position: absolute;
+  bottom: 100%;
+  background: $white;
+  width: 300px;
+  z-index: 2;
+  box-shadow: 0px 4px 46px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  .flightTypeIcon {
+    position: relative;
+    width: 1.8rem;
+    top: -0.2rem;
+  }
+}
+.modal {
+  display: flex;
+  flex-direction: column;
+  .filterButtonWrapper {
+    background: $white;
+    height: 65px;
+    display: flex;
+    align-items: center;
+  }
+  .button {
+    // width: 100%;
+    // background-color: white;
+    justify-content: flex-start;
+    padding-left: 40px;
+    font-weight: 300;
+    color: $dark;
+    svg {
+      visibility: hidden;
+    }
+  }
+  .optionsWindow {
+    position: relative;
+    font-size: 14px;
+    width: 100%;
+    inset: 0;
+    height: 100%;
+    margin: auto;
+    border-radius: 0;
+    box-shadow: unset;
+    ul {
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .filterButtonWrapper {
+    padding: 1.4vw 4vw 1.4vw 6%;
+    background-color: rgb(79, 150, 247, 0.1);
+    border-radius: 10px;
+  }
+}
