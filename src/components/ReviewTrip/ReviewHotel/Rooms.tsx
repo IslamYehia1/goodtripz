@@ -53,7 +53,6 @@ function Rooms() {
   return (
     <>
       <div className={style.rooms} ref={roomsRef}>
-        <span className={style.space}></span>
         <Room />
         <Room />
         <Room />

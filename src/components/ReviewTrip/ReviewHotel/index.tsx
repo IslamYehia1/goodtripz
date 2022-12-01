@@ -100,7 +100,7 @@ function ReviewHotel() {
           </div>
         </div>
       </Container>
-      <Container className={style.container}>
+      <Container className={style.roomsContainer}>
         <div className={style.chooseRoom}>
           <h4>Choose a room</h4>
           <Rooms />

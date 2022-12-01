@@ -198,9 +198,23 @@
   }
 }
 
+@media screen and (max-width: 1280px) {
+  .roomsContainer {
+    width: 100%;
+  }
+}
 @media screen and (max-width: 1024px) {
   .container {
     margin-top: 3rem;
+  }
+  .room:first-child {
+    margin-left: 4%;
+  }
+  .chooseRoom {
+    padding: 0;
+    h4 {
+      padding-left: 5%;
+    }
   }
   .wrapper {
     flex-direction: column;
@@ -224,11 +238,14 @@
   .chooseRoom {
     padding: 0;
     h4 {
-      padding-left: 4%;
+      padding-left: 3%;
     }
   }
   .rooms {
     column-gap: 0.5rem;
+  }
+  .room:first-child {
+    margin-left: 3%;
   }
   .room {
     padding: 7px;
