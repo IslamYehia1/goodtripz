@@ -25,6 +25,8 @@ import ACIcon from "public/icons/aminities/air_conditioning.svg";
 import ParkingIcon from "public/icons/aminities/parking.svg";
 import SpaIcon from "public/icons/aminities/spa.svg";
 import WifiIcon from "public/icons/aminities/wifi.svg";
+import BreakfastIcon from "public/icons/aminities/breakfast.svg";
+import SizeIcon from "public/icons/aminities/size.svg";
 export {
   MenuIcon,
   Logo,
@@ -53,4 +55,6 @@ export {
   ParkingIcon,
   SpaIcon,
   WifiIcon,
+  BreakfastIcon,
+  SizeIcon,
 };

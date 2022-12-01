@@ -9,7 +9,7 @@ const OriginFlightField = () => {
       label="Flying from"
       placeholder="Origin airport"
       icon={FlyFromIcon}
-      value={`${from.name} (${from.IATA})`}
+      value={from.name && from.IATA && `${from.name} (${from.IATA})`}
       Suggestions={AirportsSuggestions}
       fieldName={"originFlightSearch"}
       setValue={({ suggestion, id }: any) => {

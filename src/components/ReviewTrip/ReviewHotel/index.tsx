@@ -5,6 +5,8 @@ import { Loader } from "@googlemaps/js-api-loader";
 import { useRef, useEffect } from "react";
 import { Star } from "src/components/Icons";
 import Container from "src/components/Container";
+import Room from "./Room";
+import Rooms from "./Rooms";
 import { PoolIcon, PetIcon, WifiIcon, ParkingIcon, SpaIcon, ACIcon } from "src/components/Icons";
 let map;
 const loader = new Loader({
@@ -31,7 +33,7 @@ function ReviewHotel() {
   }, []);
   return (
     <>
-      <Container>
+      <Container className={style.container}>
         <div className={style.wrapper}>
           <div className={style.firstColumn}>
             <div className={style.hotelNameWrapper}>
@@ -98,26 +100,10 @@ function ReviewHotel() {
           </div>
         </div>
       </Container>
-      <Container>
+      <Container className={style.container}>
         <div className={style.chooseRoom}>
-          Choose a room
-          <div className={style.rooms}>
-            <div className={style.room}>
-              <div className={style.roomImg}>
-                <div className={style.overlay}></div>
-                <Image fill src={HotelImg} alt="Hotel Picture" />
-                <div className={style.price}>200$ </div>
-              </div>
-              <div className={style.roomProps}>
-                <div className={style.roomAminities}>
-                  <div className={style.roomAmenity}>
-                    <PetIcon />
-                    Pet Friendly
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <h4>Choose a room</h4>
+          <Rooms />
         </div>
       </Container>
     </>

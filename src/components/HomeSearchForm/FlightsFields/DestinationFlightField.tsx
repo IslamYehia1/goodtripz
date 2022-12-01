@@ -11,7 +11,7 @@ const OriginFlightField = () => {
       label="Flying to"
       placeholder="Destination airport"
       icon={FlyToIcon}
-      value={to.name}
+      value={to.name && to.IATA && `${to.name} (${to.IATA})`}
       setValue={({ suggestion, id }: any) => {
         setFlightDestination(suggestion, id);
       }}
