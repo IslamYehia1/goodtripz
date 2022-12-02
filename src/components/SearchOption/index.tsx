@@ -8,25 +8,17 @@ import Button from "../Button/Button";
 import { AnimatePresence, motion } from "framer-motion";
 
 function SearchOption(props: any) {
-  const [isActive, setIsActive] = useState(false);
   const [isModal, setIsModal] = useState(false);
   const isMobile = useIsMobile();
-  const flightOptionsRef = useOutsideClick(isActive, () => {
-    props.onDeactivate();
+  const flightOptionsRef = useOutsideClick(props.isActive, () => {
+    props.onDeActivate();
   });
-  //   useEffect(() => {
-  //     if (props.isActive) setIsActive(true);
-  //     else setIsActive(false);
-  //   }, [props.isActive]);
+
   useEffect(() => {
     if (props.isActive && isMobile) {
       setIsModal(true);
     } else setIsModal(false);
   }, [props.isActive, isMobile]);
-  //   useEffect(() => {
-  //     if (isModal) setIsActive(true);
-  //     else setIsActive(false);
-  //   }, [isModal]);
   return (
     <SearchModal
       onClose={() => {

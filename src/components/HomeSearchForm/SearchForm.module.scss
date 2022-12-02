@@ -38,40 +38,6 @@
     gap: 20px;
   }
 }
-.inModal {
-  display: block;
-}
-.filterButtonWrapper.inModal {
-  .button {
-    width: 100%;
-    height: 65px;
-    background-color: white;
-    justify-content: flex-start;
-    padding-left: 40px;
-    font-weight: 300;
-    svg {
-      visibility: hidden;
-    }
-  }
-}
-
-.optionsWindow {
-  @include normalFont;
-  font-size: 14px;
-  color: $dark;
-  position: absolute;
-  bottom: 100%;
-  background: $white;
-  width: 300px;
-  z-index: 2;
-  box-shadow: 0px 4px 46px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
-  .flightTypeIcon {
-    position: relative;
-    width: 1.8rem;
-    top: -0.2rem;
-  }
-}
 
 .travellersOptions {
   padding: 10px 30px;
@@ -80,7 +46,7 @@
   flex-direction: column;
   width: 100%;
 
-  li {
+  & > div {
     margin: 10px 0;
     display: flex;
     justify-content: space-between;
@@ -94,7 +60,7 @@
   }
 }
 .flightTypeOptions {
-  li {
+  & > div {
     padding: 0.7rem 2rem;
     color: $primary;
   }
@@ -274,22 +240,6 @@
     height: 30px;
   }
 }
-.searchFragment.inModal {
-  .textFieldWrapper {
-    padding-left: 15vw;
-    &::after {
-      content: none;
-    }
-    svg {
-      display: none;
-      // color: red;
-    }
-  }
-  position: relative;
-  // top: 15px;
-  left: 0;
-  right: 0;
-}
 
 @media only screen and (max-width: 1280px) {
   .textField {
@@ -300,13 +250,6 @@
 }
 
 @media only screen and (max-width: 1024px) {
-  .options {
-    // .filterButtonWrapper {
-    //   padding: 1.4vw 4vw 1.4vw 6%;
-    //   background-color: rgb(79, 150, 247, 0.1);
-    //   border-radius: 10px;
-    // }
-  }
   .searchTabs {
     width: 100%;
     .searchTab {
@@ -325,13 +268,6 @@
     padding: 2vw 0 2vw 6%;
     border-radius: 7px;
   }
-  // .aSearchField {
-  //   svg {
-  //     width: 20px;
-  //     height: 20px;
-  //   }
-  //   margin-bottom: 15px;
-  // }
   .fields {
     flex-wrap: wrap;
 
@@ -345,10 +281,6 @@
       max-width: 49%;
       margin-bottom: 1rem;
     }
-    // .hotelSearchField:first-child {
-    //   width: 100%;
-    //   max-width: unset;
-    // }
   }
 }
 #modalRoot {
@@ -358,16 +290,6 @@
   }
 }
 
-.searchFragment.dateSearchField.inModal {
-  // border-radius: 0 0 20px 20px;
-  // overflow: hidden;
-  .textFieldWrapper {
-    z-index: 100;
-    &:after {
-      content: none;
-    }
-  }
-}
 @media only screen and (max-width: 650px) {
   .suggestions {
     top: 0;
@@ -392,12 +314,6 @@
         margin-right: 30px;
       }
     }
-  }
-  .dateOverlay.inModal {
-    // position: relative;
-    // background-color: red;
-    bottom: 0;
-    width: 100%;
   }
 
   .options {

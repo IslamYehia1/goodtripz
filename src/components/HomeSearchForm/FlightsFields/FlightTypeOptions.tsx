@@ -21,24 +21,24 @@ const FlightTypeOptions = () => {
           setIsActive(false);
         }}
       >
-        <ul className={style.flightTypeOptions}>
-          <li
+        <div className={style.flightTypeOptions}>
+          <div
             onClick={() => {
               setFlightType("oneWay");
               setIsActive(false);
             }}
           >
             <span>One Way</span>
-          </li>
-          <li
+          </div>
+          <div
             onClick={() => {
               setFlightType("roundTrip");
               setIsActive(false);
             }}
           >
             <span>Round Trip</span>
-          </li>
-        </ul>
+          </div>
+        </div>
       </SearchOption>
     </>
   );

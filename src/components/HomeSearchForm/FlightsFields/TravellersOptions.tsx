@@ -22,18 +22,18 @@ const TravellersOptions = () => {
         isActive={isActive}
         btnValue={`${parseInt(adults) + parseInt(children)} Travellers`}
       >
-        <ul className={style.travellersOptions}>
-          <li>
+        <div className={style.travellersOptions}>
+          <div>
             <Button handleClick={addAdultTraveller} icon={PlusIcon} />
             <span>{`${adults} Adults`}</span>
             <Button handleClick={removeAdultTraveller} type="button" icon={MinusIcon} />
-          </li>
-          <li>
+          </div>
+          <div>
             <Button handleClick={addChildTraveller} icon={PlusIcon} type="button" />
             {`${children} Children`}
             <Button handleClick={removeChildTraveller} type="button" icon={MinusIcon} />
-          </li>
-        </ul>
+          </div>
+        </div>
       </SearchOption>
     </>
   );
