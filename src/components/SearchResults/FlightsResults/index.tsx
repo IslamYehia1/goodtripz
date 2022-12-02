@@ -3,13 +3,11 @@ import FlightsSideBar from "./FlightsSearchFields";
 import FlightOffers from "./Offers";
 import style from "../SearchResults.module.scss";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { fetchAirport } from "src/utils/fetchAirportName";
 import { useFlightContext } from "../../CommonContexts/FlightsContext";
 import Button from "../../Button/Button";
 import { SortIcon, FilterIcon } from "../../Icons";
 import useIsMobile from "../../../utils/useIsMobile";
-import { useUIContext } from "../../UI";
+import { useState } from "react";
 import { useGetExistingFlight } from "src/utils/useGetExistingSearch";
 const ResultsPageContainer = () => {
   const { from, to } = useFlightContext();
@@ -19,7 +17,6 @@ const ResultsPageContainer = () => {
     to: { city: "City", name: "WOOOW" },
   });
   const isMobile = useIsMobile();
-  const { isModalOn, openModal, closeModal, setActiveField } = useUIContext();
   const router = useRouter();
   const query = router.query;
   // useEffect(() => {
@@ -64,7 +61,7 @@ const ResultsPageContainer = () => {
             className={`${style.button} ${style.sortBtn}`}
             icon={SortIcon}
             handleClick={() => {
-              if (isMobile && !isModalOn) openModal("flightsResultsSort");
+              // if (isMobile && !isModalOn) openModal("flightsResultsSort");
             }}
           >
             Sort by
@@ -74,7 +71,7 @@ const ResultsPageContainer = () => {
               className={`${style.button} ${style.filterBtn}`}
               icon={FilterIcon}
               handleClick={() => {
-                if (isMobile) setActiveField("sidebarSections");
+                // if (isMobile) setActiveField("sidebarSections");
               }}
             >
               Filter

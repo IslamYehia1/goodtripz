@@ -1,6 +1,8 @@
 import { useFlightContext } from "../../CommonContexts/FlightsContext";
 import { useEffect, useState } from "react";
 import SearchOption from "src/components/SearchOption";
+import style from "../SearchForm.module.scss";
+
 type propsType = {
   // dispatch: any;
 };
@@ -19,7 +21,7 @@ const FlightTypeOptions = () => {
           setIsActive(false);
         }}
       >
-        <ul>
+        <ul className={style.flightTypeOptions}>
           <li
             onClick={() => {
               setFlightType("oneWay");

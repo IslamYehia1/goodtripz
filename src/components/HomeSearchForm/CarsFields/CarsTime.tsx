@@ -9,16 +9,10 @@ import { LocationIcon } from "../../Icons";
 import CarTimeSuggestions from "../../Suggestions/HotelPlaceSuggestions";
 function CarsTime() {
   const { pickUpTime, setPickUpTime, activeField, setActiveField } = useCarsContext();
-  const { isModalOn } = useUIContext();
-  const [isActive, setIsActive] = useState(false);
-  useEffect(() => {
-    if (activeField === "carPickupTime") setIsActive(true);
-  }, []);
+
   return (
     <SearchField
-      className={`${style.aSearchField} ${style.flightSearchField} ${
-        isActive && isModalOn ? style.inModal : ""
-      } `}
+      className={`${style.aSearchField} ${style.flightSearchField} `}
       inputClass={style.textField}
       wrapperClass={style.textFieldWrapper}
       suggestions={CarTimeSuggestions}
@@ -27,15 +21,6 @@ function CarsTime() {
       }}
       onChange={(value: any) => {
         setPickUpTime(value);
-      }}
-      isActive={activeField === "carPickupTime"}
-      onActivate={() => {
-        if (setActiveField) setActiveField("carPickupTime");
-        // if (isMobile) openModal("originFlightSearch");
-      }}
-      onDeactivate={() => {
-        if (setActiveField) setActiveField("");
-        // if (isModalOn) closeModal();
       }}
       //   animate={{ flexGrow: activeField === "carPickupTime" ? 5 : 2 }}
       value={pickUpTime}

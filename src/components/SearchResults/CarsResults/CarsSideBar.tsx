@@ -7,10 +7,7 @@ import useIsMobile from "src/utils/useIsMobile";
 import ResultsSearchField from "../SearchField";
 import { useEffect } from "react";
 const CarsSideBar = (props: hotelsSideBarT) => {
-  const { isModalOn, openModal, closeModal } = useUIContext();
   const {
-    activeField,
-    setActiveField,
     setPickUpLocation,
     pickUpLocation,
     setDropOffLocation,
@@ -22,19 +19,6 @@ const CarsSideBar = (props: hotelsSideBarT) => {
   } = useCarsContext();
 
   const isMobile = useIsMobile();
-
-  useEffect(() => {
-    if (activeField && isMobile) {
-      openModal(activeField);
-    } else {
-      closeModal();
-    }
-  }, [isMobile, activeField]);
-  useEffect(() => {
-    if (isMobile && !isModalOn) {
-      setActiveField("");
-    }
-  }, [isMobile, isModalOn]);
 
   return (
     <>
